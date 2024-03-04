@@ -1,0 +1,215 @@
+[gd_scene load_steps=18 format=3 uid="uid://c46qmvhxthc2x"]
+
+[ext_resource type="Script" path="res://Character/Enemies/Snail.gd" id="1_it4pi"]
+[ext_resource type="Texture2D" uid="uid://caq2l8q8mggqi" path="res://Assets/Mob/Snail/walk-Sheet.png" id="1_lqkui"]
+[ext_resource type="Texture2D" uid="uid://ck4p0bsagmsc3" path="res://Assets/Mob/Snail/Dead-Sheet.png" id="2_hf0ur"]
+[ext_resource type="Script" path="res://Character/Enemies/Damageable.gd" id="2_x0ww4"]
+[ext_resource type="Script" path="res://Character/Player_Class/人物状态机.gd" id="4_mwdj4"]
+[ext_resource type="Script" path="res://Character/Player_Class/状态.gd" id="5_ditwj"]
+[ext_resource type="Script" path="res://Character/Player_Class/状态：Hit.gd" id="6_mv0id"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_21mk8"]
+size = Vector2(28, 23)
+
+[sub_resource type="Animation" id="Animation_gt22u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_lqkui")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_pjegr"]
+resource_name = "死亡"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_hf0ur")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_c6wcu"]
+resource_name = "走"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_lqkui")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kih5y"]
+_data = {
+"RESET": SubResource("Animation_gt22u"),
+"死亡": SubResource("Animation_pjegr"),
+"走": SubResource("Animation_c6wcu")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_51kbe"]
+animation = &"死亡"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qx0h2"]
+animation = &"走"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_23lq5"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jgog6"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_06x0u"]
+"states/死亡/node" = SubResource("AnimationNodeAnimation_51kbe")
+"states/死亡/position" = Vector2(644, 100)
+"states/走/node" = SubResource("AnimationNodeAnimation_qx0h2")
+"states/走/position" = Vector2(372, 100)
+transitions = ["Start", "走", SubResource("AnimationNodeStateMachineTransition_23lq5"), "走", "死亡", SubResource("AnimationNodeStateMachineTransition_jgog6")]
+
+[node name="Snail" type="CharacterBody2D" node_paths=PackedStringArray("hit_state")]
+position = Vector2(0, -4)
+collision_layer = 4
+script = ExtResource("1_it4pi")
+movement_speed = 10.0
+hit_state = NodePath("CharacterStateMachine/Hit")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_21mk8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lqkui")
+hframes = 8
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kih5y")
+}
+tree_root = SubResource("AnimationNodeStateMachine_06x0u")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kih5y")
+}
+
+[node name="Damageable" type="Node" parent="."]
+script = ExtResource("2_x0ww4")
+health = 100.0
+
+[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "animation_tree")]
+script = ExtResource("4_mwdj4")
+character = NodePath("..")
+current_state = NodePath("Walk")
+animation_tree = NodePath("../AnimationTree")
+
+[node name="Walk" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("5_ditwj")
+
+[node name="Dead" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("5_ditwj")
+"能否跑" = false
+
+[node name="Hit" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("damageable", "dead_state", "return_state")]
+script = ExtResource("6_mv0id")
+damageable = NodePath("../../Damageable")
+dead_state = NodePath("../Dead")
+return_state = NodePath("../Walk")
+"能否跑" = false
+
+[node name="Timer" type="Timer" parent="CharacterStateMachine/Hit"]
+wait_time = 0.256
+one_shot = true
+
+[connection signal="animation_finished" from="AnimationTree" to="Damageable" method="_on_animation_tree_animation_finished"]
+[connection signal="timeout" from="CharacterStateMachine/Hit/Timer" to="CharacterStateMachine/Hit" method="_on_timer_timeout"]

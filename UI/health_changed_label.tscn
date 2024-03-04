@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://ch6mdv3v8if3r"]
+
+[ext_resource type="Script" path="res://UI/health_changed_label.gd" id="1_on0ql"]
+
+[node name="HealthChangedLabel" type="Label"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_on0ql")
+float_speed = Vector2(0, -75)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

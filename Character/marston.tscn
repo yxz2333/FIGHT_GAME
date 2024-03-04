@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjjb1ax6cryon"]
+
+[ext_resource type="PackedScene" uid="uid://bw77mt5bfeyet" path="res://Character/Player_Class/player.tscn" id="1_r32dx"]
+
+[node name="MARSTON" instance=ExtResource("1_r32dx")]
+left_action = "left_player_1"
+right_action = "right_player_1"
+up_action = "up_player_1"
+down_action = "down_player_1"
