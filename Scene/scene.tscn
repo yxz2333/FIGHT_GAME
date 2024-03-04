@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dqykt4wqbs1o4"]
+[gd_scene load_steps=45 format=3 uid="uid://dqykt4wqbs1o4"]
 
 [ext_resource type="Texture2D" uid="uid://cg8oc15tjjsvo" path="res://Assets/ENVIRO/Level Design/trunk2.png" id="1_p4b8i"]
 [ext_resource type="Texture2D" uid="uid://bgaydpqkpau41" path="res://Assets/ENVIRO/Level Design/trunk3.png" id="2_bkhlb"]
@@ -25,10 +25,11 @@
 [ext_resource type="Texture2D" uid="uid://bcx1bc1fonnux" path="res://Assets/ENVIRO/Background/tree_trunk2.png" id="25_gm6ad"]
 [ext_resource type="Texture2D" uid="uid://bd8c84jxrcklm" path="res://Assets/ENVIRO/Background/tree_trunk6.png" id="26_dk2nx"]
 [ext_resource type="Texture2D" uid="uid://d1lulkk7ljkoi" path="res://Assets/ENVIRO/Background/tree_leaves5.png" id="27_co4s0"]
+[ext_resource type="PackedScene" uid="uid://bw77mt5bfeyet" path="res://Character/MARSTON/marston.tscn" id="27_d6q1h"]
+[ext_resource type="PackedScene" uid="uid://cifthl2ohvi0t" path="res://Character/NAMKA/namka.tscn" id="28_0sv12"]
 [ext_resource type="PackedScene" uid="uid://c46qmvhxthc2x" path="res://Character/Enemies/Snail.tscn" id="28_8o2ca"]
 [ext_resource type="Texture2D" uid="uid://ro7d4i236ywj" path="res://Assets/ENVIRO/Background/tree_leaves4.png" id="28_ydtb8"]
 [ext_resource type="PackedScene" uid="uid://wvas1dl1lwhc" path="res://UI/health_changed_manager.tscn" id="29_4ialx"]
-[ext_resource type="PackedScene" uid="uid://bjjb1ax6cryon" path="res://Character/MARSTON.tscn" id="29_q7dpu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_73r6q"]
 texture = ExtResource("1_p4b8i")
@@ -308,6 +309,8 @@ size = Vector2(61.5, 0.5)
 [node name="Scene" type="Node2D"]
 
 [node name="MAP" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="TileMap" type="TileMap" parent="MAP"]
 scale = Vector2(1.30602, 1.02838)
@@ -488,8 +491,11 @@ texture = ExtResource("28_ydtb8")
 position = Vector2(17, 134)
 texture = ExtResource("28_ydtb8")
 
-[node name="MARSTON" parent="." instance=ExtResource("29_q7dpu")]
-position = Vector2(36, 29)
+[node name="MARSTON" parent="." instance=ExtResource("27_d6q1h")]
+position = Vector2(28, 29)
+
+[node name="NAMKA" parent="." instance=ExtResource("28_0sv12")]
+position = Vector2(286, 31)
 
 [node name="Snail" parent="." instance=ExtResource("28_8o2ca")]
 z_index = -1

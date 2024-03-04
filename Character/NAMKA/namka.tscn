@@ -1,24 +1,23 @@
-[gd_scene load_steps=56 format=3 uid="uid://bw77mt5bfeyet"]
+[gd_scene load_steps=56 format=3 uid="uid://cifthl2ohvi0t"]
 
-[ext_resource type="Script" path="res://Character/Player_Class/player.gd" id="1_846sn"]
-[ext_resource type="Texture2D" uid="uid://drrwljdvcfdm5" path="res://Assets/CHARAs/MARSTON/attack1/attack.png" id="2_e4cmr"]
-[ext_resource type="Texture2D" uid="uid://bc2ddjjlhsawo" path="res://Assets/CHARAs/MARSTON/attack1/attack_1.png" id="3_w17sb"]
-[ext_resource type="Texture2D" uid="uid://ngnx1wu2n5kq" path="res://Assets/CHARAs/MARSTON/attack2/attack_2.png" id="4_swkaq"]
-[ext_resource type="Texture2D" uid="uid://cssk37fuqbu8s" path="res://Assets/CHARAs/MARSTON/attack3/attack_3.png" id="5_ppyoj"]
-[ext_resource type="Texture2D" uid="uid://cejhldjh2b7a7" path="res://Assets/CHARAs/MARSTON/Idle.png" id="6_p5yvs"]
-[ext_resource type="Texture2D" uid="uid://bvgc100a6sh8" path="res://Assets/CHARAs/MARSTON/running/run.png" id="7_534gy"]
-[ext_resource type="Texture2D" uid="uid://w4k0mpa8r60r" path="res://Assets/CHARAs/MARSTON/jump/jump.png" id="8_5s5u5"]
-[ext_resource type="Texture2D" uid="uid://bixq2t66oxv1q" path="res://Assets/CHARAs/MARSTON/fall.png" id="9_h5kpu"]
-[ext_resource type="Script" path="res://Character/Player_Class/人物状态机.gd" id="10_g10dm"]
-[ext_resource type="Script" path="res://Character/Player_Class/状态：Ground.gd" id="11_wubf2"]
-[ext_resource type="Script" path="res://Character/Player_Class/状态：Air.gd" id="12_ebgp2"]
-[ext_resource type="Script" path="res://Character/Player_Class/状态：Attack.gd" id="13_g2gn3"]
-[ext_resource type="FontFile" uid="uid://kbr8115pi1jl" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="14_7qcdt"]
-[ext_resource type="Script" path="res://Character/Player_Class/StateDebugLabel.gd" id="15_5ihae"]
-[ext_resource type="Script" path="res://Character/Player_Class/Attack.gd" id="16_kkbex"]
-[ext_resource type="Script" path="res://Character/Player_Class/FacingCollisionShape2D.gd" id="17_2u5k1"]
+[ext_resource type="Script" path="res://Character/NAMKA/player.gd" id="1_eukoy"]
+[ext_resource type="Texture2D" uid="uid://db3tdx5cd0161" path="res://Assets/CHARAs/NAMKA/attack_prepare/attack_prepare.png" id="2_ok8b4"]
+[ext_resource type="Texture2D" uid="uid://mt7f2nnph5un" path="res://Assets/CHARAs/NAMKA/jump/jump.png" id="2_wwhbp"]
+[ext_resource type="Texture2D" uid="uid://t2kfwgtuusyh" path="res://Assets/CHARAs/NAMKA/Idle.png" id="3_almlf"]
+[ext_resource type="Texture2D" uid="uid://5eaxgxcvqoyn" path="res://Assets/CHARAs/NAMKA/running/run.png" id="4_17s4h"]
+[ext_resource type="Texture2D" uid="uid://ca8ur3w5ol1u2" path="res://Assets/CHARAs/NAMKA/fall/fall_1.png" id="5_i3d1t"]
+[ext_resource type="Texture2D" uid="uid://b78bmxp5xy7pw" path="res://Assets/CHARAs/NAMKA/attack/attack.png" id="7_qm2lt"]
+[ext_resource type="Script" path="res://Character/NAMKA/人物状态机.gd" id="9_7x5hh"]
+[ext_resource type="Script" path="res://Character/NAMKA/状态：Ground.gd" id="10_tstpb"]
+[ext_resource type="Script" path="res://Character/NAMKA/状态：Air.gd" id="11_5bvx2"]
+[ext_resource type="Script" path="res://Character/NAMKA/状态：Attack.gd" id="12_3txlx"]
+[ext_resource type="FontFile" uid="uid://kbr8115pi1jl" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="13_yalan"]
+[ext_resource type="Script" path="res://Character/NAMKA/StateDebugLabel.gd" id="14_axuck"]
+[ext_resource type="Script" path="res://Character/NAMKA/Attack.gd" id="15_qkf7b"]
+[ext_resource type="Script" path="res://Character/NAMKA/FacingCollisionShape2D.gd" id="16_iyajn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_klvjb"]
+size = Vector2(20, 23)
 
 [sub_resource type="Animation" id="Animation_2gjnp"]
 length = 0.001
@@ -32,36 +31,202 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_e4cmr")]
+"values": [ExtResource("2_ok8b4")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_j06li"]
+resource_name = "攻击_1"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-6, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_ok8b4")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_dwesu"]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(6, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_ok8b4")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_ntfhl"]
+resource_name = "攻击_2"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Attack:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0]
+"values": [Vector2(13, -5)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/path = NodePath("Sprite2D:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [2]
+"values": [ExtResource("7_qm2lt")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:hframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
 }
 
-[sub_resource type="Animation" id="Animation_j06li"]
-resource_name = "攻击_1"
-length = 0.2
+[sub_resource type="Animation" id="Animation_5q7cp"]
+length = 0.9
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -69,7 +234,7 @@ tracks/0/path = NodePath("Attack:monitoring")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -77,142 +242,50 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/path = NodePath("Sprite2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_w17sb")]
+"update": 0,
+"values": [Vector2(-13, -5)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:hframes")
+tracks/2/path = NodePath("Sprite2D:texture")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [2]
+"values": [ExtResource("7_qm2lt")]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/path = NodePath("Sprite2D:hframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
-
-[sub_resource type="Animation" id="Animation_ntfhl"]
-resource_name = "攻击_2"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Attack:monitoring")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_swkaq")]
+"values": [9]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:hframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [2]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
-
-[sub_resource type="Animation" id="Animation_rcv5c"]
-resource_name = "攻击_3"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Attack:monitoring")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("5_ppyoj")]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:hframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
 }
 
 [sub_resource type="Animation" id="Animation_sifpt"]
@@ -230,7 +303,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("6_p5yvs")]
+"values": [ExtResource("3_almlf")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -271,7 +344,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("7_534gy")]
+"values": [ExtResource("4_17s4h")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -311,7 +384,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("8_5s5u5")]
+"values": [ExtResource("2_wwhbp")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -352,7 +425,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("9_h5kpu")]
+"values": [ExtResource("5_i3d1t")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -392,7 +465,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.0001),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ExtResource("8_5s5u5"), ExtResource("8_5s5u5")]
+"values": [ExtResource("2_wwhbp"), ExtResource("2_wwhbp")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -422,9 +495,10 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8aqaf"]
 _data = {
 "RESET": SubResource("Animation_2gjnp"),
-"攻击_1": SubResource("Animation_j06li"),
-"攻击_2": SubResource("Animation_ntfhl"),
-"攻击_3": SubResource("Animation_rcv5c"),
+"攻击_准备_右": SubResource("Animation_j06li"),
+"攻击_准备_左": SubResource("Animation_dwesu"),
+"攻击_右": SubResource("Animation_ntfhl"),
+"攻击_左": SubResource("Animation_5q7cp"),
 "空闲": SubResource("Animation_sifpt"),
 "跑": SubResource("Animation_rhc4q"),
 "跳跃_开始": SubResource("Animation_705y1"),
@@ -432,40 +506,55 @@ _data = {
 "跳跃_连跳": SubResource("Animation_ml2hh")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v2kcu"]
-animation = &"攻击_1"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mym3e"]
+animation = &"攻击_右"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aa35d"]
-animation = &"攻击_2"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_shx52"]
+animation = &"攻击_左"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xlc05"]
-animation = &"攻击_3"
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_8bmw6"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_mym3e")
+blend_point_0/pos = 1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_shx52")
+blend_point_1/pos = -1.0
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yalp4"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v6es1"]
+animation = &"攻击_准备_右"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fdp0b"]
+animation = &"攻击_准备_左"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_qpaeh"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_v6es1")
+blend_point_0/pos = 1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_fdp0b")
+blend_point_1/pos = -1.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2ss7e"]
 animation = &"空闲"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fp607"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_guj7y"]
 animation = &"跑"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m7wod"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_htjwe"]
 animation = &"跑"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fvppn"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wtd8m"]
 animation = &"跑"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aijvy"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1tfqy"]
 animation = &"跑"
 
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_afsln"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_yalp4")
+blend_point_0/node = SubResource("AnimationNodeAnimation_2ss7e")
 blend_point_0/pos = 0.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_fp607")
+blend_point_1/node = SubResource("AnimationNodeAnimation_guj7y")
 blend_point_1/pos = 1.0
-blend_point_2/node = SubResource("AnimationNodeAnimation_m7wod")
+blend_point_2/node = SubResource("AnimationNodeAnimation_htjwe")
 blend_point_2/pos = -1.0
-blend_point_3/node = SubResource("AnimationNodeAnimation_fvppn")
+blend_point_3/node = SubResource("AnimationNodeAnimation_wtd8m")
 blend_point_3/pos = -0.05
-blend_point_4/node = SubResource("AnimationNodeAnimation_aijvy")
+blend_point_4/node = SubResource("AnimationNodeAnimation_1tfqy")
 blend_point_4/pos = 0.05
 snap = 0.05
 blend_mode = 1
@@ -492,27 +581,21 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_50ro6"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3e0q7"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n11f3"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hyk60"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4rmjr"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mdob7"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qkbjt"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vkxrm"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_guyl0"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dl3is"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n2lsv"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_egojv"]
 states/End/position = Vector2(872, 203)
 states/Start/position = Vector2(148, 203)
-"states/攻击_1/node" = SubResource("AnimationNodeAnimation_v2kcu")
-"states/攻击_1/position" = Vector2(334, 302)
-"states/攻击_2/node" = SubResource("AnimationNodeAnimation_aa35d")
-"states/攻击_2/position" = Vector2(494.366, 302)
-"states/攻击_3/node" = SubResource("AnimationNodeAnimation_xlc05")
-"states/攻击_3/position" = Vector2(634.366, 302)
+"states/攻击/node" = SubResource("AnimationNodeBlendSpace1D_8bmw6")
+"states/攻击/position" = Vector2(539, 307)
+"states/攻击_准备/node" = SubResource("AnimationNodeBlendSpace1D_qpaeh")
+"states/攻击_准备/position" = Vector2(334, 307)
 "states/移动/node" = SubResource("AnimationNodeBlendSpace1D_afsln")
 "states/移动/position" = Vector2(334, 203)
 "states/跳跃_开始/node" = SubResource("AnimationNodeAnimation_i310e")
@@ -521,30 +604,34 @@ states/Start/position = Vector2(148, 203)
 "states/跳跃_循环/position" = Vector2(576, 203)
 "states/跳跃_连跳/node" = SubResource("AnimationNodeAnimation_2xesq")
 "states/跳跃_连跳/position" = Vector2(576, 63)
-transitions = ["Start", "移动", SubResource("AnimationNodeStateMachineTransition_u111x"), "移动", "跳跃_开始", SubResource("AnimationNodeStateMachineTransition_eg77g"), "跳跃_开始", "跳跃_循环", SubResource("AnimationNodeStateMachineTransition_4yp4g"), "跳跃_循环", "移动", SubResource("AnimationNodeStateMachineTransition_ahn2a"), "跳跃_开始", "跳跃_连跳", SubResource("AnimationNodeStateMachineTransition_cknop"), "跳跃_连跳", "跳跃_循环", SubResource("AnimationNodeStateMachineTransition_50ro6"), "移动", "攻击_1", SubResource("AnimationNodeStateMachineTransition_3e0q7"), "攻击_1", "攻击_2", SubResource("AnimationNodeStateMachineTransition_hyk60"), "攻击_1", "移动", SubResource("AnimationNodeStateMachineTransition_mdob7"), "攻击_2", "移动", SubResource("AnimationNodeStateMachineTransition_vkxrm"), "攻击_2", "攻击_3", SubResource("AnimationNodeStateMachineTransition_guyl0"), "攻击_3", "移动", SubResource("AnimationNodeStateMachineTransition_dl3is")]
-graph_offset = Vector2(-72.634, 85)
+transitions = ["Start", "移动", SubResource("AnimationNodeStateMachineTransition_u111x"), "移动", "跳跃_开始", SubResource("AnimationNodeStateMachineTransition_eg77g"), "跳跃_开始", "跳跃_循环", SubResource("AnimationNodeStateMachineTransition_4yp4g"), "跳跃_循环", "移动", SubResource("AnimationNodeStateMachineTransition_ahn2a"), "跳跃_开始", "跳跃_连跳", SubResource("AnimationNodeStateMachineTransition_cknop"), "跳跃_连跳", "跳跃_循环", SubResource("AnimationNodeStateMachineTransition_50ro6"), "移动", "攻击_准备", SubResource("AnimationNodeStateMachineTransition_n11f3"), "攻击_准备", "移动", SubResource("AnimationNodeStateMachineTransition_4rmjr"), "攻击_准备", "攻击", SubResource("AnimationNodeStateMachineTransition_qkbjt"), "攻击", "移动", SubResource("AnimationNodeStateMachineTransition_n2lsv")]
+graph_offset = Vector2(-14.634, 101)
 
 [sub_resource type="LabelSettings" id="LabelSettings_pvesp"]
 line_spacing = 0.0
-font = ExtResource("14_7qcdt")
+font = ExtResource("13_yalan")
 font_size = 10
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6eb18"]
-size = Vector2(12, 20)
+size = Vector2(28, 34)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="NAMKA" type="CharacterBody2D"]
 collision_layer = 2
-script = ExtResource("1_846sn")
+script = ExtResource("1_eukoy")
 speed = 120.0
+left_action = "left_player_2"
+right_action = "right_player_2"
+up_action = "up_player_2"
+down_action = "down_player_2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_klvjb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(3.55271e-15, 0)
 scale = Vector2(1, 0.994923)
-texture = ExtResource("2_e4cmr")
-hframes = 2
+texture = ExtResource("2_ok8b4")
+hframes = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -557,24 +644,29 @@ libraries = {
 }
 tree_root = SubResource("AnimationNodeStateMachine_egojv")
 anim_player = NodePath("../AnimationPlayer")
+"parameters/攻击/blend_position" = 0
+"parameters/攻击_准备/blend_position" = 0
 "parameters/移动/blend_position" = -0.25355
 
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "animation_tree")]
-script = ExtResource("10_g10dm")
+script = ExtResource("9_7x5hh")
 character = NodePath("..")
 current_state = NodePath("Ground")
 animation_tree = NodePath("../AnimationTree")
 
 [node name="Ground" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state", "ground_state", "attack_state")]
-script = ExtResource("11_wubf2")
+script = ExtResource("10_tstpb")
+jump_velocity = null
 air_state = NodePath("../Air")
 ground_state = NodePath(".")
 attack_state = NodePath("../Attack")
-jump_action = "jump_player_1"
-attack_action = "attack_1_player_1"
+jump_action = "jump_player_2"
+attack_action = "attack_1_player_2"
 jump_start_animation = "跳跃_开始"
 jump_loop_animation = "跳跃_循环"
-attack_1_animation = "攻击_1"
+attack_1_animation = "攻击_准备"
+"能否跑" = null
+"能否转向" = null
 
 [node name="BufferTimer" type="Timer" parent="CharacterStateMachine/Ground"]
 wait_time = 0.05
@@ -582,22 +674,26 @@ one_shot = true
 autostart = true
 
 [node name="Air" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("ground_state")]
-script = ExtResource("12_ebgp2")
+script = ExtResource("11_5bvx2")
 ground_state = NodePath("../Ground")
-jump_action = "jump_player_1"
+double_jump_velocity = null
+jump_action = "jump_player_2"
 move_animation = "移动"
 jump_animation = "跳跃_开始"
 jump_loop_animation = "跳跃_循环"
 double_jump_animation = "跳跃_连跳"
+"能否跑" = null
+"能否转向" = null
 
 [node name="Attack" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("return_state")]
-script = ExtResource("13_g2gn3")
+script = ExtResource("12_3txlx")
 return_state = NodePath("../Ground")
-attack_action = "attack_1_player_1"
 move_animation = "移动"
-attack_1_animation = "攻击_1"
-attack_2_animation = "攻击_2"
-attack_3_animation = "攻击_3"
+attack_1_animation_left = "攻击_准备_左"
+attack_1_animation_right = "攻击_准备_右"
+attack_2_animation = "攻击"
+attack_2_animation_left = "攻击_左"
+attack_2_animation_right = "攻击_右"
 "能否跑" = false
 "能否转向" = false
 
@@ -612,23 +708,24 @@ offset_right = 37.0
 offset_bottom = -10.0
 text = "状态："
 label_settings = SubResource("LabelSettings_pvesp")
-script = ExtResource("15_5ihae")
+script = ExtResource("14_axuck")
 state_machine = NodePath("../CharacterStateMachine")
 
 [node name="Attack" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_collision_shape_2d")]
 collision_layer = 0
 collision_mask = 4
-script = ExtResource("16_kkbex")
+script = ExtResource("15_qkf7b")
 player = NodePath("..")
 facing_collision_shape_2d = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack"]
-position = Vector2(8, 0)
+position = Vector2(19, -6)
 shape = SubResource("RectangleShape2D_6eb18")
-script = ExtResource("17_2u5k1")
-facing_left_position = Vector2(-8, 0)
-facing_right_position = Vector2(8, 0)
+script = ExtResource("16_iyajn")
+facing_left_position = Vector2(-19, -6)
+facing_right_position = Vector2(19, -6)
 
+[connection signal="current_animation_changed" from="AnimationPlayer" to="AnimationPlayer" method="_on_current_animation_changed"]
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/Air" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/Attack" method="_on_animation_tree_animation_finished"]
