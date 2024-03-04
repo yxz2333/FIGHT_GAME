@@ -1,13 +1,10 @@
-extends Player
+extends CharacterBody2D
+
+class_name MARSTON
 
 @export var speed : float = 200.0
 
-@export var left_action : String
-@export var right_action : String
-@export var up_action : String
-@export var down_action : String
-
-@onready var sprite : Sprite2D = $Sprite2D 
+@onready var sprite : Sprite2D = $Sprite2D
 @onready var animation_tree : AnimationTree = $AnimationTree
 @onready var state_machine : CharacterStateMachine = $CharacterStateMachine
 
@@ -20,8 +17,7 @@ func _ready():
 	animation_tree.active = true
 
 func _physics_process(delta): 
-	
-	direction = Input.get_vector(left_action, right_action, up_action, down_action) # 读入x轴和y轴输入	
+	direction = Input.get_vector("left_player_1", "right_player_1", "up_player_1", "down_player_1") # 读入x轴和y轴输入	
 	
 	if not is_on_floor(): # 重力加速度
 		velocity.y += gravity * delta  # Vy = g * t 
@@ -39,23 +35,18 @@ func _physics_process(delta):
 	update_facing_directon()
 	
 func is_still() -> bool:
-	var direction = Input.get_axis(left_action, right_action) # 读入x轴输入
-	return is_zero_approx(direction) and is_zero_approx(velocity.x)
+	return is_zero_approx(direction.x) and is_zero_approx(velocity.x)
 
-var check : float = 1.0
+
 func update_animation_parameters() -> void: # 设置移动动画对应参数
 	animation_tree.set("parameters/移动/blend_position", direction.x)
-	animation_tree.set("parameters/攻击_准备/blend_position", check)
-	animation_tree.set("parameters/攻击/blend_position", check)
 
 func update_facing_directon() -> void: # 更新面朝方向
 	if not state_machine.check_if_can_overturn(): # 检查是否能转向
 		return
 	if direction.x > 0: # 朝右
-		check = 1.0
 		sprite.flip_h = false
 	elif direction.x < 0: # 朝左
-		check = -1.0
 		sprite.flip_h = true
 		
 	emit_signal("facing_direction_changed", !sprite.flip_h) # 发出信号，让剑的碰撞区域也反转

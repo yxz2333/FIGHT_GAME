@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://Character/Enemies/Damageable.gd" id="2_x0ww4"]
 [ext_resource type="Script" path="res://Character/人物状态机.gd" id="5_a6my3"]
 [ext_resource type="Script" path="res://Character/状态.gd" id="6_873dd"]
-[ext_resource type="Script" path="res://Character/状态：Hit.gd" id="7_se1wx"]
+[ext_resource type="Script" path="res://Character/NAMKA/状态：Hit.gd" id="6_mv0id"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_21mk8"]
 size = Vector2(28, 23)
@@ -187,11 +187,9 @@ libraries = {
 script = ExtResource("2_x0ww4")
 health = 100.0
 
-[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "animation_tree")]
+[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character")]
 script = ExtResource("5_a6my3")
 character = NodePath("..")
-current_state = NodePath("Walk")
-animation_tree = NodePath("../AnimationTree")
 
 [node name="Walk" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("6_873dd")
@@ -201,7 +199,7 @@ script = ExtResource("6_873dd")
 "能否跑" = false
 
 [node name="Hit" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("damageable", "dead_state", "return_state")]
-script = ExtResource("7_se1wx")
+script = ExtResource("6_mv0id")
 damageable = NodePath("../../Damageable")
 dead_state = NodePath("../Dead")
 return_state = NodePath("../Walk")

@@ -534,7 +534,10 @@ size = Vector2(12, 20)
 [node name="marston" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_846sn")
-speed = 120.0
+left_action = "left_player_1"
+right_action = "right_player_1"
+up_action = "up_player_1"
+down_action = "down_player_1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_klvjb")
@@ -597,8 +600,6 @@ move_animation = "移动"
 attack_1_animation = "攻击_1"
 attack_2_animation = "攻击_2"
 attack_3_animation = "攻击_3"
-"能否跑" = false
-"能否转向" = false
 
 [node name="Timer" type="Timer" parent="CharacterStateMachine/Attack"]
 wait_time = 0.3

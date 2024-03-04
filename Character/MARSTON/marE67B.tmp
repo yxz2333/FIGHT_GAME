@@ -535,6 +535,10 @@ size = Vector2(12, 20)
 collision_layer = 2
 script = ExtResource("1_846sn")
 speed = 120.0
+left_action = "left_player_1"
+right_action = "right_player_1"
+up_action = "up_player_1"
+down_action = "down_player_1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_klvjb")
@@ -597,8 +601,8 @@ move_animation = "移动"
 attack_1_animation = "攻击_1"
 attack_2_animation = "攻击_2"
 attack_3_animation = "攻击_3"
-"能否跑" = false
-"能否转向" = false
+"能否跑" = null
+"能否转向" = null
 
 [node name="Timer" type="Timer" parent="CharacterStateMachine/Attack"]
 wait_time = 0.3
@@ -614,12 +618,14 @@ label_settings = SubResource("LabelSettings_pvesp")
 script = ExtResource("15_5ihae")
 state_machine = NodePath("../CharacterStateMachine")
 
-[node name="Attack" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_collision_shape_2d")]
+[node name="Attack" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("13_g2gn3")
-player = NodePath("..")
-facing_collision_shape_2d = NodePath("CollisionShape2D")
+player = Object(CharacterBody2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"disable_mode":0,"collision_layer":2,"collision_mask":1,"collision_priority":1.0,"input_pickable":false,"motion_mode":0,"up_direction":Vector2(0, -1),"velocity":Vector2(0, 0),"slide_on_ceiling":true,"max_slides":4,"wall_min_slide_angle":0.261799,"floor_stop_on_slope":true,"floor_constant_speed":false,"floor_block_on_wall":true,"floor_max_angle":0.785398,"floor_snap_length":1.0,"platform_on_leave":0,"platform_floor_layers":4294967295,"platform_wall_layers":0,"safe_margin":0.08,"script":ExtResource("1_846sn"),"speed":120.0,"left_action":"left_player_1","right_action":"right_player_1","up_action":"up_player_1","down_action":"down_player_1")
+
+facing_collision_shape_2d = Object(CollisionShape2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(8, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"shape":SubResource("RectangleShape2D_6eb18"),"disabled":false,"one_way_collision":false,"one_way_collision_margin":1.0,"script":ExtResource("16_l7gqg"),"facing_left_position":Vector2(-8, 0),"facing_right_position":Vector2(8, 0))
+
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack"]
 position = Vector2(8, 0)

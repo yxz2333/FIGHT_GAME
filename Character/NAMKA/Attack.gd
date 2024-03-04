@@ -1,7 +1,7 @@
 extends Area2D
 
 @export var damage : int = 10
-@export var player : Player
+@export var player : NAMKA
 @export var facing_collision_shape_2d : FacingCollisionShape2D
 
 func _ready():

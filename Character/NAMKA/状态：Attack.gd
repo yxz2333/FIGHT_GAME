@@ -1,13 +1,8 @@
-extends State
-
 extends AttackState
 
-@export var return_state : State
-
-@export var move_animation : String
 @export var attack_1_animation_left : String
 @export var attack_1_animation_right : String
-@export var attack_2_animation : String
+@export var attack_2_animation_origin : String
 @export var attack_2_animation_left : String
 @export var attack_2_animation_right : String
 
