@@ -5,4 +5,5 @@
 
 https://thomas-lean.itch.io/assets
 
-![Mockup](https://github.com/yxz2333/FIGHT_GAME/assets/137910879/65ae8e0e-0f36-4a52-a837-ee83203943c6)
+
+![Mockup](https://github.com/yxz2333/FIGHT_GAME/assets/137910879/27b3261e-4b84-460d-8417-dc7bf31181dd)
