@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dqykt4wqbs1o4"]
+[gd_scene load_steps=44 format=3 uid="uid://dqykt4wqbs1o4"]
 
 [ext_resource type="Texture2D" uid="uid://cg8oc15tjjsvo" path="res://Assets/ENVIRO/Level Design/trunk2.png" id="1_p4b8i"]
 [ext_resource type="Texture2D" uid="uid://bgaydpqkpau41" path="res://Assets/ENVIRO/Level Design/trunk3.png" id="2_bkhlb"]
@@ -27,7 +27,6 @@
 [ext_resource type="PackedScene" uid="uid://cifthl2ohvi0t" path="res://Character/NAMKA/namka.tscn" id="27_65h50"]
 [ext_resource type="Texture2D" uid="uid://d1lulkk7ljkoi" path="res://Assets/ENVIRO/Background/tree_leaves5.png" id="27_co4s0"]
 [ext_resource type="PackedScene" uid="uid://bw77mt5bfeyet" path="res://Character/MARSTON/marston.tscn" id="27_d6q1h"]
-[ext_resource type="PackedScene" uid="uid://c46qmvhxthc2x" path="res://Character/Enemies/Snail.tscn" id="28_8o2ca"]
 [ext_resource type="Texture2D" uid="uid://ro7d4i236ywj" path="res://Assets/ENVIRO/Background/tree_leaves4.png" id="28_ydtb8"]
 [ext_resource type="PackedScene" uid="uid://wvas1dl1lwhc" path="res://UI/health_changed_manager.tscn" id="29_4ialx"]
 
@@ -496,9 +495,5 @@ position = Vector2(280, 29)
 
 [node name="MARSTON" parent="." instance=ExtResource("27_d6q1h")]
 position = Vector2(28, 29)
-
-[node name="Snail" parent="." instance=ExtResource("28_8o2ca")]
-z_index = -1
-position = Vector2(240, 74)
 
 [node name="HealthChangedManager" parent="." instance=ExtResource("29_4ialx")]

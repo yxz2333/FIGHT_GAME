@@ -3,6 +3,15 @@ extends CharacterBody2D
 class_name MARSTON
 
 @export var speed : float = 200.0
+@export var original_weight : float
+var weight : float
+@export var original_health : float
+var health : float :
+	get:
+		return health
+	set(value):
+		SignalBus.emit_signal("on_health_changed", self, value - health) # 发出扣了多少血的信号
+		health = value
 
 @onready var sprite : Sprite2D = $Sprite2D
 @onready var animation_tree : AnimationTree = $AnimationTree
@@ -14,6 +23,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")  # 获�
 signal facing_direction_changed(facing_right : bool)
 
 func _ready():
+	weight = original_weight
+	health = original_health
 	animation_tree.active = true
 
 func _physics_process(delta): 
@@ -28,7 +39,7 @@ func _physics_process(delta):
 	if direction.x and state_machine.check_if_can_move(): 
 		velocity.x = direction.x * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.x = move_toward(velocity.x, 0, speed * weight / 500)  # 惯性
 	
 	move_and_slide()
 	update_animation_parameters()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://cifthl2ohvi0t"]
+[gd_scene load_steps=59 format=3 uid="uid://cifthl2ohvi0t"]
 
 [ext_resource type="Script" path="res://Character/NAMKA/namka.gd" id="1_eukoy"]
 [ext_resource type="Texture2D" uid="uid://db3tdx5cd0161" path="res://Assets/CHARAs/NAMKA/attack_prepare/attack_prepare.png" id="2_ok8b4"]
@@ -7,14 +7,17 @@
 [ext_resource type="Texture2D" uid="uid://5eaxgxcvqoyn" path="res://Assets/CHARAs/NAMKA/running/run.png" id="4_17s4h"]
 [ext_resource type="Texture2D" uid="uid://ca8ur3w5ol1u2" path="res://Assets/CHARAs/NAMKA/fall/fall_1.png" id="5_i3d1t"]
 [ext_resource type="Texture2D" uid="uid://b78bmxp5xy7pw" path="res://Assets/CHARAs/NAMKA/attack/attack.png" id="7_qm2lt"]
+[ext_resource type="Script" path="res://Character/Damageable.gd" id="8_dqe8k"]
 [ext_resource type="Script" path="res://Character/人物状态机.gd" id="8_jdum8"]
 [ext_resource type="Script" path="res://Character/状态：Ground.gd" id="9_7roec"]
 [ext_resource type="Script" path="res://Character/状态：Air.gd" id="10_1dlfr"]
 [ext_resource type="Script" path="res://Character/NAMKA/状态：Attack.gd" id="12_3txlx"]
+[ext_resource type="Script" path="res://Character/状态：Hit.gd" id="13_arar8"]
 [ext_resource type="Script" path="res://Character/StateDebugLabel.gd" id="13_x8uhh"]
 [ext_resource type="FontFile" uid="uid://kbr8115pi1jl" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="13_yalan"]
+[ext_resource type="Script" path="res://Character/Attack.gd" id="14_81vqh"]
+[ext_resource type="Script" path="res://Character/状态.gd" id="14_hmefv"]
 [ext_resource type="Script" path="res://Character/FacingCollisionShape2D.gd" id="15_gtsh1"]
-[ext_resource type="Script" path="res://Character/NAMKA/Attack.gd" id="15_qkf7b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_klvjb"]
 size = Vector2(20, 23)
@@ -171,7 +174,7 @@ tracks/0/path = NodePath("Attack:monitoring")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0.1, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -234,7 +237,7 @@ tracks/0/path = NodePath("Attack:monitoring")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0.1, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -613,17 +616,20 @@ font = ExtResource("13_yalan")
 font_size = 10
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6eb18"]
-size = Vector2(28, 34)
+size = Vector2(32, 32)
 
 [node name="NAMKA" type="CharacterBody2D"]
-collision_layer = 2
+collision_layer = 6
 script = ExtResource("1_eukoy")
+original_weight = 65.0
+original_health = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_klvjb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-13, -5)
 scale = Vector2(1, 0.994923)
 texture = ExtResource("2_ok8b4")
 hframes = 5
@@ -642,6 +648,10 @@ anim_player = NodePath("../AnimationPlayer")
 "parameters/攻击/blend_position" = 0
 "parameters/攻击_准备/blend_position" = 0
 "parameters/移动/blend_position" = -0.25355
+
+[node name="Damageable" type="Node" parent="." node_paths=PackedStringArray("character")]
+script = ExtResource("8_dqe8k")
+character = NodePath("..")
 
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "animation_tree")]
 script = ExtResource("8_jdum8")
@@ -674,7 +684,7 @@ jump_animation = "跳跃_开始"
 jump_loop_animation = "跳跃_循环"
 double_jump_animation = "跳跃_连跳"
 
-[node name="Attack" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("return_state")]
+[node name="Attack" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("return_state", "attack_area")]
 script = ExtResource("12_3txlx")
 attack_1_animation_left = "攻击_准备_左"
 attack_1_animation_right = "攻击_准备_右"
@@ -686,12 +696,30 @@ attack_action = "attack_1_player_2"
 move_animation = "移动"
 attack_1_animation = "攻击_准备"
 attack_2_animation = "攻击"
+attack_area = NodePath("../../Attack")
 "能否跑" = false
 "能否转向" = false
 
 [node name="Timer" type="Timer" parent="CharacterStateMachine/Attack"]
 wait_time = 0.3
 one_shot = true
+
+[node name="Hit" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("damageable", "dead_state", "return_state")]
+script = ExtResource("13_arar8")
+damageable = NodePath("../../Damageable")
+dead_state = NodePath("../Death")
+hit_animation = "受伤"
+return_animation = "移动"
+return_state = NodePath("../Ground")
+
+[node name="Timer" type="Timer" parent="CharacterStateMachine/Hit"]
+wait_time = 0.256
+one_shot = true
+
+[node name="Death" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("14_hmefv")
+"能否跑" = false
+"能否转向" = false
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
 offset_left = -29.0
@@ -703,23 +731,28 @@ label_settings = SubResource("LabelSettings_pvesp")
 script = ExtResource("13_x8uhh")
 state_machine = NodePath("../CharacterStateMachine")
 
-[node name="Attack" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_collision_shape_2d")]
+[node name="Attack" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_collision_shape_2d", "character_self")]
 collision_layer = 0
 collision_mask = 4
-script = ExtResource("15_qkf7b")
+script = ExtResource("14_81vqh")
+damage = 20
 player = NodePath("..")
 facing_collision_shape_2d = NodePath("CollisionShape2D")
+knockback_speed = 100.0
+angle = 10.0
+character_self = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack"]
-position = Vector2(19, -6)
+position = Vector2(29, -5)
 shape = SubResource("RectangleShape2D_6eb18")
 script = ExtResource("15_gtsh1")
-facing_left_position = Vector2(-19, -6)
-facing_right_position = Vector2(19, -6)
+facing_left_position = Vector2(-29, -5)
+facing_right_position = Vector2(29, -5)
 
 [connection signal="current_animation_changed" from="AnimationPlayer" to="AnimationPlayer" method="_on_current_animation_changed"]
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/Air" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/Attack" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_player_changed" from="AnimationTree" to="CharacterStateMachine/Air" method="_on_animation_tree_animation_player_changed"]
+[connection signal="timeout" from="CharacterStateMachine/Hit/Timer" to="CharacterStateMachine/Hit" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Attack" to="Attack" method="_on_body_entered"]

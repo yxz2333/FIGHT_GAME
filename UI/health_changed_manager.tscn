@@ -6,7 +6,5 @@
 [node name="HealthChangedManager" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 script = ExtResource("1_hlcx2")
 health_changed_label = ExtResource("2_iacv2")

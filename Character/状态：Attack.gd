@@ -11,6 +11,8 @@ class_name AttackState
 @export var attack_2_animation : String
 @export var attack_3_animation : String
 
+@export var attack_area : Area2D
+
 @onready var timer : Timer = $Timer
 
 
