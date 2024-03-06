@@ -18,7 +18,6 @@ config/icon="res://icon.png"
 [autoload]
 
 SignalBus="*res://signal_bus.gd"
-CameraSetting="*res://Scene/Camera.gd"
 
 [display]
 
