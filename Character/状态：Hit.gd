@@ -22,7 +22,10 @@ func on_exit():
 
 func _on_damageable_hit(node : CharacterBody2D, damage_taken : int):
 	if node.health > 0:                 # 还活着就接着之前的状态
-		playback.travel(hit_animation)
+		if playback.get_current_node() == hit_animation: # 重置受伤动画
+			playback.start(hit_animation)
+		else:
+			playback.travel(hit_animation)
 		emit_signal("interrupt_state", self)
 	else:                                     # 死了进入死亡状态
 		pass

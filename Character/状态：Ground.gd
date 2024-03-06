@@ -10,6 +10,7 @@ class_name GroundState
 
 @export var jump_action : String
 @export var attack_action : String
+@export var down_action : String
 
 @export var jump_start_animation : String
 @export var jump_loop_animation : String
@@ -30,6 +31,9 @@ func state_input(event : InputEvent) -> void: # 读入状态事件
 		jump()
 	if event.is_action_pressed(attack_action):
 		attack()
+	if character.is_on_floor() and event.is_action_pressed(down_action): # 单向台阶下落
+		character.position.y += 1
+	
 
 
 func jump() -> void:

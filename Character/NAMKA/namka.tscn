@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://cifthl2ohvi0t"]
+[gd_scene load_steps=64 format=3 uid="uid://cifthl2ohvi0t"]
 
 [ext_resource type="Script" path="res://Character/NAMKA/namka.gd" id="1_eukoy"]
 [ext_resource type="Texture2D" uid="uid://db3tdx5cd0161" path="res://Assets/CHARAs/NAMKA/attack_prepare/attack_prepare.png" id="2_ok8b4"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://5eaxgxcvqoyn" path="res://Assets/CHARAs/NAMKA/running/run.png" id="4_17s4h"]
 [ext_resource type="Texture2D" uid="uid://ca8ur3w5ol1u2" path="res://Assets/CHARAs/NAMKA/fall/fall_1.png" id="5_i3d1t"]
 [ext_resource type="Texture2D" uid="uid://b78bmxp5xy7pw" path="res://Assets/CHARAs/NAMKA/attack/attack.png" id="7_qm2lt"]
+[ext_resource type="Texture2D" uid="uid://5i5hfjlo1wo4" path="res://Assets/CHARAs/NAMKA/damage/damage.png" id="8_7s0ub"]
 [ext_resource type="Script" path="res://Character/Damageable.gd" id="8_dqe8k"]
 [ext_resource type="Script" path="res://Character/人物状态机.gd" id="8_jdum8"]
 [ext_resource type="Script" path="res://Character/状态：Ground.gd" id="9_7roec"]
@@ -59,6 +60,46 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_n0cvw"]
+resource_name = "damage"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_7s0ub")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
 }
 
 [sub_resource type="Animation" id="Animation_j06li"]
@@ -498,6 +539,7 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8aqaf"]
 _data = {
 "RESET": SubResource("Animation_2gjnp"),
+"受伤": SubResource("Animation_n0cvw"),
 "攻击_准备_右": SubResource("Animation_j06li"),
 "攻击_准备_左": SubResource("Animation_dwesu"),
 "攻击_右": SubResource("Animation_ntfhl"),
@@ -508,6 +550,9 @@ _data = {
 "跳跃_循环": SubResource("Animation_jbui3"),
 "跳跃_连跳": SubResource("Animation_ml2hh")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dv01u"]
+animation = &"受伤"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mym3e"]
 animation = &"攻击_右"
@@ -592,9 +637,15 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n2lsv"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0vk75"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gglwg"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_egojv"]
 states/End/position = Vector2(872, 203)
 states/Start/position = Vector2(148, 203)
+"states/受伤/node" = SubResource("AnimationNodeAnimation_dv01u")
+"states/受伤/position" = Vector2(158.366, 307)
 "states/攻击/node" = SubResource("AnimationNodeBlendSpace1D_8bmw6")
 "states/攻击/position" = Vector2(539, 307)
 "states/攻击_准备/node" = SubResource("AnimationNodeBlendSpace1D_qpaeh")
@@ -607,8 +658,8 @@ states/Start/position = Vector2(148, 203)
 "states/跳跃_循环/position" = Vector2(576, 203)
 "states/跳跃_连跳/node" = SubResource("AnimationNodeAnimation_2xesq")
 "states/跳跃_连跳/position" = Vector2(576, 63)
-transitions = ["Start", "移动", SubResource("AnimationNodeStateMachineTransition_u111x"), "移动", "跳跃_开始", SubResource("AnimationNodeStateMachineTransition_eg77g"), "跳跃_开始", "跳跃_循环", SubResource("AnimationNodeStateMachineTransition_4yp4g"), "跳跃_循环", "移动", SubResource("AnimationNodeStateMachineTransition_ahn2a"), "跳跃_开始", "跳跃_连跳", SubResource("AnimationNodeStateMachineTransition_cknop"), "跳跃_连跳", "跳跃_循环", SubResource("AnimationNodeStateMachineTransition_50ro6"), "移动", "攻击_准备", SubResource("AnimationNodeStateMachineTransition_n11f3"), "攻击_准备", "移动", SubResource("AnimationNodeStateMachineTransition_4rmjr"), "攻击_准备", "攻击", SubResource("AnimationNodeStateMachineTransition_qkbjt"), "攻击", "移动", SubResource("AnimationNodeStateMachineTransition_n2lsv")]
-graph_offset = Vector2(-14.634, 101)
+transitions = ["Start", "移动", SubResource("AnimationNodeStateMachineTransition_u111x"), "移动", "跳跃_开始", SubResource("AnimationNodeStateMachineTransition_eg77g"), "跳跃_开始", "跳跃_循环", SubResource("AnimationNodeStateMachineTransition_4yp4g"), "跳跃_循环", "移动", SubResource("AnimationNodeStateMachineTransition_ahn2a"), "跳跃_开始", "跳跃_连跳", SubResource("AnimationNodeStateMachineTransition_cknop"), "跳跃_连跳", "跳跃_循环", SubResource("AnimationNodeStateMachineTransition_50ro6"), "移动", "攻击_准备", SubResource("AnimationNodeStateMachineTransition_n11f3"), "攻击_准备", "移动", SubResource("AnimationNodeStateMachineTransition_4rmjr"), "攻击_准备", "攻击", SubResource("AnimationNodeStateMachineTransition_qkbjt"), "攻击", "移动", SubResource("AnimationNodeStateMachineTransition_n2lsv"), "移动", "受伤", SubResource("AnimationNodeStateMachineTransition_0vk75"), "受伤", "移动", SubResource("AnimationNodeStateMachineTransition_gglwg")]
+graph_offset = Vector2(-142.634, 73)
 
 [sub_resource type="LabelSettings" id="LabelSettings_pvesp"]
 line_spacing = 0.0
@@ -621,15 +672,16 @@ size = Vector2(32, 32)
 [node name="NAMKA" type="CharacterBody2D"]
 collision_layer = 6
 script = ExtResource("1_eukoy")
+speed = 160.0
 original_weight = 65.0
-original_health = 100.0
+original_health = 1000.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_klvjb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-13, -5)
+position = Vector2(-5.84597, 2)
 scale = Vector2(1, 0.994923)
 texture = ExtResource("2_ok8b4")
 hframes = 5
@@ -646,7 +698,7 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_egojv")
 anim_player = NodePath("../AnimationPlayer")
 "parameters/攻击/blend_position" = 0
-"parameters/攻击_准备/blend_position" = 0
+"parameters/攻击_准备/blend_position" = 0.974328
 "parameters/移动/blend_position" = -0.25355
 
 [node name="Damageable" type="Node" parent="." node_paths=PackedStringArray("character")]
@@ -666,6 +718,7 @@ ground_state = NodePath(".")
 attack_state = NodePath("../Attack")
 jump_action = "jump_player_2"
 attack_action = "attack_1_player_2"
+down_action = "down_player_2"
 jump_start_animation = "跳跃_开始"
 jump_loop_animation = "跳跃_循环"
 attack_1_animation = "攻击_准备"
@@ -738,9 +791,12 @@ script = ExtResource("14_81vqh")
 damage = 20
 player = NodePath("..")
 facing_collision_shape_2d = NodePath("CollisionShape2D")
-knockback_speed = 100.0
+knockback_speed = 500.0
 angle = 10.0
 character_self = NodePath("..")
+camera_shake_offset = Vector2(7, -7)
+camera_shake_zoom = Vector2(0.95, 0.95)
+frame_freeze_duration = 0.15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack"]
 position = Vector2(29, -5)

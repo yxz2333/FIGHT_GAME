@@ -33,9 +33,6 @@ func _physics_process(delta):
 	if not is_on_floor(): # 重力加速度
 		velocity.y += gravity * delta  # Vy = g * t 
 	
-	if is_on_floor() and direction.y > 0: # 单向台阶下落
-		position.y += 1
-	
 	if direction.x and state_machine.check_if_can_move(): 
 		velocity.x = direction.x * speed
 	else:
@@ -45,8 +42,6 @@ func _physics_process(delta):
 	update_animation_parameters()
 	update_facing_directon()
 	
-func is_still() -> bool:
-	return is_zero_approx(direction.x) and is_zero_approx(velocity.x)
 
 
 func update_animation_parameters() -> void: # 设置移动动画对应参数

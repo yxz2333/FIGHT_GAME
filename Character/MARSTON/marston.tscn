@@ -575,7 +575,7 @@ states/Start/position = Vector2(148, 203)
 "states/跳跃_连跳/node" = SubResource("AnimationNodeAnimation_2xesq")
 "states/跳跃_连跳/position" = Vector2(576, 63)
 transitions = ["Start", "移动", SubResource("AnimationNodeStateMachineTransition_u111x"), "移动", "跳跃_开始", SubResource("AnimationNodeStateMachineTransition_eg77g"), "跳跃_开始", "跳跃_循环", SubResource("AnimationNodeStateMachineTransition_4yp4g"), "跳跃_循环", "移动", SubResource("AnimationNodeStateMachineTransition_ahn2a"), "跳跃_开始", "跳跃_连跳", SubResource("AnimationNodeStateMachineTransition_cknop"), "跳跃_连跳", "跳跃_循环", SubResource("AnimationNodeStateMachineTransition_50ro6"), "移动", "攻击_1", SubResource("AnimationNodeStateMachineTransition_3e0q7"), "攻击_1", "攻击_2", SubResource("AnimationNodeStateMachineTransition_hyk60"), "攻击_1", "移动", SubResource("AnimationNodeStateMachineTransition_mdob7"), "攻击_2", "移动", SubResource("AnimationNodeStateMachineTransition_vkxrm"), "攻击_2", "攻击_3", SubResource("AnimationNodeStateMachineTransition_guyl0"), "攻击_3", "移动", SubResource("AnimationNodeStateMachineTransition_dl3is"), "移动", "受伤", SubResource("AnimationNodeStateMachineTransition_ck32q"), "受伤", "移动", SubResource("AnimationNodeStateMachineTransition_n4dpd")]
-graph_offset = Vector2(-88.634, 192)
+graph_offset = Vector2(-38.634, 84)
 
 [sub_resource type="LabelSettings" id="LabelSettings_pvesp"]
 line_spacing = 0.0
@@ -631,6 +631,8 @@ dead_state = NodePath("../Dead")
 hit_animation = "受伤"
 return_animation = "移动"
 return_state = NodePath("../Ground")
+"能否跑" = false
+"能否转向" = false
 
 [node name="Timer" type="Timer" parent="CharacterStateMachine/Hit"]
 wait_time = 0.256
@@ -638,11 +640,13 @@ one_shot = true
 
 [node name="Ground" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state", "ground_state", "attack_state")]
 script = ExtResource("11_wubf2")
+jump_velocity = -180.0
 air_state = NodePath("../Air")
 ground_state = NodePath(".")
 attack_state = NodePath("../Attack")
 jump_action = "jump_player_1"
 attack_action = "attack_1_player_1"
+down_action = "down_player_1"
 jump_start_animation = "跳跃_开始"
 jump_loop_animation = "跳跃_循环"
 attack_1_animation = "攻击_1"
@@ -699,9 +703,12 @@ script = ExtResource("19_loup6")
 damage = 10
 player = NodePath("..")
 facing_collision_shape_2d = NodePath("CollisionShape2D")
-knockback_speed = 50.0
+knockback_speed = 150.0
 angle = 5.0
 character_self = NodePath("..")
+camera_shake_offset = Vector2(3, -4)
+camera_shake_zoom = Vector2(0.98, 0.98)
+frame_freeze_duration = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack"]
 position = Vector2(8, 0)

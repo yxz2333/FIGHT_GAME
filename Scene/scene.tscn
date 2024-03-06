@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dqykt4wqbs1o4"]
+[gd_scene load_steps=45 format=3 uid="uid://dqykt4wqbs1o4"]
 
 [ext_resource type="Texture2D" uid="uid://cg8oc15tjjsvo" path="res://Assets/ENVIRO/Level Design/trunk2.png" id="1_p4b8i"]
 [ext_resource type="Texture2D" uid="uid://bgaydpqkpau41" path="res://Assets/ENVIRO/Level Design/trunk3.png" id="2_bkhlb"]
@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://bw77mt5bfeyet" path="res://Character/MARSTON/marston.tscn" id="27_d6q1h"]
 [ext_resource type="Texture2D" uid="uid://ro7d4i236ywj" path="res://Assets/ENVIRO/Background/tree_leaves4.png" id="28_ydtb8"]
 [ext_resource type="PackedScene" uid="uid://wvas1dl1lwhc" path="res://UI/health_changed_manager.tscn" id="29_4ialx"]
+[ext_resource type="Script" path="res://Scene/Camera.gd" id="30_yguhq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_73r6q"]
 texture = ExtResource("1_p4b8i")
@@ -308,6 +309,7 @@ size = Vector2(61.5, 0.5)
 [node name="Scene" type="Node2D"]
 
 [node name="MAP" type="Node2D" parent="."]
+position = Vector2(-160, -90)
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
@@ -491,9 +493,13 @@ position = Vector2(17, 134)
 texture = ExtResource("28_ydtb8")
 
 [node name="NAMKA" parent="." instance=ExtResource("27_65h50")]
-position = Vector2(280, 29)
+position = Vector2(125, -61)
 
 [node name="MARSTON" parent="." instance=ExtResource("27_d6q1h")]
-position = Vector2(28, 29)
+position = Vector2(-105, -62)
 
 [node name="HealthChangedManager" parent="." instance=ExtResource("29_4ialx")]
+
+[node name="Camera" type="Camera2D" parent="."]
+scale = Vector2(-5.59586, 15.8759)
+script = ExtResource("30_yguhq")
