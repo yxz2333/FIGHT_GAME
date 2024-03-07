@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dqykt4wqbs1o4"]
+[gd_scene load_steps=46 format=3 uid="uid://dqykt4wqbs1o4"]
 
 [ext_resource type="Texture2D" uid="uid://cg8oc15tjjsvo" path="res://Assets/ENVIRO/Level Design/trunk2.png" id="1_p4b8i"]
 [ext_resource type="Texture2D" uid="uid://bgaydpqkpau41" path="res://Assets/ENVIRO/Level Design/trunk3.png" id="2_bkhlb"]
@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://ro7d4i236ywj" path="res://Assets/ENVIRO/Background/tree_leaves4.png" id="28_ydtb8"]
 [ext_resource type="PackedScene" uid="uid://wvas1dl1lwhc" path="res://UI/health_changed_manager.tscn" id="29_4ialx"]
 [ext_resource type="Script" path="res://Scene/Camera.gd" id="30_yguhq"]
+[ext_resource type="PackedScene" path="res://UI/pause_menu.tscn" id="31_8m215"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_73r6q"]
 texture = ExtResource("1_p4b8i")
@@ -503,3 +504,5 @@ position = Vector2(-105, -62)
 [node name="Camera" type="Camera2D" parent="."]
 scale = Vector2(-5.59586, 15.8759)
 script = ExtResource("30_yguhq")
+
+[node name="PauseMenu" parent="." instance=ExtResource("31_8m215")]

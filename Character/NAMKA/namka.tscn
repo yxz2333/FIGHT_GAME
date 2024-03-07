@@ -19,48 +19,10 @@
 [ext_resource type="Script" path="res://Character/Attack.gd" id="14_81vqh"]
 [ext_resource type="Script" path="res://Character/状态.gd" id="14_hmefv"]
 [ext_resource type="Script" path="res://Character/FacingCollisionShape2D.gd" id="15_gtsh1"]
+[ext_resource type="PackedScene" uid="uid://ri2jc5b3kpbk" path="res://Character/NAMKA/namka_right_health_bar.tscn" id="20_w8s16"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_klvjb"]
 size = Vector2(20, 23)
-
-[sub_resource type="Animation" id="Animation_2gjnp"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_ok8b4")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [5]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
 
 [sub_resource type="Animation" id="Animation_n0cvw"]
 resource_name = "damage"
@@ -271,6 +233,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_5q7cp"]
 length = 0.9
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -538,7 +501,6 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8aqaf"]
 _data = {
-"RESET": SubResource("Animation_2gjnp"),
 "受伤": SubResource("Animation_n0cvw"),
 "攻击_准备_右": SubResource("Animation_j06li"),
 "攻击_准备_左": SubResource("Animation_dwesu"),
@@ -672,9 +634,9 @@ size = Vector2(32, 32)
 [node name="NAMKA" type="CharacterBody2D"]
 collision_layer = 6
 script = ExtResource("1_eukoy")
-speed = 160.0
+speed = 300.0
 original_weight = 65.0
-original_health = 1000.0
+original_health = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
@@ -682,8 +644,9 @@ shape = SubResource("RectangleShape2D_klvjb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(1, 0.994923)
-texture = ExtResource("2_ok8b4")
-hframes = 5
+texture = ExtResource("4_17s4h")
+hframes = 8
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -712,6 +675,7 @@ animation_tree = NodePath("../AnimationTree")
 
 [node name="Ground" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state", "ground_state", "attack_state")]
 script = ExtResource("9_7roec")
+jump_velocity = -290.0
 air_state = NodePath("../Air")
 ground_state = NodePath(".")
 attack_state = NodePath("../Attack")
@@ -730,6 +694,7 @@ autostart = true
 [node name="Air" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("ground_state")]
 script = ExtResource("10_1dlfr")
 ground_state = NodePath("../Ground")
+double_jump_velocity = -270.0
 jump_action = "jump_player_2"
 move_animation = "移动"
 jump_animation = "跳跃_开始"
@@ -787,11 +752,11 @@ state_machine = NodePath("../CharacterStateMachine")
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("14_81vqh")
-damage = 20
+damage = 50
 player = NodePath("..")
 facing_collision_shape_2d = NodePath("CollisionShape2D")
-knockback_speed = 500.0
-angle = 10.0
+knockback_speed = 700.0
+angle = 8.0
 character_self = NodePath("..")
 camera_shake_offset = Vector2(7, -7)
 camera_shake_zoom = Vector2(0.95, 0.95)
@@ -803,6 +768,15 @@ shape = SubResource("RectangleShape2D_6eb18")
 script = ExtResource("15_gtsh1")
 facing_left_position = Vector2(-29, -5)
 facing_right_position = Vector2(29, -5)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" parent="CanvasLayer" node_paths=PackedStringArray("character") instance=ExtResource("20_w8s16")]
+offset_left = 432.0
+offset_top = 8.0
+offset_right = 616.0
+offset_bottom = 26.0
+character = NodePath("../..")
 
 [connection signal="current_animation_changed" from="AnimationPlayer" to="AnimationPlayer" method="_on_current_animation_changed"]
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]

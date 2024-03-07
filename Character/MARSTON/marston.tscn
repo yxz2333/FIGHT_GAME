@@ -20,47 +20,9 @@
 [ext_resource type="Script" path="res://Character/MARSTON/状态：Attack.gd" id="16_kkbex"]
 [ext_resource type="Script" path="res://Character/FacingCollisionShape2D.gd" id="16_l7gqg"]
 [ext_resource type="Script" path="res://Character/Attack.gd" id="19_loup6"]
+[ext_resource type="PackedScene" uid="uid://dw77qolih5eca" path="res://Character/MARSTON/marston_left_health_bar.tscn" id="21_jrne3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_klvjb"]
-
-[sub_resource type="Animation" id="Animation_2gjnp"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_e4cmr")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:hframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
 
 [sub_resource type="Animation" id="Animation_6t7pf"]
 resource_name = "受伤"
@@ -464,7 +426,6 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8aqaf"]
 _data = {
-"RESET": SubResource("Animation_2gjnp"),
 "受伤": SubResource("Animation_6t7pf"),
 "攻击_1": SubResource("Animation_j06li"),
 "攻击_2": SubResource("Animation_ntfhl"),
@@ -588,9 +549,9 @@ size = Vector2(12, 20)
 [node name="marston" type="CharacterBody2D"]
 collision_layer = 6
 script = ExtResource("1_846sn")
-speed = 120.0
+speed = 240.0
 original_weight = 100.0
-original_health = 1000.0
+original_health = 200.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_klvjb")
@@ -598,8 +559,9 @@ shape = SubResource("RectangleShape2D_klvjb")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(3.55271e-15, 0)
 scale = Vector2(1, 0.994923)
-texture = ExtResource("2_e4cmr")
-hframes = 2
+texture = ExtResource("7_534gy")
+hframes = 8
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -640,7 +602,7 @@ one_shot = true
 
 [node name="Ground" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state", "ground_state", "attack_state")]
 script = ExtResource("11_wubf2")
-jump_velocity = -180.0
+jump_velocity = -275.0
 air_state = NodePath("../Air")
 ground_state = NodePath(".")
 attack_state = NodePath("../Attack")
@@ -659,6 +621,7 @@ autostart = true
 [node name="Air" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("ground_state")]
 script = ExtResource("12_ebgp2")
 ground_state = NodePath("../Ground")
+double_jump_velocity = -270.0
 jump_action = "jump_player_1"
 move_animation = "移动"
 jump_animation = "跳跃_开始"
@@ -703,7 +666,7 @@ script = ExtResource("19_loup6")
 damage = 10
 player = NodePath("..")
 facing_collision_shape_2d = NodePath("CollisionShape2D")
-knockback_speed = 150.0
+knockback_speed = 175.0
 angle = 5.0
 character_self = NodePath("..")
 camera_shake_offset = Vector2(3, -4)
@@ -716,6 +679,15 @@ shape = SubResource("RectangleShape2D_6eb18")
 script = ExtResource("16_l7gqg")
 facing_left_position = Vector2(-8, 0)
 facing_right_position = Vector2(8, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" parent="CanvasLayer" node_paths=PackedStringArray("character") instance=ExtResource("21_jrne3")]
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 224.0
+offset_bottom = 26.0
+character = NodePath("../..")
 
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/Air" method="_on_animation_tree_animation_finished"]

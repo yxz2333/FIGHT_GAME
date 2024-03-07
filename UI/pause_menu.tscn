@@ -1,0 +1,82 @@
+[gd_scene load_steps=4 format=3 uid="uid://n30bfletkfyf"]
+
+[ext_resource type="Script" path="res://UI/pause_menu.gd" id="1_ssy58"]
+[ext_resource type="Theme" uid="uid://cx6vn8t3kxn6c" path="res://UI/pause_ui_theme.tres" id="2_ga4vh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_aym4i"]
+font_size = 13
+outline_size = 1
+shadow_size = 12
+shadow_color = Color(0.0588235, 0.0705882, 0.0901961, 1)
+shadow_offset = Vector2(2, 2)
+
+[node name="PauseMenu" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ssy58")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -65.0
+offset_right = 60.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.5
+offset_top = -64.0
+offset_right = 50.5
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "= PAUSE ="
+label_settings = SubResource("LabelSettings_aym4i")
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_ga4vh")
+text = "Resume"
+
+[node name="TitleButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_ga4vh")
+text = "Title
+"
+
+[node name="FullScreenButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_ga4vh")
+text = "FullScreen"
+
+[node name="QuitButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_ga4vh")
+text = "Quit
+"
+
+[connection signal="pressed" from="Panel/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/TitleButton" to="." method="_on_title_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/FullScreenButton" to="." method="_on_full_screen_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
