@@ -636,7 +636,7 @@ collision_layer = 6
 script = ExtResource("1_eukoy")
 speed = 300.0
 original_weight = 65.0
-original_health = 101.0
+original_health = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
@@ -646,7 +646,7 @@ shape = SubResource("RectangleShape2D_klvjb")
 scale = Vector2(1, 0.994923)
 texture = ExtResource("4_17s4h")
 hframes = 8
-frame = 7
+frame = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -760,7 +760,6 @@ angle = 8.0
 character_self = NodePath("..")
 camera_shake_offset = Vector2(7, -7)
 camera_shake_zoom = Vector2(0.95, 0.95)
-camera_shake_duration = 0.12
 frame_freeze_duration = 0.15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack"]

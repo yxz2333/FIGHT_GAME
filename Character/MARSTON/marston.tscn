@@ -16,9 +16,9 @@
 [ext_resource type="Script" path="res://Character/状态：Air.gd" id="12_ebgp2"]
 [ext_resource type="FontFile" uid="uid://kbr8115pi1jl" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="14_7qcdt"]
 [ext_resource type="Script" path="res://Character/StateDebugLabel.gd" id="15_5ihae"]
-[ext_resource type="Script" path="res://Character/状态.gd" id="15_cdw42"]
 [ext_resource type="Script" path="res://Character/MARSTON/状态：Attack.gd" id="16_kkbex"]
 [ext_resource type="Script" path="res://Character/FacingCollisionShape2D.gd" id="16_l7gqg"]
+[ext_resource type="Script" path="res://Character/状态：Dead.gd" id="16_q3h3w"]
 [ext_resource type="Script" path="res://Character/Attack.gd" id="19_loup6"]
 [ext_resource type="PackedScene" uid="uid://dw77qolih5eca" path="res://Character/MARSTON/marston_left_health_bar.tscn" id="21_jrne3"]
 
@@ -551,7 +551,7 @@ collision_layer = 6
 script = ExtResource("1_846sn")
 speed = 240.0
 original_weight = 100.0
-original_health = 200.0
+original_health = 201.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_klvjb")
@@ -561,7 +561,7 @@ position = Vector2(3.55271e-15, 0)
 scale = Vector2(1, 0.994923)
 texture = ExtResource("7_534gy")
 hframes = 8
-frame = 1
+frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -645,7 +645,7 @@ wait_time = 0.3
 one_shot = true
 
 [node name="Dead" type="Node" parent="CharacterStateMachine"]
-script = ExtResource("15_cdw42")
+script = ExtResource("16_q3h3w")
 "能否跑" = false
 "能否转向" = false
 
@@ -671,6 +671,7 @@ angle = 5.0
 character_self = NodePath("..")
 camera_shake_offset = Vector2(3, -4)
 camera_shake_zoom = Vector2(0.98, 0.98)
+camera_shake_duration = 0.12
 frame_freeze_duration = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack"]

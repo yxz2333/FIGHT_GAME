@@ -8,6 +8,7 @@ extends Area2D
 @export var character_self : CharacterBody2D
 @export var camera_shake_offset : Vector2 # 镜头偏移量
 @export var camera_shake_zoom : Vector2 # 镜头缩放
+@export var camera_shake_duration : float
 @export var frame_freeze_duration : float # 卡帧持续时间
 
 func _ready():
@@ -21,7 +22,7 @@ func _on_body_entered(body): # 碰撞逻辑
 		if child is Damageable:
 			
 			# 镜头抖动和卡帧
-			CameraSetting.camera_shake(camera_shake_offset, camera_shake_zoom)
+			CameraSetting.camera_shake(camera_shake_offset, camera_shake_zoom, camera_shake_duration)
 			CameraSetting.frame_freeze(0.1, frame_freeze_duration)
 			
 			# 击退方向

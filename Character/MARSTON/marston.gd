@@ -30,6 +30,9 @@ func _ready():
 	animation_tree.active = true
 
 func _physics_process(delta): 
+	if position.x < -320 or position.x > 320: # 出屏幕	
+		SignalBus.emit_signal("player_out_of_screen", self)
+		
 	direction = Input.get_vector("left_player_1", "right_player_1", "up_player_1", "down_player_1") # 读入x轴和y轴输入	
 	
 	if not is_on_floor(): # 重力加速度

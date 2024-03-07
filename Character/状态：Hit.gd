@@ -28,8 +28,7 @@ func _on_damageable_hit(node : CharacterBody2D, damage_taken : int):
 			playback.travel(hit_animation)
 		emit_signal("interrupt_state", self)
 	else:                                     # 死了进入死亡状态
-		pass
-		# emit_signal("interrupt_state", dead_state)
+		emit_signal("interrupt_state", dead_state)
 
 func _on_timer_timeout():
 	next_state = return_state

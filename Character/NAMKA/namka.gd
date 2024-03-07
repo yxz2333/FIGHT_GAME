@@ -29,6 +29,8 @@ func _ready():
 	animation_tree.active = true
 
 func _physics_process(delta): 
+	if position.x < -320 or position.x > 320: # 出屏幕
+		SignalBus.emit_signal("player_out_of_screen", self)
 	
 	direction = Input.get_vector("left_player_2", "right_player_2", "up_player_2", "down_player_2") # 读入x轴和y轴输入	
 	
