@@ -20,6 +20,6 @@ func _on_who_is_winner(name : String):
 	is_game_over = true
 
 func _input(event):
-	if event is InputEvent and is_game_over:
+	if event is InputEventKey and is_game_over:
 		get_tree().paused = false
 		get_tree().change_scene_to_file("res://UI/title_menu.tscn")
