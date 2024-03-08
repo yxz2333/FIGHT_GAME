@@ -561,7 +561,7 @@ position = Vector2(3.55271e-15, 0)
 scale = Vector2(1, 0.994923)
 texture = ExtResource("7_534gy")
 hframes = 8
-frame = 5
+frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -586,20 +586,6 @@ character = NodePath("..")
 current_state = NodePath("Ground")
 animation_tree = NodePath("../AnimationTree")
 attack_area = NodePath("../Attack")
-
-[node name="Hit" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("damageable", "dead_state", "return_state")]
-script = ExtResource("10_ufmrx")
-damageable = NodePath("../../Damageable")
-dead_state = NodePath("../Dead")
-hit_animation = "受伤"
-return_animation = "移动"
-return_state = NodePath("../Ground")
-"能否跑" = false
-"能否转向" = false
-
-[node name="Timer" type="Timer" parent="CharacterStateMachine/Hit"]
-wait_time = 0.256
-one_shot = true
 
 [node name="Ground" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state", "ground_state", "attack_state")]
 script = ExtResource("11_wubf2")
@@ -645,8 +631,23 @@ attack_area = NodePath("../../Attack")
 wait_time = 0.3
 one_shot = true
 
+[node name="Hit" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("damageable", "dead_state", "return_state")]
+script = ExtResource("10_ufmrx")
+damageable = NodePath("../../Damageable")
+dead_state = NodePath("../Dead")
+hit_animation = "受伤"
+return_animation = "移动"
+return_state = NodePath("../Ground")
+"能否跑" = false
+"能否转向" = false
+
+[node name="Timer" type="Timer" parent="CharacterStateMachine/Hit"]
+wait_time = 0.256
+one_shot = true
+
 [node name="Dead" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("16_q3h3w")
+kill_weight = -200.05
 "能否跑" = false
 "能否转向" = false
 
@@ -668,7 +669,7 @@ damage = 10
 player = NodePath("..")
 facing_collision_shape_2d = NodePath("CollisionShape2D")
 knockback_speed = 175.0
-angle = 5.0
+angle = 7.0
 character_self = NodePath("..")
 camera_shake_offset = Vector2(3, -4)
 camera_shake_zoom = Vector2(0.98, 0.98)

@@ -13,7 +13,6 @@ var health : float :
 		SignalBus.emit_signal("on_health_changed", self, value - health) # 发出扣了多少血的信号
 		health = value
 		SignalBus.emit_signal("on_health_changed")
-		
 
 @onready var sprite : Sprite2D = $Sprite2D
 @onready var animation_tree : AnimationTree = $AnimationTree
