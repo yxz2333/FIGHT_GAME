@@ -23,3 +23,4 @@ func state_input(event : InputEvent) -> void:
 
 func _on_animation_tree_animation_finished(anim_name):
 	pass
+

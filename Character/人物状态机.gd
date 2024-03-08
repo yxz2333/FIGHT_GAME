@@ -8,6 +8,8 @@ class_name CharacterStateMachine
 
 var states : Array[State]
 
+@export var attack_area : Area2D
+
 ## 初始化各个状态
 func _ready():
 	for child in get_children():
@@ -46,6 +48,8 @@ func check_if_can_overturn() -> bool:
 
 
 func switch_states(new_state : State) -> void:
+	attack_area.monitoring = false  # 只有attack状态才激活hitbox
+
 	if current_state != null:
 		current_state.on_exit()
 		current_state.next_state = null

@@ -24,3 +24,4 @@ func _on_animation_tree_animation_finished(anim_name):
 	if anim_name == attack_2_animation_left or anim_name == attack_2_animation_right:
 		next_state = return_state
 		playback.travel(move_animation)
+

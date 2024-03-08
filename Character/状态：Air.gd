@@ -23,8 +23,8 @@ func state_input(event : InputEvent) -> void: # 读取输入
 		double_jump()
 
 func on_exit() -> void:
-		has_double_jumped = false
-		playback.travel(move_animation)
+	has_double_jumped = false
+	playback.travel(move_animation)
 
 func double_jump() -> void: # 连跳
 	character.velocity.y = double_jump_velocity

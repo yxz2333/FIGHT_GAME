@@ -16,7 +16,6 @@ class_name GroundState
 @export var jump_loop_animation : String
 @export var attack_1_animation : String
 
-
 @onready var buffer_timer : Timer = $BufferTimer  # 缓冲时间，判断玩家是否在floor上
 
 
@@ -34,7 +33,6 @@ func state_input(event : InputEvent) -> void: # 读入状态事件
 	if character.is_on_floor() and event.is_action_pressed(down_action): # 单向台阶下落
 		character.position.y += 1
 	
-
 
 func jump() -> void:
 	character.velocity.y = jump_velocity

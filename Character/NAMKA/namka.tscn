@@ -646,7 +646,7 @@ shape = SubResource("RectangleShape2D_klvjb")
 scale = Vector2(1, 0.994923)
 texture = ExtResource("4_17s4h")
 hframes = 8
-frame = 2
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -667,11 +667,12 @@ anim_player = NodePath("../AnimationPlayer")
 script = ExtResource("8_dqe8k")
 character = NodePath("..")
 
-[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "animation_tree")]
+[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "animation_tree", "attack_area")]
 script = ExtResource("8_jdum8")
 character = NodePath("..")
 current_state = NodePath("Ground")
 animation_tree = NodePath("../AnimationTree")
+attack_area = NodePath("../Attack")
 
 [node name="Ground" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state", "ground_state", "attack_state")]
 script = ExtResource("9_7roec")
@@ -737,7 +738,6 @@ one_shot = true
 script = ExtResource("15_ih8mw")
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
-visible = false
 offset_left = -29.0
 offset_top = -23.0
 offset_right = 37.0
