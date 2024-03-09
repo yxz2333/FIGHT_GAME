@@ -9,17 +9,17 @@
 [ext_resource type="Texture2D" uid="uid://bvgc100a6sh8" path="res://Assets/CHARAs/MARSTON/running/run.png" id="7_534gy"]
 [ext_resource type="Texture2D" uid="uid://w4k0mpa8r60r" path="res://Assets/CHARAs/MARSTON/jump/jump.png" id="8_5s5u5"]
 [ext_resource type="Texture2D" uid="uid://bixq2t66oxv1q" path="res://Assets/CHARAs/MARSTON/fall.png" id="9_h5kpu"]
-[ext_resource type="Script" path="res://Character/Damageable.gd" id="9_qed7c"]
-[ext_resource type="Script" path="res://Character/人物状态机.gd" id="10_g10dm"]
-[ext_resource type="Script" path="res://Character/状态：Hit.gd" id="10_ufmrx"]
-[ext_resource type="Script" path="res://Character/状态：Ground.gd" id="11_wubf2"]
-[ext_resource type="Script" path="res://Character/状态：Air.gd" id="12_ebgp2"]
+[ext_resource type="Script" path="res://Character/Class/Damageable.gd" id="10_n05s1"]
+[ext_resource type="Script" path="res://Character/Class/人物状态机.gd" id="11_3r0v8"]
+[ext_resource type="Script" path="res://Character/Class/状态：Ground.gd" id="12_nnrwh"]
+[ext_resource type="Script" path="res://Character/Class/状态：Air.gd" id="13_bf6fo"]
 [ext_resource type="FontFile" uid="uid://kbr8115pi1jl" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="14_7qcdt"]
-[ext_resource type="Script" path="res://Character/StateDebugLabel.gd" id="15_5ihae"]
+[ext_resource type="Script" path="res://Character/Class/状态：Hit.gd" id="15_rpsbn"]
+[ext_resource type="Script" path="res://Character/Class/状态：Dead.gd" id="16_e8npr"]
 [ext_resource type="Script" path="res://Character/MARSTON/状态：Attack.gd" id="16_kkbex"]
-[ext_resource type="Script" path="res://Character/FacingCollisionShape2D.gd" id="16_l7gqg"]
-[ext_resource type="Script" path="res://Character/状态：Dead.gd" id="16_q3h3w"]
-[ext_resource type="Script" path="res://Character/Attack.gd" id="19_loup6"]
+[ext_resource type="Script" path="res://Character/Class/StateDebugLabel.gd" id="18_384rn"]
+[ext_resource type="Script" path="res://Character/Class/Attack.gd" id="19_kimmc"]
+[ext_resource type="Script" path="res://Character/Class/FacingCollisionShape2D.gd" id="20_xiaou"]
 [ext_resource type="PackedScene" uid="uid://dw77qolih5eca" path="res://Character/MARSTON/marston_left_health_bar.tscn" id="21_jrne3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_klvjb"]
@@ -544,7 +544,7 @@ font = ExtResource("14_7qcdt")
 font_size = 10
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6eb18"]
-size = Vector2(12, 20)
+size = Vector2(24, 20)
 
 [node name="marston" type="CharacterBody2D"]
 collision_layer = 6
@@ -552,6 +552,10 @@ script = ExtResource("1_846sn")
 speed = 240.0
 original_weight = 100.0
 original_health = 201.0
+left_action = "left_player_1"
+right_action = "right_player_1"
+up_action = "up_player_1"
+down_action = "down_player_1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_klvjb")
@@ -561,7 +565,7 @@ position = Vector2(3.55271e-15, 0)
 scale = Vector2(1, 0.994923)
 texture = ExtResource("7_534gy")
 hframes = 8
-frame = 4
+frame = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -577,18 +581,18 @@ anim_player = NodePath("../AnimationPlayer")
 "parameters/移动/blend_position" = -0.25355
 
 [node name="Damageable" type="Node" parent="." node_paths=PackedStringArray("character")]
-script = ExtResource("9_qed7c")
+script = ExtResource("10_n05s1")
 character = NodePath("..")
 
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "animation_tree", "attack_area")]
-script = ExtResource("10_g10dm")
+script = ExtResource("11_3r0v8")
 character = NodePath("..")
 current_state = NodePath("Ground")
 animation_tree = NodePath("../AnimationTree")
 attack_area = NodePath("../Attack")
 
 [node name="Ground" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state", "ground_state", "attack_state")]
-script = ExtResource("11_wubf2")
+script = ExtResource("12_nnrwh")
 jump_velocity = -275.0
 air_state = NodePath("../Air")
 ground_state = NodePath(".")
@@ -606,7 +610,7 @@ one_shot = true
 autostart = true
 
 [node name="Air" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("ground_state")]
-script = ExtResource("12_ebgp2")
+script = ExtResource("13_bf6fo")
 ground_state = NodePath("../Ground")
 double_jump_velocity = -270.0
 jump_action = "jump_player_1"
@@ -632,7 +636,7 @@ wait_time = 0.3
 one_shot = true
 
 [node name="Hit" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("damageable", "dead_state", "return_state")]
-script = ExtResource("10_ufmrx")
+script = ExtResource("15_rpsbn")
 damageable = NodePath("../../Damageable")
 dead_state = NodePath("../Dead")
 hit_animation = "受伤"
@@ -646,7 +650,7 @@ wait_time = 0.256
 one_shot = true
 
 [node name="Dead" type="Node" parent="CharacterStateMachine"]
-script = ExtResource("16_q3h3w")
+script = ExtResource("16_e8npr")
 kill_weight = -200.05
 "能否跑" = false
 "能否转向" = false
@@ -658,13 +662,13 @@ offset_right = 37.0
 offset_bottom = -10.0
 text = "状态："
 label_settings = SubResource("LabelSettings_pvesp")
-script = ExtResource("15_5ihae")
+script = ExtResource("18_384rn")
 state_machine = NodePath("../CharacterStateMachine")
 
 [node name="Attack" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_collision_shape_2d", "character_self")]
 collision_layer = 0
 collision_mask = 4
-script = ExtResource("19_loup6")
+script = ExtResource("19_kimmc")
 damage = 10
 player = NodePath("..")
 facing_collision_shape_2d = NodePath("CollisionShape2D")
@@ -677,9 +681,9 @@ camera_shake_duration = 0.12
 frame_freeze_duration = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack"]
-position = Vector2(8, 0)
+position = Vector2(2, 0)
 shape = SubResource("RectangleShape2D_6eb18")
-script = ExtResource("16_l7gqg")
+script = ExtResource("20_xiaou")
 facing_left_position = Vector2(-8, 0)
 facing_right_position = Vector2(8, 0)
 

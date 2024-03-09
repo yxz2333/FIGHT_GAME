@@ -718,11 +718,11 @@ texture = ExtResource("1_xbpe6")
 hframes = 10
 
 [node name="NAMKA" parent="." instance=ExtResource("27_qnrxi")]
-position = Vector2(233, -122)
+position = Vector2(245, -119)
 scale = Vector2(2, 2)
 
 [node name="MARSTON" parent="." instance=ExtResource("28_uqsbn")]
-position = Vector2(-192, -121)
+position = Vector2(-195, -118)
 scale = Vector2(2, 2)
 
 [node name="HealthChangedManager" parent="." instance=ExtResource("29_wjmyf")]

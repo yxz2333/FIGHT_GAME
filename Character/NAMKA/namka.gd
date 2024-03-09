@@ -1,53 +1,7 @@
-extends CharacterBody2D
+extends Player
 
-class_name NAMKA
 
-@export var speed : float = 200.0
-@export var original_weight : float
-var weight : float
-@export var original_health : float
-var health : float :
-	get:
-		return health
-	set(value):
-		SignalBus.emit_signal("on_health_changed", self, value - health) # 发出扣了多少血的信号
-		health = value
-		SignalBus.emit_signal("on_health_changed")
-		
-@onready var sprite : Sprite2D = $Sprite2D 
-@onready var animation_tree : AnimationTree = $AnimationTree
-@onready var state_machine : CharacterStateMachine = $CharacterStateMachine
-
-var direction : Vector2 = Vector2.ZERO # 读入键盘手柄输入用
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")  # 获取项目设置里设置的重力大小
-
-signal facing_direction_changed(facing_right : bool)
-
-func _ready():
-	weight = original_weight
-	health = original_health
-	animation_tree.active = true
-
-func _physics_process(delta): 
-	if position.x < -340 or position.x > 340: # 出屏幕
-		SignalBus.emit_signal("player_out_of_screen", self)
-	
-	direction = Input.get_vector("left_player_2", "right_player_2", "up_player_2", "down_player_2") # 读入x轴和y轴输入	
-	
-	if not is_on_floor(): # 重力加速度
-		velocity.y += gravity * delta  # Vy = g * t 
-	
-	if direction.x and state_machine.check_if_can_move(): 
-		velocity.x = direction.x * speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed * weight / 500)
-	
-	move_and_slide()
-	update_animation_parameters()
-	update_facing_directon()
-	
-	
-var check : float = 1.0 # 调整素材错位问题
+var check : float = 1.0 # 通过动画1D的更改，调整素材错位问题
 func update_animation_parameters() -> void: # 设置移动动画对应参数
 	animation_tree.set("parameters/移动/blend_position", direction.x)
 	animation_tree.set("parameters/攻击_准备/blend_position", check) # 调整素材错位问题
