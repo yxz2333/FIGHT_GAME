@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 
 SignalBus="*res://signal_bus.gd"
 CameraSetting="*res://Scene/Camera.gd"
+GameManager="*res://Scene/GameManager.gd"
 
 [display]
 

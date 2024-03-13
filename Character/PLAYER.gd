@@ -14,8 +14,8 @@ var health : float :
 		health = value
 		SignalBus.emit_signal("on_health_changed")
 
-@export var tilemap_limit_left : float = -340.0
-@export var tilemap_limit_right : float = 340.0
+#@export var tilemap_limit_left : float = -340.0
+#@export var tilemap_limit_right : float = 340.0
 
 @export var left_action : String
 @export var right_action : String
@@ -56,7 +56,7 @@ func _physics_process(delta):
 
 
 func check_if_out_of_screen():
-	if position.x < tilemap_limit_left or position.x > tilemap_limit_right: # 出屏幕
+	if position.x < GameManager.tilemap_limit_left or position.x > GameManager.tilemap_limit_right: # 出屏幕
 		SignalBus.emit_signal("player_out_of_screen", self)
 
 

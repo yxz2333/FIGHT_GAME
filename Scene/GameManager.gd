@@ -1,13 +1,14 @@
 extends Node
 
-class_name GameManager
-
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 
-@export var camera_shake_offset : Vector2 # 镜头偏移量
-@export var camera_shake_zoom : Vector2 # 镜头缩放
-@export var camera_shake_duration : float # 镜头缩放
+@export var game_over_camera_shake_offset : Vector2 = Vector2(0, -3)  # 镜头偏移量
+@export var game_over_camera_shake_zoom : Vector2 = Vector2(1, 0.9)   # 镜头缩放
+@export var game_over_camera_shake_duration : float = 0.02            # 镜头缩放
 @export var game_set_animation : String
+
+@export var tilemap_limit_left : float = -340.0
+@export var tilemap_limit_right : float = 340.0
 
 var is_game_over : bool = false
 
@@ -31,7 +32,7 @@ func _input(event : InputEvent):
 func _game_over(node : CharacterBody2D):
 	is_game_over = true
 	
-	CameraSetting.camera_shake(camera_shake_offset, camera_shake_zoom, camera_shake_duration)
+	CameraSetting.camera_shake(game_over_camera_shake_offset, game_over_camera_shake_zoom, game_over_camera_shake_duration)
 	animation_player.play(game_set_animation) 
 	
 	await get_tree().create_timer(0.4).timeout # 等待0.4秒

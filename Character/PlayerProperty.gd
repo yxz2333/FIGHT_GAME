@@ -23,5 +23,5 @@ class_name PlayerProperty
 @export var frame_freeze_duration : float # 卡帧持续时间
 
 
-## 击飞体重
+## 死亡击飞体重
 @export var kill_weight : float
