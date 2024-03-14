@@ -9,6 +9,5 @@ func camera_shake(_offset, _scale, duration):
 
 func frame_freeze(time_scale, duration):
 	Engine.time_scale = time_scale
-	await get_tree().create_timer(duration * time_scale).timeout
+	await get_tree().create_timer(duration, true, false, true).timeout
 	Engine.time_scale = 1
-

@@ -563,7 +563,7 @@ position = Vector2(3.55271e-15, 0)
 scale = Vector2(1, 0.994923)
 texture = ExtResource("7_534gy")
 hframes = 8
-frame = 6
+frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -596,7 +596,8 @@ angle = 7.0
 camera_shake_offset = Vector2(3, -4)
 camera_shake_zoom = Vector2(0.98, 0.98)
 camera_shake_duration = 0.12
-frame_freeze_duration = 0.1
+frame_freeze_duration = 0.07
+time_scale = 0.1
 kill_weight = -200.05
 
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "animation_tree", "attack_area")]
@@ -671,6 +672,7 @@ player_property = NodePath("../../PlayerProperty")
 "能否转向" = false
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
+visible = false
 offset_left = -29.0
 offset_top = -23.0
 offset_right = 37.0

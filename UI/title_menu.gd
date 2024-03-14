@@ -6,7 +6,6 @@ extends Control
 @onready var freeze_timer : Timer = $FreezeTimer
 var is_press : bool = false
 
-
 func _ready():
 	animation_player.play("按下任意键之前的title")
 
@@ -23,7 +22,6 @@ func _input(event):
 		is_press = true
 		freeze_timer.wait_time = 0.5
 		freeze_timer.start()
-
 
 
 func _on_start_button_pressed():

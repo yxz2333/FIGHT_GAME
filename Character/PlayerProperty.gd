@@ -21,6 +21,7 @@ class_name PlayerProperty
 @export var camera_shake_zoom : Vector2 # 镜头缩放
 @export var camera_shake_duration : float # 镜头震动时间
 @export var frame_freeze_duration : float # 卡帧持续时间
+@export var time_scale : float # 卡帧降速
 
 
 ## 死亡击飞体重

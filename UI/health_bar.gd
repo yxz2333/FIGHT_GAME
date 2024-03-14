@@ -10,7 +10,7 @@ func _ready():
 	SignalBus.on_health_changed.connect(_update_health)
 	health_bar.value = 1
 
-func _update_health() -> void:
+func _update_health(node : Node, amount_changed : int) -> void:
 	var percentage : float = character.health / float(player_property.original_health)
 	health_bar.value = percentage
 	

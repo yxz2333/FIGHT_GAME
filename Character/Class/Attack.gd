@@ -13,6 +13,7 @@ var camera_shake_offset : Vector2 # 镜头偏移量
 var camera_shake_zoom : Vector2 # 镜头缩放
 var camera_shake_duration : float
 var frame_freeze_duration : float # 卡帧持续时间
+var time_scale : float # 卡帧降速
 
 func _ready():
 	damage = player_property.damage
@@ -22,6 +23,7 @@ func _ready():
 	camera_shake_zoom = player_property.camera_shake_zoom
 	camera_shake_duration = player_property.camera_shake_duration
 	frame_freeze_duration = player_property.frame_freeze_duration
+	time_scale = player_property.time_scale
 	monitoring = false
 	player.connect("facing_direction_changed", _on_player_facing_direction_changed)
 
@@ -33,7 +35,7 @@ func _on_body_entered(body): # 碰撞逻辑
 			
 			# 镜头抖动和卡帧
 			CameraSetting.camera_shake(camera_shake_offset, camera_shake_zoom, camera_shake_duration)
-			CameraSetting.frame_freeze(0.1, frame_freeze_duration)
+			CameraSetting.frame_freeze(time_scale, frame_freeze_duration)
 			
 			# 击退方向
 			var direction_to_damageable = body.global_position - get_parent().global_position
