@@ -1,5 +1,6 @@
 extends HBoxContainer
 
+@export var player_property : PlayerProperty
 @export var character : CharacterBody2D
 
 @onready var health_bar : TextureProgressBar = $HealthBar
@@ -10,7 +11,7 @@ func _ready():
 	health_bar.value = 1
 
 func _update_health() -> void:
-	var percentage : float = character.health / float(character.original_health)
+	var percentage : float = character.health / float(player_property.original_health)
 	health_bar.value = percentage
 	
 	## 制作红血条动画

@@ -3,7 +3,6 @@ extends State
 class_name AirState
 
 @export var ground_state : State
-@export var double_jump_velocity : float = -150.0
 
 @export var jump_action : String
 
@@ -12,7 +11,13 @@ class_name AirState
 @export var jump_loop_animation : String
 @export var double_jump_animation : String
 
-var has_double_jumped : bool = false 
+@export var player_property : PlayerProperty
+var double_jump_velocity : float
+
+var has_double_jumped : bool = false
+
+func _ready():
+	double_jump_velocity = player_property.jump_velocity
 
 func state_process(delta) -> void:
 	if character.is_on_floor(): # 在地面上时，进入着陆状态

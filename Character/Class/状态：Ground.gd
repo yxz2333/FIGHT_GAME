@@ -2,8 +2,6 @@ extends State
 
 class_name GroundState
 
-@export var jump_velocity : float = -200.0
-
 @export var air_state : State
 @export var ground_state : State
 @export var attack_state : State
@@ -18,6 +16,11 @@ class_name GroundState
 
 @onready var buffer_timer : Timer = $BufferTimer  # 缓冲时间，判断玩家是否在floor上
 
+@export var player_property : PlayerProperty
+var jump_velocity : float
+
+func _ready():
+	jump_velocity = player_property.jump_velocity
 
 func state_process(delta) -> void:
 	if not character.is_on_floor() and buffer_timer.is_stopped(): # buffer判断玩家是否在floor上

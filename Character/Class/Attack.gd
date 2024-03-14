@@ -1,17 +1,27 @@
 extends Area2D
 
-@export var damage : int
+
 @export var player : CharacterBody2D
 @export var facing_collision_shape_2d : FacingCollisionShape2D
-@export var knockback_speed : float
-@export var angle : float
 @export var character_self : CharacterBody2D
-@export var camera_shake_offset : Vector2 # 镜头偏移量
-@export var camera_shake_zoom : Vector2 # 镜头缩放
-@export var camera_shake_duration : float
-@export var frame_freeze_duration : float # 卡帧持续时间
+@export var player_property : PlayerProperty
+
+var damage : int
+var angle : float
+var knockback_speed : float
+var camera_shake_offset : Vector2 # 镜头偏移量
+var camera_shake_zoom : Vector2 # 镜头缩放
+var camera_shake_duration : float
+var frame_freeze_duration : float # 卡帧持续时间
 
 func _ready():
+	damage = player_property.damage
+	angle = player_property.angle
+	knockback_speed = player_property.knockback_speed
+	camera_shake_offset = player_property.camera_shake_offset
+	camera_shake_zoom = player_property.camera_shake_zoom
+	camera_shake_duration = player_property.camera_shake_duration
+	frame_freeze_duration = player_property.frame_freeze_duration
 	monitoring = false
 	player.connect("facing_direction_changed", _on_player_facing_direction_changed)
 

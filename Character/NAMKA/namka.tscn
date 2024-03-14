@@ -635,9 +635,6 @@ size = Vector2(32, 32)
 [node name="NAMKA" type="CharacterBody2D"]
 collision_layer = 6
 script = ExtResource("1_eukoy")
-speed = 300.0
-original_weight = 65.0
-original_health = 101.0
 left_action = "left_player_2"
 right_action = "right_player_2"
 up_action = "up_player_2"
@@ -651,6 +648,7 @@ shape = SubResource("RectangleShape2D_klvjb")
 scale = Vector2(1, 0.994923)
 texture = ExtResource("4_17s4h")
 hframes = 8
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -667,15 +665,26 @@ anim_player = NodePath("../AnimationPlayer")
 "parameters/攻击_准备/blend_position" = 0.974328
 "parameters/移动/blend_position" = -0.25355
 
-[node name="Damageable" type="Node" parent="." node_paths=PackedStringArray("character")]
+[node name="Damageable" type="Node" parent="." node_paths=PackedStringArray("character", "player_property")]
 script = ExtResource("9_tm5uj")
 character = NodePath("..")
+player_property = NodePath("../PlayerProperty")
 
 [node name="PlayerProperty" type="Node" parent="."]
 script = ExtResource("10_dgvjr")
 speed = 300.0
 original_weight = 65.0
 original_health = 101.0
+jump_velocity = -290.0
+double_jump_velocity = -270.0
+damage = 50.0
+knockback_speed = 700.0
+angle = 8.0
+camera_shake_offset = Vector2(7, -7)
+camera_shake_zoom = Vector2(0.95, 0.95)
+camera_shake_duration = 0.12
+frame_freeze_duration = 0.15
+kill_weight = -200.05
 
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "animation_tree", "attack_area")]
 script = ExtResource("10_o6gpn")
@@ -684,9 +693,8 @@ current_state = NodePath("Ground")
 animation_tree = NodePath("../AnimationTree")
 attack_area = NodePath("../Attack")
 
-[node name="Ground" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state", "ground_state", "attack_state")]
+[node name="Ground" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state", "ground_state", "attack_state", "player_property")]
 script = ExtResource("11_xa7pe")
-jump_velocity = -290.0
 air_state = NodePath("../Air")
 ground_state = NodePath(".")
 attack_state = NodePath("../Attack")
@@ -696,21 +704,22 @@ down_action = "down_player_2"
 jump_start_animation = "跳跃_开始"
 jump_loop_animation = "跳跃_循环"
 attack_1_animation = "攻击_准备"
+player_property = NodePath("../../PlayerProperty")
 
 [node name="BufferTimer" type="Timer" parent="CharacterStateMachine/Ground"]
 wait_time = 0.05
 one_shot = true
 autostart = true
 
-[node name="Air" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("ground_state")]
+[node name="Air" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("ground_state", "player_property")]
 script = ExtResource("12_1ign2")
 ground_state = NodePath("../Ground")
-double_jump_velocity = -270.0
 jump_action = "jump_player_2"
 move_animation = "移动"
 jump_animation = "跳跃_开始"
 jump_loop_animation = "跳跃_循环"
 double_jump_animation = "跳跃_连跳"
+player_property = NodePath("../../PlayerProperty")
 
 [node name="Attack" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("return_state", "attack_area")]
 script = ExtResource("12_3txlx")
@@ -746,14 +755,13 @@ return_state = NodePath("../Ground")
 wait_time = 0.256
 one_shot = true
 
-[node name="Death" type="Node" parent="CharacterStateMachine"]
+[node name="Death" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("player_property")]
 script = ExtResource("15_kmmf5")
-kill_weight = -200.05
+player_property = NodePath("../../PlayerProperty")
 "能否跑" = false
 "能否转向" = false
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
-visible = false
 offset_left = -29.0
 offset_top = -23.0
 offset_right = 37.0
@@ -763,20 +771,14 @@ label_settings = SubResource("LabelSettings_pvesp")
 script = ExtResource("17_svtce")
 state_machine = NodePath("../CharacterStateMachine")
 
-[node name="Attack" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_collision_shape_2d", "character_self")]
+[node name="Attack" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_collision_shape_2d", "character_self", "player_property")]
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("18_k60vo")
-damage = 50
 player = NodePath("..")
 facing_collision_shape_2d = NodePath("CollisionShape2D")
-knockback_speed = 700.0
-angle = 8.0
 character_self = NodePath("..")
-camera_shake_offset = Vector2(7, -7)
-camera_shake_zoom = Vector2(0.95, 0.95)
-camera_shake_duration = 0.12
-frame_freeze_duration = 0.15
+player_property = NodePath("../PlayerProperty")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack"]
 position = Vector2(29, -5)
@@ -787,11 +789,12 @@ facing_right_position = Vector2(29, -5)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HBoxContainer" parent="CanvasLayer" node_paths=PackedStringArray("character") instance=ExtResource("20_w8s16")]
+[node name="HBoxContainer" parent="CanvasLayer" node_paths=PackedStringArray("player_property", "character") instance=ExtResource("20_w8s16")]
 offset_left = 432.0
 offset_top = 8.0
 offset_right = 616.0
 offset_bottom = 26.0
+player_property = NodePath("../../PlayerProperty")
 character = NodePath("../..")
 
 [connection signal="current_animation_changed" from="AnimationPlayer" to="AnimationPlayer" method="_on_current_animation_changed"]

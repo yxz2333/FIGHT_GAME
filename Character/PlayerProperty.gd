@@ -3,13 +3,13 @@ extends Node
 class_name PlayerProperty
 
 ## 移速、重量、生命值
-@export var speed : float = 200.0
+@export var speed : float
 @export var original_weight : float
 @export var original_health : float
 
 ## 跳跃
-@export var jump_velocity : float = -200.0
-@export var double_jump_velocity : float = -150.0
+@export var jump_velocity : float
+@export var double_jump_velocity : float
 
 ## 攻击伤害与击飞
 @export var damage : float

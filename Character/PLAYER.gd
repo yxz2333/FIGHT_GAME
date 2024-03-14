@@ -2,10 +2,19 @@ extends CharacterBody2D
 
 class_name Player
 
-@export var speed : float = 200.0
-@export var original_weight : float
+@export var left_action : String
+@export var right_action : String
+@export var up_action : String
+@export var down_action : String
+
+@export var scene : Scene
+@onready var player_property : PlayerProperty = $PlayerProperty
+@onready var sprite : Sprite2D = $Sprite2D 
+@onready var animation_tree : AnimationTree = $AnimationTree
+@onready var state_machine : CharacterStateMachine = $CharacterStateMachine
+
+var speed : float = 200.0
 var weight : float
-@export var original_health : float
 var health : float :
 	get:
 		return health
@@ -14,16 +23,6 @@ var health : float :
 		health = value
 		SignalBus.emit_signal("on_health_changed")
 
-@export var scene : Scene
-
-@export var left_action : String
-@export var right_action : String
-@export var up_action : String
-@export var down_action : String
-
-@onready var sprite : Sprite2D = $Sprite2D 
-@onready var animation_tree : AnimationTree = $AnimationTree
-@onready var state_machine : CharacterStateMachine = $CharacterStateMachine
 
 var direction : Vector2 = Vector2.ZERO # 读入键盘手柄输入用
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")  # 获取项目设置里设置的重力大小
@@ -31,8 +30,9 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")  # 获�
 signal facing_direction_changed(facing_right : bool)
 
 func _ready():
-	weight = original_weight
-	health = original_health
+	weight = player_property.original_weight
+	health = player_property.original_health
+	speed = player_property.speed
 	animation_tree.active = true
 
 func _physics_process(delta): 
