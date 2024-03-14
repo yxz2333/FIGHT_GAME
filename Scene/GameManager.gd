@@ -1,14 +1,13 @@
 extends Node
 
+class_name GameManager
+
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 
 @export var game_over_camera_shake_offset : Vector2 = Vector2(0, -3)  # 镜头偏移量
 @export var game_over_camera_shake_zoom : Vector2 = Vector2(1, 0.9)   # 镜头缩放
 @export var game_over_camera_shake_duration : float = 0.02            # 镜头缩放
 @export var game_set_animation : String
-
-@export var tilemap_limit_left : float = -340.0
-@export var tilemap_limit_right : float = 340.0
 
 var is_game_over : bool = false
 

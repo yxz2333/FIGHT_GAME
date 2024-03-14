@@ -152,6 +152,7 @@ _data = {
 [node name="Level-1" type="Node"]
 process_mode = 3
 script = ExtResource("1_wad5p")
+game_set_animation = "game_set"
 
 [node name="Scene" parent="." instance=ExtResource("2_w4p2y")]
 process_mode = 1
