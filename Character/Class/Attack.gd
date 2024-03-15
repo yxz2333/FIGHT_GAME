@@ -27,22 +27,37 @@ func _ready():
 	monitoring = false
 	player.connect("facing_direction_changed", _on_player_facing_direction_changed)
 
-func _on_body_entered(body): # 碰撞逻辑
+func _on_body_entered(body : Player): # 碰撞逻辑
 	if body == character_self:
 		return
 	for child in body.get_children():
 		if child is Damageable:
-			
-			# 镜头抖动和卡帧
-			CameraSetting.camera_shake(camera_shake_offset, camera_shake_zoom, camera_shake_duration)
-			CameraSetting.frame_freeze(time_scale, frame_freeze_duration)
+			child.hit(damage)
 			
 			# 击退方向
 			var direction_to_damageable = body.global_position - get_parent().global_position
 			var knockback_diretion = sign(direction_to_damageable.x) # sign只读方向
 			
-			body.velocity = Vector2(knockback_speed * knockback_diretion, -angle * damage)  # 击退
-			child.hit(damage)
+			if body.state_machine.current_state.name == "Dead":
+				on_opponent_is_dead(knockback_diretion, body)
+			else:
+				on_opponent_is_hit(knockback_diretion, body)
+				
+
+func on_opponent_is_hit(knockback_diretion, opponendt : Player):
+	# 镜头抖动和卡帧
+	CameraSetting.camera_shake(camera_shake_offset, camera_shake_zoom, camera_shake_duration)
+	CameraSetting.frame_freeze(time_scale, frame_freeze_duration)
+
+	opponendt.velocity = Vector2(knockback_speed * knockback_diretion, -angle * damage)  # 击退
+
+
+func on_opponent_is_dead(knockback_diretion, opponendt : Player):
+	# 镜头抖动和卡帧
+	CameraSetting.camera_shake(camera_shake_offset, camera_shake_zoom, camera_shake_duration)
+	CameraSetting.frame_freeze(time_scale, frame_freeze_duration)
+			
+	opponendt.velocity = Vector2(knockback_speed * knockback_diretion, -angle * damage)  # 击退
 
 
 func _on_player_facing_direction_changed(facing_right : bool):  # 左右改变攻击区域方向

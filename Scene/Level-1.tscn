@@ -182,3 +182,4 @@ libraries = {
 [node name="GAMEOVER" parent="." instance=ExtResource("5_eiuhl")]
 process_mode = 3
 position = Vector2(-296, -200)
+characters = ["NAMKA", "MARSTON"]

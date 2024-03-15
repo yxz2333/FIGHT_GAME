@@ -21,6 +21,7 @@ var health : float :
 	set(value):
 		SignalBus.emit_signal("on_health_changed", self, value - health) # 发出扣了多少血的信号
 		health = value
+		SignalBus.emit_signal("health_bar_change") # 血条变化
 
 
 var direction : Vector2 = Vector2.ZERO # 读入键盘手柄输入用

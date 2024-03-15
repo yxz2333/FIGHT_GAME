@@ -7,10 +7,10 @@ extends HBoxContainer
 @onready var eased_health_bar : TextureProgressBar = $HealthBar/EasedHealthBar
 
 func _ready():
-	SignalBus.on_health_changed.connect(_update_health)
+	SignalBus.health_bar_change.connect(_update_health_bar)
 	health_bar.value = 1
 
-func _update_health(node : Node, amount_changed : int) -> void:
+func _update_health_bar() -> void:
 	var percentage : float = character.health / float(player_property.original_health)
 	health_bar.value = percentage
 	
