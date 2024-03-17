@@ -648,7 +648,7 @@ shape = SubResource("RectangleShape2D_klvjb")
 scale = Vector2(1, 0.994923)
 texture = ExtResource("4_17s4h")
 hframes = 8
-frame = 6
+frame = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -686,6 +686,7 @@ camera_shake_duration = 0.12
 frame_freeze_duration = 0.2
 time_scale = 0.1
 kill_weight = -200.05
+running_start_position = Vector2(-1, 18)
 
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "animation_tree", "attack_area")]
 script = ExtResource("10_o6gpn")

@@ -13,7 +13,7 @@ class_name Player
 @onready var animation_tree : AnimationTree = $AnimationTree
 @onready var state_machine : CharacterStateMachine = $CharacterStateMachine
 
-var speed : float = 200.0
+var speed : float
 var weight : float
 var health : float :
 	get:
@@ -41,7 +41,12 @@ func _physics_process(delta):
 	if not is_on_floor(): # 重力加速度
 		velocity.y += gravity * delta  # Vy = g * t 
 	
+	var now_flip_h : bool = sprite.flip_h
+	update_facing_directon()
+
 	if direction.x and state_machine.check_if_can_move(): 
+		if is_on_floor() and (velocity.x == 0 or now_flip_h != sprite.flip_h):
+			scene.on_start_run(self, sprite.flip_h)  # 起跑时的灰尘效果
 		velocity.x = direction.x * speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed * weight / 500)
@@ -49,8 +54,6 @@ func _physics_process(delta):
 	check_if_out_of_screen()
 	move_and_slide()
 	update_animation_parameters()
-	update_facing_directon()
-
 
 
 func check_if_out_of_screen():
@@ -62,7 +65,6 @@ func update_animation_parameters() -> void: # 设置移动动画对应参数
 	pass
 
 
-
 func update_facing_directon() -> void: # 更新面朝方向
 	if not state_machine.check_if_can_overturn(): # 检查是否能转向
 		return
@@ -72,3 +74,4 @@ func update_facing_directon() -> void: # 更新面朝方向
 		sprite.flip_h = true
 		
 	emit_signal("facing_direction_changed", !sprite.flip_h) # 发出信号，让剑的碰撞区域也反转
+
