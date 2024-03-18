@@ -648,7 +648,7 @@ shape = SubResource("RectangleShape2D_klvjb")
 scale = Vector2(1, 0.994923)
 texture = ExtResource("4_17s4h")
 hframes = 8
-frame = 5
+frame = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -686,7 +686,7 @@ camera_shake_duration = 0.12
 frame_freeze_duration = 0.2
 time_scale = 0.1
 kill_weight = -200.05
-running_start_position = Vector2(-1, 18)
+run_start_position = Vector2(0, 18)
 
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "animation_tree", "attack_area")]
 script = ExtResource("10_o6gpn")
@@ -695,17 +695,15 @@ current_state = NodePath("Ground")
 animation_tree = NodePath("../AnimationTree")
 attack_area = NodePath("../Attack")
 
-[node name="Ground" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state", "ground_state", "attack_state", "player_property")]
+[node name="Ground" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state", "player_property")]
 script = ExtResource("11_xa7pe")
 air_state = NodePath("../Air")
-ground_state = NodePath(".")
-attack_state = NodePath("../Attack")
+switch_gun_mode_action = "switch_to_gun_mode_player_2"
 jump_action = "jump_player_2"
 attack_action = "attack_1_player_2"
 down_action = "down_player_2"
 jump_start_animation = "跳跃_开始"
 jump_loop_animation = "跳跃_循环"
-attack_1_animation = "攻击_准备"
 player_property = NodePath("../../PlayerProperty")
 
 [node name="BufferTimer" type="Timer" parent="CharacterStateMachine/Ground"]
@@ -713,11 +711,9 @@ wait_time = 0.05
 one_shot = true
 autostart = true
 
-[node name="Air" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("ground_state", "player_property")]
+[node name="Air" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("player_property")]
 script = ExtResource("12_1ign2")
-ground_state = NodePath("../Ground")
 jump_action = "jump_player_2"
-move_animation = "移动"
 jump_animation = "跳跃_开始"
 jump_loop_animation = "跳跃_循环"
 double_jump_animation = "跳跃_连跳"
