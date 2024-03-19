@@ -5,9 +5,6 @@ class_name HitState
 @export var damageable : Damageable
 @export var dead_state : State
 @export var hit_animation : String
-@export var return_animation : String
-
-@export var return_state : State
 
 @onready var timer : Timer = $Timer
 
@@ -17,8 +14,9 @@ func _ready():
 func on_enter():
 	timer.start()
 	
-func on_exit():
+func on_exit(): # 可以改改
 	character.velocity = Vector2.ZERO
+	
 
 func _on_damageable_hit(node : CharacterBody2D, damage_taken : int):
 	if node.health > 0:                 # 还活着就接着之前的状态
@@ -31,5 +29,5 @@ func _on_damageable_hit(node : CharacterBody2D, damage_taken : int):
 		emit_signal("interrupt_state", dead_state)
 
 func _on_timer_timeout():
-	next_state = return_state
-	playback.travel(return_animation)
+	next_state = return_to_ground_state
+	playback.travel(return_to_ground_animaton)

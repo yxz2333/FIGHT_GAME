@@ -29,6 +29,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")  # 获�
 
 signal facing_direction_changed(facing_right : bool)
 
+
 func _ready():
 	weight = player_property.original_weight
 	health = player_property.original_health
@@ -40,7 +41,7 @@ func _physics_process(delta):
 	
 	if not is_on_floor(): # 重力加速度
 		velocity.y += gravity * delta  # Vy = g * t 
-	
+
 	var now_flip_h : bool = sprite.flip_h
 	update_facing_directon()
 

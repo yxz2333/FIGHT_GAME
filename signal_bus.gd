@@ -5,7 +5,6 @@ signal on_health_changed(node : Node, amount_changed : int) # 扣血补血标志
 signal health_bar_change() # 血条变化
 signal player_out_of_screen(node : CharacterBody2D) # 出屏幕
 signal who_is_winner(name : String) # 胜者
-signal which_state_jump_return(return_state : State, return_animation : String) # 跳跃返回的状态
 
 var window_mode = DisplayServer.WINDOW_MODE_WINDOWED
 

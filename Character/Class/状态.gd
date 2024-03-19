@@ -5,6 +5,10 @@ class_name State
 @export var 能否跑 : bool = true
 @export var 能否转向 : bool = true
 
+####记得用字典整理一下变量
+var return_to_ground_state : State
+var return_to_ground_animaton : String
+
 var character : CharacterBody2D
 var next_state : State
 var playback : AnimationNodeStateMachinePlayback

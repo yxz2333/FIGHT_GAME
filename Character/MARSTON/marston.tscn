@@ -18,17 +18,56 @@
 [ext_resource type="Script" path="res://Character/Class/状态：Ground.gd" id="12_nnrwh"]
 [ext_resource type="Script" path="res://Character/Class/状态：Air.gd" id="13_bf6fo"]
 [ext_resource type="FontFile" uid="uid://kbr8115pi1jl" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="14_7qcdt"]
-[ext_resource type="Script" path="res://Character/GroundGun.gd" id="14_ackfa"]
 [ext_resource type="Script" path="res://Character/Class/状态：Hit.gd" id="15_rpsbn"]
 [ext_resource type="Script" path="res://Character/Class/状态：Dead.gd" id="16_e8npr"]
 [ext_resource type="Script" path="res://Character/MARSTON/状态：Attack.gd" id="16_kkbex"]
-[ext_resource type="Script" path="res://Character/MARSTON/GunStart.gd" id="17_ma2mh"]
+[ext_resource type="Script" path="res://Character/Class/状态：GunStart.gd" id="17_aw5su"]
+[ext_resource type="Script" path="res://Character/Class/状态：GroundGun.gd" id="18_4plpo"]
 [ext_resource type="Script" path="res://Character/Class/StateDebugLabel.gd" id="18_384rn"]
 [ext_resource type="Script" path="res://Character/Class/Attack.gd" id="19_kimmc"]
 [ext_resource type="Script" path="res://Character/Class/FacingCollisionShape2D.gd" id="20_xiaou"]
 [ext_resource type="PackedScene" uid="uid://dw77qolih5eca" path="res://Character/MARSTON/marston_left_health_bar.tscn" id="21_jrne3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_klvjb"]
+
+[sub_resource type="Animation" id="Animation_2b2fm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_q6e7q")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_6t7pf"]
 resource_name = "受伤"
@@ -68,6 +107,127 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_6ns77"]
+resource_name = "射击"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("12_l5025")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_ucpvc"]
+resource_name = "new_animation"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_q6e7q")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_rhtg2"]
+resource_name = "持枪跑"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("11_47upi")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
 
 [sub_resource type="Animation" id="Animation_j06li"]
@@ -430,166 +590,6 @@ tracks/2/keys = {
 "values": [0, 1]
 }
 
-[sub_resource type="Animation" id="Animation_ucpvc"]
-resource_name = "new_animation"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_q6e7q")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [5]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4]
-}
-
-[sub_resource type="Animation" id="Animation_2b2fm"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_q6e7q")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [5]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_rhtg2"]
-resource_name = "持枪跑"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("11_47upi")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [8]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7]
-}
-
-[sub_resource type="Animation" id="Animation_6ns77"]
-resource_name = "射击"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("12_l5025")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [4]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8aqaf"]
 _data = {
 "RESET": SubResource("Animation_2b2fm"),
@@ -765,7 +765,7 @@ states/Start/position = Vector2(-133, 203)
 "states/跳跃_连跳/node" = SubResource("AnimationNodeAnimation_2xesq")
 "states/跳跃_连跳/position" = Vector2(545, 39)
 transitions = ["Start", "移动", SubResource("AnimationNodeStateMachineTransition_u111x"), "移动", "跳跃_开始", SubResource("AnimationNodeStateMachineTransition_eg77g"), "跳跃_开始", "跳跃_循环", SubResource("AnimationNodeStateMachineTransition_4yp4g"), "跳跃_循环", "移动", SubResource("AnimationNodeStateMachineTransition_ahn2a"), "跳跃_开始", "跳跃_连跳", SubResource("AnimationNodeStateMachineTransition_cknop"), "跳跃_连跳", "跳跃_循环", SubResource("AnimationNodeStateMachineTransition_50ro6"), "移动", "攻击_1", SubResource("AnimationNodeStateMachineTransition_3e0q7"), "攻击_1", "攻击_2", SubResource("AnimationNodeStateMachineTransition_hyk60"), "攻击_1", "移动", SubResource("AnimationNodeStateMachineTransition_mdob7"), "攻击_2", "移动", SubResource("AnimationNodeStateMachineTransition_vkxrm"), "攻击_2", "攻击_3", SubResource("AnimationNodeStateMachineTransition_guyl0"), "攻击_3", "移动", SubResource("AnimationNodeStateMachineTransition_dl3is"), "移动", "受伤", SubResource("AnimationNodeStateMachineTransition_ck32q"), "受伤", "移动", SubResource("AnimationNodeStateMachineTransition_n4dpd"), "持枪移动", "跳跃_开始", SubResource("AnimationNodeStateMachineTransition_im2xw"), "跳跃_循环", "持枪移动", SubResource("AnimationNodeStateMachineTransition_d5shj"), "持枪移动", "射击", SubResource("AnimationNodeStateMachineTransition_8wfle"), "射击", "持枪移动", SubResource("AnimationNodeStateMachineTransition_06rqp"), "持枪移动", "受伤", SubResource("AnimationNodeStateMachineTransition_wecwm"), "受伤", "持枪移动", SubResource("AnimationNodeStateMachineTransition_ilwh1"), "移动", "拔枪", SubResource("AnimationNodeStateMachineTransition_ujbbt"), "拔枪", "持枪移动", SubResource("AnimationNodeStateMachineTransition_ovmmw"), "持枪移动", "移动", SubResource("AnimationNodeStateMachineTransition_v008s")]
-graph_offset = Vector2(-455.634, -123)
+graph_offset = Vector2(-499.634, -169)
 
 [sub_resource type="LabelSettings" id="LabelSettings_pvesp"]
 line_spacing = 0.0
@@ -829,11 +829,13 @@ time_scale = 0.1
 kill_weight = -200.05
 run_start_position = Vector2(0, 16)
 
-[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "animation_tree", "attack_area")]
+[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "animation_tree", "_default_ground_state", "attack_area")]
 script = ExtResource("11_3r0v8")
 character = NodePath("..")
 current_state = NodePath("Ground")
 animation_tree = NodePath("../AnimationTree")
+_default_ground_state = NodePath("Ground")
+_default_ground_animation = "移动"
 attack_area = NodePath("../Attack")
 
 [node name="Ground" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state", "attack_state", "_next_state", "player_property")]
@@ -850,6 +852,7 @@ jump_loop_animation = "跳跃_循环"
 attack_animation = "攻击_1"
 switch_mode_animation = "拔枪"
 move_animation = "移动"
+signal_on_whos_jump_return_state = "player_1_which_state_jump_return"
 player_property = NodePath("../../PlayerProperty")
 
 [node name="BufferTimer" type="Timer" parent="CharacterStateMachine/Ground"]
@@ -858,7 +861,7 @@ one_shot = true
 autostart = true
 
 [node name="GunStart" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("ground_gun_state")]
-script = ExtResource("17_ma2mh")
+script = ExtResource("17_aw5su")
 gun_start_animation = "拔枪"
 ground_gun_state = NodePath("../GroundGun")
 ground_gun_animation = "持枪移动"
@@ -866,7 +869,7 @@ ground_gun_animation = "持枪移动"
 "能否转向" = false
 
 [node name="GroundGun" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state", "_next_state", "player_property")]
-script = ExtResource("14_ackfa")
+script = ExtResource("18_4plpo")
 air_state = NodePath("../Air")
 _next_state = NodePath("../Ground")
 switch_gun_mode_action = "switch_to_gun_mode_player_1"
@@ -877,16 +880,21 @@ jump_start_animation = "跳跃_开始"
 jump_loop_animation = "跳跃_循环"
 switch_mode_animation = "移动"
 move_animation = "持枪移动"
+signal_on_whos_jump_return_state = "player_1_which_state_jump_return"
 player_property = NodePath("../../PlayerProperty")
 
-[node name="Air" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("ground_state", "player_property")]
+[node name="BufferTimer" type="Timer" parent="CharacterStateMachine/GroundGun"]
+wait_time = 0.05
+one_shot = true
+autostart = true
+
+[node name="Air" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("player_property")]
 script = ExtResource("13_bf6fo")
-ground_state = NodePath("../Ground")
-ground_animation = "移动"
 jump_action = "jump_player_1"
 jump_animation = "跳跃_开始"
 jump_loop_animation = "跳跃_循环"
 double_jump_animation = "跳跃_连跳"
+signal_on_whos_jump_return_state = "player_1_which_state_jump_return"
 player_property = NodePath("../../PlayerProperty")
 
 [node name="Attack" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("return_state", "attack_area")]
@@ -905,13 +913,11 @@ attack_area = NodePath("../../Attack")
 wait_time = 0.3
 one_shot = true
 
-[node name="Hit" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("damageable", "dead_state", "return_state")]
+[node name="Hit" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("damageable", "dead_state")]
 script = ExtResource("15_rpsbn")
 damageable = NodePath("../../Damageable")
 dead_state = NodePath("../Dead")
 hit_animation = "受伤"
-return_animation = "移动"
-return_state = NodePath("../Ground")
 "能否跑" = false
 "能否转向" = false
 
@@ -926,7 +932,6 @@ player_property = NodePath("../../PlayerProperty")
 "能否转向" = false
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
-visible = false
 offset_left = -29.0
 offset_top = -23.0
 offset_right = 37.0
@@ -963,9 +968,9 @@ player_property = NodePath("../../PlayerProperty")
 character = NodePath("../..")
 
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
+[connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/GunStart" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/Air" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/Attack" method="_on_animation_tree_animation_finished"]
-[connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/GunStart" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_player_changed" from="AnimationTree" to="CharacterStateMachine/Air" method="_on_animation_tree_animation_player_changed"]
 [connection signal="timeout" from="CharacterStateMachine/Hit/Timer" to="CharacterStateMachine/Hit" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Attack" to="Attack" method="_on_body_entered"]
