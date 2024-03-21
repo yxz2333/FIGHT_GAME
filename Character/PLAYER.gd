@@ -6,12 +6,14 @@ class_name Player
 @export var right_action : String
 @export var up_action : String
 @export var down_action : String
+@export var run_start_effect : PackedScene
 
 @export var scene : Scene
 @onready var player_property : PlayerProperty = $PlayerProperty
 @onready var sprite : Sprite2D = $Sprite2D 
 @onready var animation_tree : AnimationTree = $AnimationTree
 @onready var state_machine : CharacterStateMachine = $CharacterStateMachine
+@onready var run_start_marker : Marker2D = $Markers/RunStart
 
 var speed : float
 var weight : float
@@ -47,7 +49,7 @@ func _physics_process(delta):
 
 	if direction.x and state_machine.check_if_can_move(): 
 		if is_on_floor() and (velocity.x == 0 or now_flip_h != sprite.flip_h):
-			scene.on_start_run(self, sprite.flip_h)  # 起跑时的灰尘效果
+			on_start_run(sprite.flip_h)  # 起跑时的灰尘效果
 		velocity.x = direction.x * speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed * weight / 500)
@@ -66,13 +68,27 @@ func update_animation_parameters() -> void: # 设置移动动画对应参数
 	pass
 
 
+
 func update_facing_directon() -> void: # 更新面朝方向
 	if not state_machine.check_if_can_overturn(): # 检查是否能转向
 		return
+
 	if direction.x > 0: # 朝右
 		sprite.flip_h = false
+		run_start_marker.position.x = -abs(run_start_marker.position.x)
+
 	elif direction.x < 0: # 朝左
 		sprite.flip_h = true
+		run_start_marker.position.x = abs(run_start_marker.position.x)
 		
 	emit_signal("facing_direction_changed", !sprite.flip_h) # 发出信号，让剑的碰撞区域也反转
 
+
+func on_start_run(sprite_flip : bool): # 起跑时的灰尘效果
+	var run_start_effect_instantiate = run_start_effect.instantiate()
+
+	run_start_effect_instantiate.global_position = run_start_marker.global_position
+	run_start_effect_instantiate.flip_h = sprite_flip
+	run_start_effect_instantiate.scale = Vector2(1.5, 1.5)
+
+	add_sibling(run_start_effect_instantiate)

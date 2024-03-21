@@ -26,7 +26,3 @@ class_name PlayerProperty
 
 ## 死亡击飞体重
 @export var kill_weight : float
-
-
-## 起跑特效位置
-@export var run_start_position : Vector2

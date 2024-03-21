@@ -1,6 +1,7 @@
-[gd_scene load_steps=90 format=3 uid="uid://bw77mt5bfeyet"]
+[gd_scene load_steps=91 format=3 uid="uid://bw77mt5bfeyet"]
 
 [ext_resource type="Script" path="res://Character/MARSTON/marston.gd" id="1_846sn"]
+[ext_resource type="PackedScene" uid="uid://dwl8fnh2aj3g3" path="res://Character/run_start_effect.tscn" id="2_17v3f"]
 [ext_resource type="Texture2D" uid="uid://bc2ddjjlhsawo" path="res://Assets/CHARAs/MARSTON/attack1/attack_1.png" id="2_e4cmr"]
 [ext_resource type="Texture2D" uid="uid://dy2f24d65y5c5" path="res://Assets/CHARAs/MARSTON/gun_start/gun_start.png" id="2_q6e7q"]
 [ext_resource type="Texture2D" uid="uid://bvqd6vj0p5cw6" path="res://Assets/CHARAs/MARSTON/damage/hit.png" id="3_cpl24"]
@@ -67,6 +68,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_6t7pf"]
@@ -155,34 +168,46 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/path = NodePath("Sprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_q6e7q")]
+"update": 0,
+"values": [Vector2(0, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/path = NodePath("Sprite2D:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [5]
+"values": [ExtResource("2_q6e7q")]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/path = NodePath("Sprite2D:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
@@ -782,12 +807,13 @@ left_action = "left_player_1"
 right_action = "right_player_1"
 up_action = "up_player_1"
 down_action = "down_player_1"
+run_start_effect = ExtResource("2_17v3f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_klvjb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(3.55271e-15, 0)
+position = Vector2(0, 1)
 scale = Vector2(1, 0.994923)
 texture = ExtResource("2_q6e7q")
 hframes = 5
@@ -827,7 +853,6 @@ camera_shake_duration = 0.12
 frame_freeze_duration = 0.07
 time_scale = 0.1
 kill_weight = -200.05
-run_start_position = Vector2(0, 16)
 
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "animation_tree", "_default_ground_state", "attack_area")]
 script = ExtResource("11_3r0v8")
@@ -966,6 +991,11 @@ offset_right = 224.0
 offset_bottom = 26.0
 player_property = NodePath("../../PlayerProperty")
 character = NodePath("../..")
+
+[node name="Markers" type="Node2D" parent="."]
+
+[node name="RunStart" type="Marker2D" parent="Markers"]
+position = Vector2(-10, 9)
 
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/GunStart" method="_on_animation_tree_animation_finished"]

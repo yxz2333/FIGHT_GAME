@@ -28,6 +28,12 @@ func _ready():
 	jump_velocity = player_property.jump_velocity
 
 func state_process(delta) -> void:
+	
+	## 两个ground状态始终设定返回状态为本身
+	return_to_ground_state = self
+	return_to_ground_animaton = move_animation
+	
+	
 	if not character.is_on_floor() and buffer_timer.is_stopped(): # buffer判断玩家是否在floor上
 		next_state = air_state
 		playback.travel(jump_loop_animation)
@@ -36,8 +42,6 @@ func state_process(delta) -> void:
 func state_input(event : InputEvent) -> void: # 读入状态事件
 
 	if event.is_action_pressed(jump_action): 
-		return_to_ground_state = self
-		return_to_ground_animaton = move_animation
 		jump()
 
 	if event.is_action_pressed(attack_action):
@@ -48,8 +52,6 @@ func state_input(event : InputEvent) -> void: # 读入状态事件
 		playback.travel(switch_mode_animation)
 
 	if character.is_on_floor() and event.is_action_pressed(down_action): # 单向台阶下落
-		air_state.return_to_ground_state = return_to_ground_state
-		air_state.return_to_ground_animaton = return_to_ground_animaton # 只能手动改了
 		character.position.y += 1
 
 

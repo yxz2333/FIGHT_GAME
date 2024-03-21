@@ -16,14 +16,15 @@ var frame_freeze_duration : float # 卡帧持续时间
 var time_scale : float # 卡帧降速
 
 func _ready():
-	damage = player_property.damage
-	angle = player_property.angle
-	knockback_speed = player_property.knockback_speed
-	camera_shake_offset = player_property.camera_shake_offset
-	camera_shake_zoom = player_property.camera_shake_zoom
-	camera_shake_duration = player_property.camera_shake_duration
-	frame_freeze_duration = player_property.frame_freeze_duration
-	time_scale = player_property.time_scale
+	damage                    =         player_property.damage
+	angle                     =         player_property.angle
+	knockback_speed           =         player_property.knockback_speed
+	camera_shake_offset       =         player_property.camera_shake_offset
+	camera_shake_zoom         =         player_property.camera_shake_zoom
+	camera_shake_duration     =         player_property.camera_shake_duration
+	frame_freeze_duration     =         player_property.frame_freeze_duration
+	time_scale                =         player_property.time_scale
+	
 	monitoring = false
 	player.connect("facing_direction_changed", _on_player_facing_direction_changed)
 

@@ -1,6 +1,7 @@
-[gd_scene load_steps=91 format=3 uid="uid://cifthl2ohvi0t"]
+[gd_scene load_steps=92 format=3 uid="uid://cifthl2ohvi0t"]
 
 [ext_resource type="Script" path="res://Character/NAMKA/namka.gd" id="1_eukoy"]
+[ext_resource type="PackedScene" uid="uid://dwl8fnh2aj3g3" path="res://Character/run_start_effect.tscn" id="2_28c2x"]
 [ext_resource type="Texture2D" uid="uid://db3tdx5cd0161" path="res://Assets/CHARAs/NAMKA/attack_prepare/attack_prepare.png" id="2_ok8b4"]
 [ext_resource type="Texture2D" uid="uid://d12f5xty6v7ac" path="res://Assets/CHARAs/NAMKA/running_gun/running_gun.png" id="2_u2p2a"]
 [ext_resource type="Texture2D" uid="uid://mt7f2nnph5un" path="res://Assets/CHARAs/NAMKA/jump/jump.png" id="2_wwhbp"]
@@ -867,6 +868,7 @@ left_action = "left_player_2"
 right_action = "right_player_2"
 up_action = "up_player_2"
 down_action = "down_player_2"
+run_start_effect = ExtResource("2_28c2x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
@@ -914,7 +916,6 @@ camera_shake_duration = 0.12
 frame_freeze_duration = 0.2
 time_scale = 0.1
 kill_weight = -200.05
-run_start_position = Vector2(0, 18)
 
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "animation_tree", "_default_ground_state", "attack_area")]
 script = ExtResource("10_o6gpn")
@@ -1057,6 +1058,11 @@ offset_right = 616.0
 offset_bottom = 26.0
 player_property = NodePath("../../PlayerProperty")
 character = NodePath("../..")
+
+[node name="Markers" type="Node2D" parent="."]
+
+[node name="RunStart" type="Marker2D" parent="Markers"]
+position = Vector2(-10, 10)
 
 [connection signal="current_animation_changed" from="AnimationPlayer" to="AnimationPlayer" method="_on_current_animation_changed"]
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]

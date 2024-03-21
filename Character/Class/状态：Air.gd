@@ -29,7 +29,7 @@ func state_input(event : InputEvent) -> void: # 读取输入
 
 func on_exit() -> void:
 	has_double_jumped = false
-	character.scene.on_start_run(character, character.sprite.flip_h)  # 起跑时的灰尘效果
+	character.on_start_run(character.sprite.flip_h)  # 起跑时的灰尘效果
 	playback.travel(return_to_ground_animaton)
 
 func double_jump() -> void: # 连跳
