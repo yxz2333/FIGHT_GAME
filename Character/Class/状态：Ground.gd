@@ -21,7 +21,6 @@ class_name GroundState
 
 @onready var buffer_timer : Timer = $BufferTimer  # 缓冲时间，判断玩家是否在floor上
 
-@export var player_property : PlayerProperty
 var jump_velocity : float
 
 func _ready():

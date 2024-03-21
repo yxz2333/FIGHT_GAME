@@ -26,3 +26,11 @@ class_name PlayerProperty
 
 ## 死亡击飞体重
 @export var kill_weight : float
+
+## 子弹属性
+@export var bullet_speed : float
+@export var bullet_damage : float
+@export var bullet_freeze_time : float
+
+## 状态、动画、输入
+@export var shot_action : String

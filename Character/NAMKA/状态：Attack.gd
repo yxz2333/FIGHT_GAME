@@ -13,7 +13,7 @@ func state_input(event : InputEvent) -> void:
 		next_state = return_state
 		playback.travel("移动")
 		
-	
+
 
 func _on_animation_tree_animation_finished(anim_name):
 	if anim_name == attack_1_animation_left:

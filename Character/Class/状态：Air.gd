@@ -9,7 +9,6 @@ class_name AirState
 @export var double_jump_animation : String
 @export var signal_on_whos_jump_return_state : String
 
-@export var player_property : PlayerProperty
 var double_jump_velocity : float
 
 var has_double_jumped : bool

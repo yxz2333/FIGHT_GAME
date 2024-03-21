@@ -995,7 +995,7 @@ character = NodePath("../..")
 [node name="Markers" type="Node2D" parent="."]
 
 [node name="RunStart" type="Marker2D" parent="Markers"]
-position = Vector2(-10, 9)
+position = Vector2(-11, 9)
 
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/GunStart" method="_on_animation_tree_animation_finished"]

@@ -68,7 +68,6 @@ func update_animation_parameters() -> void: # 设置移动动画对应参数
 	pass
 
 
-
 func update_facing_directon() -> void: # 更新面朝方向
 	if not state_machine.check_if_can_overturn(): # 检查是否能转向
 		return
