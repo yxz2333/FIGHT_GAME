@@ -957,6 +957,7 @@ player_property = NodePath("../../PlayerProperty")
 "能否转向" = false
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
+visible = false
 offset_left = -29.0
 offset_top = -23.0
 offset_right = 37.0

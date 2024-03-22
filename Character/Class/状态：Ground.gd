@@ -24,6 +24,10 @@ class_name GroundState
 var jump_velocity : float
 
 func _ready():
+	if self is GroundState:
+		pass
+	if self is GroundGunState:
+		pass
 	jump_velocity = player_property.jump_velocity
 
 func state_process(delta) -> void:

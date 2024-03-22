@@ -39,6 +39,7 @@ func _ready():
 	animation_tree.active = true
 
 func _physics_process(delta): 
+	player_property.action_animation.find_key("")
 	direction = Input.get_vector(left_action, right_action, up_action, down_action) # 读入x轴和y轴输入	
 	
 	if not is_on_floor(): # 重力加速度
