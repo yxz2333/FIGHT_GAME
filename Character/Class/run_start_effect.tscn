@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bpsxiivx2nacg" path="res://Assets/FXs/smoke6/smoke6_6.png" id="6_3qu3v"]
 [ext_resource type="Texture2D" uid="uid://faupjntacbjc" path="res://Assets/FXs/smoke6/smoke6_7.png" id="7_nthm4"]
 [ext_resource type="Texture2D" uid="uid://tnxfmkutvixg" path="res://Assets/FXs/smoke6/smoke6_8.png" id="8_wmjfm"]
-[ext_resource type="Script" path="res://Character/run_start_effect.gd" id="9_yqan4"]
+[ext_resource type="Script" path="res://Character/Class/run_start_effect.gd" id="9_yqan4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qlteq"]
 animations = [{

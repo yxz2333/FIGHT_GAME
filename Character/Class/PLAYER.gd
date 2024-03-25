@@ -2,10 +2,7 @@ extends CharacterBody2D
 
 class_name Player
 
-@export var left_action : String
-@export var right_action : String
-@export var up_action : String
-@export var down_action : String
+
 @export var run_start_effect : PackedScene
 
 @export var scene : Scene
@@ -14,6 +11,11 @@ class_name Player
 @onready var animation_tree : AnimationTree = $AnimationTree
 @onready var state_machine : CharacterStateMachine = $CharacterStateMachine
 @onready var run_start_marker : Marker2D = $Markers/RunStart
+
+var left_action : String
+var right_action : String
+var up_action : String
+var down_action : String
 
 var speed : float
 var weight : float
@@ -25,7 +27,6 @@ var health : float :
 		health = value
 		SignalBus.emit_signal("health_bar_change") # 血条变化
 
-
 var direction : Vector2 = Vector2.ZERO # 读入键盘手柄输入用
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")  # 获取项目设置里设置的重力大小
 
@@ -33,13 +34,17 @@ signal facing_direction_changed(facing_right : bool)
 
 
 func _ready():
+	left_action = player_property.left_action
+	right_action = player_property.right_action
+	up_action = player_property.up_action
+	down_action = player_property.down_action
 	weight = player_property.original_weight
 	health = player_property.original_health
 	speed = player_property.speed
 	animation_tree.active = true
 
+
 func _physics_process(delta): 
-	player_property.action_animation.find_key("")
 	direction = Input.get_vector(left_action, right_action, up_action, down_action) # 读入x轴和y轴输入	
 	
 	if not is_on_floor(): # 重力加速度

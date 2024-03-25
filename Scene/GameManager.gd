@@ -28,7 +28,7 @@ func _input(event : InputEvent):
 	if event.is_action_pressed("ui_cancel") and not is_game_over:
 		game_paused = !game_paused    # 切换游戏是否暂停
 
-func _game_over(node : CharacterBody2D):
+func _game_over(node : Player):
 	is_game_over = true
 	
 	CameraSetting.camera_shake(game_over_camera_shake_offset, game_over_camera_shake_zoom, game_over_camera_shake_duration)
@@ -41,7 +41,7 @@ func _game_over(node : CharacterBody2D):
 	await get_tree().create_timer(2).timeout # 等待0.4秒
 	
 	animation_player.play("RESET") 
-	if node.name == "NAMKA":
+	if node.player_property._name == "NAMKA":
 		SignalBus.emit_signal("who_is_winner", "MARSTON")
-	if node.name == "MARSTON":
+	if node.player_property._name == "MARSTON":
 		SignalBus.emit_signal("who_is_winner", "NAMKA")

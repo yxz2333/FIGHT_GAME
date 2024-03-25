@@ -1,9 +1,9 @@
-[gd_scene load_steps=91 format=3 uid="uid://bw77mt5bfeyet"]
+[gd_scene load_steps=93 format=3 uid="uid://bw77mt5bfeyet"]
 
 [ext_resource type="Script" path="res://Character/MARSTON/marston.gd" id="1_846sn"]
-[ext_resource type="PackedScene" uid="uid://dwl8fnh2aj3g3" path="res://Character/run_start_effect.tscn" id="2_17v3f"]
 [ext_resource type="Texture2D" uid="uid://bc2ddjjlhsawo" path="res://Assets/CHARAs/MARSTON/attack1/attack_1.png" id="2_e4cmr"]
 [ext_resource type="Texture2D" uid="uid://dy2f24d65y5c5" path="res://Assets/CHARAs/MARSTON/gun_start/gun_start.png" id="2_q6e7q"]
+[ext_resource type="PackedScene" uid="uid://dwl8fnh2aj3g3" path="res://Character/Class/run_start_effect.tscn" id="2_qb86m"]
 [ext_resource type="Texture2D" uid="uid://bvqd6vj0p5cw6" path="res://Assets/CHARAs/MARSTON/damage/hit.png" id="3_cpl24"]
 [ext_resource type="Texture2D" uid="uid://ngnx1wu2n5kq" path="res://Assets/CHARAs/MARSTON/attack2/attack_2.png" id="4_swkaq"]
 [ext_resource type="Texture2D" uid="uid://cssk37fuqbu8s" path="res://Assets/CHARAs/MARSTON/attack3/attack_3.png" id="5_ppyoj"]
@@ -14,20 +14,22 @@
 [ext_resource type="Script" path="res://Character/Class/Damageable.gd" id="10_n05s1"]
 [ext_resource type="Script" path="res://Character/Class/人物状态机.gd" id="11_3r0v8"]
 [ext_resource type="Texture2D" uid="uid://dskge3psgh6y5" path="res://Assets/CHARAs/MARSTON/running_gun/running_gun.png" id="11_47upi"]
-[ext_resource type="Script" path="res://Character/PlayerProperty.gd" id="11_cs5hv"]
 [ext_resource type="Texture2D" uid="uid://ryuxr3avke2e" path="res://Assets/CHARAs/MARSTON/gun_shoot/gun_shoot.png" id="12_l5025"]
-[ext_resource type="Script" path="res://Character/Class/状态：Ground.gd" id="12_nnrwh"]
 [ext_resource type="Script" path="res://Character/Class/状态：Air.gd" id="13_bf6fo"]
 [ext_resource type="FontFile" uid="uid://kbr8115pi1jl" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="14_7qcdt"]
+[ext_resource type="Script" path="res://Character/MARSTON/player_property.gd" id="15_gkwl2"]
 [ext_resource type="Script" path="res://Character/Class/状态：Hit.gd" id="15_rpsbn"]
 [ext_resource type="Script" path="res://Character/Class/状态：Dead.gd" id="16_e8npr"]
 [ext_resource type="Script" path="res://Character/MARSTON/状态：Attack.gd" id="16_kkbex"]
 [ext_resource type="Script" path="res://Character/Class/状态：GunStart.gd" id="17_aw5su"]
+[ext_resource type="Script" path="res://Character/Class/状态：GroundDefault.gd" id="17_plvnc"]
 [ext_resource type="Script" path="res://Character/Class/状态：GroundGun.gd" id="18_4plpo"]
 [ext_resource type="Script" path="res://Character/Class/StateDebugLabel.gd" id="18_384rn"]
 [ext_resource type="Script" path="res://Character/Class/Attack.gd" id="19_kimmc"]
 [ext_resource type="Script" path="res://Character/Class/FacingCollisionShape2D.gd" id="20_xiaou"]
 [ext_resource type="PackedScene" uid="uid://dw77qolih5eca" path="res://Character/MARSTON/marston_left_health_bar.tscn" id="21_jrne3"]
+[ext_resource type="Script" path="res://Character/MARSTON/状态：Shot.gd" id="24_5ti0w"]
+[ext_resource type="PackedScene" uid="uid://u526o1kq782i" path="res://Character/bullet.tscn" id="25_bmlxd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_klvjb"]
 
@@ -128,38 +130,67 @@ length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/path = NodePath("Sprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("12_l5025")]
+"values": [Vector2(0, 3)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/path = NodePath("Sprite2D:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [4]
+"values": [ExtResource("12_l5025")]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/path = NodePath("Sprite2D:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CharacterStateMachine/Shot")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.14, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"shot"
+}, {
+"args": [],
+"method": &"_change_to_can_shot"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_ucpvc"]
@@ -174,8 +205,8 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 1)]
+"update": 1,
+"values": [Vector2(0, 3)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -790,7 +821,7 @@ states/Start/position = Vector2(-133, 203)
 "states/跳跃_连跳/node" = SubResource("AnimationNodeAnimation_2xesq")
 "states/跳跃_连跳/position" = Vector2(545, 39)
 transitions = ["Start", "移动", SubResource("AnimationNodeStateMachineTransition_u111x"), "移动", "跳跃_开始", SubResource("AnimationNodeStateMachineTransition_eg77g"), "跳跃_开始", "跳跃_循环", SubResource("AnimationNodeStateMachineTransition_4yp4g"), "跳跃_循环", "移动", SubResource("AnimationNodeStateMachineTransition_ahn2a"), "跳跃_开始", "跳跃_连跳", SubResource("AnimationNodeStateMachineTransition_cknop"), "跳跃_连跳", "跳跃_循环", SubResource("AnimationNodeStateMachineTransition_50ro6"), "移动", "攻击_1", SubResource("AnimationNodeStateMachineTransition_3e0q7"), "攻击_1", "攻击_2", SubResource("AnimationNodeStateMachineTransition_hyk60"), "攻击_1", "移动", SubResource("AnimationNodeStateMachineTransition_mdob7"), "攻击_2", "移动", SubResource("AnimationNodeStateMachineTransition_vkxrm"), "攻击_2", "攻击_3", SubResource("AnimationNodeStateMachineTransition_guyl0"), "攻击_3", "移动", SubResource("AnimationNodeStateMachineTransition_dl3is"), "移动", "受伤", SubResource("AnimationNodeStateMachineTransition_ck32q"), "受伤", "移动", SubResource("AnimationNodeStateMachineTransition_n4dpd"), "持枪移动", "跳跃_开始", SubResource("AnimationNodeStateMachineTransition_im2xw"), "跳跃_循环", "持枪移动", SubResource("AnimationNodeStateMachineTransition_d5shj"), "持枪移动", "射击", SubResource("AnimationNodeStateMachineTransition_8wfle"), "射击", "持枪移动", SubResource("AnimationNodeStateMachineTransition_06rqp"), "持枪移动", "受伤", SubResource("AnimationNodeStateMachineTransition_wecwm"), "受伤", "持枪移动", SubResource("AnimationNodeStateMachineTransition_ilwh1"), "移动", "拔枪", SubResource("AnimationNodeStateMachineTransition_ujbbt"), "拔枪", "持枪移动", SubResource("AnimationNodeStateMachineTransition_ovmmw"), "持枪移动", "移动", SubResource("AnimationNodeStateMachineTransition_v008s")]
-graph_offset = Vector2(-499.634, -169)
+graph_offset = Vector2(-330.634, -80)
 
 [sub_resource type="LabelSettings" id="LabelSettings_pvesp"]
 line_spacing = 0.0
@@ -803,11 +834,7 @@ size = Vector2(24, 20)
 [node name="marston" type="CharacterBody2D"]
 collision_layer = 6
 script = ExtResource("1_846sn")
-left_action = "left_player_1"
-right_action = "right_player_1"
-up_action = "up_player_1"
-down_action = "down_player_1"
-run_start_effect = ExtResource("2_17v3f")
+run_start_effect = ExtResource("2_qb86m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_klvjb")
@@ -838,7 +865,11 @@ character = NodePath("..")
 player_property = NodePath("../PlayerProperty")
 
 [node name="PlayerProperty" type="Node" parent="."]
-script = ExtResource("11_cs5hv")
+script = ExtResource("15_gkwl2")
+bullet_speed = 1000.0
+bullet_damage = 20.0
+maximum_bullets = 50
+_name = "MARSTON"
 speed = 240.0
 original_weight = 100.0
 original_health = 201.0
@@ -853,59 +884,65 @@ camera_shake_duration = 0.12
 frame_freeze_duration = 0.07
 time_scale = 0.1
 kill_weight = -200.05
+left_action = "left_player_1"
+right_action = "right_player_1"
+up_action = "up_player_1"
+down_action = "down_player_1"
 
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "animation_tree", "_default_ground_state", "attack_area")]
 script = ExtResource("11_3r0v8")
 character = NodePath("..")
-current_state = NodePath("Ground")
+current_state = NodePath("GroundDefault")
 animation_tree = NodePath("../AnimationTree")
-_default_ground_state = NodePath("Ground")
+_default_ground_state = NodePath("GroundDefault")
 _default_ground_animation = "移动"
 attack_area = NodePath("../Attack")
 
-[node name="Ground" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state", "attack_state", "_next_state", "player_property")]
-script = ExtResource("12_nnrwh")
-air_state = NodePath("../Air")
+[node name="GroundDefault" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("attack_state", "air_state", "_next_state", "player_property")]
+script = ExtResource("17_plvnc")
 attack_state = NodePath("../Attack")
+attack_animation = "攻击_1"
+air_state = NodePath("../Air")
 _next_state = NodePath("../GunStart")
 switch_gun_mode_action = "switch_to_gun_mode_player_1"
 jump_action = "jump_player_1"
 attack_action = "attack_1_player_1"
+shot_action = "attack_1_player_1"
 down_action = "down_player_1"
 jump_start_animation = "跳跃_开始"
 jump_loop_animation = "跳跃_循环"
-attack_animation = "攻击_1"
 switch_mode_animation = "拔枪"
 move_animation = "移动"
-signal_on_whos_jump_return_state = "player_1_which_state_jump_return"
 player_property = NodePath("../../PlayerProperty")
 
-[node name="BufferTimer" type="Timer" parent="CharacterStateMachine/Ground"]
+[node name="BufferTimer" type="Timer" parent="CharacterStateMachine/GroundDefault"]
 wait_time = 0.05
 one_shot = true
 autostart = true
 
-[node name="GunStart" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("ground_gun_state")]
+[node name="GunStart" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("ground_gun_state", "player_property")]
 script = ExtResource("17_aw5su")
 gun_start_animation = "拔枪"
 ground_gun_state = NodePath("../GroundGun")
 ground_gun_animation = "持枪移动"
+player_property = NodePath("../../PlayerProperty")
 "能否跑" = false
 "能否转向" = false
 
-[node name="GroundGun" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state", "_next_state", "player_property")]
+[node name="GroundGun" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("shot_state", "air_state", "_next_state", "player_property")]
 script = ExtResource("18_4plpo")
+shot_state = NodePath("../Shot")
 air_state = NodePath("../Air")
-_next_state = NodePath("../Ground")
+_next_state = NodePath("../GroundDefault")
 switch_gun_mode_action = "switch_to_gun_mode_player_1"
 jump_action = "jump_player_1"
 attack_action = "attack_1_player_1"
+shot_action = "attack_1_player_1"
 down_action = "down_player_1"
 jump_start_animation = "跳跃_开始"
 jump_loop_animation = "跳跃_循环"
 switch_mode_animation = "移动"
 move_animation = "持枪移动"
-signal_on_whos_jump_return_state = "player_1_which_state_jump_return"
 player_property = NodePath("../../PlayerProperty")
 
 [node name="BufferTimer" type="Timer" parent="CharacterStateMachine/GroundGun"]
@@ -919,18 +956,18 @@ jump_action = "jump_player_1"
 jump_animation = "跳跃_开始"
 jump_loop_animation = "跳跃_循环"
 double_jump_animation = "跳跃_连跳"
-signal_on_whos_jump_return_state = "player_1_which_state_jump_return"
 player_property = NodePath("../../PlayerProperty")
 
-[node name="Attack" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("return_state", "attack_area")]
+[node name="Attack" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("return_state", "attack_area", "player_property")]
 script = ExtResource("16_kkbex")
-return_state = NodePath("../Ground")
+return_state = NodePath("../GroundDefault")
 attack_action = "attack_1_player_1"
 move_animation = "移动"
 attack_1_animation = "攻击_1"
 attack_2_animation = "攻击_2"
 attack_3_animation = "攻击_3"
 attack_area = NodePath("../../Attack")
+player_property = NodePath("../../PlayerProperty")
 "能否跑" = false
 "能否转向" = false
 
@@ -938,11 +975,12 @@ attack_area = NodePath("../../Attack")
 wait_time = 0.3
 one_shot = true
 
-[node name="Hit" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("damageable", "dead_state")]
+[node name="Hit" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("damageable", "dead_state", "player_property")]
 script = ExtResource("15_rpsbn")
 damageable = NodePath("../../Damageable")
 dead_state = NodePath("../Dead")
 hit_animation = "受伤"
+player_property = NodePath("../../PlayerProperty")
 "能否跑" = false
 "能否转向" = false
 
@@ -956,8 +994,23 @@ player_property = NodePath("../../PlayerProperty")
 "能否跑" = false
 "能否转向" = false
 
+[node name="Shot" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("player", "bullet_start_marker", "anim_player", "character_state_machine", "player_property")]
+script = ExtResource("24_5ti0w")
+shot_action = "attack_1_player_1"
+shot_animation = "射击"
+bullet = ExtResource("25_bmlxd")
+player = NodePath("../..")
+bullet_start_marker = NodePath("../../Markers/Bullet")
+anim_player = NodePath("../../AnimationPlayer")
+character_state_machine = NodePath("..")
+player_property = NodePath("../../PlayerProperty")
+"能否跑" = false
+"能否转向" = false
+
+[node name="Timer" type="Timer" parent="CharacterStateMachine/Shot"]
+one_shot = true
+
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
-visible = false
 offset_left = -29.0
 offset_top = -23.0
 offset_right = 37.0
@@ -998,10 +1051,14 @@ character = NodePath("../..")
 [node name="RunStart" type="Marker2D" parent="Markers"]
 position = Vector2(-11, 9)
 
+[node name="Bullet" type="Marker2D" parent="Markers"]
+position = Vector2(14, 3)
+
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/GunStart" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/Air" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/Attack" method="_on_animation_tree_animation_finished"]
+[connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/Shot" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_player_changed" from="AnimationTree" to="CharacterStateMachine/Air" method="_on_animation_tree_animation_player_changed"]
 [connection signal="timeout" from="CharacterStateMachine/Hit/Timer" to="CharacterStateMachine/Hit" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Attack" to="Attack" method="_on_body_entered"]

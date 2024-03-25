@@ -31,4 +31,4 @@ func _on_full_screen_button_pressed():
 
 func _on_title_button_pressed():
 	game_manager.game_paused = false
-	get_tree().change_scene_to_file("res://UI/title_screen.tscn")
+	get_tree().change_scene_to_file("res://UI/title_menu.tscn")

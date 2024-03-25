@@ -7,7 +7,6 @@ class_name AirState
 @export var jump_animation : String
 @export var jump_loop_animation : String
 @export var double_jump_animation : String
-@export var signal_on_whos_jump_return_state : String
 
 var double_jump_velocity : float
 
