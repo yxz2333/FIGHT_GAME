@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=3 uid="uid://bw77mt5bfeyet"]
+[gd_scene load_steps=88 format=3 uid="uid://bw77mt5bfeyet"]
 
 [ext_resource type="Script" path="res://Character/MARSTON/marston.gd" id="1_846sn"]
 [ext_resource type="Texture2D" uid="uid://bc2ddjjlhsawo" path="res://Assets/CHARAs/MARSTON/attack1/attack_1.png" id="2_e4cmr"]
@@ -753,8 +753,6 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eg77g"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4yp4g"]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ahn2a"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cknop"]
@@ -767,11 +765,7 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mdob7"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vkxrm"]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_guyl0"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dl3is"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ck32q"]
 
@@ -779,49 +773,45 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_im2xw"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d5shj"]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8wfle"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_06rqp"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wecwm"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ilwh1"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ujbbt"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ovmmw"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v008s"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_848rb"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i8av3"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_egojv"]
 states/End/position = Vector2(872, 203)
 states/Start/position = Vector2(-133, 203)
 "states/受伤/node" = SubResource("AnimationNodeAnimation_y3vgd")
-"states/受伤/position" = Vector2(45.366, 302)
+"states/受伤/position" = Vector2(45.366, 307)
 "states/射击/node" = SubResource("AnimationNodeAnimation_l26n7")
 "states/射击/position" = Vector2(45.366, -65)
 "states/拔枪/node" = SubResource("AnimationNodeAnimation_2lre3")
-"states/拔枪/position" = Vector2(136.366, 153)
+"states/拔枪/position" = Vector2(45.366, 125)
 "states/持枪移动/node" = SubResource("AnimationNodeBlendSpace1D_vgpbe")
 "states/持枪移动/position" = Vector2(45.366, 39)
 "states/攻击_1/node" = SubResource("AnimationNodeAnimation_v2kcu")
-"states/攻击_1/position" = Vector2(334, 302)
+"states/攻击_1/position" = Vector2(45.366, 395)
 "states/攻击_2/node" = SubResource("AnimationNodeAnimation_aa35d")
-"states/攻击_2/position" = Vector2(494.366, 302)
+"states/攻击_2/position" = Vector2(45.366, 440)
 "states/攻击_3/node" = SubResource("AnimationNodeAnimation_xlc05")
-"states/攻击_3/position" = Vector2(634.366, 302)
+"states/攻击_3/position" = Vector2(45.366, 481)
 "states/移动/node" = SubResource("AnimationNodeBlendSpace1D_afsln")
-"states/移动/position" = Vector2(334, 203)
+"states/移动/position" = Vector2(45.366, 203)
 "states/跳跃_开始/node" = SubResource("AnimationNodeAnimation_i310e")
-"states/跳跃_开始/position" = Vector2(334, 39)
+"states/跳跃_开始/position" = Vector2(204, 39)
 "states/跳跃_循环/node" = SubResource("AnimationNodeAnimation_0nic8")
-"states/跳跃_循环/position" = Vector2(545, 203)
+"states/跳跃_循环/position" = Vector2(315, 203)
 "states/跳跃_连跳/node" = SubResource("AnimationNodeAnimation_2xesq")
-"states/跳跃_连跳/position" = Vector2(545, 39)
-transitions = ["Start", "移动", SubResource("AnimationNodeStateMachineTransition_u111x"), "移动", "跳跃_开始", SubResource("AnimationNodeStateMachineTransition_eg77g"), "跳跃_开始", "跳跃_循环", SubResource("AnimationNodeStateMachineTransition_4yp4g"), "跳跃_循环", "移动", SubResource("AnimationNodeStateMachineTransition_ahn2a"), "跳跃_开始", "跳跃_连跳", SubResource("AnimationNodeStateMachineTransition_cknop"), "跳跃_连跳", "跳跃_循环", SubResource("AnimationNodeStateMachineTransition_50ro6"), "移动", "攻击_1", SubResource("AnimationNodeStateMachineTransition_3e0q7"), "攻击_1", "攻击_2", SubResource("AnimationNodeStateMachineTransition_hyk60"), "攻击_1", "移动", SubResource("AnimationNodeStateMachineTransition_mdob7"), "攻击_2", "移动", SubResource("AnimationNodeStateMachineTransition_vkxrm"), "攻击_2", "攻击_3", SubResource("AnimationNodeStateMachineTransition_guyl0"), "攻击_3", "移动", SubResource("AnimationNodeStateMachineTransition_dl3is"), "移动", "受伤", SubResource("AnimationNodeStateMachineTransition_ck32q"), "受伤", "移动", SubResource("AnimationNodeStateMachineTransition_n4dpd"), "持枪移动", "跳跃_开始", SubResource("AnimationNodeStateMachineTransition_im2xw"), "跳跃_循环", "持枪移动", SubResource("AnimationNodeStateMachineTransition_d5shj"), "持枪移动", "射击", SubResource("AnimationNodeStateMachineTransition_8wfle"), "射击", "持枪移动", SubResource("AnimationNodeStateMachineTransition_06rqp"), "持枪移动", "受伤", SubResource("AnimationNodeStateMachineTransition_wecwm"), "受伤", "持枪移动", SubResource("AnimationNodeStateMachineTransition_ilwh1"), "移动", "拔枪", SubResource("AnimationNodeStateMachineTransition_ujbbt"), "拔枪", "持枪移动", SubResource("AnimationNodeStateMachineTransition_ovmmw"), "持枪移动", "移动", SubResource("AnimationNodeStateMachineTransition_v008s")]
-graph_offset = Vector2(-501.634, -59)
+"states/跳跃_连跳/position" = Vector2(315, 39)
+transitions = ["Start", "移动", SubResource("AnimationNodeStateMachineTransition_u111x"), "移动", "跳跃_开始", SubResource("AnimationNodeStateMachineTransition_eg77g"), "跳跃_循环", "移动", SubResource("AnimationNodeStateMachineTransition_ahn2a"), "跳跃_开始", "跳跃_连跳", SubResource("AnimationNodeStateMachineTransition_cknop"), "跳跃_连跳", "跳跃_循环", SubResource("AnimationNodeStateMachineTransition_50ro6"), "移动", "攻击_1", SubResource("AnimationNodeStateMachineTransition_3e0q7"), "攻击_1", "攻击_2", SubResource("AnimationNodeStateMachineTransition_hyk60"), "攻击_1", "移动", SubResource("AnimationNodeStateMachineTransition_mdob7"), "攻击_2", "攻击_3", SubResource("AnimationNodeStateMachineTransition_guyl0"), "移动", "受伤", SubResource("AnimationNodeStateMachineTransition_ck32q"), "受伤", "移动", SubResource("AnimationNodeStateMachineTransition_n4dpd"), "持枪移动", "跳跃_开始", SubResource("AnimationNodeStateMachineTransition_im2xw"), "持枪移动", "射击", SubResource("AnimationNodeStateMachineTransition_8wfle"), "射击", "持枪移动", SubResource("AnimationNodeStateMachineTransition_06rqp"), "移动", "拔枪", SubResource("AnimationNodeStateMachineTransition_ujbbt"), "拔枪", "持枪移动", SubResource("AnimationNodeStateMachineTransition_ovmmw"), "攻击_2", "攻击_1", SubResource("AnimationNodeStateMachineTransition_848rb"), "攻击_3", "攻击_2", SubResource("AnimationNodeStateMachineTransition_i8av3")]
+graph_offset = Vector2(-555.634, -150)
 
 [sub_resource type="LabelSettings" id="LabelSettings_pvesp"]
 line_spacing = 0.0
@@ -867,7 +857,7 @@ player_property = NodePath("../PlayerProperty")
 [node name="PlayerProperty" type="Node" parent="."]
 script = ExtResource("15_gkwl2")
 bullet_speed = 1000.0
-bullet_damage = 20.0
+bullet_damage = 2.0
 maximum_bullets = 50
 bullet = ExtResource("25_tuhrp")
 _name = "MARSTON"
