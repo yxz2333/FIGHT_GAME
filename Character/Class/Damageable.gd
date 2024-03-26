@@ -9,7 +9,7 @@ signal on_hit(node : Node, damage_taken : int, knockback_diretion : Vector2)
 @export var character : CharacterBody2D
 @export var player_property : PlayerProperty
 
-func hit(damage : int):
+func hit(damage : int): # 扣血、闪白
 	character.health -= damage
 	character.weight = float(character.health) / player_property.original_health * player_property.original_weight + 20.0 # 人物体重变化
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://cifthl2ohvi0t"]
+[gd_scene load_steps=93 format=3 uid="uid://cifthl2ohvi0t"]
 
 [ext_resource type="Script" path="res://Character/NAMKA/namka.gd" id="1_eukoy"]
 [ext_resource type="PackedScene" uid="uid://dwl8fnh2aj3g3" path="res://Character/Class/run_start_effect.tscn" id="2_hk4kw"]
@@ -19,7 +19,6 @@
 [ext_resource type="FontFile" uid="uid://kbr8115pi1jl" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="13_yalan"]
 [ext_resource type="Script" path="res://Character/Class/状态：Hit.gd" id="14_jso46"]
 [ext_resource type="Script" path="res://Character/NAMKA/player_property.gd" id="14_sgykt"]
-[ext_resource type="PackedScene" uid="uid://b3to3t2afckwg" path="res://Character/NAMKA/bullet.tscn" id="15_1cy2q"]
 [ext_resource type="Script" path="res://Character/Class/状态：Dead.gd" id="15_kmmf5"]
 [ext_resource type="Script" path="res://Character/Class/状态：GroundDefault.gd" id="16_4hkv6"]
 [ext_resource type="Script" path="res://Character/Class/状态：GunStart.gd" id="16_geqr8"]
@@ -903,7 +902,6 @@ script = ExtResource("14_sgykt")
 bullet_speed = 20.0
 bullet_damage = 20.0
 bullet_freeze_time = 5.0
-bullet = ExtResource("15_1cy2q")
 _name = "NAMKA"
 speed = 300.0
 original_weight = 65.0
@@ -1036,69 +1034,14 @@ player_property = NodePath("../../PlayerProperty")
 "能否跑" = false
 "能否转向" = false
 
-[node name="Shot" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("shot_freeze_timer", "player", "bullet_start_marker", "anim_player", "character_state_machine", "player_property")]
+[node name="Shot" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("23_dsi5h")
-shot_freeze_timer = NodePath("../../PlayerProperty/ShotFreezeTimer")
 shot_action = "attack_1_player_2"
 shot_animation = "射击"
-player = NodePath("../..")
-bullet_start_marker = NodePath("../../Markers/Bullet")
-anim_player = NodePath("../../AnimationPlayer")
-character_state_machine = NodePath("..")
-player_property = NodePath("../../PlayerProperty")
 "能否跑" = false
 "能否转向" = false
+shot_freeze_timer = Object(Timer,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","process_callback":1,"wait_time":1.0,"one_shot":true,"autostart":false,"script":null)
 
-[node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
-offset_left = -29.0
-offset_top = -23.0
-offset_right = 37.0
-offset_bottom = -10.0
-text = "状态："
-label_settings = SubResource("LabelSettings_pvesp")
-script = ExtResource("17_svtce")
-state_machine = NodePath("../CharacterStateMachine")
+player = Object(CharacterBody2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"disable_mode":0,"collision_layer":6,"collision_mask":1,"collision_priority":1.0,"input_pickable":false,"motion_mode":0,"up_direction":Vector2(0, -1),"velocity":Vector2(0, 0),"slide_on_ceiling":true,"max_slides":4,"wall_min_slide_angle":0.261799,"floor_stop_on_slope":true,"floor_constant_speed":false,"floor_block_on_wall":true,"floor_max_angle":0.785398,"floor_snap_length":1.0,"platform_on_leave":0,"platform_floor_layers":4294967295,"platform_wall_layers":0,"safe_margin":0.08,"script":ExtResource("1_eukoy"),"run_start_effect":ExtResource("2_hk4kw"),"scene":null)
 
-[node name="Attack" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_collision_shape_2d", "character_self", "player_property")]
-collision_layer = 0
-collision_mask = 4
-script = ExtResource("18_k60vo")
-player = NodePath("..")
-facing_collision_shape_2d = NodePath("CollisionShape2D")
-character_self = NodePath("..")
-player_property = NodePath("../PlayerProperty")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack"]
-position = Vector2(29, -5)
-shape = SubResource("RectangleShape2D_6eb18")
-script = ExtResource("19_5ceud")
-facing_left_position = Vector2(-29, -5)
-facing_right_position = Vector2(29, -5)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="HBoxContainer" parent="CanvasLayer" node_paths=PackedStringArray("player_property", "character") instance=ExtResource("20_w8s16")]
-offset_left = 432.0
-offset_top = 8.0
-offset_right = 616.0
-offset_bottom = 26.0
-player_property = NodePath("../../PlayerProperty")
-character = NodePath("../..")
-
-[node name="Markers" type="Node2D" parent="."]
-
-[node name="RunStart" type="Marker2D" parent="Markers"]
-position = Vector2(-10, 10)
-
-[node name="Bullet" type="Marker2D" parent="Markers"]
-position = Vector2(14, 2)
-
-[connection signal="current_animation_changed" from="AnimationPlayer" to="AnimationPlayer" method="_on_current_animation_changed"]
-[connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
-[connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/GunStart" method="_on_animation_tree_animation_finished"]
-[connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/Air" method="_on_animation_tree_animation_finished"]
-[connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/Attack" method="_on_animation_tree_animation_finished"]
-[connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/Shot" method="_on_animation_tree_animation_finished"]
-[connection signal="animation_player_changed" from="AnimationTree" to="CharacterStateMachine/Air" method="_on_animation_tree_animation_player_changed"]
-[connection signal="timeout" from="CharacterStateMachine/Hit/Timer" to="CharacterStateMachine/Hit" method="_on_timer_timeout"]
-[connection signal="body_entered" from="Attack" to="Attack" method="_on_body_entered"]
+bullet_start_marker = Object(Mar

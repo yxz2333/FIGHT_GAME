@@ -7,6 +7,7 @@ var bullets_number : int
 var check_if_can_shot : bool
 
 func _ready():
+	super() # 调用父类初始化
 	bullets_number = player_property.maximum_bullets
 	check_if_can_shot = 0  
 
@@ -15,7 +16,7 @@ func on_enter() -> void:
 		_return()
 		return
 	
-	super()
+	super() # 调用父类的子弹发射坐标翻转函数
 	timer.start()
 	playback.travel(shot_animation)
 	check_if_can_shot = 0
@@ -24,7 +25,6 @@ func shot() -> void:
 	var bullet_instantiate = bullet.instantiate()
 	bullet_instantiate.player = player
 	bullet_instantiate.player_property = player_property
-	
 	bullet_instantiate.global_position = bullet_start_marker.global_position
 	player.add_sibling(bullet_instantiate)
 
