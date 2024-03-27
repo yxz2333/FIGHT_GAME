@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://bw77mt5bfeyet"]
+[gd_scene load_steps=87 format=3 uid="uid://bw77mt5bfeyet"]
 
 [ext_resource type="Script" path="res://Character/MARSTON/marston.gd" id="1_846sn"]
 [ext_resource type="Texture2D" uid="uid://bc2ddjjlhsawo" path="res://Assets/CHARAs/MARSTON/attack1/attack_1.png" id="2_e4cmr"]
@@ -19,7 +19,6 @@
 [ext_resource type="FontFile" uid="uid://kbr8115pi1jl" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="14_7qcdt"]
 [ext_resource type="Script" path="res://Character/MARSTON/player_property.gd" id="15_gkwl2"]
 [ext_resource type="Script" path="res://Character/Class/状态：Hit.gd" id="15_rpsbn"]
-[ext_resource type="Script" path="res://Character/Class/状态：Dead.gd" id="16_e8npr"]
 [ext_resource type="Script" path="res://Character/MARSTON/状态：Attack.gd" id="16_kkbex"]
 [ext_resource type="Script" path="res://Character/Class/状态：GunStart.gd" id="17_aw5su"]
 [ext_resource type="Script" path="res://Character/Class/状态：GroundDefault.gd" id="17_plvnc"]
@@ -137,7 +136,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2(0, 3)]
+"values": [Vector2(0, 2)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -206,7 +205,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2(0, 3)]
+"values": [Vector2(0, 2)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -857,13 +856,12 @@ player_property = NodePath("../PlayerProperty")
 [node name="PlayerProperty" type="Node" parent="."]
 script = ExtResource("15_gkwl2")
 bullet_speed = 1000.0
-bullet_damage = 2.0
+bullet_damage = 5.0
 maximum_bullets = 50
 bullet = ExtResource("25_tuhrp")
 _name = "MARSTON"
 speed = 240.0
-original_weight = 100.0
-original_health = 201.0
+weight = 90.0
 jump_velocity = -275.0
 double_jump_velocity = -270.0
 damage = 10.0
@@ -874,7 +872,6 @@ camera_shake_zoom = Vector2(0.98, 0.98)
 camera_shake_duration = 0.12
 frame_freeze_duration = 0.07
 time_scale = 0.1
-kill_weight = -200.05
 left_action = "left_player_1"
 right_action = "right_player_1"
 up_action = "up_player_1"
@@ -966,10 +963,9 @@ player_property = NodePath("../../PlayerProperty")
 wait_time = 0.3
 one_shot = true
 
-[node name="Hit" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("damageable", "dead_state", "player_property")]
+[node name="Hit" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("damageable", "player_property")]
 script = ExtResource("15_rpsbn")
 damageable = NodePath("../../Damageable")
-dead_state = NodePath("../Dead")
 hit_animation = "受伤"
 player_property = NodePath("../../PlayerProperty")
 "能否跑" = false
@@ -978,12 +974,6 @@ player_property = NodePath("../../PlayerProperty")
 [node name="Timer" type="Timer" parent="CharacterStateMachine/Hit"]
 wait_time = 0.256
 one_shot = true
-
-[node name="Dead" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("player_property")]
-script = ExtResource("16_e8npr")
-player_property = NodePath("../../PlayerProperty")
-"能否跑" = false
-"能否转向" = false
 
 [node name="Shot" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("player", "bullet_start_marker", "anim_player", "character_state_machine", "player_property")]
 script = ExtResource("24_5ti0w")

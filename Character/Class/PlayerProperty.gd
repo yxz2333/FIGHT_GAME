@@ -6,8 +6,8 @@ class_name PlayerProperty
 
 ## 移速、重量、生命值
 @export var speed : float
-@export var original_weight : float
-@export var original_health : float
+@export var weight : float
+#@export var original_health : float
 
 ## 跳跃
 @export var jump_velocity : float
@@ -25,8 +25,6 @@ class_name PlayerProperty
 @export var frame_freeze_duration : float # 卡帧持续时间
 @export var time_scale : float # 卡帧降速
 
-## 死亡击飞体重
-@export var kill_weight : float
 
 ## 上下左右跳跃按键
 @export var left_action : String

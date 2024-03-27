@@ -2,7 +2,7 @@ extends Node
 
 class_name CharacterStateMachine
 
-@export var character : CharacterBody2D
+@export var character : Player
 @export var current_state : State
 @export var animation_tree : AnimationTree
 @export var _default_ground_state : State

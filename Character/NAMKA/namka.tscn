@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://cifthl2ohvi0t"]
+[gd_scene load_steps=88 format=3 uid="uid://cifthl2ohvi0t"]
 
 [ext_resource type="Script" path="res://Character/NAMKA/namka.gd" id="1_eukoy"]
 [ext_resource type="PackedScene" uid="uid://dwl8fnh2aj3g3" path="res://Character/Class/run_start_effect.tscn" id="2_hk4kw"]
@@ -20,7 +20,6 @@
 [ext_resource type="Script" path="res://Character/Class/状态：Hit.gd" id="14_jso46"]
 [ext_resource type="Script" path="res://Character/NAMKA/player_property.gd" id="14_sgykt"]
 [ext_resource type="PackedScene" uid="uid://b3to3t2afckwg" path="res://Character/NAMKA/bullet.tscn" id="15_1cy2q"]
-[ext_resource type="Script" path="res://Character/Class/状态：Dead.gd" id="15_kmmf5"]
 [ext_resource type="Script" path="res://Character/Class/状态：GroundDefault.gd" id="16_4hkv6"]
 [ext_resource type="Script" path="res://Character/Class/状态：GunStart.gd" id="16_geqr8"]
 [ext_resource type="Script" path="res://Character/Class/StateDebugLabel.gd" id="17_svtce"]
@@ -791,11 +790,7 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eg77g"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ahn2a"]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cknop"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_50ro6"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n11f3"]
 
@@ -819,9 +814,13 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nivjl"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ahn2a"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_50ro6"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_egojv"]
 states/End/position = Vector2(872, 203)
-states/Start/position = Vector2(-108, 203)
+states/Start/position = Vector2(-110, 196)
 "states/受伤/node" = SubResource("AnimationNodeAnimation_dv01u")
 "states/受伤/position" = Vector2(95.366, 287)
 "states/射击/node" = SubResource("AnimationNodeAnimation_uiua8")
@@ -842,8 +841,8 @@ states/Start/position = Vector2(-108, 203)
 "states/跳跃_循环/position" = Vector2(410, 196)
 "states/跳跃_连跳/node" = SubResource("AnimationNodeAnimation_2xesq")
 "states/跳跃_连跳/position" = Vector2(410, 63)
-transitions = ["Start", "移动", SubResource("AnimationNodeStateMachineTransition_u111x"), "移动", "跳跃_开始", SubResource("AnimationNodeStateMachineTransition_eg77g"), "跳跃_循环", "移动", SubResource("AnimationNodeStateMachineTransition_ahn2a"), "跳跃_开始", "跳跃_连跳", SubResource("AnimationNodeStateMachineTransition_cknop"), "跳跃_连跳", "跳跃_循环", SubResource("AnimationNodeStateMachineTransition_50ro6"), "移动", "攻击_准备", SubResource("AnimationNodeStateMachineTransition_n11f3"), "攻击_准备", "移动", SubResource("AnimationNodeStateMachineTransition_4rmjr"), "攻击_准备", "攻击", SubResource("AnimationNodeStateMachineTransition_qkbjt"), "移动", "受伤", SubResource("AnimationNodeStateMachineTransition_0vk75"), "受伤", "移动", SubResource("AnimationNodeStateMachineTransition_gglwg"), "移动", "拔枪", SubResource("AnimationNodeStateMachineTransition_dxxvo"), "持枪移动", "射击", SubResource("AnimationNodeStateMachineTransition_75504"), "射击", "持枪移动", SubResource("AnimationNodeStateMachineTransition_y21w1"), "持枪移动", "跳跃_开始", SubResource("AnimationNodeStateMachineTransition_cv3um"), "拔枪", "持枪移动", SubResource("AnimationNodeStateMachineTransition_cly4l"), "攻击", "攻击_准备", SubResource("AnimationNodeStateMachineTransition_nivjl")]
-graph_offset = Vector2(-273.634, -90)
+transitions = ["Start", "移动", SubResource("AnimationNodeStateMachineTransition_u111x"), "移动", "跳跃_开始", SubResource("AnimationNodeStateMachineTransition_eg77g"), "跳跃_开始", "跳跃_连跳", SubResource("AnimationNodeStateMachineTransition_cknop"), "移动", "攻击_准备", SubResource("AnimationNodeStateMachineTransition_n11f3"), "攻击_准备", "移动", SubResource("AnimationNodeStateMachineTransition_4rmjr"), "攻击_准备", "攻击", SubResource("AnimationNodeStateMachineTransition_qkbjt"), "移动", "受伤", SubResource("AnimationNodeStateMachineTransition_0vk75"), "受伤", "移动", SubResource("AnimationNodeStateMachineTransition_gglwg"), "移动", "拔枪", SubResource("AnimationNodeStateMachineTransition_dxxvo"), "持枪移动", "射击", SubResource("AnimationNodeStateMachineTransition_75504"), "射击", "持枪移动", SubResource("AnimationNodeStateMachineTransition_y21w1"), "持枪移动", "跳跃_开始", SubResource("AnimationNodeStateMachineTransition_cv3um"), "拔枪", "持枪移动", SubResource("AnimationNodeStateMachineTransition_cly4l"), "攻击", "攻击_准备", SubResource("AnimationNodeStateMachineTransition_nivjl"), "跳跃_循环", "移动", SubResource("AnimationNodeStateMachineTransition_ahn2a"), "跳跃_连跳", "跳跃_循环", SubResource("AnimationNodeStateMachineTransition_50ro6")]
+graph_offset = Vector2(-424.634, 60)
 
 [sub_resource type="LabelSettings" id="LabelSettings_pvesp"]
 line_spacing = 0.0
@@ -891,16 +890,15 @@ player_property = NodePath("../PlayerProperty")
 [node name="PlayerProperty" type="Node" parent="."]
 script = ExtResource("14_sgykt")
 bullet_speed = 20.0
-bullet_damage = 20.0
+bullet_damage = 50.0
 bullet_freeze_time = 5.0
 bullet = ExtResource("15_1cy2q")
 _name = "NAMKA"
 speed = 300.0
-original_weight = 65.0
-original_health = 101.0
+weight = 55.0
 jump_velocity = -290.0
 double_jump_velocity = -270.0
-damage = 50.0
+damage = 25.0
 knockback_speed = 700.0
 angle = 8.0
 camera_shake_offset = Vector2(7, -7)
@@ -908,7 +906,6 @@ camera_shake_zoom = Vector2(0.95, 0.95)
 camera_shake_duration = 0.12
 frame_freeze_duration = 0.2
 time_scale = 0.1
-kill_weight = -200.05
 left_action = "left_player_2"
 right_action = "right_player_2"
 up_action = "up_player_2"
@@ -1007,10 +1004,9 @@ player_property = NodePath("../../PlayerProperty")
 wait_time = 0.3
 one_shot = true
 
-[node name="Hit" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("damageable", "dead_state", "player_property")]
+[node name="Hit" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("damageable", "player_property")]
 script = ExtResource("14_jso46")
 damageable = NodePath("../../Damageable")
-dead_state = NodePath("../Dead")
 hit_animation = "受伤"
 player_property = NodePath("../../PlayerProperty")
 "能否跑" = false
@@ -1019,12 +1015,6 @@ player_property = NodePath("../../PlayerProperty")
 [node name="Timer" type="Timer" parent="CharacterStateMachine/Hit"]
 wait_time = 0.256
 one_shot = true
-
-[node name="Dead" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("player_property")]
-script = ExtResource("15_kmmf5")
-player_property = NodePath("../../PlayerProperty")
-"能否跑" = false
-"能否转向" = false
 
 [node name="Shot" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("shot_freeze_timer", "player", "bullet_start_marker", "anim_player", "character_state_machine", "player_property")]
 script = ExtResource("23_dsi5h")
