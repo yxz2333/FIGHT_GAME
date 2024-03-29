@@ -1,5 +1,7 @@
 extends Player
 
+var current_ground_state : GroundState
+var current_ground_animation : String
 
 func update_animation_parameters() -> void: # 设置移动动画对应参数
 	animation_tree.set("parameters/移动/blend_position", direction.x)

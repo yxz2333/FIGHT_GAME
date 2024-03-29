@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://3b1glx1munfw" path="res://Assets/FXs/MuzzleFlash.png" id="2_wnnjc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_johmp"]
-radius = 2.0
-height = 8.0
+radius = 5.0
+height = 42.0
 
 [node name="Bullet" type="Area2D"]
 collision_layer = 4
@@ -13,6 +13,8 @@ collision_mask = 2
 script = ExtResource("1_herlc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.227451, 0.392157, 1, 1)
+scale = Vector2(6, 3)
 texture = ExtResource("2_wnnjc")
 flip_h = true
 

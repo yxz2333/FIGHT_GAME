@@ -2,8 +2,6 @@ extends State
 
 class_name ShotState
 
-@export var shot_action : String
-@export var shot_animation : String
 @export var player : Player
 @export var bullet_start_marker : Marker2D
 @export var anim_player : AnimationPlayer
@@ -12,8 +10,8 @@ class_name ShotState
 var direction : int
 var bullet : PackedScene
 
-func _ready():
-	bullet = player_property.bullet
+func init():
+	bullet = pp.bullet
 
 func _return() -> void:
 	next_state = return_to_ground_state

@@ -3,20 +3,14 @@ extends Node
 ## 编写可受伤属性
 class_name Damageable
 
-signal on_hit(node : Node, damage_taken : int, knockback_diretion : Vector2)
+signal on_hit(node : Node, damage_taken : int)
 
 @export var dead_animation_name : String = "死亡"
 @export var character : Player
 @export var player_property : PlayerProperty
 
-func hit(damage : int): # 扣血、闪白
-	#character.health -= damage
+func hit(damage : int, by_who : Player): # 计算百分比、怒气值、闪白
+	by_who.angry += damage * 0.25
 	character.percentage += damage * 0.25
-	#character.weight = float(character.health) / player_property.original_health * player_property.original_weight + 20.0 # 人物体重变化
-
+	character.angry += damage * 0.5
 	emit_signal("on_hit", get_parent(), damage)
-
-
-func _on_animation_tree_animation_finished(anim_name):
-	if anim_name == dead_animation_name:
-		get_parent().queue_free()

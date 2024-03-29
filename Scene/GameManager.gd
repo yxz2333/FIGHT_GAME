@@ -31,6 +31,9 @@ func _input(event : InputEvent):
 func _game_over(node : Player):
 	is_game_over = true
 	
+	var node_name : String = node.pp._name
+	node.queue_free()
+	
 	CameraSetting.camera_shake(game_over_camera_shake_offset, game_over_camera_shake_zoom, game_over_camera_shake_duration)
 	animation_player.play(game_set_animation) 
 	
@@ -41,7 +44,7 @@ func _game_over(node : Player):
 	await get_tree().create_timer(2).timeout # 等待0.4秒
 	
 	animation_player.play("RESET") 
-	if node.player_property._name == "NAMKA":
+	if node_name == "NAMKA":
 		SignalBus.emit_signal("who_is_winner", "MARSTON")
-	if node.player_property._name == "MARSTON":
+	if node_name == "MARSTON":
 		SignalBus.emit_signal("who_is_winner", "NAMKA")

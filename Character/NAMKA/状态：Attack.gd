@@ -8,7 +8,7 @@ extends AttackState
 
 
 func state_input(event : InputEvent) -> void:
-	if event.is_action_pressed("3_cancel"):
+	if event.is_action_pressed(pp.attack_cancel):
 		attack_area.monitoring = false
 		next_state = return_state
 		playback.travel("移动")

@@ -6,9 +6,9 @@ var bullets_number : int
 
 var check_if_can_shot : bool
 
-func _ready():
+func init():
 	super() # 调用父类初始化
-	bullets_number = player_property.maximum_bullets
+	bullets_number = pp.maximum_bullets
 	check_if_can_shot = 0  
 
 func on_enter() -> void:
@@ -18,25 +18,25 @@ func on_enter() -> void:
 	
 	super() # 调用父类的子弹发射坐标翻转函数
 	timer.start()
-	playback.travel(shot_animation)
+	playback.travel(pp.shot_animation)
 	check_if_can_shot = 0
 	
 func shot() -> void:
 	var bullet_instantiate = bullet.instantiate()
 	bullet_instantiate.player = player
-	bullet_instantiate.player_property = player_property
+	bullet_instantiate.player_property = pp
 	bullet_instantiate.global_position = bullet_start_marker.global_position
 	player.add_sibling(bullet_instantiate)
 
 
 func state_input(event : InputEvent) -> void:
-	if event.is_action_pressed(shot_action) and check_if_can_shot and bullets_number > 0: # 多次开枪
+	if event.is_action_pressed(pp.shot_action) and check_if_can_shot and bullets_number > 0: # 多次开枪
 		timer.start()
 		anim_player.seek(0, true)
-		anim_player.play(shot_animation)
+		anim_player.play(pp.shot_animation)
 		check_if_can_shot = 0
 
-	if event.is_action_pressed(player_property.left_action) or event.is_action_pressed(player_property.right_action):
+	if event.is_action_pressed(pp.left_action) or event.is_action_pressed(pp.right_action):
 		_return()
 
 func _change_to_can_shot() -> void: # 开完枪后check_if_can_shot设为1，即可以连续再开一枪

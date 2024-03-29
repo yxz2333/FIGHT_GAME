@@ -1,15 +1,12 @@
 extends Area2D
 
 
-@export var player : CharacterBody2D
+@export var player : Player
 @export var facing_collision_shape_2d : FacingCollisionShape2D
-@export var character_self : CharacterBody2D
-@export var player_property : PlayerProperty
 
 @onready var run_start_marker : Marker2D = $"../Markers/RunStart"
 
 var damage : int
-var angle : float
 var knockback_speed : float
 var camera_shake_offset : Vector2 # 镜头偏移量
 var camera_shake_zoom : Vector2 # 镜头缩放
@@ -19,39 +16,39 @@ var time_scale : float # 卡帧降速
 
 
 func _ready():
-	damage                    =         player_property.damage
-	angle                     =         player_property.angle
-	knockback_speed           =         player_property.knockback_speed
-	camera_shake_offset       =         player_property.camera_shake_offset
-	camera_shake_zoom         =         player_property.camera_shake_zoom
-	camera_shake_duration     =         player_property.camera_shake_duration
-	frame_freeze_duration     =         player_property.frame_freeze_duration
-	time_scale                =         player_property.time_scale
+	damage                    =         player.pp.damage
+	knockback_speed           =         player.pp.base_knockback_speed
+	camera_shake_offset       =         player.pp.camera_shake_offset
+	camera_shake_zoom         =         player.pp.camera_shake_zoom
+	camera_shake_duration     =         player.pp.camera_shake_duration
+	frame_freeze_duration     =         player.pp.frame_freeze_duration
+	time_scale                =         player.pp.time_scale
 	
 	monitoring = false
 	player.connect("facing_direction_changed", _on_player_facing_direction_changed)
 
 func _on_body_entered(body : Player): # 碰撞逻辑
-	if body == character_self:
+	if body == player:
 		return
 	for child in body.get_children():
-		if child is Damageable:
-			child.hit(damage)
+		if child is Damageable and not body.state_machine.check_if_cannot_hurt():
+			child.hit(damage, player)
 			
 			# 击退方向
 			var direction_to_damageable = body.global_position - run_start_marker.global_position
-			var knockback_diretion = sign(direction_to_damageable.x) # sign只读方向
+			var knockback_direction = sign(direction_to_damageable.x)
 			
-			on_opponent_is_hit(knockback_diretion, body)
-				
+			on_opponent_is_hit(knockback_direction, body)
 
-func on_opponent_is_hit(knockback_diretion, opponent : Player):
+
+func on_opponent_is_hit(knockback_direction, opponent : Player):
+	
 	## 镜头抖动和卡帧
 	CameraSetting.camera_shake(camera_shake_offset, camera_shake_zoom, camera_shake_duration)
 	CameraSetting.frame_freeze(time_scale, frame_freeze_duration)
 	
 	## 击退曲线
-	opponent.velocity += Vector2(knockback_diretion * ((damage * opponent.percentage * 0.01 + opponent.percentage * 0.4) * (1000 / (opponent.weight)) * 2.4 + 18) , -damage * opponent.percentage * (200 / (opponent.weight + 100)) * 0.1)
+	opponent.velocity += Vector2(knockback_direction * ((damage * opponent.percentage * 0.01 + opponent.percentage * 0.4) * (1000 / (opponent.pp.weight)) * 2.4 + knockback_speed * ((100 - opponent.percentage) if 100 - opponent.percentage > 20 else 20)) , -damage * opponent.percentage * (200 / (opponent.pp.weight + 100)) * 0.1)
 
 	
 func _on_player_facing_direction_changed(facing_right : bool):  # 左右改变攻击区域方向

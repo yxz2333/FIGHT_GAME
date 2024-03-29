@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://dw77qolih5eca"]
+
+[ext_resource type="Script" path="res://UI/angry_bar.gd" id="1_1mbms"]
+[ext_resource type="Texture2D" uid="uid://bf24dhflm4t2n" path="res://Assets/UI/Base-01.png" id="2_lkq6k"]
+[ext_resource type="Texture2D" uid="uid://8lhlwycyqncl" path="res://Assets/CHARAs/MARSTON/name.png" id="3_ignrn"]
+[ext_resource type="Texture2D" uid="uid://c7kubku5u1sd4" path="res://Assets/UI/userlmn_943d9d2dea0b9948dd11e8ab19ea62ff.png" id="4_mwp6c"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b0g0f"]
+texture = ExtResource("2_lkq6k")
+region_rect = Rect2(243, 203, 58, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7a74r"]
+atlas = ExtResource("4_mwp6c")
+region = Rect2(613, 11, 118, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_th2vl"]
+atlas = ExtResource("4_mwp6c")
+region = Rect2(615, 269, 114, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7pqt"]
+atlas = ExtResource("4_mwp6c")
+region = Rect2(615, 77, 114, 6)
+
+[node name="HBoxContainer" type="HBoxContainer"]
+offset_right = 184.0
+offset_bottom = 18.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_1mbms")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_b0g0f")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer"]
+layout_mode = 2
+texture = ExtResource("3_ignrn")
+expand_mode = 3
+
+[node name="AngryBar" type="TextureProgressBar" parent="."]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.0
+value = 0.5
+texture_over = SubResource("AtlasTexture_7a74r")
+texture_progress = SubResource("AtlasTexture_th2vl")
+texture_progress_offset = Vector2(2, 2)
+
+[node name="EasedAngryBar" type="TextureProgressBar" parent="AngryBar"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.0
+value = 1.0
+texture_progress = SubResource("AtlasTexture_l7pqt")
+texture_progress_offset = Vector2(2, 2)

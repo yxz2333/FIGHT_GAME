@@ -22,9 +22,5 @@ func _process(delta): # 子弹就开高帧率了，看着舒服
 func _on_body_entered(body : Player): # 碰撞逻辑
 	for child in body.get_children():
 		if child is Damageable:
-			#if body.health == 0:
-				#child.hit(0)
-				#queue_free()
-			#else:
-			child.hit(damage)
+			child.hit(damage, player)
 			queue_free()

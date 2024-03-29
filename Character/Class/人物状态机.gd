@@ -18,15 +18,14 @@ func _ready():
 		if child is State:
 			states.append(child) # 添加状态
 			
+			child.character = character                                       # 子节点绑定角色
+			child.pp = character.pp                                           # 子节点绑定角色属性
 			child.return_to_ground_state = _default_ground_state              # 子节点绑定默认落地返回状态
 			child.return_to_ground_animaton = _default_ground_animation       # 子节点绑定默认落地返回状态的动画
-			child.character = character                                       # 子节点绑定角色
 			child.playback = animation_tree["parameters/playback"]            # 子节点状态绑定动画树
+			child.connect("interrupt_state", _on_state_interrupt_state)       # 子节点连接信号
 			
-			child.connect("interrupt_state", _on_state_interrupt_state)
-			
-		else:
-			push_warning("子节点" + child.name + "不是一个状态")
+			child.init()
 
 
 func _physics_process(delta):
@@ -50,6 +49,11 @@ func check_if_can_move() -> bool:
 func check_if_can_overturn() -> bool:
 	return current_state.能否转向
 
+func check_if_cannot_hurt() -> bool:
+	return current_state.是否无敌
+	
+func check_if_SA() -> bool:
+	return current_state.是否霸体
 
 func switch_states(new_state : State) -> void:
 	attack_area.monitoring = false                 # 只有attack状态才激活hitbox

@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://ri2jc5b3kpbk"]
+
+[ext_resource type="Script" path="res://UI/angry_bar.gd" id="1_3pqla"]
+[ext_resource type="Texture2D" uid="uid://c7kubku5u1sd4" path="res://Assets/UI/userlmn_943d9d2dea0b9948dd11e8ab19ea62ff.png" id="2_jdqkn"]
+[ext_resource type="Texture2D" uid="uid://bf24dhflm4t2n" path="res://Assets/UI/Base-01.png" id="3_prrwo"]
+[ext_resource type="Texture2D" uid="uid://cfdp6kfyx3ion" path="res://Assets/CHARAs/NAMKA/name.png" id="4_p1jx8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dav42"]
+atlas = ExtResource("2_jdqkn")
+region = Rect2(613, 11, 118, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qci4"]
+atlas = ExtResource("2_jdqkn")
+region = Rect2(615, 269, 114, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrfic"]
+atlas = ExtResource("2_jdqkn")
+region = Rect2(615, 77, 114, 6)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b0g0f"]
+texture = ExtResource("3_prrwo")
+region_rect = Rect2(243, 203, 58, 26)
+
+[node name="HBoxContainer" type="HBoxContainer"]
+offset_left = 527.0
+offset_top = 11.0
+offset_right = 711.0
+offset_bottom = 29.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_3pqla")
+
+[node name="AngryBar" type="TextureProgressBar" parent="."]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.0
+value = 0.5
+texture_over = SubResource("AtlasTexture_dav42")
+texture_progress = SubResource("AtlasTexture_6qci4")
+texture_progress_offset = Vector2(2, 2)
+
+[node name="EasedAngryBar" type="TextureProgressBar" parent="AngryBar"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.0
+value = 1.0
+texture_progress = SubResource("AtlasTexture_qrfic")
+texture_progress_offset = Vector2(2, 2)
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_b0g0f")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("4_p1jx8")
+expand_mode = 3

@@ -1,8 +1,11 @@
 extends Node
 
 ### 全局信号发送
-signal on_health_changed(node : Node, amount_changed : int) # 扣血补血标志
-signal health_bar_change() # 血条变化
+signal angry_bar_change_player_1() # ui（怒气值、百分比）变化
+signal angry_bar_change_player_2() # ui（怒气值、百分比）变化
+signal angry_bar_change_player_3() # ui（怒气值、百分比）变化
+signal angry_bar_change_player_4() # ui（怒气值、百分比）变化
+
 signal player_out_of_screen(node : Player) # 出屏幕
 signal who_is_winner(name : String) # 胜者
 
