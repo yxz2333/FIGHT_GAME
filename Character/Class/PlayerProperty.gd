@@ -19,6 +19,8 @@ var angry_bar_player_signal = {
 ## 移速、重量
 @export var speed : float
 @export var weight : float
+var SA_speed : float
+
 
 ## 跳跃
 @export var jump_velocity : float
@@ -46,6 +48,7 @@ var angry_bar_player_signal = {
 @export var switch_gun_mode_action : String
 @export var jump_action : String
 @export var break_action : String
+@export var SA_action : String
 
 ## 各个状态
 @export var air_state : State
@@ -61,3 +64,7 @@ var angry_bar_player_signal = {
 @export var double_jump_animation : String
 @export var hit_animation : String
 @export var break_animation : String = "爆发"
+
+
+func _ready():
+	SA_speed = speed * 1.5

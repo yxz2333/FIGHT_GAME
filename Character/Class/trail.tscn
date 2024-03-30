@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://citqgy4njnfbo"]
+
+[ext_resource type="Shader" path="res://Character/Class/trail.gdshader" id="1_jup4k"]
+[ext_resource type="Texture2D" uid="uid://dbagrohuk5jqs" path="res://icon.png" id="2_cpmaa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ldt4d"]
+shader = ExtResource("1_jup4k")
+shader_parameter/tint_color = Color(0.0470588, 0.572549, 1, 1)
+
+[sub_resource type="Animation" id="Animation_s8x3o"]
+resource_name = "fade_out"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vgdtu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_or7vo"]
+_data = {
+"RESET": SubResource("Animation_vgdtu"),
+"fade_out": SubResource("Animation_s8x3o")
+}
+
+[node name="Trail" type="Sprite2D"]
+material = SubResource("ShaderMaterial_ldt4d")
+texture = ExtResource("2_cpmaa")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_or7vo")
+}
+autoplay = "fade_out"

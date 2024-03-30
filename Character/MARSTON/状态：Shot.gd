@@ -47,8 +47,6 @@ func _change_to_can_shot() -> void: # 开完枪后check_if_can_shot设为1，即
 		if key == pp.player_number:
 			SignalBus.emit_signal(pp.bullet_bar_player_signal[key])
 
-	print(character.bullets_number)
-
 func _physics_process(delta):
 	if timer.is_stopped() and character_state_machine.current_state is ShotState:
 		_return()

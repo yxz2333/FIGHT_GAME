@@ -29,7 +29,9 @@ func _on_area_2d_body_entered(body : Player):
 		if child is Damageable:
 			child.hit(damage, player)
 			var direction : Vector2 = Vector2(body.global_position.x - global_position.x, body.global_position.y - global_position.y)
-			on_opponent_is_hit(direction, body)
+			
+			if not body.SA:
+				on_opponent_is_hit(direction, body)
 
 func on_opponent_is_hit(direction : Vector2, opponent : Player):
 	var dir : Vector2 = Vector2(sign(direction.x), sign(direction.y))

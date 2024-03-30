@@ -40,7 +40,8 @@ func _on_body_entered(body : Player): # 碰撞逻辑
 			var direction_to_damageable = body.global_position - run_start_marker.global_position
 			var knockback_direction = sign(direction_to_damageable.x)
 			
-			on_opponent_is_hit(knockback_direction, body)
+			if not body.SA:
+				on_opponent_is_hit(knockback_direction, body)
 
 
 func on_opponent_is_hit(knockback_direction, opponent : Player):

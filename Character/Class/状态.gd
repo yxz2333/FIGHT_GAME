@@ -5,7 +5,6 @@ class_name State
 @export var 能否跑 : bool = true
 @export var 能否转向 : bool = true
 @export var 是否无敌 : bool = false
-@export var 是否霸体 : bool = false
 
 var character : Player
 var next_state : State

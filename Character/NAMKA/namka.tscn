@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=3 uid="uid://cifthl2ohvi0t"]
+[gd_scene load_steps=96 format=3 uid="uid://cifthl2ohvi0t"]
 
 [ext_resource type="Script" path="res://Character/NAMKA/namka.gd" id="1_eukoy"]
 [ext_resource type="PackedScene" uid="uid://dwl8fnh2aj3g3" path="res://Character/Class/run_start_effect.tscn" id="2_hk4kw"]
@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://ci4n53033qsda" path="res://Character/Class/break.tscn" id="25_pum0l"]
 [ext_resource type="PackedScene" uid="uid://ri2jc5b3kpbk" path="res://Character/NAMKA/namka_angry_bar.tscn" id="30_70j7j"]
 [ext_resource type="PackedScene" uid="uid://dt0e6btuyt4bd" path="res://Character/Class/percentage.tscn" id="31_v13gn"]
+[ext_resource type="Script" path="res://Character/Class/TrailTimer.gd" id="32_2oeus"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_klvjb"]
 size = Vector2(20, 23)
@@ -961,7 +962,7 @@ speed = 280.0
 weight = 55.0
 jump_velocity = -290.0
 double_jump_velocity = -270.0
-damage = 28.0
+damage = 30.0
 base_knockback_speed = 50.0
 extra_knockback_speed = 300.0
 camera_shake_offset = Vector2(7, -7)
@@ -978,6 +979,7 @@ shot_action = "attack_1_player_2"
 switch_gun_mode_action = "switch_to_gun_mode_player_2"
 jump_action = "jump_player_2"
 break_action = "break_player_2"
+SA_action = "SA_player_2"
 air_state = NodePath("../CharacterStateMachine/Air")
 break_state = NodePath("../CharacterStateMachine/Break")
 hit_state = NodePath("../CharacterStateMachine/Hit")
@@ -1076,6 +1078,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
+visible = false
 offset_left = -29.0
 offset_top = -23.0
 offset_right = 37.0
@@ -1121,6 +1124,11 @@ position = Vector2(-10, 10)
 [node name="Bullet" type="Marker2D" parent="Markers"]
 position = Vector2(26, 2)
 
+[node name="TrailTimer" type="Timer" parent="." node_paths=PackedStringArray("character")]
+wait_time = 0.2
+script = ExtResource("32_2oeus")
+character = NodePath("..")
+
 [connection signal="current_animation_changed" from="AnimationPlayer" to="AnimationPlayer" method="_on_current_animation_changed"]
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/GunStart" method="_on_animation_tree_animation_finished"]
@@ -1131,3 +1139,4 @@ position = Vector2(26, 2)
 [connection signal="timeout" from="CharacterStateMachine/Hit/Timer" to="CharacterStateMachine/Hit" method="_on_timer_timeout"]
 [connection signal="timeout" from="CharacterStateMachine/Break/Timer" to="CharacterStateMachine/Break" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Attack" to="Attack" method="_on_body_entered"]
+[connection signal="timeout" from="TrailTimer" to="TrailTimer" method="_on_timeout"]

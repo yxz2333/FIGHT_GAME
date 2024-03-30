@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dt0e6btuyt4bd"]
 
-[ext_resource type="Script" path="res://Character/Percentage.gd" id="1_2j8qb"]
+[ext_resource type="Script" path="res://UI/Percentage.gd" id="1_wqfq0"]
 [ext_resource type="FontFile" uid="uid://kbr8115pi1jl" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="2_xx5uv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lv3yb"]
@@ -13,7 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_2j8qb")
+script = ExtResource("1_wqfq0")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0

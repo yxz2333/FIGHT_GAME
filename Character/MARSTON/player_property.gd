@@ -13,7 +13,6 @@ var bullet_bar_player_signal = {
 @export var maximum_bullets : int 
 @export var bullet : PackedScene
 
-
 ## 各个状态
 @export var shot_state : State
 @export var ground_gun_state : State

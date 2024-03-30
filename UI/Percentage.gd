@@ -6,10 +6,8 @@ extends Control
 @export var is_right : bool
 
 var timer : Timer
-#var tween : Tween
 
 func _ready():
-	#tween = get_tree().create_tween()
 	timer = Timer.new()
 	timer.one_shot = true
 	timer.wait_time = 0.5
