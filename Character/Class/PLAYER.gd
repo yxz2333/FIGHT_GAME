@@ -2,14 +2,17 @@ extends CharacterBody2D
 
 class_name Player
 
-
-@export var run_start_effect : PackedScene
 @export var scene : Scene
 @export var pp : PlayerProperty
+@export var run_start_effect : PackedScene
 @onready var sprite : Sprite2D = $Sprite2D
 @onready var animation_tree : AnimationTree = $AnimationTree
+var playback : AnimationNodeStateMachinePlayback  # 获取当前动画用
 @onready var state_machine : CharacterStateMachine = $CharacterStateMachine
 @onready var run_start_marker : Marker2D = $Markers/RunStart
+
+@export var current_ground_state : GroundState
+@export var current_ground_animation : String = "移动"
 
 var direction : Vector2 = Vector2.ZERO # 读入键盘手柄输入用
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")  # 获取项目设置里设置的重力大小
@@ -23,13 +26,16 @@ var angry : int :
 	set(value):
 		if value >= 100:
 			value = 100
+
 		for key in pp.player_signal.keys(): # 找和玩家编号匹配的信号进行发送
 			if key == pp.player_number:
 				SignalBus.emit_signal(pp.player_signal[key])
+
 		angry = value
 
 
 func _ready():
+	playback = animation_tree["parameters/playback"]
 	animation_tree.active = true
 	DI_timer = Timer.new()
 	add_child(DI_timer)
@@ -52,15 +58,16 @@ func _physics_process(delta):
 	var now_flip_h : bool = sprite.flip_h
 	update_facing_directon()
 
-	if direction.x and state_machine.check_if_can_move():
-		if state_machine.current_state is AttackState: # Attack状态缓慢移动
-			velocity.x = direction.x * pp.speed * 0.1
-		else:                                          # Ground状态移动
-			if is_on_floor() and (velocity.x == 0 or now_flip_h != sprite.flip_h) and state_machine.current_state is GroundState:
+	if direction.x and (state_machine.check_if_can_move() or check_when_decrease_speed()):  # 可以移动或者可缓慢移动的情况下才行
+		if check_when_decrease_speed():                         # 可缓慢移动
+			velocity.x = direction.x * pp.speed * 0.23
+
+		else:                                                   # 可移动
+			if is_on_floor() and (velocity.x == 0 or now_flip_h != sprite.flip_h):
 				on_start_run(sprite.flip_h)  # 起跑时的灰尘效果
 			velocity.x = direction.x * pp.speed
-	
-		if not DI_timer.is_stopped():
+
+		if not DI_timer.is_stopped():                           # 进行DI
 			velocity.x += direction.x * pp.speed * (DI_timer.wait_time - DI_timer.time_left) * 20
 			DI_timer.stop()
 	else:
@@ -76,8 +83,7 @@ func _physics_process(delta):
 	update_animation_parameters()
 
 
-
-func check_if_out_of_screen():               # 检查是否飞出屏幕
+func check_if_out_of_screen() -> void:               # 检查是否飞出屏幕
 	if position.x < scene.tilemap_limit_left or position.x > scene.tilemap_limit_right: # 出屏幕
 		SignalBus.emit_signal("player_out_of_screen", self)
 		
@@ -128,3 +134,9 @@ func check_if_can_DI() -> bool:              # 检查是否能DI
 
 func break_skill() -> void:
 	state_machine.current_state.emit_signal("interrupt_state", pp.break_state)
+
+
+func check_when_decrease_speed() -> bool:
+	if state_machine.current_state is GunStartState or state_machine.current_state is ShotState or state_machine.current_state is AttackState:
+		return true
+	return false

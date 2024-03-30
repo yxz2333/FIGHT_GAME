@@ -13,11 +13,13 @@ var camera_shake_zoom : Vector2 # 镜头缩放
 var camera_shake_duration : float
 var frame_freeze_duration : float # 卡帧持续时间
 var time_scale : float # 卡帧降速
+var extra_knockback_speed : float # 额外可调节击退速度
 
 
 func _ready():
 	damage                    =         player.pp.damage
 	knockback_speed           =         player.pp.base_knockback_speed
+	extra_knockback_speed     =         player.pp.extra_knockback_speed
 	camera_shake_offset       =         player.pp.camera_shake_offset
 	camera_shake_zoom         =         player.pp.camera_shake_zoom
 	camera_shake_duration     =         player.pp.camera_shake_duration
@@ -48,7 +50,7 @@ func on_opponent_is_hit(knockback_direction, opponent : Player):
 	CameraSetting.frame_freeze(time_scale, frame_freeze_duration)
 	
 	## 击退曲线
-	opponent.velocity += Vector2(knockback_direction * ((damage * opponent.percentage * 0.01 + opponent.percentage * 0.4) * (1000 / (opponent.pp.weight)) * 2.4 + knockback_speed * ((100 - opponent.percentage) if 100 - opponent.percentage > 20 else 20)) , -damage * opponent.percentage * (200 / (opponent.pp.weight + 100)) * 0.1)
+	opponent.velocity += Vector2(knockback_direction * ((damage * opponent.percentage * 0.01 + opponent.percentage * 0.4) * (1000 / (opponent.pp.weight)) * 2.4 + knockback_speed * ((100 - opponent.percentage) if 100 - opponent.percentage > 20 else 20) + extra_knockback_speed) , -damage * opponent.percentage * (200 / (opponent.pp.weight + 100)) * 0.1)
 
 	
 func _on_player_facing_direction_changed(facing_right : bool):  # 左右改变攻击区域方向

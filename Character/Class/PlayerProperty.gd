@@ -25,6 +25,7 @@ var player_signal = {
 ## 攻击伤害与击飞
 @export var damage : float
 @export var base_knockback_speed : float
+@export var extra_knockback_speed : float
 
 ## 攻击镜头震动
 @export var camera_shake_offset : Vector2 # 镜头偏移量

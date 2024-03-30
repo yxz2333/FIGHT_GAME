@@ -22,5 +22,5 @@ func _on_damageable_hit(node : Player, damage_taken : int):
 		playback.travel(pp.hit_animation)
 
 func _on_timer_timeout():
-	next_state = return_to_ground_state
-	playback.travel(return_to_ground_animaton)
+	next_state = character.current_ground_state
+	playback.travel(character.current_ground_animation)

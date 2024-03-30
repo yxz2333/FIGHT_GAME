@@ -8,10 +8,11 @@ extends AttackState
 
 
 func state_input(event : InputEvent) -> void:
+	super(event)
 	if event.is_action_pressed(pp.attack_cancel):
 		attack_area.monitoring = false
-		next_state = return_state
-		playback.travel("移动")
+		next_state = character.current_ground_state
+		playback.travel(character.current_ground_animation)
 		
 
 
@@ -22,6 +23,6 @@ func _on_animation_tree_animation_finished(anim_name):
 		playback.travel(attack_2_animation)
 		
 	if anim_name == attack_2_animation_left or anim_name == attack_2_animation_right:
-		next_state = return_state
-		playback.travel(move_animation)
+		next_state = character.current_ground_state
+		playback.travel(character.current_ground_animation)
 

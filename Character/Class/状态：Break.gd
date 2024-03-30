@@ -42,8 +42,8 @@ func _return() -> void:
 		next_state = pp.air_state
 		playback.travel(pp.jump_loop_animation)
 	else:
-		next_state = return_to_ground_state
-		playback.travel(return_to_ground_animaton)
+		next_state = character.current_ground_state
+		playback.travel(character.current_ground_animation)
 
 func _on_timer_timeout():
 	#one_chance = true

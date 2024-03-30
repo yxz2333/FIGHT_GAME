@@ -7,10 +7,6 @@ class_name State
 @export var 是否无敌 : bool = false
 @export var 是否霸体 : bool = false
 
-
-var return_to_ground_state : State
-var return_to_ground_animaton : String
-
 var character : Player
 var next_state : State
 var playback : AnimationNodeStateMachinePlayback

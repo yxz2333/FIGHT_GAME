@@ -14,5 +14,5 @@ extends PlayerProperty
 
 ## 动画
 @export var shot_animation : String
-@export var gun_start_animation : String
-@export var ground_gun_animation : String
+@export var gun_start_animation : String = "拔枪"
+@export var ground_gun_animation : String = "持枪移动"

@@ -2,6 +2,9 @@ extends State
 
 class_name GunStartState
 
+func on_enter():
+	playback.travel(pp.gun_start_animation)
+
 
 func _on_animation_tree_animation_finished(anim_name):
 	if anim_name == pp.gun_start_animation:

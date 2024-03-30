@@ -5,8 +5,6 @@ class_name CharacterStateMachine
 @export var character : Player
 @export var current_state : State
 @export var animation_tree : AnimationTree
-@export var _default_ground_state : State
-@export var _default_ground_animation : String
 
 var states : Array[State]
 
@@ -20,8 +18,6 @@ func _ready():
 			
 			child.character = character                                       # 子节点绑定角色
 			child.pp = character.pp                                           # 子节点绑定角色属性
-			child.return_to_ground_state = _default_ground_state              # 子节点绑定默认落地返回状态
-			child.return_to_ground_animaton = _default_ground_animation       # 子节点绑定默认落地返回状态的动画
 			child.playback = animation_tree["parameters/playback"]            # 子节点状态绑定动画树
 			child.connect("interrupt_state", _on_state_interrupt_state)       # 子节点连接信号
 			
@@ -61,9 +57,6 @@ func switch_states(new_state : State) -> void:
 	if current_state != null:
 		current_state.on_exit()
 		current_state.next_state = null
-		
-	new_state.return_to_ground_state = current_state.return_to_ground_state        # 更新落地返回状态
-	new_state.return_to_ground_animaton = current_state.return_to_ground_animaton  # 更新落地返回状态
 	
 	current_state = new_state
 	

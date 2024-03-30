@@ -30,6 +30,8 @@ func shot() -> void:
 
 
 func state_input(event : InputEvent) -> void:
+	super(event)
+	
 	if event.is_action_pressed(pp.shot_action) and check_if_can_shot and bullets_number > 0: # 多次开枪
 		timer.start()
 		anim_player.seek(0, true)

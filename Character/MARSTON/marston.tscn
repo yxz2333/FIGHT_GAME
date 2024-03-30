@@ -872,11 +872,12 @@ font_size = 10
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6eb18"]
 size = Vector2(24, 20)
 
-[node name="marston" type="CharacterBody2D" node_paths=PackedStringArray("pp")]
+[node name="MARSTON" type="CharacterBody2D" node_paths=PackedStringArray("pp", "current_ground_state")]
 collision_layer = 6
 script = ExtResource("1_846sn")
-run_start_effect = ExtResource("2_qb86m")
 pp = NodePath("PlayerProperty")
+run_start_effect = ExtResource("2_qb86m")
+current_ground_state = NodePath("CharacterStateMachine/GroundDefault")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_klvjb")
@@ -920,10 +921,10 @@ _name = "MARSTON"
 player_number = 1
 speed = 240.0
 weight = 90.0
-jump_velocity = -275.0
+jump_velocity = -285.0
 double_jump_velocity = -270.0
 damage = 10.0
-base_knockback_speed = 5.0
+base_knockback_speed = 1.0
 camera_shake_offset = Vector2(3, -4)
 camera_shake_zoom = Vector2(0.98, 0.98)
 camera_shake_duration = 0.12
@@ -949,13 +950,11 @@ jump_loop_animation = "跳跃_循环"
 double_jump_animation = "跳跃_连跳"
 hit_animation = "受伤"
 
-[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "animation_tree", "_default_ground_state", "attack_area")]
+[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "animation_tree", "attack_area")]
 script = ExtResource("11_3r0v8")
 character = NodePath("..")
 current_state = NodePath("GroundDefault")
 animation_tree = NodePath("../AnimationTree")
-_default_ground_state = NodePath("GroundDefault")
-_default_ground_animation = "移动"
 attack_area = NodePath("../Attack")
 
 [node name="GroundDefault" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("_next_state")]
@@ -963,7 +962,6 @@ script = ExtResource("17_plvnc")
 attack_animation = "攻击_1"
 _next_state = NodePath("../GunStart")
 switch_mode_animation = "拔枪"
-move_animation = "移动"
 
 [node name="BufferTimer" type="Timer" parent="CharacterStateMachine/GroundDefault"]
 wait_time = 0.05
@@ -979,7 +977,6 @@ script = ExtResource("17_aw5su")
 script = ExtResource("18_4plpo")
 _next_state = NodePath("../GroundDefault")
 switch_mode_animation = "移动"
-move_animation = "持枪移动"
 
 [node name="BufferTimer" type="Timer" parent="CharacterStateMachine/GroundGun"]
 wait_time = 0.05
@@ -989,10 +986,8 @@ autostart = true
 [node name="Air" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("13_bf6fo")
 
-[node name="Attack" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("return_state", "attack_area")]
+[node name="Attack" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("attack_area")]
 script = ExtResource("16_kkbex")
-return_state = NodePath("../GroundDefault")
-move_animation = "移动"
 attack_1_animation = "攻击_1"
 attack_2_animation = "攻击_2"
 attack_3_animation = "攻击_3"

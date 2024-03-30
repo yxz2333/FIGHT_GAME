@@ -6,22 +6,11 @@ class_name GroundState
 @export var _next_state : State
 
 @export var switch_mode_animation : String
-@export var move_animation : String
 
 @onready var buffer_timer : Timer = $BufferTimer  # 缓冲时间，判断玩家是否在floor上
 
-var jump_velocity : float
-
-func init():
-	jump_velocity = pp.jump_velocity
 
 func state_process(delta) -> void:
-	
-	## 两个ground状态始终设定返回状态为本身
-	return_to_ground_state = self
-	return_to_ground_animaton = move_animation
-	
-	
 	if not character.is_on_floor() and buffer_timer.is_stopped(): # buffer判断玩家是否在floor上
 		next_state = pp.air_state
 		playback.travel(pp.jump_loop_animation)
@@ -48,7 +37,7 @@ func state_input(event : InputEvent) -> void: # 读入状态事件
 
 
 func jump() -> void:
-	character.velocity.y = jump_velocity
+	character.velocity.y = pp.jump_velocity
 	next_state = pp.air_state
 	playback.travel(pp.jump_start_animation)
 

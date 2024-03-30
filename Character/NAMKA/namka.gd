@@ -1,7 +1,11 @@
 extends Player
 
-var current_ground_state : GroundState
-var current_ground_animation : String
+
+func check_when_decrease_speed() -> bool:
+	if state_machine.current_state is GunStartState or state_machine.current_state is ShotState or (state_machine.current_state is AttackState and playback.get_current_node() == pp.attack_1_animation):
+		return true
+	return false
+
 
 func update_animation_parameters() -> void: # 设置移动动画对应参数
 	animation_tree.set("parameters/移动/blend_position", direction.x)
