@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://cifthl2ohvi0t"]
+[gd_scene load_steps=95 format=3 uid="uid://cifthl2ohvi0t"]
 
 [ext_resource type="Script" path="res://Character/NAMKA/namka.gd" id="1_eukoy"]
 [ext_resource type="PackedScene" uid="uid://dwl8fnh2aj3g3" path="res://Character/Class/run_start_effect.tscn" id="2_hk4kw"]
@@ -30,6 +30,7 @@
 [ext_resource type="Script" path="res://Character/Class/状态：Break.gd" id="24_omolx"]
 [ext_resource type="PackedScene" uid="uid://ci4n53033qsda" path="res://Character/Class/break.tscn" id="25_pum0l"]
 [ext_resource type="PackedScene" uid="uid://ri2jc5b3kpbk" path="res://Character/NAMKA/namka_angry_bar.tscn" id="30_70j7j"]
+[ext_resource type="PackedScene" uid="uid://dt0e6btuyt4bd" path="res://Character/Class/percentage.tscn" id="31_v13gn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_klvjb"]
 size = Vector2(20, 23)
@@ -904,9 +905,10 @@ font_size = 10
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6eb18"]
 size = Vector2(32, 32)
 
-[node name="NAMKA" type="CharacterBody2D" node_paths=PackedStringArray("pp", "current_ground_state")]
+[node name="NAMKA" type="CharacterBody2D" node_paths=PackedStringArray("shot_freeze_timer", "pp", "current_ground_state")]
 collision_layer = 6
 script = ExtResource("1_eukoy")
+shot_freeze_timer = NodePath("PlayerProperty/ShotFreezeTimer")
 pp = NodePath("PlayerProperty")
 run_start_effect = ExtResource("2_hk4kw")
 current_ground_state = NodePath("CharacterStateMachine/GroundGun")
@@ -993,7 +995,7 @@ one_shot = true
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "animation_tree", "attack_area")]
 script = ExtResource("10_o6gpn")
 character = NodePath("..")
-current_state = NodePath("GroundDefault")
+current_state = NodePath("GroundGun")
 animation_tree = NodePath("../AnimationTree")
 attack_area = NodePath("../Attack")
 
@@ -1105,6 +1107,10 @@ offset_top = 8.0
 offset_right = 616.0
 offset_bottom = 26.0
 character = NodePath("../..")
+is_right = true
+
+[node name="Percentage" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("31_v13gn")]
+player = NodePath("../..")
 is_right = true
 
 [node name="Markers" type="Node2D" parent="."]

@@ -3,16 +3,18 @@ extends Node
 class_name PlayerProperty
 
 ## 玩家编号对应单独信号
-var player_signal = {
+var angry_bar_player_signal = {
 	1:"angry_bar_change_player_1",
 	2:"angry_bar_change_player_2",
 	3:"angry_bar_change_player_3",
 	4:"angry_bar_change_player_4",
 }
 
+
 ## 名字和玩家编号
 @export var _name : String
 @export var player_number : int
+
 
 ## 移速、重量
 @export var speed : float

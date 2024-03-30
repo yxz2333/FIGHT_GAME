@@ -27,9 +27,9 @@ var angry : int :
 		if value >= 100:
 			value = 100
 
-		for key in pp.player_signal.keys(): # 找和玩家编号匹配的信号进行发送
+		for key in pp.angry_bar_player_signal.keys(): # 找和玩家编号匹配的信号进行发送
 			if key == pp.player_number:
-				SignalBus.emit_signal(pp.player_signal[key])
+				SignalBus.emit_signal(pp.angry_bar_player_signal[key])
 
 		angry = value
 
@@ -37,6 +37,7 @@ var angry : int :
 func _ready():
 	playback = animation_tree["parameters/playback"]
 	animation_tree.active = true
+
 	DI_timer = Timer.new()
 	add_child(DI_timer)
 	DI_timer.one_shot = true

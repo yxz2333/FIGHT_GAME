@@ -1,13 +1,22 @@
-[gd_scene load_steps=9 format=3 uid="uid://dw77qolih5eca"]
+[gd_scene load_steps=12 format=3 uid="uid://dw77qolih5eca"]
 
 [ext_resource type="Script" path="res://UI/angry_bar.gd" id="1_1mbms"]
 [ext_resource type="Texture2D" uid="uid://bf24dhflm4t2n" path="res://Assets/UI/Base-01.png" id="2_lkq6k"]
 [ext_resource type="Texture2D" uid="uid://8lhlwycyqncl" path="res://Assets/CHARAs/MARSTON/name.png" id="3_ignrn"]
 [ext_resource type="Texture2D" uid="uid://c7kubku5u1sd4" path="res://Assets/UI/userlmn_943d9d2dea0b9948dd11e8ab19ea62ff.png" id="4_mwp6c"]
+[ext_resource type="Script" path="res://Character/MARSTON/BulletBar.gd" id="5_v88ou"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b0g0f"]
 texture = ExtResource("2_lkq6k")
 region_rect = Rect2(243, 203, 58, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icb15"]
+atlas = ExtResource("4_mwp6c")
+region = Rect2(613, 11, 118, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qwsp"]
+atlas = ExtResource("4_mwp6c")
+region = Rect2(615, 77, 114, 6)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7a74r"]
 atlas = ExtResource("4_mwp6c")
@@ -36,7 +45,24 @@ layout_mode = 2
 texture = ExtResource("3_ignrn")
 expand_mode = 3
 
-[node name="AngryBar" type="TextureProgressBar" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="BulletBar" type="TextureProgressBar" parent="VBoxContainer" node_paths=PackedStringArray("bus")]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.0
+value = 0.6
+fill_mode = 1
+texture_over = SubResource("AtlasTexture_icb15")
+texture_progress = SubResource("AtlasTexture_4qwsp")
+texture_progress_offset = Vector2(2, 2)
+script = ExtResource("5_v88ou")
+bus = NodePath("../..")
+
+[node name="AngryBar" type="TextureProgressBar" parent="VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 4
@@ -47,7 +73,7 @@ texture_over = SubResource("AtlasTexture_7a74r")
 texture_progress = SubResource("AtlasTexture_th2vl")
 texture_progress_offset = Vector2(2, 2)
 
-[node name="EasedAngryBar" type="TextureProgressBar" parent="AngryBar"]
+[node name="EasedAngryBar" type="TextureProgressBar" parent="VBoxContainer/AngryBar"]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15

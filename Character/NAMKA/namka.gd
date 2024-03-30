@@ -1,5 +1,6 @@
 extends Player
 
+@export var shot_freeze_timer : Timer
 
 func check_when_decrease_speed() -> bool:
 	if state_machine.current_state is GunStartState or state_machine.current_state is ShotState or (state_machine.current_state is AttackState and playback.get_current_node() == pp.attack_1_animation):
