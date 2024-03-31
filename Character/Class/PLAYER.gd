@@ -12,20 +12,22 @@ var playback : AnimationNodeStateMachinePlayback  # 获取当前动画用
 @onready var run_start_marker : Marker2D = $Markers/RunStart
 @onready var trail_timer : Timer = $TrailTimer
 
-@export var current_ground_state : GroundState
-@export var current_ground_animation : String = "移动"
-
 var direction : Vector2 = Vector2.ZERO # 读入键盘手柄输入用
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")  # 获取项目设置里设置的重力大小
+
 signal facing_direction_changed(facing_right : bool)
+
 var DI_timer : Timer
 var SA_timer : Timer
 
-var speed : float
-
-var SA : bool = false          # 是否霸体
-var percentage : float = 0.0
-var angry : int :
+## 动态更新属性
+@export var current_ground_state : GroundState           # 当前ground状态
+@export var current_ground_animation : String = "移动"   # 当前ground动画
+var speed : float                           # 速度
+var has_double_jumped : bool = false        # 二段跳
+var SA : bool = false                       # 是否霸体
+var percentage : float = 0.0                # 百分比
+var angry : int :                           # 怒气值
 	get:
 		return angry
 	set(value):
@@ -42,32 +44,41 @@ var angry : int :
 
 
 func _ready():
+	## 变量初始化
 	speed = pp.speed
 	
+	## 动画树绑定、激活
 	playback = animation_tree["parameters/playback"]
 	animation_tree.active = true
 
+	## DI timer
 	DI_timer = Timer.new()
 	add_child(DI_timer)
 	DI_timer.one_shot = true
 	DI_timer.wait_time = 0.5
 	
+	## SA timer
 	SA_timer = Timer.new()
 	add_child(SA_timer)
 	SA_timer.one_shot = true
 	SA_timer.wait_time = 5
 	
+	## trail timer
 	trail_timer.wait_time = 0.2
 
 func _physics_process(delta):
-	direction = Input.get_vector(pp.left_action, pp.right_action, pp.up_action, pp.down_action) # 读入x轴和y轴输入
+	## 读入x轴和y轴方向输入
+	direction = Input.get_vector(pp.left_action, pp.right_action, pp.up_action, pp.down_action)
 	
+	## 能否break
 	if Input.is_action_pressed(pp.break_action) and not SA and state_machine.current_state != pp.break_state and pp.break_state.if_can_break():
 		break_skill()
 	
+	## 能否SA
 	if Input.is_action_pressed(pp.SA_action) and angry == 100:
 		SA_state()
-		
+	
+	## 如果处于SA状态
 	if SA:
 		if SA_timer.is_stopped():
 			SA = false
@@ -77,15 +88,21 @@ func _physics_process(delta):
 		else:
 			angry = SA_timer.time_left / SA_timer.wait_time * 100
 	
+	## 能否DI
 	if check_if_can_DI() and DI_timer.is_stopped():
 		DI_timer.start()
 	
+	## y轴重力加速度
 	if not is_on_floor(): # 重力加速度
 		velocity.y += gravity * delta  # Vy = g * t
-
+	else:
+		has_double_jumped = false
+	
+	## 下面起跑灰尘效果用
 	var now_flip_h : bool = sprite.flip_h
 	update_facing_directon()
-
+	
+	## 可以移动或者可缓慢移动
 	if direction.x and (state_machine.check_if_can_move() or check_when_decrease_speed()):  # 可以移动或者可缓慢移动的情况下才行
 		if check_when_decrease_speed():                         # 可缓慢移动
 			velocity.x = direction.x * speed * 0.23
@@ -98,6 +115,7 @@ func _physics_process(delta):
 		if not DI_timer.is_stopped():                           # 进行DI
 			velocity.x += direction.x * speed * (DI_timer.wait_time - DI_timer.time_left) * 20
 			DI_timer.stop()
+	## 不能移动的被击飞状态
 	else:
 		if is_on_floor():
 			velocity.x = move_toward(velocity.x, 0, pp.speed * 0.3 * (100 / (percentage + 10)))

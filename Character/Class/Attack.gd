@@ -51,7 +51,8 @@ func on_opponent_is_hit(knockback_direction, opponent : Player):
 	CameraSetting.frame_freeze(time_scale, frame_freeze_duration)
 	
 	## 击退曲线
-	opponent.velocity += Vector2(knockback_direction * ((damage * opponent.percentage * 0.01 + opponent.percentage * 0.4) * (1000 / (opponent.pp.weight)) * 2.4 + knockback_speed * ((100 - opponent.percentage) if 100 - opponent.percentage > 20 else 20) + extra_knockback_speed) , -damage * opponent.percentage * (200 / (opponent.pp.weight + 100)) * 0.1)
+	opponent.velocity += Vector2(knockback_direction * ((damage * opponent.percentage * 0.01 + opponent.percentage * 0.4) * (1000 / (opponent.pp.weight)) * 2.4 + knockback_speed * ((100 - opponent.percentage) if 100 - opponent.percentage > 20 else 20) + extra_knockback_speed) , 
+								 -damage * opponent.percentage * (200 / (opponent.pp.weight + 100)) * 0.1)
 
 	
 func _on_player_facing_direction_changed(facing_right : bool):  # 左右改变攻击区域方向

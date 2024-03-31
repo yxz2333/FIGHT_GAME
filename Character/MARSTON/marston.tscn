@@ -991,8 +991,6 @@ script = ExtResource("13_bf6fo")
 [node name="Attack" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("attack_area")]
 script = ExtResource("16_kkbex")
 attack_1_animation = "攻击_1"
-attack_2_animation = "攻击_2"
-attack_3_animation = "攻击_3"
 attack_area = NodePath("../../Attack")
 "能否转向" = false
 

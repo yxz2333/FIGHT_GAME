@@ -2,45 +2,41 @@ extends State
 
 class_name AirState
 
-var double_jump_velocity : float
-
-var has_double_jumped : bool
-
-func init():
-	has_double_jumped = false
-
-
 func state_process(delta) -> void:
 	if character.is_on_floor(): # 在地面上时，进入着陆状态
 		next_state = character.current_ground_state
 
-func state_input(event : InputEvent) -> void: # 读取输入
+func state_input(event : InputEvent) -> void:  # 读取输入
 	
-	if event.is_action_pressed(pp.jump_action) and not has_double_jumped:  # 连跳判断
+	## 连跳
+	if event.is_action_pressed(pp.jump_action) and not character.has_double_jumped: 
 		double_jump()
 	
-	if event.is_action_pressed(pp.switch_gun_mode_action):                 # 空中切枪
+	## 空中切枪
+	if event.is_action_pressed(pp.switch_gun_mode_action):
 		if character.current_ground_state != pp.ground_gun_state:
 			next_state = pp.gun_start_state
 		else:
 			character.current_ground_state = pp.ground_default_state
 			character.current_ground_animation = pp.move_animation
-			
+	
+	## 空中射击
 	if character.current_ground_state == pp.ground_gun_state and event.is_action_pressed(pp.shot_action):
 		next_state = pp.shot_state
 	
+	## 空中普攻
 	if character.current_ground_state == pp.ground_default_state and event.is_action_pressed(pp.attack_action):
 		next_state = pp.attack_state
 
+
 func on_exit() -> void:
-	has_double_jumped = false
 	if character.is_on_floor():
+		playback.travel(character.current_ground_animation)
 		character.on_start_run(character.sprite.flip_h)  # 落地起跑时的灰尘效果
-	playback.travel(character.current_ground_animation)
 
 func double_jump() -> void: # 连跳
 	character.velocity.y = pp.double_jump_velocity
-	has_double_jumped = true
+	character.has_double_jumped = true
 	playback.travel(pp.double_jump_animation)
 
 

@@ -1038,7 +1038,6 @@ attack_2_animation_origin = "攻击"
 attack_2_animation_left = "攻击_左"
 attack_2_animation_right = "攻击_右"
 attack_1_animation = "攻击_准备"
-attack_2_animation = "攻击"
 attack_area = NodePath("../../Attack")
 "能否跑" = false
 "能否转向" = false

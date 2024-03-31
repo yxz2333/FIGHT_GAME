@@ -1,6 +1,9 @@
 extends AttackState
 
 
+@export var attack_2_animation : String = "攻击_2"
+@export var attack_3_animation : String = "攻击_3"
+
 
 func on_enter():
 	super()
@@ -16,7 +19,6 @@ func state_input(event : InputEvent) -> void:
 		attack_input_cnt += 1
 		timer.start()
 	
-
 
 func _on_animation_tree_animation_finished(anim_name):
 	if anim_name == attack_1_animation:
