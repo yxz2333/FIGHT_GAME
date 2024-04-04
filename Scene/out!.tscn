@@ -1,0 +1,89 @@
+[gd_scene load_steps=20 format=3 uid="uid://v3i33nk2qaro"]
+
+[ext_resource type="Texture2D" uid="uid://b6jepvskjsur3" path="res://Assets/FXs/OUT!/BOUM1.png" id="1_u355n"]
+[ext_resource type="Texture2D" uid="uid://dctqcq5snnpeq" path="res://Assets/FXs/OUT!/BOUM2.png" id="2_hqp6q"]
+[ext_resource type="Texture2D" uid="uid://e8cnf1ua7spe" path="res://Assets/FXs/OUT!/BOUM3.png" id="3_ccvu1"]
+[ext_resource type="Texture2D" uid="uid://cccqdpjpftc7s" path="res://Assets/FXs/OUT!/BOUM4.png" id="4_8cwjm"]
+[ext_resource type="Texture2D" uid="uid://d4iqpqqkti35t" path="res://Assets/FXs/OUT!/BOUM5.png" id="5_btxc8"]
+[ext_resource type="Texture2D" uid="uid://bqeme5868sftf" path="res://Assets/FXs/OUT!/BOUM6.png" id="6_wdki5"]
+[ext_resource type="Texture2D" uid="uid://duoem5gpvlhku" path="res://Assets/FXs/OUT!/BOUM7.png" id="7_k6t1m"]
+[ext_resource type="Texture2D" uid="uid://dipc83ick4wom" path="res://Assets/FXs/OUT!/BOUM8.png" id="8_rpuv8"]
+[ext_resource type="Texture2D" uid="uid://bksc8b1ng04mw" path="res://Assets/FXs/OUT!/BOUM9.png" id="9_3m201"]
+[ext_resource type="Texture2D" uid="uid://bwoc6vbvosvky" path="res://Assets/FXs/OUT!/BOUM10.png" id="10_22sei"]
+[ext_resource type="Texture2D" uid="uid://ckqw2887gko75" path="res://Assets/FXs/OUT!/BOUM11.png" id="11_iwwfr"]
+[ext_resource type="Texture2D" uid="uid://7oywa33mw2dp" path="res://Assets/FXs/OUT!/BOUM12.png" id="12_3gati"]
+[ext_resource type="Texture2D" uid="uid://ju5f1627el27" path="res://Assets/FXs/OUT!/BOUM13.png" id="13_rmrcj"]
+[ext_resource type="Texture2D" uid="uid://bypwqwtyr7d6b" path="res://Assets/FXs/OUT!/BOUM14.png" id="14_xnmog"]
+[ext_resource type="Texture2D" uid="uid://brjo1so2mhdqh" path="res://Assets/FXs/OUT!/BOUM15.png" id="15_4s1aw"]
+[ext_resource type="Texture2D" uid="uid://vpg8p5qjnbpg" path="res://Assets/FXs/OUT!/BOUM16.png" id="16_gvou1"]
+[ext_resource type="Texture2D" uid="uid://d1k71k0qxb5wf" path="res://Assets/FXs/OUT!/BOUM17.png" id="17_j3ggb"]
+[ext_resource type="Texture2D" uid="uid://dosgchokf83yu" path="res://Assets/FXs/OUT!/BOUM18.png" id="18_h7s4v"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c6kgu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_u355n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hqp6q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ccvu1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_8cwjm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_btxc8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wdki5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_k6t1m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_rpuv8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_3m201")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_22sei")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_iwwfr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_3gati")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_rmrcj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_xnmog")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_4s1aw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_gvou1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_j3ggb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_h7s4v")
+}],
+"loop": false,
+"name": &"OUT",
+"speed": 18.0
+}]
+
+[node name="OUT!" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_c6kgu")
+animation = &"OUT"
+autoplay = "OUT"
+frame = 17
+frame_progress = 1.0

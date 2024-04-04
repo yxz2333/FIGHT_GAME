@@ -18,6 +18,7 @@ func _on_timeout(): # 出现新的残影
 	]
 	
 	trail.scale = Vector2(2.0, 2.0)
+	trail.z_index = -1
 	
 	for name in property:
 		trail.set(name, character.sprite.get(name))

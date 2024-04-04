@@ -35,12 +35,11 @@ var angry : int :                           # 怒气值
 			value = 100
 		if value <= 0:
 			value = 0
-		
+			
+		angry = value
 		for key in pp.angry_bar_player_signal.keys(): # 找和玩家编号匹配的信号进行发送
 			if key == pp.player_number:
 				SignalBus.emit_signal(pp.angry_bar_player_signal[key])
-
-		angry = value
 
 
 func _ready():
@@ -64,7 +63,7 @@ func _ready():
 	SA_timer.wait_time = 5
 	
 	## trail timer
-	trail_timer.wait_time = 0.2
+	trail_timer.wait_time = 0.1
 
 func _physics_process(delta):
 	## 读入x轴和y轴方向输入
