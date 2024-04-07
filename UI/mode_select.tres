@@ -1,0 +1,36 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://b5cr64txy86tf"]
+
+[ext_resource type="FontFile" uid="uid://bcrp7rtxjgmlp" path="res://Assets/Fonts/Elegant-blackbody-2.otf" id="1_2mv8u"]
+[ext_resource type="Texture2D" uid="uid://ccu77rniw3rqa" path="res://Assets/UI/Sprite sheet for Basic Pack.png" id="2_bk0do"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t313c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_04n7t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n053y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jl31a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qsgty"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oaftc"]
+texture = ExtResource("2_bk0do")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+region_rect = Rect2(107, 155, 26, 26)
+
+[resource]
+Button/styles/disabled = SubResource("StyleBoxEmpty_t313c")
+Button/styles/focus = SubResource("StyleBoxEmpty_04n7t")
+Button/styles/hover = SubResource("StyleBoxEmpty_n053y")
+Button/styles/normal = SubResource("StyleBoxEmpty_jl31a")
+Button/styles/pressed = SubResource("StyleBoxEmpty_qsgty")
+Label/fonts/font = ExtResource("1_2mv8u")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_oaftc")
+RichTextLabel/fonts/bold_font = ExtResource("1_2mv8u")
+RichTextLabel/fonts/bold_italics_font = ExtResource("1_2mv8u")
+RichTextLabel/fonts/italics_font = ExtResource("1_2mv8u")
+RichTextLabel/fonts/mono_font = ExtResource("1_2mv8u")
+RichTextLabel/fonts/normal_font = ExtResource("1_2mv8u")

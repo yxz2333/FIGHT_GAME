@@ -17,7 +17,7 @@ func _on_who_is_winner(name : String):
 	for character in characters:
 		if name == character:
 			animation_player.play(animation_name % character) # 格式化字符串
-		
+	
 	await get_tree().create_timer(0.5).timeout
 	is_game_over = true
 

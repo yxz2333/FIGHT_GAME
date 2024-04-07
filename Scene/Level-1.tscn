@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqykt4wqbs1o4"]
+[gd_scene load_steps=11 format=3 uid="uid://dqykt4wqbs1o4"]
 
 [ext_resource type="Script" path="res://Scene/GameManager.gd" id="1_wad5p"]
+[ext_resource type="PackedScene" uid="uid://v3i33nk2qaro" path="res://Scene/out!.tscn" id="2_bqptn"]
 [ext_resource type="PackedScene" uid="uid://wbw78b2g2qol" path="res://Scene/Scene-1.tscn" id="2_w4p2y"]
 [ext_resource type="PackedScene" uid="uid://n30bfletkfyf" path="res://UI/pause_menu.tscn" id="3_7vw8l"]
 [ext_resource type="FontFile" uid="uid://kbr8115pi1jl" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="4_twdmt"]
@@ -149,10 +150,13 @@ _data = {
 "game_set": SubResource("Animation_nbii4")
 }
 
-[node name="Level-1" type="Node"]
+[node name="Level-1" type="Node" node_paths=PackedStringArray("scene")]
 process_mode = 3
 script = ExtResource("1_wad5p")
-game_set_animation = "game_set"
+out = ExtResource("2_bqptn")
+scene = NodePath("Scene")
+game_over_camera_shake_zoom = Vector2(0.9, 0.9)
+game_over_camera_shake_duration = 0.4
 
 [node name="Scene" parent="." instance=ExtResource("2_w4p2y")]
 process_mode = 1
@@ -163,6 +167,7 @@ process_mode = 1
 game_manager = NodePath("../..")
 
 [node name="Label" type="Label" parent="."]
+texture_filter = 1
 offset_left = -321.0
 offset_top = 183.0
 offset_right = 347.0

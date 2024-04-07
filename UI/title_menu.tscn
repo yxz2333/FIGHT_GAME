@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dcj52yn7alin1" path="res://Assets/UI/title.png" id="2_0wjjs"]
 [ext_resource type="FontFile" uid="uid://bcrp7rtxjgmlp" path="res://Assets/Fonts/Elegant-blackbody-2.otf" id="3_csihx"]
 [ext_resource type="Texture2D" uid="uid://dbvusqehau4ex" path="res://Assets/UI/tiltle_wait.png" id="5_6wwd1"]
-[ext_resource type="Texture2D" uid="uid://ciw5pvwu0bnbl" path="res://Assets/Legacy-Fantasy - High Forest 2.3/HUD/Base-01.png" id="6_7wbas"]
+[ext_resource type="Texture2D" uid="uid://ciw5pvwu0bnbl" path="res://Assets/Base-01.png" id="6_7wbas"]
 [ext_resource type="FontFile" uid="uid://kbr8115pi1jl" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="7_flqtt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_movlv"]
@@ -289,7 +289,6 @@ grow_vertical = 2
 script = ExtResource("1_xl6yo")
 
 [node name="Background" type="Control" parent="."]
-modulate = Color(1, 1, 1, 0.65098)
 anchors_preset = 0
 offset_left = -400.0
 offset_top = -341.0
@@ -297,6 +296,7 @@ offset_right = -360.0
 offset_bottom = -301.0
 
 [node name="ColorRect" type="ColorRect" parent="Background"]
+modulate = Color(1, 1, 1, 0.968627)
 layout_mode = 2
 offset_left = -88.0
 offset_top = 40.0
@@ -308,6 +308,7 @@ scale = Vector2(0.75, 0.75)
 color = Color(1, 0.776471, 0.607843, 0.345098)
 
 [node name="TextureRect" type="TextureRect" parent="Background"]
+modulate = Color(1, 1, 1, 0.619608)
 texture_repeat = 2
 material = SubResource("ShaderMaterial_movlv")
 layout_mode = 2
@@ -319,6 +320,7 @@ scale = Vector2(0.9, 0.9)
 texture = ExtResource("2_0wjjs")
 
 [node name="Label" type="Label" parent="."]
+texture_filter = 1
 layout_mode = 0
 offset_left = -184.0
 offset_top = -80.0
@@ -355,8 +357,6 @@ theme = SubResource("Theme_nlvpo")
 text = "退出游戏
 "
 
-[node name="FreezeTimer" type="Timer" parent="."]
-one_shot = true
-
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

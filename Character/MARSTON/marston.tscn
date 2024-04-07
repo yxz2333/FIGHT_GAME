@@ -1043,8 +1043,8 @@ script = ExtResource("18_384rn")
 state_machine = NodePath("../CharacterStateMachine")
 
 [node name="Attack" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_collision_shape_2d")]
-collision_layer = 0
-collision_mask = 4
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("19_kimmc")
 player = NodePath("..")
 facing_collision_shape_2d = NodePath("CollisionShape2D")

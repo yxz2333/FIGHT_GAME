@@ -1,0 +1,395 @@
+[gd_scene load_steps=46 format=3 uid="uid://bk2jg3hri8r5"]
+
+[ext_resource type="Theme" uid="uid://b5cr64txy86tf" path="res://UI/mode_select.tres" id="1_033nm"]
+[ext_resource type="Script" path="res://UI/mode_select.gd" id="2_5iik7"]
+[ext_resource type="Shader" path="res://UI/mode_select_character.gdshader" id="2_7neys"]
+[ext_resource type="Texture2D" uid="uid://crp2f2i0y4scj" path="res://Assets/MSCS/css_sprites.png" id="3_7d3s8"]
+[ext_resource type="Texture2D" uid="uid://bgtg42xb2eay" path="res://Assets/MSCS/css_sprites1.png" id="3_8jdl5"]
+[ext_resource type="Texture2D" uid="uid://dkkuf6gsrdf01" path="res://Assets/MSCS/css_spritddses2.png" id="4_50pjr"]
+[ext_resource type="Texture2D" uid="uid://b22oqs2u2xy0v" path="res://Assets/MSCS/css_spritddses.png" id="5_esnm7"]
+[ext_resource type="Texture2D" uid="uid://6gxl0r0ucmyx" path="res://Assets/MSCS/css_sprites (1).png" id="5_y7wq6"]
+[ext_resource type="Texture2D" uid="uid://bqw2bssa0ya75" path="res://Assets/MSCS/css_spritddses1.png" id="6_alt6b"]
+[ext_resource type="Texture2D" uid="uid://cssvfqgnbrwr1" path="res://Assets/MSCS/css_sprites (2).png" id="6_ocp42"]
+[ext_resource type="Texture2D" uid="uid://c2tqq0e3hrhrk" path="res://Assets/MSCS/css_spritees.png" id="7_e3enc"]
+[ext_resource type="Texture2D" uid="uid://dlmrjwoc31jbu" path="res://Assets/MSCS/css_sprites(3).png" id="7_ieqqj"]
+[ext_resource type="Texture2D" uid="uid://bwo65qj3hkcvw" path="res://Assets/MSCS/css_spritees (1).png" id="8_x2d10"]
+[ext_resource type="Texture2D" uid="uid://b3ygwr57crv1b" path="res://Assets/MSCS/css_spritees (2).png" id="9_ejqd1"]
+[ext_resource type="Texture2D" uid="uid://eatxy338sij0" path="res://Assets/MSCS/css_spritees (3).png" id="10_eihq2"]
+[ext_resource type="Texture2D" uid="uid://dwjonmpiq4hkw" path="res://Assets/MSCS/css_spritees (4).png" id="11_egpjl"]
+[ext_resource type="Texture2D" uid="uid://crbqepch53r40" path="res://Assets/MSCS/css_spritees (5).png" id="12_aq4k1"]
+[ext_resource type="Texture2D" uid="uid://522nknxti520" path="res://Assets/MSCS/css_spritees (6).png" id="13_yjave"]
+[ext_resource type="Texture2D" uid="uid://bkub2ik6hsxbg" path="res://Assets/MSCS/css_spritees (7).png" id="14_gethq"]
+[ext_resource type="Texture2D" uid="uid://bat2a8csw7ouw" path="res://Assets/MSCS/css_spritess.png" id="17_mu6f4"]
+[ext_resource type="Texture2D" uid="uid://vcd7exvi5vve" path="res://Assets/MSCS/css_spritess (1).png" id="18_2q2rr"]
+[ext_resource type="Texture2D" uid="uid://cbgmu40u3agle" path="res://Assets/MSCS/css_spritess (2).png" id="19_endym"]
+[ext_resource type="Texture2D" uid="uid://dx5pa42qsq36m" path="res://Assets/MSCS/css_spritess (3).png" id="20_f6dyt"]
+[ext_resource type="Texture2D" uid="uid://biv2fmq84rrd6" path="res://Assets/MSCS/css_spritess (4).png" id="21_f6n37"]
+[ext_resource type="Texture2D" uid="uid://bscbnlgk76422" path="res://Assets/MSCS/css_spritess (5).png" id="22_0ntrh"]
+[ext_resource type="Texture2D" uid="uid://igy1pgr7cp3a" path="res://Assets/MSCS/css_spritessss (3).png" id="25_2g1k4"]
+[ext_resource type="Texture2D" uid="uid://c3lmod1faj5r8" path="res://Assets/MSCS/css_spritesss (1).png" id="25_opou6"]
+[ext_resource type="Texture2D" uid="uid://cg5ba1ctyugid" path="res://Assets/MSCS/css_spritesss (4).png" id="26_asneb"]
+[ext_resource type="Texture2D" uid="uid://bfrasbl0w6kbu" path="res://Assets/MSCS/css_spritesss (2).png" id="26_skepw"]
+[ext_resource type="Texture2D" uid="uid://blywjk2lbvgw8" path="res://Assets/MSCS/css_spritesss (5).png" id="27_f43p3"]
+[ext_resource type="Texture2D" uid="uid://bir4rjleirtvo" path="res://Assets/MSCS/css_spritesss (6).png" id="28_4qm8a"]
+[ext_resource type="Texture2D" uid="uid://b3m1iexoumwx5" path="res://Assets/MSCS/css_spritesss (7).png" id="29_8p8la"]
+[ext_resource type="Texture2D" uid="uid://cc12eps0q7t0b" path="res://Assets/MSCS/css_spritesss (8).png" id="30_tjaw8"]
+[ext_resource type="Texture2D" uid="uid://ca1jn8w0fk6ph" path="res://Assets/UI/Restart.png" id="34_jse8n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fgk2c"]
+shader = ExtResource("2_7neys")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r6hnv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_50pjr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_esnm7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_alt6b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_50pjr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3x0dd"]
+shader = ExtResource("2_7neys")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nhbpj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_e3enc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_x2d10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ejqd1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_eihq2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_egpjl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_aq4k1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_yjave")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_gethq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2id5o"]
+shader = ExtResource("2_7neys")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3xpjs"]
+shader = ExtResource("2_7neys")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xqi1j"]
+shader = ExtResource("2_7neys")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jg6tx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_mu6f4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_2q2rr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_endym")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_f6dyt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_f6n37")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_0ntrh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_awm57"]
+shader = ExtResource("2_7neys")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o4c3v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("25_opou6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_skepw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_2g1k4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_asneb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_f43p3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_4qm8a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_8p8la")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_tjaw8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_la7qu"]
+
+[node name="ModeSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_033nm")
+script = ExtResource("2_5iik7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -480.0
+offset_top = -272.0
+offset_right = 800.0
+offset_bottom = 448.0
+scale = Vector2(0.75, 0.75)
+color = Color(1, 0.776471, 0.607843, 0.345098)
+
+[node name="SoloButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = -216.0
+offset_top = -56.0
+offset_right = -40.0
+offset_bottom = 120.0
+
+[node name="PanelContainer" type="PanelContainer" parent="SoloButton"]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 184.0
+offset_bottom = 184.0
+theme = ExtResource("1_033nm")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="SoloButton/PanelContainer"]
+layout_mode = 2
+theme = ExtResource("1_033nm")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "
+       [wave amp=70 freq=5]SOLO![/wave]
+"
+fit_content = true
+tab_size = 10
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="SoloButton/PanelContainer"]
+layout_mode = 2
+theme = ExtResource("1_033nm")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "
+       [wave amp=120 freq=10][color=green][u]SOLO![/u][/color][/wave]
+"
+fit_content = true
+tab_size = 10
+
+[node name="Dynamic" type="Node2D" parent="SoloButton/PanelContainer"]
+position = Vector2(8, 8)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SoloButton/PanelContainer/Dynamic"]
+material = SubResource("ShaderMaterial_fgk2c")
+position = Vector2(125, 132)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_r6hnv")
+autoplay = "default"
+frame = 3
+frame_progress = 0.941937
+flip_h = true
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="SoloButton/PanelContainer/Dynamic"]
+material = SubResource("ShaderMaterial_3x0dd")
+position = Vector2(35, 123)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_nhbpj")
+autoplay = "default"
+frame = 3
+frame_progress = 0.773523
+
+[node name="Still" type="Node2D" parent="SoloButton/PanelContainer"]
+
+[node name="CssSprites1" type="Sprite2D" parent="SoloButton/PanelContainer/Still"]
+material = SubResource("ShaderMaterial_2id5o")
+position = Vector2(50, 133)
+scale = Vector2(3, 3)
+texture = ExtResource("3_8jdl5")
+
+[node name="CssSprites" type="Sprite2D" parent="SoloButton/PanelContainer/Still"]
+material = SubResource("ShaderMaterial_3xpjs")
+position = Vector2(133, 140)
+scale = Vector2(3, 3)
+texture = ExtResource("3_7d3s8")
+flip_h = true
+
+[node name="PartyButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = -56.0
+offset_right = 216.0
+offset_bottom = 120.0
+
+[node name="PanelContainer" type="PanelContainer" parent="PartyButton"]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 184.0
+offset_bottom = 184.0
+theme = ExtResource("1_033nm")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PartyButton/PanelContainer"]
+layout_mode = 2
+theme = ExtResource("1_033nm")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "
+      [wave amp=70 freq=5]PARTY![/wave]
+"
+fit_content = true
+tab_size = 10
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="PartyButton/PanelContainer"]
+layout_mode = 2
+theme = ExtResource("1_033nm")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "
+      [wave amp=120 freq=10][color=green][u]PARTY![/u][/color][/wave]
+"
+fit_content = true
+tab_size = 10
+
+[node name="Dynamic" type="Node2D" parent="PartyButton/PanelContainer"]
+position = Vector2(8, 8)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PartyButton/PanelContainer/Dynamic"]
+material = SubResource("ShaderMaterial_xqi1j")
+position = Vector2(84, 145)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_jg6tx")
+autoplay = "default"
+frame_progress = 0.831331
+flip_h = true
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="PartyButton/PanelContainer/Dynamic"]
+material = SubResource("ShaderMaterial_3x0dd")
+position = Vector2(145, 126)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_nhbpj")
+autoplay = "default"
+frame = 3
+frame_progress = 0.773523
+flip_h = true
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="PartyButton/PanelContainer/Dynamic"]
+material = SubResource("ShaderMaterial_awm57")
+position = Vector2(40, 116)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_o4c3v")
+autoplay = "default"
+frame = 1
+frame_progress = 0.717064
+
+[node name="Still" type="Node2D" parent="PartyButton/PanelContainer"]
+
+[node name="CssSprites2" type="Sprite2D" parent="PartyButton/PanelContainer/Still"]
+material = SubResource("ShaderMaterial_3xpjs")
+position = Vector2(92, 153)
+scale = Vector2(3, 3)
+texture = ExtResource("7_ieqqj")
+flip_h = true
+
+[node name="CssSprites" type="Sprite2D" parent="PartyButton/PanelContainer/Still"]
+material = SubResource("ShaderMaterial_3xpjs")
+position = Vector2(153, 134)
+scale = Vector2(3, 3)
+texture = ExtResource("6_ocp42")
+flip_h = true
+
+[node name="CssSprites1" type="Sprite2D" parent="PartyButton/PanelContainer/Still"]
+material = SubResource("ShaderMaterial_2id5o")
+position = Vector2(48, 124)
+scale = Vector2(3, 3)
+texture = ExtResource("5_y7wq6")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = -264.0
+offset_top = -144.0
+offset_right = 280.0
+offset_bottom = -88.0
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[rainbow freq=0.1][wave]Please select a game mode[/wave][/rainbow]"
+
+[node name="EmptyButton" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -268.0
+offset_top = -18.0
+offset_right = -260.0
+offset_bottom = -10.0
+
+[node name="ReturnButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 244.0
+offset_top = 125.0
+offset_right = 289.0
+offset_bottom = 168.0
+theme = ExtResource("1_033nm")
+
+[node name="Restart" type="Sprite2D" parent="ReturnButton"]
+material = SubResource("ShaderMaterial_la7qu")
+position = Vector2(23, 23)
+scale = Vector2(3, 3)
+texture = ExtResource("34_jse8n")
+
+[connection signal="focus_entered" from="SoloButton" to="." method="_on_solo_button_focus_entered"]
+[connection signal="focus_exited" from="SoloButton" to="." method="_on_solo_button_focus_exited"]
+[connection signal="mouse_entered" from="SoloButton" to="." method="_on_solo_button_mouse_entered"]
+[connection signal="mouse_exited" from="SoloButton" to="." method="_on_solo_button_mouse_exited"]
+[connection signal="pressed" from="SoloButton" to="." method="_on_solo_button_pressed"]
+[connection signal="focus_entered" from="PartyButton" to="." method="_on_party_button_focus_entered"]
+[connection signal="focus_exited" from="PartyButton" to="." method="_on_party_button_focus_exited"]
+[connection signal="mouse_entered" from="PartyButton" to="." method="_on_party_button_mouse_entered"]
+[connection signal="mouse_exited" from="PartyButton" to="." method="_on_party_button_mouse_exited"]
+[connection signal="pressed" from="PartyButton" to="." method="_on_party_button_pressed"]
+[connection signal="focus_entered" from="ReturnButton" to="." method="_on_return_button_focus_entered"]
+[connection signal="focus_exited" from="ReturnButton" to="." method="_on_return_button_focus_exited"]
+[connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]
