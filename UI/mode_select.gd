@@ -47,6 +47,7 @@ func _ready():
 			COLOR = texture(TEXTURE, UV);
 	}
 	"""
+	## 初始化shader
 	return_button.material.shader = shader
 	return_button.material.shader = null
 
@@ -103,8 +104,6 @@ func _on_solo_button_pressed():
 
 func _on_party_button_pressed():
 	pass # 选人 -> 大地图
-
-
 
 
 func _on_return_button_focus_entered():
