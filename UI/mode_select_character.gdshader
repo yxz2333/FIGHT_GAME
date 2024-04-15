@@ -1,11 +1,11 @@
 // 指定着色器类型为canvas_item，适用于2D渲染
 shader_type canvas_item;
 
-// fragment()函数处理每个像素的渲染
-void fragment() {
-    vec4 outlineColor = vec4(1.0, 0.0, 0.0, 1.0);  // 定义轮廓的颜色（红色）和透明度（完全不透明）
-    float outlineWidth = 0.02;  // 定义轮廓的宽度
+uniform vec4 outlineColor: source_color = vec4(1.0, 0.0, 0.0, 1.0); // 定义轮廓的颜色和透明度（完全不透明）
+uniform float outlineWidth = 0.02; // 定义轮廓的宽度
 
+// fragment()函数处理每个像素的渲染
+void fragment() { 
     float alpha = texture(TEXTURE, UV).a;  // 获取当前像素的alpha值（透明度）
     float maxAlpha = 0.0;  // 初始化最大alpha值变量，用于确定周围像素的最大透明度
 	

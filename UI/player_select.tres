@@ -1,0 +1,11 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://de775xk05ydvm"]
+
+[ext_resource type="FontFile" uid="uid://bqwxl2bf2xpm" path="res://Assets/Fonts/UNSII-2.ttf" id="1_uqan4"]
+
+[resource]
+font = ExtResource("1_uqan4")
+font_size = 12
+font_color = Color(1, 0, 0, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 2)

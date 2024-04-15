@@ -37,6 +37,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fgk2c"]
 shader = ExtResource("2_7neys")
+shader_parameter/outlineColor = Color(1, 0, 0, 1)
+shader_parameter/outlineWidth = 0.02
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r6hnv"]
 animations = [{
@@ -60,6 +62,8 @@ animations = [{
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3x0dd"]
 shader = ExtResource("2_7neys")
+shader_parameter/outlineColor = Color(1, 0, 0, 1)
+shader_parameter/outlineWidth = 0.02
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nhbpj"]
 animations = [{
@@ -95,12 +99,18 @@ animations = [{
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2id5o"]
 shader = ExtResource("2_7neys")
+shader_parameter/outlineColor = Color(1, 0, 0, 1)
+shader_parameter/outlineWidth = 0.02
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3xpjs"]
 shader = ExtResource("2_7neys")
+shader_parameter/outlineColor = Color(1, 0, 0, 1)
+shader_parameter/outlineWidth = 0.02
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xqi1j"]
 shader = ExtResource("2_7neys")
+shader_parameter/outlineColor = Color(1, 0, 0, 1)
+shader_parameter/outlineWidth = 0.02
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jg6tx"]
 animations = [{
@@ -130,6 +140,8 @@ animations = [{
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_awm57"]
 shader = ExtResource("2_7neys")
+shader_parameter/outlineColor = Color(1, 0, 0, 1)
+shader_parameter/outlineWidth = 0.02
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o4c3v"]
 animations = [{
