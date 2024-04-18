@@ -1,6 +1,6 @@
 # Shader
 一般用的``ShaderMaterial``中的``Shader``
--  ``Shader.Material.set_shader_parameter("属性", 值)``
+-  ``ShaderMaterial.set_shader_parameter("属性", 值)``
     - 例如：``set_shader_param("outlineColor", Color(1, 0, 0, 1))``，修改着色器``set_shader_param``颜色
 
 ***
