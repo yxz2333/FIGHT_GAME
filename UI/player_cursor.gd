@@ -1,19 +1,21 @@
 extends CharacterBody2D
 
+@export var menu : CharacterSelectMenu
 @onready var label : Label = $Label
 @onready var texture : AnimatedSprite2D = $AnimatedSprite2D
 
 
 ## 一些要拷贝实例化的
-var shader_code : Shader = preload("res://UI/mode_select_character.gdshader")
-var label_tres : LabelSettings = preload("res://UI/player_select.tres")
+var shader_code : Shader = preload("res://UI/mode_select_character.gdshader") # shader代码
+var label_tres : LabelSettings = preload("res://UI/player_select.tres")       # label_setting
 
-var num : int
+var num : int   # 玩家编号
 var direction : Vector2 = Vector2.ZERO
 var speed : Vector2 = Vector2(250, 250)
 var colors = [Color.RED, Color.DEEP_SKY_BLUE, Color.YELLOW]
 var actions = ["left_player_", "right_player_", "up_player_", "down_player_"]
 
+var current_selection : PlayerSelectMenuUI  # 现在指针over的player_UI
 
 func _ready():
 	label.label_settings = label_tres.duplicate()
@@ -34,4 +36,22 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed.x)
 		velocity.y = move_toward(velocity.y, 0, speed.y)
+	
+	if Input.is_action_pressed("ui_accept") and current_selection != null: # over到可选择角色时，按accept选择
+		current_selection.select(num) # 选择完实例化可操纵角色
+		hide()                        # 指针隐藏
+		global_position = menu.back_markers[num].position # 隐藏完归位
+		
 	move_and_slide()
+
+
+func _on_area_2d_body_entered(body):
+	if body is PlayerSelectMenuUI:
+		body.start()
+		
+
+
+func _on_area_2d_body_exited(body):
+	if body is PlayerSelectMenuUI:
+		body.exit()
+		

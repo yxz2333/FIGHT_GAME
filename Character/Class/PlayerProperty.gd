@@ -68,3 +68,6 @@ var SA_speed : float
 
 func _ready():
 	SA_speed = speed * 1.5
+	
+func init_input():
+	pass

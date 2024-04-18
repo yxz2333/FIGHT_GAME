@@ -24,3 +24,15 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color(1, 0.776471, 0.607843, 0.345098)
+
+[node name="PlayerMarker" type="Node2D" parent="."]
+
+[node name="Marker2D2" type="Marker2D" parent="PlayerMarker"]
+
+[node name="Marker2D" type="Marker2D" parent="PlayerMarker"]
+
+[node name="BackMarker" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="BackMarker"]
+
+[node name="Marker2D2" type="Marker2D" parent="BackMarker"]

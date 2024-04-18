@@ -64,6 +64,8 @@ func _ready():
 	
 	## trail timer
 	trail_timer.wait_time = 0.1
+	
+	input_config()
 
 func _physics_process(delta):
 	## 读入x轴和y轴方向输入
@@ -191,3 +193,10 @@ func SA_state() -> void:                     # 进入无双状态
 	trail_timer.start()
 	SA_timer.start()
 	speed = pp.SA_speed
+
+
+func input_config() -> void:                 # 输入配置
+	var num : int = scene.input.find(pp._name)
+	pp.num = num
+	pp.init_inout()
+	
