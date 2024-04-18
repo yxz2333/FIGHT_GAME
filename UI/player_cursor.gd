@@ -18,16 +18,9 @@ var actions = ["left_player_", "right_player_", "up_player_", "down_player_"]
 var current_selection : PlayerSelectMenuUI  # 现在指针over的player_UI
 
 func _ready():
-	label.label_settings = label_tres.duplicate()
-	label.text = "P" + str(num)
-	label.label_settings.font_color = colors[num - 1]
-	add_child(label)
-	
-	var shader_material = ShaderMaterial.new().duplicate() # 创建副本，这样各个节点不会共一个节点了
-	shader_material.shader = shader_code
-	shader_material.set_shader_parameter("outlineColor", colors[num - 1]) # 修改shader属性函数
-	shader_material.set_shader_parameter("outlineWidth", 0.05)
-	texture.material = shader_material
+	label_init()
+	shader_material_init()
+
 
 func _physics_process(delta):
 	direction = Input.get_vector(actions[0], actions[1], actions[2], actions[3])
@@ -45,6 +38,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 
+
 func _on_area_2d_body_entered(body):
 	if body is PlayerSelectMenuUI:
 		body.start()
@@ -55,3 +49,16 @@ func _on_area_2d_body_exited(body):
 	if body is PlayerSelectMenuUI:
 		body.exit()
 		
+
+func label_init():
+	label.label_settings = label_tres.duplicate()
+	label.text = "P" + str(num)
+	label.label_settings.font_color = colors[num - 1]
+	add_child(label)
+
+func shader_material_init():
+	var shader_material = ShaderMaterial.new().duplicate() # 创建副本，这样各个节点不会共一个节点了
+	shader_material.shader = shader_code
+	shader_material.set_shader_parameter("outlineColor", colors[num - 1]) # 修改shader属性函数
+	shader_material.set_shader_parameter("outlineWidth", 0.05)
+	texture.material = shader_material

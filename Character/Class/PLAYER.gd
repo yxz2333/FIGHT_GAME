@@ -49,25 +49,21 @@ func _ready():
 	## 动画树绑定、激活
 	playback = animation_tree["parameters/playback"]
 	animation_tree.active = true
-
-	## DI timer
-	DI_timer = Timer.new()
-	add_child(DI_timer)
-	DI_timer.one_shot = true
-	DI_timer.wait_time = 0.5
 	
-	## SA timer
-	SA_timer = Timer.new()
-	add_child(SA_timer)
-	SA_timer.one_shot = true
-	SA_timer.wait_time = 5
+	input_config()
+	DI_timer_init() 
+	SA_timer_init()
 	
 	## trail timer
 	trail_timer.wait_time = 0.1
-	
-	input_config()
 
 func _physics_process(delta):
+	## 没编号的报错
+	if pp.player_number == null:
+		push_warning("人物错误初始化")
+		return
+	
+	
 	## 读入x轴和y轴方向输入
 	direction = Input.get_vector(pp.left_action, pp.right_action, pp.up_action, pp.down_action)
 	
@@ -195,8 +191,19 @@ func SA_state() -> void:                     # 进入无双状态
 	speed = pp.SA_speed
 
 
+func DI_timer_init() -> void:
+	DI_timer = Timer.new()
+	add_child(DI_timer)
+	DI_timer.one_shot = true
+	DI_timer.wait_time = 0.5
+func SA_timer_init() -> void:
+	SA_timer = Timer.new()
+	add_child(SA_timer)
+	SA_timer.one_shot = true
+	SA_timer.wait_time = 5
+
+
 func input_config() -> void:                 # 输入配置
 	var num : int = scene.input.find(pp._name)
-	pp.num = num
-	pp.init_inout()
-	
+	pp.init_input(num)
+
