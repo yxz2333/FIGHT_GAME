@@ -1,15 +1,12 @@
 extends PlayerProperty
 
 
-#var bullet_bar_player_signal = {
-	#1:"bullet_bar_change_player_1",
-	#2:"bullet_bar_change_player_2",
-	#3:"bullet_bar_change_player_3",
-	#4:"bullet_bar_change_player_4",
-#}
-
-## 攻击取消按键
-@export var attack_cancel : String
+var bullet_bar_player_signal = {
+	1:"bullet_bar_change_player_1",
+	2:"bullet_bar_change_player_2",
+	3:"bullet_bar_change_player_3",
+	4:"bullet_bar_change_player_4",
+}
 
 ## 子弹属性
 @export var bullet_speed : float

@@ -3,12 +3,12 @@ extends Node
 class_name PlayerProperty
 
 ### 玩家编号对应单独信号
-#var angry_bar_player_signal = {
-	#1:"angry_bar_change_player_1",
-	#2:"angry_bar_change_player_2",
-	#3:"angry_bar_change_player_3",
-	#4:"angry_bar_change_player_4",
-#}
+var angry_bar_player_signal = {
+	1:"angry_bar_change_player_1",
+	2:"angry_bar_change_player_2",
+	3:"angry_bar_change_player_3",
+	4:"angry_bar_change_player_4",
+}
 
 
 
@@ -91,14 +91,14 @@ var actions = {
 func init_input(num : int):
 	player_number = num
 	
-	left_action    = actions.find_key("left_action") + str(num)
-	right_action   = actions.find_key("right_action") + str(num)
-	up_action      = actions.find_key("up_action") + str(num)
-	down_action    = actions.find_key("down_action") + str(num)
-	attack_action  = actions.find_key("attack_action") + str(num)
-	shot_action    = actions.find_key("shot_action") + str(num)
-	switch_gun_mode_action = actions.find_key("switch_gun_mode_action") + str(num)
-	jump_action    = actions.find_key("jump_action") + str(num)
-	break_action   = actions.find_key("break_action") + str(num)
-	SA_action      = actions.find_key("SA_action") + str(num)
-	attack_cancel  = actions.find_key("attack_cancel") + str(num)
+	left_action    = actions.get("left_action") + str(num)
+	right_action   = actions.get("right_action") + str(num)
+	up_action      = actions.get("up_action") + str(num)
+	down_action    = actions.get("down_action") + str(num)
+	attack_action  = actions.get("attack_action") + str(num)
+	shot_action    = actions.get("shot_action") + str(num)
+	switch_gun_mode_action = actions.get("switch_gun_mode_action") + str(num)
+	jump_action    = actions.get("jump_action") + str(num)
+	break_action   = actions.get("break_action") + str(num)
+	SA_action      = actions.get("SA_action") + str(num)
+	attack_cancel  = actions.get("attack_cancel") + str(num)

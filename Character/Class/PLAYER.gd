@@ -204,6 +204,6 @@ func SA_timer_init() -> void:
 
 
 func input_config() -> void:                 # 输入配置
-	var num : int = scene.input.find(pp._name)
+	var num : int = scene.inputs.get(pp._name)
 	pp.init_input(num)
 

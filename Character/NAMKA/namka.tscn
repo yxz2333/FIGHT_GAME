@@ -944,7 +944,6 @@ player_property = NodePath("../PlayerProperty")
 
 [node name="PlayerProperty" type="Node" parent="." node_paths=PackedStringArray("shot_state", "ground_gun_state", "gun_start_state", "air_state", "break_state", "hit_state", "attack_state", "ground_default_state")]
 script = ExtResource("14_sgykt")
-attack_cancel = "3_cancel"
 bullet_speed = 300.0
 bullet_damage = 10.0
 bullet_freeze_time = 0.5
