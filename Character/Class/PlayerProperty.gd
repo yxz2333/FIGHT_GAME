@@ -11,11 +11,9 @@ var angry_bar_player_signal = {
 }
 
 
-
-
-## 名字和玩家编号
+## 名字和编号
 @export var _name : String
-@export var player_number : int
+var player_number : int
 
 
 ## 移速、重量
@@ -88,17 +86,15 @@ var actions = {
 	"attack_cancel" = "3_cancel_player_",                    # l 3
 }
 
-func init_input(num : int):
-	player_number = num
-	
-	left_action    = actions.get("left_action") + str(num)
-	right_action   = actions.get("right_action") + str(num)
-	up_action      = actions.get("up_action") + str(num)
-	down_action    = actions.get("down_action") + str(num)
-	attack_action  = actions.get("attack_action") + str(num)
-	shot_action    = actions.get("shot_action") + str(num)
-	switch_gun_mode_action = actions.get("switch_gun_mode_action") + str(num)
-	jump_action    = actions.get("jump_action") + str(num)
-	break_action   = actions.get("break_action") + str(num)
-	SA_action      = actions.get("SA_action") + str(num)
-	attack_cancel  = actions.get("attack_cancel") + str(num)
+func init_input(input_c):
+	left_action    = actions.get("left_action") + str(input_c)
+	right_action   = actions.get("right_action") + str(input_c)
+	up_action      = actions.get("up_action") + str(input_c)
+	down_action    = actions.get("down_action") + str(input_c)
+	attack_action  = actions.get("attack_action") + str(input_c)
+	shot_action    = actions.get("shot_action") + str(input_c)
+	switch_gun_mode_action = actions.get("switch_gun_mode_action") + str(input_c)
+	jump_action    = actions.get("jump_action") + str(input_c)
+	break_action   = actions.get("break_action") + str(input_c)
+	SA_action      = actions.get("SA_action") + str(input_c)
+	attack_cancel  = actions.get("attack_cancel") + str(input_c)

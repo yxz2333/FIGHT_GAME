@@ -4,6 +4,7 @@ class_name Scene
 
 @export var tilemap_limit_left : float = -340.0
 @export var tilemap_limit_right : float = 340.0
+@export var tilemap_limit_bottom : float = 184.0
 
 var inputs = {  # 在character_select中更改
 	"MARSTON" : 1,

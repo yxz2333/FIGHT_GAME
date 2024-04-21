@@ -29,9 +29,11 @@ var game_paused : bool = false:
 func _ready():
 	SignalBus.connect("player_out_of_screen", _game_over) # 连接player.gd发出的信号
 
+
 func _input(event : InputEvent):
 	if event.is_action_pressed("ui_cancel") and not is_game_over:
 		game_paused = !game_paused    # 切换游戏是否暂停
+
 
 func _game_over(node : Player):
 	is_game_over = true
@@ -45,8 +47,9 @@ func _game_over(node : Player):
 	game_set_then_game_over(node_name)
 
 
-func game_over_out(node : Player):                  # 生成out特效
+func game_over_out(node : Player) -> void:                  # 生成out特效
 	var out_instance = out.instantiate()
+	
 	## 翻转和位置设置
 	if abs(node.position.x - scene.tilemap_limit_left) < abs(node.position.x - scene.tilemap_limit_right):
 		out_instance.flip_h = false
@@ -58,7 +61,8 @@ func game_over_out(node : Player):                  # 生成out特效
 	await get_tree().create_timer(0.25).timeout # 等待0.25秒
 	out_instance.queue_free()
 
-func game_set_then_game_over(node_name : String):   # gameset和gameover
+
+func game_set_then_game_over(node_name : String) -> void:   # gameset和gameover
 	animation_player.play(game_set_animation) 
 	
 	await get_tree().create_timer(0.4).timeout # 等待0.4秒

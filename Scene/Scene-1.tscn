@@ -482,6 +482,7 @@ polygon = PackedVector2Array(287, 16, 274, 37, 287, 34, 299, 19)
 
 [node name="Scene" type="Node2D"]
 script = ExtResource("1_ammx6")
+tilemap_limit_bottom = 9000.0
 
 [node name="MAP" type="Node2D" parent="."]
 position = Vector2(-320, -180)

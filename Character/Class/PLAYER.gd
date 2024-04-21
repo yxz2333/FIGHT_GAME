@@ -2,9 +2,11 @@ extends CharacterBody2D
 
 class_name Player
 
+
 @export var scene : Scene
 @export var pp : PlayerProperty
 @export var run_start_effect : PackedScene
+@export var canvas_layer : CanvasLayer
 @onready var sprite : Sprite2D = $Sprite2D
 @onready var animation_tree : AnimationTree = $AnimationTree
 var playback : AnimationNodeStateMachinePlayback  # 获取当前动画用
@@ -19,6 +21,7 @@ signal facing_direction_changed(facing_right : bool)
 
 var DI_timer : Timer
 var SA_timer : Timer
+
 
 ## 动态更新属性
 @export var current_ground_state : GroundState           # 当前ground状态
@@ -42,6 +45,12 @@ var angry : int :                           # 怒气值
 				SignalBus.emit_signal(pp.angry_bar_player_signal[key])
 
 
+func init(s : Scene, pn : int, input_c):
+	scene = s
+	pp.player_number = pn
+	pp.init_input(input_c)
+
+
 func _ready():
 	## 变量初始化
 	speed = pp.speed
@@ -50,7 +59,6 @@ func _ready():
 	playback = animation_tree["parameters/playback"]
 	animation_tree.active = true
 	
-	input_config()
 	DI_timer_init() 
 	SA_timer_init()
 	
@@ -126,13 +134,12 @@ func _physics_process(delta):
 
 
 func check_if_out_of_screen() -> void:       # 检查是否飞出屏幕
-	if position.x < scene.tilemap_limit_left or position.x > scene.tilemap_limit_right: # 出屏幕
-		SignalBus.emit_signal("player_out_of_screen", self)
+	if (position.x < scene.tilemap_limit_left or 
+		position.x > scene.tilemap_limit_right or 
+		position.y > scene.tilemap_limit_bottom): # 出屏幕
 		
-		for child in get_children(): # 先删了材质，防止穿帮
-			if child is AnimationPlayer:
-				child.queue_free()
-				break
+		SignalBus.emit_signal("player_out_of_screen", self)
+		queue_free()
 
 
 func update_animation_parameters() -> void:  # 设置移动动画对应参数
@@ -201,9 +208,3 @@ func SA_timer_init() -> void:
 	add_child(SA_timer)
 	SA_timer.one_shot = true
 	SA_timer.wait_time = 5
-
-
-func input_config() -> void:                 # 输入配置
-	var num : int = scene.inputs.get(pp._name)
-	pp.init_input(num)
-

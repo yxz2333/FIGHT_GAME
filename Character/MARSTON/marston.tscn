@@ -874,11 +874,12 @@ font_size = 10
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6eb18"]
 size = Vector2(24, 20)
 
-[node name="MARSTON" type="CharacterBody2D" node_paths=PackedStringArray("pp", "current_ground_state")]
+[node name="MARSTON" type="CharacterBody2D" node_paths=PackedStringArray("pp", "canvas_layer", "current_ground_state")]
 collision_layer = 6
 script = ExtResource("1_846sn")
 pp = NodePath("PlayerProperty")
 run_start_effect = ExtResource("2_qb86m")
+canvas_layer = NodePath("CanvasLayer")
 current_ground_state = NodePath("CharacterStateMachine/GroundDefault")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -916,7 +917,6 @@ ground_gun_state = NodePath("../CharacterStateMachine/GroundGun")
 gun_start_state = NodePath("../CharacterStateMachine/GunStart")
 shot_animation = "射击"
 _name = "MARSTON"
-player_number = 1
 speed = 240.0
 weight = 100.0
 jump_velocity = -285.0

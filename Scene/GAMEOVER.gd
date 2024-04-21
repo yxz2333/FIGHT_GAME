@@ -9,7 +9,8 @@ func _ready():
 	hide()
 	SignalBus.connect("who_is_winner", _on_who_is_winner)
 
-func _on_who_is_winner(name : String):
+
+func _on_who_is_winner(name : String) -> void:
 	show()
 	await get_tree().create_timer(1.5).timeout
 	
@@ -20,6 +21,7 @@ func _on_who_is_winner(name : String):
 	
 	await get_tree().create_timer(0.5).timeout
 	is_game_over = true
+
 
 func _input(event):
 	if event is InputEventKey and is_game_over:
