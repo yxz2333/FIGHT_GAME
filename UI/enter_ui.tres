@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://c78kdatwg3y66"]
+
+[ext_resource type="Texture2D" uid="uid://c2pl74mygrbi2" path="res://Assets/UI/04.png" id="1_lcuyh"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1004m"]
+texture = ExtResource("1_lcuyh")
+region_rect = Rect2(58, 134, 30, 3)
+
+[resource]
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_1004m")

@@ -7,7 +7,8 @@ class_name Player
 @export var pp : PlayerProperty
 @export var run_start_effect : PackedScene
 @export var canvas_layer : CanvasLayer
-@onready var sprite : Sprite2D = $Sprite2D
+@export var sprite : Sprite2D
+@export var P_label : Label
 @onready var animation_tree : AnimationTree = $AnimationTree
 var playback : AnimationNodeStateMachinePlayback  # 获取当前动画用
 @onready var state_machine : CharacterStateMachine = $CharacterStateMachine

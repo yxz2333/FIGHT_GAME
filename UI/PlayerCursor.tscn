@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://coh81ssve2eub"]
 
-[ext_resource type="Script" path="res://UI/player_cursor.gd" id="1_8c401"]
-[ext_resource type="Shader" path="res://UI/mode_select_character.gdshader" id="2_vwnyl"]
-[ext_resource type="Texture2D" uid="uid://c0a17myywag3r" path="res://Assets/UI/mouse/Triangle Mouse icon 1.png" id="3_ha15h"]
-[ext_resource type="Texture2D" uid="uid://bpwf71i4p4541" path="res://Assets/UI/mouse/Triangle Mouse icon 2.png" id="4_1nyvp"]
-[ext_resource type="Texture2D" uid="uid://xpwek4y260b1" path="res://Assets/UI/mouse/Triangle Mouse icon 3.png" id="5_f3krb"]
+[ext_resource type="Script" path="res://UI/PlayerCursor.gd" id="1_nd8ph"]
+[ext_resource type="Shader" path="res://UI/mode_select_character.gdshader" id="2_5f1si"]
+[ext_resource type="Texture2D" uid="uid://c0a17myywag3r" path="res://Assets/UI/mouse/Triangle Mouse icon 1.png" id="3_qial4"]
+[ext_resource type="Texture2D" uid="uid://bpwf71i4p4541" path="res://Assets/UI/mouse/Triangle Mouse icon 2.png" id="4_b0ipc"]
+[ext_resource type="Texture2D" uid="uid://xpwek4y260b1" path="res://Assets/UI/mouse/Triangle Mouse icon 3.png" id="5_3ffss"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_66eew"]
-shader = ExtResource("2_vwnyl")
+shader = ExtResource("2_5f1si")
 shader_parameter/outlineColor = Color(0.772549, 0, 0, 1)
 shader_parameter/outlineWidth = 0.05
 
@@ -15,13 +15,13 @@ shader_parameter/outlineWidth = 0.05
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_ha15h")
+"texture": ExtResource("3_qial4")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_1nyvp")
+"texture": ExtResource("4_b0ipc")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_f3krb")
+"texture": ExtResource("5_3ffss")
 }],
 "loop": true,
 "name": &"default",
@@ -34,7 +34,7 @@ radius = 7.0
 [node name="PlayerCursor" type="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 16
-script = ExtResource("1_8c401")
+script = ExtResource("1_nd8ph")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_66eew")

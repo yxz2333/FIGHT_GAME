@@ -906,13 +906,15 @@ font_size = 10
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6eb18"]
 size = Vector2(32, 32)
 
-[node name="NAMKA" type="CharacterBody2D" node_paths=PackedStringArray("shot_freeze_timer", "pp", "canvas_layer", "current_ground_state")]
+[node name="NAMKA" type="CharacterBody2D" node_paths=PackedStringArray("shot_freeze_timer", "pp", "canvas_layer", "sprite", "P_label", "current_ground_state")]
 collision_layer = 6
 script = ExtResource("1_eukoy")
 shot_freeze_timer = NodePath("PlayerProperty/ShotFreezeTimer")
 pp = NodePath("PlayerProperty")
 run_start_effect = ExtResource("2_hk4kw")
 canvas_layer = NodePath("CanvasLayer")
+sprite = NodePath("Sprite2D")
+P_label = NodePath("P_Label")
 current_ground_state = NodePath("CharacterStateMachine/GroundGun")
 current_ground_animation = "持枪移动"
 
@@ -1123,6 +1125,13 @@ position = Vector2(26, 2)
 wait_time = 0.2
 script = ExtResource("32_2oeus")
 character = NodePath("..")
+
+[node name="P_Label" type="Label" parent="."]
+offset_left = -8.0
+offset_top = -33.0
+offset_right = 32.0
+offset_bottom = -9.0
+text = "P2"
 
 [connection signal="current_animation_changed" from="AnimationPlayer" to="AnimationPlayer" method="_on_current_animation_changed"]
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]

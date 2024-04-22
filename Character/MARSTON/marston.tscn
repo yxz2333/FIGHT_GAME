@@ -35,6 +35,7 @@
 [ext_resource type="Script" path="res://Character/Class/TrailTimer.gd" id="33_jny1x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_klvjb"]
+size = Vector2(20, 21)
 
 [sub_resource type="Animation" id="Animation_2b2fm"]
 length = 0.001
@@ -872,17 +873,20 @@ font = ExtResource("14_7qcdt")
 font_size = 10
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6eb18"]
-size = Vector2(24, 20)
+size = Vector2(24, 21)
 
-[node name="MARSTON" type="CharacterBody2D" node_paths=PackedStringArray("pp", "canvas_layer", "current_ground_state")]
+[node name="MARSTON" type="CharacterBody2D" node_paths=PackedStringArray("pp", "canvas_layer", "sprite", "P_label", "current_ground_state")]
 collision_layer = 6
 script = ExtResource("1_846sn")
 pp = NodePath("PlayerProperty")
 run_start_effect = ExtResource("2_qb86m")
 canvas_layer = NodePath("CanvasLayer")
+sprite = NodePath("Sprite2D")
+P_label = NodePath("P_Label")
 current_ground_state = NodePath("CharacterStateMachine/GroundDefault")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_klvjb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -1047,7 +1051,7 @@ player = NodePath("..")
 facing_collision_shape_2d = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack"]
-position = Vector2(2, 0)
+position = Vector2(2, 0.5)
 shape = SubResource("RectangleShape2D_6eb18")
 script = ExtResource("20_xiaou")
 facing_left_position = Vector2(-2, 0)
@@ -1077,6 +1081,13 @@ position = Vector2(18, 3)
 wait_time = 0.2
 script = ExtResource("33_jny1x")
 character = NodePath("..")
+
+[node name="P_Label" type="Label" parent="."]
+offset_left = -8.0
+offset_top = -33.0
+offset_right = 32.0
+offset_bottom = -9.0
+text = "P1"
 
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/GunStart" method="_on_animation_tree_animation_finished"]
