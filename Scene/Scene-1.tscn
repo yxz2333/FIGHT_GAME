@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://wbw78b2g2qol"]
+[gd_scene load_steps=51 format=3 uid="uid://wbw78b2g2qol"]
 
 [ext_resource type="Texture2D" uid="uid://cg8oc15tjjsvo" path="res://Assets/ENVIRO/Level Design/trunk2.png" id="1_4snhx"]
 [ext_resource type="Script" path="res://Scene/Scene-1.gd" id="1_ammx6"]
@@ -28,8 +28,6 @@
 [ext_resource type="Texture2D" uid="uid://bd8c84jxrcklm" path="res://Assets/ENVIRO/Background/tree_trunk6.png" id="24_rsqlb"]
 [ext_resource type="Texture2D" uid="uid://d1lulkk7ljkoi" path="res://Assets/ENVIRO/Background/tree_leaves5.png" id="25_isoid"]
 [ext_resource type="Texture2D" uid="uid://ro7d4i236ywj" path="res://Assets/ENVIRO/Background/tree_leaves4.png" id="26_npcgn"]
-[ext_resource type="PackedScene" uid="uid://cifthl2ohvi0t" path="res://Character/NAMKA/namka.tscn" id="27_qnrxi"]
-[ext_resource type="PackedScene" uid="uid://bw77mt5bfeyet" path="res://Character/MARSTON/marston.tscn" id="28_uqsbn"]
 [ext_resource type="Script" path="res://Scene/Camera.gd" id="30_g4gky"]
 
 [sub_resource type="Animation" id="Animation_nkphi"]
@@ -484,13 +482,6 @@ polygon = PackedVector2Array(287, 16, 274, 37, 287, 34, 299, 19)
 script = ExtResource("1_ammx6")
 tilemap_limit_bottom = 9000.0
 
-[node name="P1" type="Marker2D" parent="."]
-position = Vector2(-195, -118)
-scale = Vector2(2, 2)
-
-[node name="P2" type="Marker2D" parent="."]
-position = Vector2(245, -119)
-
 [node name="MAP" type="Node2D" parent="."]
 position = Vector2(-320, -180)
 scale = Vector2(2, 2)
@@ -725,16 +716,6 @@ energy = 0.2
 position = Vector2(130, 160)
 texture = ExtResource("1_xbpe6")
 hframes = 10
-
-[node name="NAMKA" parent="." node_paths=PackedStringArray("scene") instance=ExtResource("27_qnrxi")]
-position = Vector2(245, -119)
-scale = Vector2(2, 2)
-scene = NodePath("..")
-
-[node name="MARSTON" parent="." node_paths=PackedStringArray("scene") instance=ExtResource("28_uqsbn")]
-position = Vector2(-195, -118)
-scale = Vector2(2, 2)
-scene = NodePath("..")
 
 [node name="Camera" type="Camera2D" parent="."]
 scale = Vector2(-5.59586, 15.8759)

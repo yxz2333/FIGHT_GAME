@@ -29,7 +29,7 @@ var colors = [Color.RED, Color.DEEP_SKY_BLUE, Color.YELLOW]
 var actions = ["left_player_", "right_player_", "up_player_", "down_player_"]
 
 var current_selection : PlayerSelectMenuUI  # 现在指针over的player_UI
-var is_selected : bool = false
+var selected_UI : PlayerSelectMenuUI = null
 
 
 var sprite : Sprite2D = null
@@ -43,7 +43,7 @@ func init(n : int, me : CharacterSelectMenu, accept_input, sm : Node2D = null) -
 	input_config(accept_input)
 
 func _ready():
-	is_selected = false
+	selected_UI = null
 	label_init()
 	shader_material_init()
 	
@@ -55,7 +55,7 @@ func _ready():
 
 
 func _physics_process(delta):
-	if is_selected:
+	if selected_UI != null:
 		return
 	
 	
@@ -70,7 +70,10 @@ func _physics_process(delta):
 
 
 func _input(event):
-	if event.is_action_pressed("ui_accept") and current_selection != null and not is_selected: # over到可选择角色时，按accept选择
+	if not menu.can_input:
+		return
+	
+	if event.is_action_pressed("accept") and current_selection != null and selected_UI == null: # over到可选择角色时，按accept选择
 		## 检测当前accept是否是对应键位
 		if event is InputEventKey:
 			if input_num != accept_inputs.get(event.keycode):
@@ -83,7 +86,7 @@ func _input(event):
 		current_selection.select(self, num, input_num) # 选择完实例化可操纵角色
 		_sprite_effect()                         # 生成人物图标
 		hide()                                   # 指针隐藏
-		is_selected = true
+		selected_UI = current_selection
 		global_position = menu.back_markers[num - 1].position # 隐藏完归位
 
 
@@ -101,6 +104,7 @@ func _sprite_effect():                   # 生成人物图标
 	sprite.scale = Vector2(8,8)
 	sprite.modulate = Color(1, 1, 1, 0.68)
 	
+	
 	## 翻转sprite，并适配一下solo和party的选人方式
 	if menu.total_players == 2:
 		sprite.flip_h = false if num == 1 else true
@@ -108,10 +112,12 @@ func _sprite_effect():                   # 生成人物图标
 		pass
 	add_sibling(sprite)
 	
+	
 	## label
 	s_label = label.duplicate()
 	s_label.position = sprite_markers[label_num].position
 	add_sibling(s_label)
+	
 	
 	## tween动画
 	var tween : Tween = get_tree().create_tween()
@@ -159,7 +165,7 @@ func _back(node : Player) -> void:       # 人物出界，重选人物，out特�
 	menu.selected_player -= 1
 	
 	show()
-	is_selected = false
+	selected_UI = null
 	
 	var out_instance = out.instantiate()
 	

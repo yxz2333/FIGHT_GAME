@@ -18,8 +18,8 @@ func _input(event):
 
 
 func _on_start_button_pressed():
-	get_tree().change_scene_to_file("res://Scene/Level-1.tscn")
-	
+	Transitions.tran_d_0_without_loading("res://UI/mode_select.tscn")
+
 
 func _on_quit_button_pressed():
 	get_tree().quit()

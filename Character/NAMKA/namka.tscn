@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://cifthl2ohvi0t"]
+[gd_scene load_steps=99 format=3 uid="uid://cifthl2ohvi0t"]
 
 [ext_resource type="Script" path="res://Character/NAMKA/namka.gd" id="1_eukoy"]
 [ext_resource type="PackedScene" uid="uid://dwl8fnh2aj3g3" path="res://Character/Class/run_start_effect.tscn" id="2_hk4kw"]
@@ -30,8 +30,11 @@
 [ext_resource type="Script" path="res://Character/Class/状态：Break.gd" id="24_omolx"]
 [ext_resource type="PackedScene" uid="uid://ci4n53033qsda" path="res://Character/Class/break.tscn" id="25_pum0l"]
 [ext_resource type="PackedScene" uid="uid://ri2jc5b3kpbk" path="res://Character/NAMKA/namka_angry_bar.tscn" id="30_70j7j"]
+[ext_resource type="Texture2D" uid="uid://cfdp6kfyx3ion" path="res://Assets/CHARAs/NAMKA/name.png" id="31_arl1o"]
 [ext_resource type="PackedScene" uid="uid://dt0e6btuyt4bd" path="res://Character/Class/percentage.tscn" id="31_v13gn"]
 [ext_resource type="Script" path="res://Character/Class/TrailTimer.gd" id="32_2oeus"]
+[ext_resource type="LabelSettings" uid="uid://dram2l5m640n0" path="res://Character/Class/P_label.tres" id="33_3nsw0"]
+[ext_resource type="PackedScene" uid="uid://dw77qolih5eca" path="res://Character/MARSTON/marston_angry_bar.tscn" id="33_krtit"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_klvjb"]
 size = Vector2(20, 23)
@@ -906,7 +909,7 @@ font_size = 10
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6eb18"]
 size = Vector2(32, 32)
 
-[node name="NAMKA" type="CharacterBody2D" node_paths=PackedStringArray("shot_freeze_timer", "pp", "canvas_layer", "sprite", "P_label", "current_ground_state")]
+[node name="NAMKA" type="CharacterBody2D" node_paths=PackedStringArray("shot_freeze_timer", "pp", "canvas_layer", "sprite", "P_label", "bars", "current_ground_state")]
 collision_layer = 6
 script = ExtResource("1_eukoy")
 shot_freeze_timer = NodePath("PlayerProperty/ShotFreezeTimer")
@@ -915,6 +918,7 @@ run_start_effect = ExtResource("2_hk4kw")
 canvas_layer = NodePath("CanvasLayer")
 sprite = NodePath("Sprite2D")
 P_label = NodePath("P_Label")
+bars = [NodePath("CanvasLayer/left"), NodePath("CanvasLayer/right")]
 current_ground_state = NodePath("CharacterStateMachine/GroundGun")
 current_ground_animation = "持枪移动"
 
@@ -1101,12 +1105,21 @@ facing_right_position = Vector2(29, -5)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HBoxContainer" parent="CanvasLayer" node_paths=PackedStringArray("character") instance=ExtResource("30_70j7j")]
+[node name="left" parent="CanvasLayer" node_paths=PackedStringArray("character") instance=ExtResource("33_krtit")]
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 252.0
+offset_bottom = 32.0
+character = NodePath("../..")
+pic = ExtResource("31_arl1o")
+
+[node name="right" parent="CanvasLayer" node_paths=PackedStringArray("character") instance=ExtResource("30_70j7j")]
 offset_left = 432.0
 offset_top = 8.0
 offset_right = 616.0
 offset_bottom = 26.0
 character = NodePath("../..")
+pic = ExtResource("31_arl1o")
 is_right = true
 
 [node name="Percentage" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("31_v13gn")]
@@ -1127,11 +1140,12 @@ script = ExtResource("32_2oeus")
 character = NodePath("..")
 
 [node name="P_Label" type="Label" parent="."]
-offset_left = -8.0
-offset_top = -33.0
-offset_right = 32.0
-offset_bottom = -9.0
+offset_left = -7.0
+offset_top = -32.0
+offset_right = 33.0
+offset_bottom = -8.0
 text = "P2"
+label_settings = ExtResource("33_3nsw0")
 
 [connection signal="current_animation_changed" from="AnimationPlayer" to="AnimationPlayer" method="_on_current_animation_changed"]
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]

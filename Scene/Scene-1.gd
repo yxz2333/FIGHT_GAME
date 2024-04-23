@@ -11,3 +11,5 @@ var inputs = {  # 在character_select中更改
 	"NAMKA" : 2,
 	"MUSASHI" : 3,
 }
+
+var can_input : bool = true

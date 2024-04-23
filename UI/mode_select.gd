@@ -51,11 +51,11 @@ func _ready():
 	return_button.material.shader = shader
 	return_button.material.shader = null
 
-func del_empty_button() -> void:
+func del_empty_button() -> void:     # 一开始随便定的一个用来出现选择框的空白按钮，这个函数来删掉
 	if empty_button != null:
 		empty_button.queue_free()
 
-func solo_switch_hide_and_show():
+func solo_switch_hide_and_show() -> void:
 	if still[0].visible == false:
 		still[0].show()
 		dynamic[0].hide()
@@ -67,7 +67,7 @@ func solo_switch_hide_and_show():
 		rich[0][0].hide()
 		rich[1][0].show()
 
-func dynamic_switch_hide_and_show():
+func dynamic_switch_hide_and_show() -> void:
 	if still[1].visible == false:
 		still[1].show()
 		dynamic[1].hide()
@@ -98,9 +98,9 @@ func _on_party_button_focus_exited():
 	dynamic_switch_hide_and_show()
 	del_empty_button()
 
-
 func _on_solo_button_pressed():
-	pass # 选人 -> 小地图
+	Transitions.tran_d_0_without_loading_and_out("res://UI/CharacterSelect.tscn")
+
 
 func _on_party_button_pressed():
 	pass # 选人 -> 大地图
@@ -113,4 +113,4 @@ func _on_return_button_focus_exited():
 	return_button.material.shader = null
 
 func _on_return_button_pressed():
-	get_tree().change_scene_to_file("res://UI/title_menu.tscn")
+	Transitions.tran_d_0_without_loading("res://UI/title_menu.tscn")

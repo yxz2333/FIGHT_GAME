@@ -150,11 +150,12 @@ _data = {
 "game_set": SubResource("Animation_nbii4")
 }
 
-[node name="Level-1" type="Node" node_paths=PackedStringArray("scene")]
+[node name="Level-1" type="Node" node_paths=PackedStringArray("scene", "birth_position")]
 process_mode = 3
 script = ExtResource("1_wad5p")
 out = ExtResource("2_bqptn")
 scene = NodePath("Scene")
+birth_position = [NodePath("P1"), NodePath("P2")]
 game_over_camera_shake_zoom = Vector2(0.9, 0.9)
 game_over_camera_shake_duration = 0.4
 
@@ -188,3 +189,9 @@ libraries = {
 process_mode = 3
 position = Vector2(-296, -200)
 characters = ["NAMKA", "MARSTON"]
+
+[node name="P1" type="Marker2D" parent="."]
+position = Vector2(-192, -115)
+
+[node name="P2" type="Marker2D" parent="."]
+position = Vector2(245, -115)

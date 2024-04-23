@@ -3,7 +3,7 @@ extends CharacterBody2D
 class_name Player
 
 
-@export var scene : Scene
+var scene : Scene
 @export var pp : PlayerProperty
 @export var run_start_effect : PackedScene
 @export var canvas_layer : CanvasLayer
@@ -14,6 +14,8 @@ var playback : AnimationNodeStateMachinePlayback  # 获取当前动画用
 @onready var state_machine : CharacterStateMachine = $CharacterStateMachine
 @onready var run_start_marker : Marker2D = $Markers/RunStart
 @onready var trail_timer : Timer = $TrailTimer
+
+@export var bars : Array[Container] = []
 
 var direction : Vector2 = Vector2.ZERO # 读入键盘手柄输入用
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")  # 获取项目设置里设置的重力大小
@@ -62,9 +64,11 @@ func _ready():
 	
 	DI_timer_init() 
 	SA_timer_init()
+	angry_bar_init()
 	
 	## trail timer
 	trail_timer.wait_time = 0.1
+
 
 func _physics_process(delta):
 	## 没编号的报错
@@ -72,6 +76,8 @@ func _physics_process(delta):
 		push_warning("人物错误初始化")
 		return
 	
+	if not scene.can_input:
+		return
 	
 	## 读入x轴和y轴方向输入
 	direction = Input.get_vector(pp.left_action, pp.right_action, pp.up_action, pp.down_action)
@@ -135,9 +141,9 @@ func _physics_process(delta):
 
 
 func check_if_out_of_screen() -> void:       # 检查是否飞出屏幕
-	if (position.x < scene.tilemap_limit_left or 
-		position.x > scene.tilemap_limit_right or 
-		position.y > scene.tilemap_limit_bottom): # 出屏幕
+	if (global_position.x < scene.tilemap_limit_left or 
+		global_position.x > scene.tilemap_limit_right or 
+		global_position.y > scene.tilemap_limit_bottom): # 出屏幕
 		
 		SignalBus.emit_signal("player_out_of_screen", self)
 		queue_free()
@@ -209,3 +215,7 @@ func SA_timer_init() -> void:
 	add_child(SA_timer)
 	SA_timer.one_shot = true
 	SA_timer.wait_time = 5
+func angry_bar_init() -> void:
+	for i in len(bars):
+		if i + 1 != pp.player_number:
+			bars[i].hide()

@@ -8,6 +8,8 @@ class_name GameManager
 @export var scene : Scene 
 @export var game_set_animation : String = "game_set"
 
+@export var birth_position : Array[Marker2D] = []
+
 var is_game_over : bool = false
 
 ## gameset镜头震动相关
@@ -50,14 +52,17 @@ func _game_over(node : Player):
 func game_over_out(node : Player) -> void:                  # 生成out特效
 	var out_instance = out.instantiate()
 	
-	## 翻转和位置设置
-	if abs(node.position.x - scene.tilemap_limit_left) < abs(node.position.x - scene.tilemap_limit_right):
-		out_instance.flip_h = false
-		out_instance.global_position = Vector2(node.position.x - scene.tilemap_limit_left, node.position.y)
-	else:
-		out_instance.flip_h = true
-		out_instance.global_position = Vector2(node.position.x - scene.tilemap_limit_right, node.position.y)
-	add_child(out_instance)
+	
+	## 设置out位置
+	if node.global_position.y < scene.tilemap_limit_bottom:
+		out_instance.rotation_degrees = 0.0
+		if node.global_position.x < 0:
+			out_instance.flip_h = false
+			out_instance.global_position = Vector2(-90, node.global_position.y)
+		elif node.global_position.x > 0:
+			out_instance.flip_h = true
+			out_instance.global_position = Vector2( 90, node.global_position.y)
+	add_sibling(out_instance)
 	await get_tree().create_timer(0.25).timeout # 等待0.25秒
 	out_instance.queue_free()
 

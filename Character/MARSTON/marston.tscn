@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=3 uid="uid://bw77mt5bfeyet"]
+[gd_scene load_steps=98 format=3 uid="uid://bw77mt5bfeyet"]
 
 [ext_resource type="Script" path="res://Character/MARSTON/marston.gd" id="1_846sn"]
 [ext_resource type="Texture2D" uid="uid://bc2ddjjlhsawo" path="res://Assets/CHARAs/MARSTON/attack1/attack_1.png" id="2_e4cmr"]
@@ -31,8 +31,11 @@
 [ext_resource type="PackedScene" uid="uid://u526o1kq782i" path="res://Character/MARSTON/bullet.tscn" id="25_tuhrp"]
 [ext_resource type="PackedScene" uid="uid://ci4n53033qsda" path="res://Character/Class/break.tscn" id="26_ecfo1"]
 [ext_resource type="PackedScene" uid="uid://dw77qolih5eca" path="res://Character/MARSTON/marston_angry_bar.tscn" id="31_ji50l"]
+[ext_resource type="Texture2D" uid="uid://8lhlwycyqncl" path="res://Assets/CHARAs/MARSTON/name.png" id="32_mtom5"]
 [ext_resource type="PackedScene" uid="uid://dt0e6btuyt4bd" path="res://Character/Class/percentage.tscn" id="32_ynnfr"]
 [ext_resource type="Script" path="res://Character/Class/TrailTimer.gd" id="33_jny1x"]
+[ext_resource type="PackedScene" uid="uid://ri2jc5b3kpbk" path="res://Character/NAMKA/namka_angry_bar.tscn" id="33_y4w47"]
+[ext_resource type="LabelSettings" uid="uid://dram2l5m640n0" path="res://Character/Class/P_label.tres" id="34_jljb4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_klvjb"]
 size = Vector2(20, 21)
@@ -875,7 +878,7 @@ font_size = 10
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6eb18"]
 size = Vector2(24, 21)
 
-[node name="MARSTON" type="CharacterBody2D" node_paths=PackedStringArray("pp", "canvas_layer", "sprite", "P_label", "current_ground_state")]
+[node name="MARSTON" type="CharacterBody2D" node_paths=PackedStringArray("pp", "canvas_layer", "sprite", "P_label", "bars", "current_ground_state")]
 collision_layer = 6
 script = ExtResource("1_846sn")
 pp = NodePath("PlayerProperty")
@@ -883,6 +886,7 @@ run_start_effect = ExtResource("2_qb86m")
 canvas_layer = NodePath("CanvasLayer")
 sprite = NodePath("Sprite2D")
 P_label = NodePath("P_Label")
+bars = [NodePath("CanvasLayer/left"), NodePath("CanvasLayer/right")]
 current_ground_state = NodePath("CharacterStateMachine/GroundDefault")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -1059,12 +1063,22 @@ facing_right_position = Vector2(2, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HBoxContainer" parent="CanvasLayer" node_paths=PackedStringArray("character") instance=ExtResource("31_ji50l")]
+[node name="left" parent="CanvasLayer" node_paths=PackedStringArray("character") instance=ExtResource("31_ji50l")]
 offset_left = 16.0
 offset_top = 8.0
 offset_right = 224.0
 offset_bottom = 26.0
 character = NodePath("../..")
+pic = ExtResource("32_mtom5")
+
+[node name="right" parent="CanvasLayer" node_paths=PackedStringArray("character") instance=ExtResource("33_y4w47")]
+offset_left = 432.0
+offset_top = 8.0
+offset_right = 636.0
+offset_bottom = 32.0
+character = NodePath("../..")
+pic = ExtResource("32_mtom5")
+is_right = true
 
 [node name="Percentage" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("32_ynnfr")]
 player = NodePath("../..")
@@ -1083,11 +1097,12 @@ script = ExtResource("33_jny1x")
 character = NodePath("..")
 
 [node name="P_Label" type="Label" parent="."]
-offset_left = -8.0
-offset_top = -33.0
-offset_right = 32.0
-offset_bottom = -9.0
+offset_left = -7.0
+offset_top = -32.0
+offset_right = 33.0
+offset_bottom = -8.0
 text = "P1"
+label_settings = ExtResource("34_jljb4")
 
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/GunStart" method="_on_animation_tree_animation_finished"]
