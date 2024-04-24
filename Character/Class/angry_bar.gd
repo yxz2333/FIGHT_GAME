@@ -8,8 +8,12 @@ class_name AngryBar
 @onready var eased_angry_bar : TextureProgressBar = $VBoxContainer/AngryBar/EasedAngryBar
 @onready var bullet_bar : TextureProgressBar = $VBoxContainer/BulletBar
 @onready var texture_rect : TextureRect = $PanelContainer/TextureRect
-@export var pic : Texture2D
 @export var is_right : bool
+
+var pics : Dictionary = {
+	"Marston" : preload("res://Assets/CHARAs/MARSTON/name.png"),
+	"Namka" : preload("res://Assets/CHARAs/NAMKA/name.png"),
+}
 
 func _ready():
 	scale = Vector2(0.75, 0.75)
@@ -23,7 +27,7 @@ func _ready():
 		if key == character.pp.player_number:
 			SignalBus.connect(character.pp.angry_bar_player_signal[key], _update_angry_bar)
 	
-	texture_rect.texture = pic
+	texture_rect.texture = pics.get(character.pp._name)
 	angry_bar.value = 0
 	eased_angry_bar.value = 0
 	bullet_bar.value = bullet_bar.max_value

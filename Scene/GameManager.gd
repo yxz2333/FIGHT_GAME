@@ -77,7 +77,7 @@ func game_set_then_game_over(node_name : String) -> void:   # gameset和gameover
 	await get_tree().create_timer(2).timeout # 等待2秒
 	
 	animation_player.play("RESET") # reset就是黑屏
-	if node_name == "NAMKA":
+	if node_name == "Namka":
 		SignalBus.emit_signal("who_is_winner", "MARSTON") # 信号发送给gameover.gd
-	if node_name == "MARSTON":
+	if node_name == "Marston":
 		SignalBus.emit_signal("who_is_winner", "NAMKA")   # 信号发送给gameover.gd

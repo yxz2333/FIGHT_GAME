@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://cifthl2ohvi0t"]
+[gd_scene load_steps=98 format=3 uid="uid://cifthl2ohvi0t"]
 
 [ext_resource type="Script" path="res://Character/NAMKA/namka.gd" id="1_eukoy"]
 [ext_resource type="PackedScene" uid="uid://dwl8fnh2aj3g3" path="res://Character/Class/run_start_effect.tscn" id="2_hk4kw"]
@@ -29,12 +29,11 @@
 [ext_resource type="Script" path="res://Character/NAMKA/状态：Shot.gd" id="23_dsi5h"]
 [ext_resource type="Script" path="res://Character/Class/状态：Break.gd" id="24_omolx"]
 [ext_resource type="PackedScene" uid="uid://ci4n53033qsda" path="res://Character/Class/break.tscn" id="25_pum0l"]
-[ext_resource type="PackedScene" uid="uid://ri2jc5b3kpbk" path="res://Character/NAMKA/namka_angry_bar.tscn" id="30_70j7j"]
-[ext_resource type="Texture2D" uid="uid://cfdp6kfyx3ion" path="res://Assets/CHARAs/NAMKA/name.png" id="31_arl1o"]
+[ext_resource type="PackedScene" uid="uid://dw77qolih5eca" path="res://Character/Class/left_angry_bar.tscn" id="30_pgf7x"]
 [ext_resource type="PackedScene" uid="uid://dt0e6btuyt4bd" path="res://Character/Class/percentage.tscn" id="31_v13gn"]
+[ext_resource type="PackedScene" uid="uid://ri2jc5b3kpbk" path="res://Character/NAMKA/right_angry_bar.tscn" id="32_0yk4d"]
 [ext_resource type="Script" path="res://Character/Class/TrailTimer.gd" id="32_2oeus"]
 [ext_resource type="LabelSettings" uid="uid://dram2l5m640n0" path="res://Character/Class/P_label.tres" id="33_3nsw0"]
-[ext_resource type="PackedScene" uid="uid://dw77qolih5eca" path="res://Character/MARSTON/marston_angry_bar.tscn" id="33_krtit"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_klvjb"]
 size = Vector2(20, 23)
@@ -959,7 +958,7 @@ shot_state = NodePath("../CharacterStateMachine/Shot")
 ground_gun_state = NodePath("../CharacterStateMachine/GroundGun")
 gun_start_state = NodePath("../CharacterStateMachine/GunStart")
 shot_animation = "射击"
-_name = "NAMKA"
+_name = "Namka"
 speed = 280.0
 weight = 45.0
 jump_velocity = -290.0
@@ -1105,21 +1104,19 @@ facing_right_position = Vector2(29, -5)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="left" parent="CanvasLayer" node_paths=PackedStringArray("character") instance=ExtResource("33_krtit")]
+[node name="left" parent="CanvasLayer" node_paths=PackedStringArray("character") instance=ExtResource("30_pgf7x")]
 offset_left = 16.0
 offset_top = 8.0
 offset_right = 252.0
 offset_bottom = 32.0
 character = NodePath("../..")
-pic = ExtResource("31_arl1o")
 
-[node name="right" parent="CanvasLayer" node_paths=PackedStringArray("character") instance=ExtResource("30_70j7j")]
+[node name="right" parent="CanvasLayer" node_paths=PackedStringArray("character") instance=ExtResource("32_0yk4d")]
 offset_left = 432.0
 offset_top = 8.0
 offset_right = 616.0
 offset_bottom = 26.0
 character = NodePath("../..")
-pic = ExtResource("31_arl1o")
 is_right = true
 
 [node name="Percentage" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("31_v13gn")]

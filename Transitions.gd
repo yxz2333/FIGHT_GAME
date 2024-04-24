@@ -103,6 +103,26 @@ func tran_d_0_without_loading_and_out(PATH : String, lamda = null) -> void:  # �
 	_change_scene(lamda)
 
 
+func tran_d_0_without_in_and_loading(PATH : String, lamda = null) -> void:   # 第1个默认过渡动画（无in,loading）
+	_create_thread(PATH)
+	
+	var b : ColorRect = _black_tran()
+	await get_tree().create_timer(0.1).timeout
+	b.queue_free()
+	
+	_change_scene(lamda)
+	
+	await get_tree().create_timer(tran_out(0)).timeout
+	
+
+
+
+
+
+
+
+
+
 func _black_tran() -> ColorRect:                              # 纯黑屏幕转场
 	var black_tran : ColorRect = ColorRect.new()
 	black_tran.color = Color.BLACK

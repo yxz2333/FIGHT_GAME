@@ -79,7 +79,7 @@ func _input(event):
 			if input_num != accept_inputs.get(event.keycode):
 				return
 		if event is InputEventJoypadButton:
-			if input_num != accept_inputs.get(event.keycode):
+			if input_num != accept_inputs.get(event.button_index):
 				return
 		
 		
