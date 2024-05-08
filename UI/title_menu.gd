@@ -17,7 +17,12 @@ func _input(event):
 		is_pressed = true
 
 
+var is_start_pressed : bool = false
 func _on_start_button_pressed():
+	if is_start_pressed:
+		return
+		
+	is_start_pressed = true
 	Transitions.tran_d_0_without_loading("res://UI/mode_select.tscn")
 
 

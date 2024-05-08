@@ -98,12 +98,33 @@ func _on_party_button_focus_exited():
 	dynamic_switch_hide_and_show()
 	del_empty_button()
 
+var is_solo_button_pressed : bool = false
 func _on_solo_button_pressed():
+	if is_solo_button_pressed:
+		return
+		
+	is_solo_button_pressed = true
 	Transitions.tran_d_0_without_loading_and_out("res://UI/CharacterSelect.tscn")
 
 
+var is_party_button_pressed : bool = false
 func _on_party_button_pressed():
-	pass # 选人 -> 大地图
+	if is_party_button_pressed:
+		return
+	is_party_button_pressed = true
+	
+	
+
+
+var is_return_button_pressed : bool = false
+func _on_return_button_pressed():
+	if is_return_button_pressed:
+		return
+	is_return_button_pressed = true
+	
+	Transitions.tran_d_0_without_loading("res://UI/title_menu.tscn")
+
+
 
 
 func _on_return_button_focus_entered():
@@ -111,6 +132,3 @@ func _on_return_button_focus_entered():
 
 func _on_return_button_focus_exited():
 	return_button.material.shader = null
-
-func _on_return_button_pressed():
-	Transitions.tran_d_0_without_loading("res://UI/title_menu.tscn")

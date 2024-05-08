@@ -8,7 +8,7 @@ var pp : PlayerProperty
 @onready var anim_player : AnimationPlayer = $AnimationPlayer
 @onready var timer : Timer = $Timer
 
-@export var damage : float = 10.0
+@export var damage : float = 0.0
 
 @export var camera_shake_offset = Vector2(10, 0)
 @export var camera_shake_zoom = Vector2(0.9, 0.9)
@@ -40,8 +40,8 @@ func on_opponent_is_hit(direction : Vector2, opponent : Player):
 	k.y = 10 if k.y <= 10 else k.y
 	
 	opponent.velocity += Vector2 (
-		dir.x * 8000 / log(k.x + 1) * (exp(-opponent.percentage / 100) if exp(-opponent.percentage / 100) > 1 else 1), 
-		dir.y * 500  / log(k.y + 1) * (exp(-opponent.percentage / 100) if exp(-opponent.percentage / 100) > 1 else 1)
+		dir.x * 8000 / log(k.x + 1) * (exp(-opponent.percentage / 50) if exp(-opponent.percentage / 50) > 1 else 1), 
+		dir.y * 500  / log(k.y + 1) * (exp(-opponent.percentage / 50) if exp(-opponent.percentage / 50) > 1 else 1)
 	)
 	
 	CameraSetting.camera_shake(camera_shake_offset, camera_shake_zoom, camera_shake_duration)
