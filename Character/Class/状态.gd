@@ -11,7 +11,7 @@ var next_state : State
 var playback : AnimationNodeStateMachinePlayback
 var pp : PlayerProperty
 
-signal interrupt_state(new_state : State)
+signal interrupt_state(new_state : State, lamda)
 
 
 ## 先在这里声明，继承在各个类文件里
@@ -21,7 +21,7 @@ func state_process(delta) -> void:
 func state_input(event : InputEvent) -> void:
 	pass
 
-func on_enter() -> void:
+func on_enter(lamda = null) -> void:
 	pass
 
 func on_exit() -> void:

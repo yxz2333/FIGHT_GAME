@@ -6,7 +6,7 @@ func init():
 	super() # 调用父节点
 	shot_freeze_timer.wait_time = pp.bullet_freeze_time
 
-func on_enter() -> void:
+func on_enter(lamda = null) -> void:
 	if not shot_freeze_timer.is_stopped():  # 还在冷却直接返回
 		_return()
 		return

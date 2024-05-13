@@ -1,0 +1,110 @@
+[gd_scene load_steps=2 format=3 uid="uid://6gamrnyppmn4"]
+
+[ext_resource type="Script" path="res://Scene/TestUI.gd" id="1_athqq"]
+
+[node name="TestUI" type="Window"]
+title = "DebugMode"
+position = Vector2i(0, 36)
+size = Vector2i(240, 300)
+script = ExtResource("1_athqq")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_right = 300.0
+offset_bottom = 700.0
+
+[node name="Main" type="VBoxContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer0" type="VBoxContainer" parent="PanelContainer/Main"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Main/VBoxContainer0"]
+layout_mode = 2
+text = "P1 : Namka"
+
+[node name="Percentage" type="HBoxContainer" parent="PanelContainer/Main/VBoxContainer0"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Main/VBoxContainer0/Percentage"]
+layout_mode = 2
+text = "       Percentage :"
+
+[node name="Percentage0" type="LineEdit" parent="PanelContainer/Main/VBoxContainer0/Percentage"]
+layout_mode = 2
+expand_to_text_length = true
+
+[node name="Angry" type="HBoxContainer" parent="PanelContainer/Main/VBoxContainer0"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Main/VBoxContainer0/Angry"]
+layout_mode = 2
+text = "       Angry :          "
+
+[node name="Angry0" type="LineEdit" parent="PanelContainer/Main/VBoxContainer0/Angry"]
+layout_mode = 2
+expand_to_text_length = true
+
+[node name="VBoxContainer1" type="VBoxContainer" parent="PanelContainer/Main"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Main/VBoxContainer1"]
+layout_mode = 2
+text = "P2 : Marston"
+
+[node name="Percentage" type="HBoxContainer" parent="PanelContainer/Main/VBoxContainer1"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Main/VBoxContainer1/Percentage"]
+layout_mode = 2
+text = "       Percentage :"
+
+[node name="Percentage1" type="LineEdit" parent="PanelContainer/Main/VBoxContainer1/Percentage"]
+layout_mode = 2
+expand_to_text_length = true
+
+[node name="Angry" type="HBoxContainer" parent="PanelContainer/Main/VBoxContainer1"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Main/VBoxContainer1/Angry"]
+layout_mode = 2
+text = "       Angry :          "
+
+[node name="Angry1" type="LineEdit" parent="PanelContainer/Main/VBoxContainer1/Angry"]
+layout_mode = 2
+expand_to_text_length = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/Main"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Main/VBoxContainer2"]
+layout_mode = 2
+text = "P3 : Musashi"
+
+[node name="Percentage" type="HBoxContainer" parent="PanelContainer/Main/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Main/VBoxContainer2/Percentage"]
+layout_mode = 2
+text = "       Percentage :"
+
+[node name="Percentage2" type="LineEdit" parent="PanelContainer/Main/VBoxContainer2/Percentage"]
+layout_mode = 2
+expand_to_text_length = true
+
+[node name="Angry" type="HBoxContainer" parent="PanelContainer/Main/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/Main/VBoxContainer2/Angry"]
+layout_mode = 2
+text = "       Angry :          "
+
+[node name="Angry2" type="LineEdit" parent="PanelContainer/Main/VBoxContainer2/Angry"]
+layout_mode = 2
+expand_to_text_length = true
+
+[connection signal="text_submitted" from="PanelContainer/Main/VBoxContainer0/Percentage/Percentage0" to="." method="_on_percentage_0_text_submitted"]
+[connection signal="text_submitted" from="PanelContainer/Main/VBoxContainer0/Angry/Angry0" to="." method="_on_angry_0_text_submitted"]
+[connection signal="text_submitted" from="PanelContainer/Main/VBoxContainer1/Percentage/Percentage1" to="." method="_on_parcentage_1_text_submitted"]
+[connection signal="text_submitted" from="PanelContainer/Main/VBoxContainer1/Angry/Angry1" to="." method="_on_angry_1_text_submitted"]
+[connection signal="text_submitted" from="PanelContainer/Main/VBoxContainer2/Percentage/Percentage2" to="." method="_on_parcentage_2_text_submitted"]
+[connection signal="text_submitted" from="PanelContainer/Main/VBoxContainer2/Angry/Angry2" to="." method="_on_angry_2_text_submitted"]

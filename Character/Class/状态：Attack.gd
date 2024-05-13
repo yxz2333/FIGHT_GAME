@@ -19,7 +19,7 @@ func state_input(event : InputEvent) -> void:
 		jump_input_cnt = true
 		jump()
 
-func on_enter():
+func on_enter(lamda = null):
 	if character.is_on_floor(): # 确保在地面上一定能起跳攻击
 		jump_input_cnt = false
 	else:                       # 而空中不能再起跳攻击

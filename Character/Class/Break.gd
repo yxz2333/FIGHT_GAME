@@ -33,6 +33,7 @@ func _on_area_2d_body_entered(body : Player):
 			if not body.SA:
 				on_opponent_is_hit(direction, body)
 
+
 func on_opponent_is_hit(direction : Vector2, opponent : Player):
 	var dir : Vector2 = Vector2(sign(direction.x), sign(direction.y))
 	var k   : Vector2 = Vector2(abs(direction.x),  abs(direction.y))
@@ -40,9 +41,9 @@ func on_opponent_is_hit(direction : Vector2, opponent : Player):
 	k.y = 10 if k.y <= 10 else k.y
 	
 	opponent.velocity += Vector2 (
-		dir.x * 8000 / log(k.x + 1) * (exp(-opponent.percentage / 50) if exp(-opponent.percentage / 50) > 1 else 1), 
-		dir.y * 500  / log(k.y + 1) * (exp(-opponent.percentage / 50) if exp(-opponent.percentage / 50) > 1 else 1)
-	)
+		dir.x * 8000 / log(k.x + 11) * (exp(-opponent.percentage / 100) if exp(-opponent.percentage / 100) > 1.2 else 1.2), 
+		dir.y * 500  / log(k.y + 11) * (exp(-opponent.percentage / 100) if exp(-opponent.percentage / 100) > 1.2 else 1.2)
+	) ## 当作技巧用，有break的情况下可以想办法让敌人近身再交break
 	
 	CameraSetting.camera_shake(camera_shake_offset, camera_shake_zoom, camera_shake_duration)
 	CameraSetting.frame_freeze(time_scale, frame_freeze_duration)

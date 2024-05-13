@@ -8,8 +8,6 @@ class_name GameManager
 @export var scene : Scene 
 @export var game_set_animation : String = "game_set"
 
-@export var birth_position : Array[Marker2D] = []
-
 var is_game_over : bool = false
 
 ## gameset镜头震动相关
@@ -28,13 +26,32 @@ var game_paused : bool = false:
 		emit_signal("toggle_game_paused", game_paused) # 向pause_menu.gd发出信号
 
 
+## 开发者模式相关
+signal toggle_debug_ui(is_debugging : bool) # 是否暂停游戏的信号
+var is_debugging : bool = false:
+	get:
+		return is_debugging
+	set(value):
+		is_debugging = value
+		emit_signal("toggle_debug_ui", is_debugging) # 向TestUI.gd发出信号
+
+
+
+
 func _ready():
+	self.get_viewport().set_embedding_subwindows(false)   # 创建新窗口一定要这句代码
+	
 	SignalBus.connect("player_out_of_screen", _game_over) # 连接player.gd发出的信号
 
 
+
 func _input(event : InputEvent):
-	if event.is_action_pressed("ui_cancel") and not is_game_over:
-		game_paused = !game_paused    # 切换游戏是否暂停
+	if event.is_action_pressed("ui_cancel") and not is_game_over: # 开关暂停菜单
+		game_paused = !game_paused
+		
+	if event.is_action_pressed("debug_mode"):  # 开关开发者模式
+		is_debugging = !is_debugging
+
 
 
 func _game_over(node : Player):

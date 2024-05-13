@@ -35,8 +35,8 @@ func _input(event : InputEvent):
 	current_state.state_input(event)
 
 
-func _on_state_interrupt_state(new_state : State):  # 可以手动提前切换状态
-	switch_states(new_state)
+func _on_state_interrupt_state(new_state : State, lamda):  # 可以手动提前切换状态
+	switch_states(new_state, lamda)
 	
 
 func check_if_can_move() -> bool:
@@ -51,7 +51,7 @@ func check_if_cannot_hurt() -> bool:
 func check_if_SA() -> bool:
 	return current_state.是否霸体
 
-func switch_states(new_state : State) -> void:
+func switch_states(new_state : State, lamda = null) -> void:
 	attack_area.monitoring = false                 # 只有attack状态才激活hitbox
 
 	if current_state != null:
@@ -60,4 +60,4 @@ func switch_states(new_state : State) -> void:
 	
 	current_state = new_state
 	
-	current_state.on_enter()
+	current_state.on_enter(lamda)

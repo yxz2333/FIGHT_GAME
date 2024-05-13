@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Bullet
+
 var player : Player
 var player_property : PlayerProperty
 var direction : float

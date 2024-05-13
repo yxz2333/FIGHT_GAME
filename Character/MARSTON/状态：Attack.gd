@@ -5,7 +5,7 @@ extends AttackState
 @export var attack_3_animation : String = "攻击_3"
 
 
-func on_enter():
+func on_enter(lamda = null):
 	super()
 	attack_input_cnt = 1
 

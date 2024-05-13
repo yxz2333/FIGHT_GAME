@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dqykt4wqbs1o4"]
+[gd_scene load_steps=12 format=3 uid="uid://dqykt4wqbs1o4"]
 
 [ext_resource type="Script" path="res://Scene/GameManager.gd" id="1_wad5p"]
 [ext_resource type="PackedScene" uid="uid://v3i33nk2qaro" path="res://Scene/out!.tscn" id="2_bqptn"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://n30bfletkfyf" path="res://UI/pause_menu.tscn" id="3_7vw8l"]
 [ext_resource type="FontFile" uid="uid://kbr8115pi1jl" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="4_twdmt"]
 [ext_resource type="PackedScene" uid="uid://dclbkwlx6sywy" path="res://UI/gameover.tscn" id="5_eiuhl"]
+[ext_resource type="PackedScene" uid="uid://6gamrnyppmn4" path="res://Scene/TestUI.tscn" id="7_x74qs"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6legm"]
 font = ExtResource("4_twdmt")
@@ -150,12 +151,11 @@ _data = {
 "game_set": SubResource("Animation_nbii4")
 }
 
-[node name="Level-1" type="Node" node_paths=PackedStringArray("scene", "birth_position")]
+[node name="Level-1" type="Node" node_paths=PackedStringArray("scene")]
 process_mode = 3
 script = ExtResource("1_wad5p")
 out = ExtResource("2_bqptn")
 scene = NodePath("Scene")
-birth_position = [NodePath("P1"), NodePath("P2")]
 game_over_camera_shake_zoom = Vector2(0.9, 0.9)
 game_over_camera_shake_duration = 0.4
 
@@ -190,8 +190,6 @@ process_mode = 3
 position = Vector2(-296, -200)
 characters = ["NAMKA", "MARSTON"]
 
-[node name="P1" type="Marker2D" parent="."]
-position = Vector2(-192, -115)
-
-[node name="P2" type="Marker2D" parent="."]
-position = Vector2(245, -115)
+[node name="TestUI" parent="." node_paths=PackedStringArray("game_manager", "scene") instance=ExtResource("7_x74qs")]
+game_manager = NodePath("..")
+scene = NodePath("../Scene")

@@ -100,7 +100,7 @@ func _start_game() -> void:
 			var character = characters.get(cursors[i].selected_UI.name).instantiate() as Player
 			character.init(scene_instance.scene, cursors[i].num, cursors[i].input_num)
 			character.scale = Vector2(2, 2)
-			character.global_position = scene_instance.birth_position[i].position
+			character.global_position = scene_instance.scene.birth_markers[i].position # 出生点初始化
 			scene_instance.scene.add_child(character)
 			
 			## P_label实例化

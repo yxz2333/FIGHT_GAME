@@ -13,3 +13,5 @@ var inputs = {  # 在character_select中更改
 }
 
 var can_input : bool = true
+
+@export var birth_markers : Array[Marker2D] = []
