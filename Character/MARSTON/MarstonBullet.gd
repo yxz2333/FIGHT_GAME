@@ -1,4 +1,4 @@
-extends "res://Character/Class/Bullet.gd"
+extends Bullet
 
 
 func _on_body_entered(body : Player): # 碰撞逻辑

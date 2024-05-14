@@ -1,9 +1,9 @@
 extends Control
 
+
 @export var player : Player
 @onready var label : Label = $Label
 
-@export var is_right : bool
 
 var timer : Timer
 
@@ -11,12 +11,12 @@ func _ready():
 	timer = Timer.new()
 	timer.one_shot = true
 	timer.wait_time = 0.5
-	global_position = Vector2(585 if is_right else 20, 27)
-	
 
-var last_test : String = str(0.0) + "%"
+
+var last_test : String = str(0.00) + "%"
 func _physics_process(delta):
-	label.text = str(player.percentage) + "%"
+	label.text = str("%.2f" % (player.percentage)) + "%"
+	
 	if last_test != label.text: # 百分比改变进行的动画
 		var tween = get_tree().create_tween()
 		

@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://d1r5v0gigbm3b"]
 
-[ext_resource type="Script" path="res://Character/Class/angry_bar.gd" id="1_hf1tr"]
+[ext_resource type="Script" path="res://Character/Class/CharacterMenu.gd" id="1_hf1tr"]
 [ext_resource type="Texture2D" uid="uid://c7kubku5u1sd4" path="res://Assets/UI/userlmn_943d9d2dea0b9948dd11e8ab19ea62ff.png" id="2_34lje"]
 [ext_resource type="Script" path="res://Character/NAMKA/BulletBar.gd" id="3_3a07f"]
 [ext_resource type="Texture2D" uid="uid://bf24dhflm4t2n" path="res://Assets/UI/Base-01.png" id="4_wsmae"]

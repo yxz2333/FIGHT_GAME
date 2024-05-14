@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://kbr8115pi1jl" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="2_xx5uv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_lv3yb"]
+line_spacing = 10.0
 font = ExtResource("2_xx5uv")
 
 [node name="Percentage" type="Control"]
@@ -17,8 +18,9 @@ script = ExtResource("1_wqfq0")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_right = 40.0
+offset_right = 47.0
 offset_bottom = 23.0
+text = "00.00%"
 label_settings = SubResource("LabelSettings_lv3yb")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

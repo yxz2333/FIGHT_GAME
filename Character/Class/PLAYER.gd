@@ -14,6 +14,8 @@ var playback : AnimationNodeStateMachinePlayback  # 获取当前动画用
 @onready var state_machine : CharacterStateMachine = $CharacterStateMachine
 @onready var run_start_marker : Marker2D = $Markers/RunStart
 @onready var trail_timer : Timer = $TrailTimer
+@onready var left_character_menu : CharacterMenu = $CanvasLayer/left
+@onready var right_character_menu : CharacterMenu = $CanvasLayer/right
 
 @export var bars : Array[Container] = []
 
@@ -33,8 +35,18 @@ var SA_timer : Timer
 var speed : float                           # 速度
 var has_double_jumped : bool = false        # 二段跳
 var SA : bool = false                       # 是否霸体
+var FZ : bool = false :                     # 是否狂热状态（FZ）
+	get:
+		return FZ
+	set(value):
+		FZ = value
+		left_character_menu.emit_signal("toggle_FZ_mode")
+		right_character_menu.emit_signal("toggle_FZ_mode")
+
+var has_Break : bool = true                 # 是否有Break
 var fixed_percentage : bool = false         # 固定百分比
 var fixed_angry : bool = false              # 固定怒气值
+
 
 var percentage : float = 0.0 :              # 百分比
 	get:
@@ -97,7 +109,7 @@ func _physics_process(delta):
 	direction = Input.get_vector(pp.left_action, pp.right_action, pp.up_action, pp.down_action)
 	
 	## 能否break
-	if Input.is_action_pressed(pp.break_action) and not SA and state_machine.current_state != pp.break_state and pp.break_state.if_can_break():
+	if Input.is_action_pressed(pp.break_action) and not SA and state_machine.current_state != pp.break_state and has_Break:
 		break_skill()
 	
 	## 能否SA
@@ -203,6 +215,7 @@ func check_if_can_DI() -> bool:              # 检查是否能DI
 
 
 func break_skill() -> void:                  # 进入break状态
+	has_Break = false
 	state_machine.current_state.emit_signal("interrupt_state", pp.break_state)
 
 

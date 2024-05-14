@@ -1,10 +1,14 @@
-[gd_scene load_steps=12 format=3 uid="uid://ri2jc5b3kpbk"]
+[gd_scene load_steps=15 format=3 uid="uid://ri2jc5b3kpbk"]
 
-[ext_resource type="Script" path="res://Character/Class/angry_bar.gd" id="1_2t813"]
+[ext_resource type="Script" path="res://Character/Class/CharacterMenu.gd" id="1_r728g"]
 [ext_resource type="Texture2D" uid="uid://c7kubku5u1sd4" path="res://Assets/UI/userlmn_943d9d2dea0b9948dd11e8ab19ea62ff.png" id="2_bg363"]
 [ext_resource type="Texture2D" uid="uid://bf24dhflm4t2n" path="res://Assets/UI/Base-01.png" id="3_q1n4u"]
 [ext_resource type="Script" path="res://Character/Class/BulletBar.gd" id="3_vdb7k"]
-[ext_resource type="Texture2D" uid="uid://cfdp6kfyx3ion" path="res://Assets/CHARAs/NAMKA/name.png" id="4_vjgjb"]
+[ext_resource type="Texture2D" uid="uid://b82wp4oo46rp1" path="res://Assets/CHARAs/NAMKA/Namka.png" id="4_4kskh"]
+[ext_resource type="Texture2D" uid="uid://b4lybo4d35u3w" path="res://Assets/FXs/impact1/impact1_1.png" id="5_qvfk4"]
+[ext_resource type="PackedScene" uid="uid://dt0e6btuyt4bd" path="res://Character/Class/percentage.tscn" id="6_qkjof"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qjeg0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qnva0"]
 atlas = ExtResource("2_bg363")
@@ -30,16 +34,20 @@ region = Rect2(615, 77, 114, 6)
 texture = ExtResource("3_q1n4u")
 region_rect = Rect2(243, 203, 58, 26)
 
-[node name="HBoxContainer" type="HBoxContainer"]
-offset_right = 256.0
-offset_bottom = 21.0
-scale = Vector2(0.5, 0.5)
-script = ExtResource("1_2t813")
+[node name="CharacterMenu" type="VBoxContainer"]
+material = SubResource("ShaderMaterial_qjeg0")
+offset_right = 147.0
+offset_bottom = 40.0
+scale = Vector2(0.75, 0.75)
+script = ExtResource("1_r728g")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="BH" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="BulletBar" type="TextureProgressBar" parent="VBoxContainer" node_paths=PackedStringArray("bus")]
+[node name="Bars" type="VBoxContainer" parent="BH"]
+layout_mode = 2
+
+[node name="BulletBar" type="TextureProgressBar" parent="BH/Bars" node_paths=PackedStringArray("bus")]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 4
@@ -53,7 +61,7 @@ texture_progress_offset = Vector2(2, 2)
 script = ExtResource("3_vdb7k")
 bus = NodePath("../..")
 
-[node name="AngryBar" type="TextureProgressBar" parent="VBoxContainer"]
+[node name="AngryBar" type="TextureProgressBar" parent="BH/Bars"]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 4
@@ -65,7 +73,7 @@ texture_over = SubResource("AtlasTexture_dav42")
 texture_progress = SubResource("AtlasTexture_6qci4")
 texture_progress_offset = Vector2(2, 2)
 
-[node name="EasedAngryBar" type="TextureProgressBar" parent="VBoxContainer/AngryBar"]
+[node name="EasedAngryBar" type="TextureProgressBar" parent="BH/Bars/AngryBar"]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -80,12 +88,23 @@ value = 1.0
 texture_progress = SubResource("AtlasTexture_qrfic")
 texture_progress_offset = Vector2(2, 2)
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="Head" type="PanelContainer" parent="BH"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_b0g0f")
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer"]
-texture_filter = 1
+[node name="TextureRect" type="TextureRect" parent="BH/Head"]
 layout_mode = 2
-texture = ExtResource("4_vjgjb")
-expand_mode = 3
+size_flags_horizontal = 4
+texture = ExtResource("4_4kskh")
+expand_mode = 2
+stretch_mode = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_qvfk4")
+
+[node name="Percentage" parent="HBoxContainer" instance=ExtResource("6_qkjof")]
+layout_mode = 2

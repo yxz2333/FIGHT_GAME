@@ -96,21 +96,27 @@ func _on_angry_2_text_submitted(new_text):
 
 ##### 固定数值的信号
 func _on_p_0_pressed():
-	who[0].fixed_percentage = !who[0].fixed_percentage
+	if who[0] != null:
+		who[0].fixed_percentage = !who[0].fixed_percentage
 
 func _on_a_0_pressed():
-	who[0].fixed_angry = !who[0].fixed_angry
+	if who[0] != null:
+		who[0].fixed_angry = !who[0].fixed_angry
 
 func _on_p_1_pressed():
-	who[1].fixed_percentage = !who[1].fixed_percentage
+	if who[1] != null:
+		who[1].fixed_percentage = !who[1].fixed_percentage
 
 func _on_a_1_pressed():
-	who[1].fixed_angry = !who[1].fixed_angry
+	if who[1] != null:
+		who[1].fixed_angry = !who[1].fixed_angry
 
 func _on_p_2_pressed():
-	who[2].fixed_percentage = !who[2].fixed_percentage
+	if who[2] != null:
+		who[2].fixed_percentage = !who[2].fixed_percentage
 
 func _on_a_2_pressed():
-	who[2].fixed_angry = !who[2].fixed_angry
+	if who[2] != null:
+		who[2].fixed_angry = !who[2].fixed_angry
 	
 ###################

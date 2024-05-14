@@ -3,7 +3,7 @@ extends TextureProgressBar
 
 class_name BulletBar
 
-@export var bus : AngryBar
+@export var bus : CharacterMenu
 
 
 func _ready():
