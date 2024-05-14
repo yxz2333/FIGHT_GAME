@@ -17,7 +17,7 @@ func _return() -> void:
 	next_state = character.current_ground_state
 	playback.travel(character.current_ground_animation)
 
-func on_enter(lamda = null) -> void:
+func on_enter(lambda = null) -> void:
 	if player.sprite.flip_h == false:
 		bullet_start_marker.position.x = abs(bullet_start_marker.position.x)
 	else:

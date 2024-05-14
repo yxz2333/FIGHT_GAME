@@ -60,7 +60,7 @@ func running_loading(str : String = "") -> float:
 	return 2.4
 
 
-func tran_d_0(PATH : String, lamda = null) -> void:   # 第1个默认过渡动画
+func tran_d_0(PATH : String, lambda = null) -> void:   # 第1个默认过渡动画
 	_create_thread(PATH)
 	
 	await get_tree().create_timer(tran_in(0)).timeout
@@ -69,14 +69,14 @@ func tran_d_0(PATH : String, lamda = null) -> void:   # 第1个默认过渡动�
 	await get_tree().create_timer(0.1).timeout
 	b.queue_free()
 	
-	_change_scene(lamda)
+	_change_scene(lambda)
 	
 	await get_tree().create_timer(running_loading()).timeout
 	await get_tree().create_timer(tran_out(0)).timeout
 
 
 
-func tran_d_0_without_loading(PATH : String, lamda = null) -> void:  # 第1个默认过渡动画（无loading）
+func tran_d_0_without_loading(PATH : String, lambda = null) -> void:  # 第1个默认过渡动画（无loading）
 	_create_thread(PATH)
 	
 	await get_tree().create_timer(tran_in(0)).timeout
@@ -85,13 +85,13 @@ func tran_d_0_without_loading(PATH : String, lamda = null) -> void:  # 第1个�
 	await get_tree().create_timer(0.1).timeout
 	b.queue_free()
 	
-	_change_scene(lamda)
+	_change_scene(lambda)
 	
 	await get_tree().create_timer(tran_out(0)).timeout
 	
 
 
-func tran_d_0_without_loading_and_out(PATH : String, lamda = null) -> void:  # 第1个默认过渡动画（无loading,out）
+func tran_d_0_without_loading_and_out(PATH : String, lambda = null) -> void:  # 第1个默认过渡动画（无loading,out）
 	_create_thread(PATH)
 	
 	await get_tree().create_timer(tran_in(0)).timeout
@@ -100,17 +100,17 @@ func tran_d_0_without_loading_and_out(PATH : String, lamda = null) -> void:  # �
 	await get_tree().create_timer(0.1).timeout
 	b.queue_free()
 	
-	_change_scene(lamda)
+	_change_scene(lambda)
 
 
-func tran_d_0_without_in_and_loading(PATH : String, lamda = null) -> void:   # 第1个默认过渡动画（无in,loading）
+func tran_d_0_without_in_and_loading(PATH : String, lambda = null) -> void:   # 第1个默认过渡动画（无in,loading）
 	_create_thread(PATH)
 	
 	var b : ColorRect = _black_tran()
 	await get_tree().create_timer(0.1).timeout
 	b.queue_free()
 	
-	_change_scene(lamda)
+	_change_scene(lambda)
 	
 	await get_tree().create_timer(tran_out(0)).timeout
 	
@@ -134,17 +134,17 @@ func _black_tran() -> ColorRect:                              # 纯黑屏幕转�
 	return black_tran
 
 
-func _change_scene(lamda = null) -> void:
+func _change_scene(lambda = null) -> void:
 	if thread.is_alive():
 		packed_scene = thread.wait_to_finish()                 # 获取线程函数的返回值
 	
-	if lamda == null:
+	if lambda == null:
 		var scene_instance = packed_scene.instantiate()
 		get_tree().root.add_child(scene_instance)
 		get_tree().current_scene.queue_free()
 		get_tree().current_scene = scene_instance
 	else:
-		lamda.call()
+		lambda.call()
 	
 	packed_scene = null
 	thread = null

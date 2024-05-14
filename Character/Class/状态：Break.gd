@@ -13,7 +13,7 @@ func _ready():
 	timer.wait_time = 0.35
 	timer.one_shot = true
 
-func on_enter(lamda = null) -> void:
+func on_enter(lambda = null) -> void:
 	timer.start()
 	
 	playback.travel(pp.break_animation)

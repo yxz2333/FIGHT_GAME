@@ -1,7 +1,7 @@
 extends GroundState
 
 
-func on_enter(lamda = null) -> void:
+func on_enter(lambda = null) -> void:
 	character.current_ground_state = pp.ground_gun_state
 	character.current_ground_animation = pp.ground_gun_animation
 

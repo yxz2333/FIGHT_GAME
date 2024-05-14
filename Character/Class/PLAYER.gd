@@ -29,11 +29,21 @@ var SA_timer : Timer
 ## 动态更新属性
 @export var current_ground_state : GroundState           # 当前ground状态
 @export var current_ground_animation : String = "移动"   # 当前ground动画
+
 var speed : float                           # 速度
 var has_double_jumped : bool = false        # 二段跳
 var SA : bool = false                       # 是否霸体
-var percentage : float = 0.0                # 百分比
-var angry : int :                           # 怒气值
+var fixed_percentage : bool = false         # 固定百分比
+var fixed_angry : bool = false              # 固定怒气值
+
+var percentage : float = 0.0 :              # 百分比
+	get:
+		return percentage
+	set(value):
+		if not fixed_percentage:
+			percentage = value
+
+var angry : int = 0.0 :                     # 怒气值
 	get:
 		return angry
 	set(value):
@@ -42,10 +52,14 @@ var angry : int :                           # 怒气值
 		if value <= 0:
 			value = 0
 			
-		angry = value
-		for key in pp.angry_bar_player_signal.keys(): # 找和玩家编号匹配的信号进行发送
-			if key == pp.player_number:
-				SignalBus.emit_signal(pp.angry_bar_player_signal[key])
+		if not fixed_angry:
+			angry = value
+			for key in pp.angry_bar_player_signal.keys(): # 找和玩家编号匹配的信号进行发送
+				if key == pp.player_number:
+					SignalBus.emit_signal(pp.angry_bar_player_signal[key])
+
+
+
 
 
 func init(s : Scene, pn : int, input_c):

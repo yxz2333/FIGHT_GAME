@@ -191,5 +191,6 @@ position = Vector2(-296, -200)
 characters = ["NAMKA", "MARSTON"]
 
 [node name="TestUI" parent="." node_paths=PackedStringArray("game_manager", "scene") instance=ExtResource("7_x74qs")]
+initial_position = 2
 game_manager = NodePath("..")
 scene = NodePath("../Scene")

@@ -91,7 +91,7 @@ func _start_game() -> void:
 	can_input = false
 	
 	Transitions.tran_d_0("res://Scene/Level-1.tscn",
-	## lamda函数
+	## lambda函数
 	func() -> void:
 		var scene_instance = Transitions.packed_scene.instantiate()
 		

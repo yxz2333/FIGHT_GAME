@@ -5,7 +5,8 @@
 [node name="TestUI" type="Window"]
 title = "DebugMode"
 position = Vector2i(0, 36)
-size = Vector2i(240, 300)
+size = Vector2i(250, 300)
+unresizable = true
 script = ExtResource("1_athqq")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
@@ -33,6 +34,9 @@ text = "       Percentage :"
 layout_mode = 2
 expand_to_text_length = true
 
+[node name="P0" type="CheckButton" parent="PanelContainer/Main/VBoxContainer0/Percentage"]
+layout_mode = 2
+
 [node name="Angry" type="HBoxContainer" parent="PanelContainer/Main/VBoxContainer0"]
 layout_mode = 2
 
@@ -43,6 +47,9 @@ text = "       Angry :          "
 [node name="Angry0" type="LineEdit" parent="PanelContainer/Main/VBoxContainer0/Angry"]
 layout_mode = 2
 expand_to_text_length = true
+
+[node name="A0" type="CheckButton" parent="PanelContainer/Main/VBoxContainer0/Angry"]
+layout_mode = 2
 
 [node name="VBoxContainer1" type="VBoxContainer" parent="PanelContainer/Main"]
 layout_mode = 2
@@ -62,6 +69,9 @@ text = "       Percentage :"
 layout_mode = 2
 expand_to_text_length = true
 
+[node name="P1" type="CheckButton" parent="PanelContainer/Main/VBoxContainer1/Percentage"]
+layout_mode = 2
+
 [node name="Angry" type="HBoxContainer" parent="PanelContainer/Main/VBoxContainer1"]
 layout_mode = 2
 
@@ -72,6 +82,9 @@ text = "       Angry :          "
 [node name="Angry1" type="LineEdit" parent="PanelContainer/Main/VBoxContainer1/Angry"]
 layout_mode = 2
 expand_to_text_length = true
+
+[node name="A1" type="CheckButton" parent="PanelContainer/Main/VBoxContainer1/Angry"]
+layout_mode = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="PanelContainer/Main"]
 layout_mode = 2
@@ -91,6 +104,9 @@ text = "       Percentage :"
 layout_mode = 2
 expand_to_text_length = true
 
+[node name="P2" type="CheckButton" parent="PanelContainer/Main/VBoxContainer2/Percentage"]
+layout_mode = 2
+
 [node name="Angry" type="HBoxContainer" parent="PanelContainer/Main/VBoxContainer2"]
 layout_mode = 2
 
@@ -102,9 +118,18 @@ text = "       Angry :          "
 layout_mode = 2
 expand_to_text_length = true
 
+[node name="A2" type="CheckButton" parent="PanelContainer/Main/VBoxContainer2/Angry"]
+layout_mode = 2
+
 [connection signal="text_submitted" from="PanelContainer/Main/VBoxContainer0/Percentage/Percentage0" to="." method="_on_percentage_0_text_submitted"]
+[connection signal="pressed" from="PanelContainer/Main/VBoxContainer0/Percentage/P0" to="." method="_on_p_0_pressed"]
 [connection signal="text_submitted" from="PanelContainer/Main/VBoxContainer0/Angry/Angry0" to="." method="_on_angry_0_text_submitted"]
+[connection signal="pressed" from="PanelContainer/Main/VBoxContainer0/Angry/A0" to="." method="_on_a_0_pressed"]
 [connection signal="text_submitted" from="PanelContainer/Main/VBoxContainer1/Percentage/Percentage1" to="." method="_on_parcentage_1_text_submitted"]
+[connection signal="pressed" from="PanelContainer/Main/VBoxContainer1/Percentage/P1" to="." method="_on_p_1_pressed"]
 [connection signal="text_submitted" from="PanelContainer/Main/VBoxContainer1/Angry/Angry1" to="." method="_on_angry_1_text_submitted"]
+[connection signal="pressed" from="PanelContainer/Main/VBoxContainer1/Angry/A1" to="." method="_on_a_1_pressed"]
 [connection signal="text_submitted" from="PanelContainer/Main/VBoxContainer2/Percentage/Percentage2" to="." method="_on_parcentage_2_text_submitted"]
+[connection signal="pressed" from="PanelContainer/Main/VBoxContainer2/Percentage/P2" to="." method="_on_p_2_pressed"]
 [connection signal="text_submitted" from="PanelContainer/Main/VBoxContainer2/Angry/Angry2" to="." method="_on_angry_2_text_submitted"]
+[connection signal="pressed" from="PanelContainer/Main/VBoxContainer2/Angry/A2" to="." method="_on_a_2_pressed"]

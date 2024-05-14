@@ -59,38 +59,58 @@ func _on_game_manager_toggle_debug_ui(is_debugging : bool):
 
 
 
-
+##### 修改数值的信号
 func _on_percentage_0_text_submitted(new_text):
 	if who[0] != null:
 		var value = float(new_text)
 		who[0].percentage = value
-
 
 func _on_angry_0_text_submitted(new_text):
 	if who[0] != null:
 		var value = float(new_text)
 		who[0].angry = value
 
-
 func _on_parcentage_1_text_submitted(new_text):
 	if who[1] != null:
 		var value = float(new_text)
 		who[1].percentage = value
-
 
 func _on_angry_1_text_submitted(new_text):
 	if who[1] != null:
 		var value = float(new_text)
 		who[1].angry = value
 
-
 func _on_parcentage_2_text_submitted(new_text):
 	if who[2] != null:
 		var value = float(new_text)
 		who[2].percentage = value
 
-
 func _on_angry_2_text_submitted(new_text):
 	if who[2] != null:
 		var value = float(new_text)
 		who[2].angry = value
+
+###################
+
+
+
+##### 固定数值的信号
+func _on_p_0_pressed():
+	who[0].fixed_percentage = !who[0].fixed_percentage
+
+func _on_a_0_pressed():
+	who[0].fixed_angry = !who[0].fixed_angry
+
+func _on_p_1_pressed():
+	who[1].fixed_percentage = !who[1].fixed_percentage
+
+func _on_a_1_pressed():
+	who[1].fixed_angry = !who[1].fixed_angry
+
+func _on_p_2_pressed():
+	who[2].fixed_percentage = !who[2].fixed_percentage
+
+func _on_a_2_pressed():
+	who[2].fixed_angry = !who[2].fixed_angry
+	
+###################

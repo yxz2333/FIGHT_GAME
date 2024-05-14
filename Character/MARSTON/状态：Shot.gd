@@ -9,7 +9,7 @@ func init():
 	character.bullets_number = pp.maximum_bullets
 	check_if_can_shot = 0  
 
-func on_enter(lamda = null) -> void:
+func on_enter(lambda = null) -> void:
 	if character.bullets_number <= 0: # 子弹没了直接返回
 		_return()
 		return

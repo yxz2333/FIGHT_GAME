@@ -2,7 +2,7 @@ extends State
 
 class_name GunStartState
 
-func on_enter(lamda = null):
+func on_enter(lambda = null):
 	playback.travel(pp.gun_start_animation)
 
 
