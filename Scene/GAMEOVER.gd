@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 @export var characters = []
+@onready var label : Label = $Label
 
 var is_game_over : bool = false
 
@@ -10,14 +11,14 @@ func _ready():
 	SignalBus.connect("who_is_winner", _on_who_is_winner)
 
 
-func _on_who_is_winner(name : String) -> void:
+func _on_who_is_winner(num : int) -> void:
+	label.hide()
 	show()
 	await get_tree().create_timer(1.5).timeout
 	
-	var animation_name : String = "%s获胜"
-	for character in characters:
-		if name == character:
-			animation_player.play(animation_name % character) # 格式化字符串
+	label.text = ("Player" + ' ' + str(num))
+	
+	animation_player.play("GG")
 	
 	await get_tree().create_timer(0.5).timeout
 	is_game_over = true

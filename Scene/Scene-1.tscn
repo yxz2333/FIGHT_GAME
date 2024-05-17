@@ -481,6 +481,7 @@ polygon = PackedVector2Array(287, 16, 274, 37, 287, 34, 299, 19)
 [node name="Scene" type="Node2D" node_paths=PackedStringArray("birth_markers")]
 script = ExtResource("1_ammx6")
 tilemap_limit_bottom = 9000.0
+mode = "solo"
 birth_markers = [NodePath("P1"), NodePath("P2")]
 
 [node name="MAP" type="Node2D" parent="."]

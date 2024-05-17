@@ -27,13 +27,5 @@ func on_enter(lambda = null) -> void:
 func state_process(delta) -> void: 
 	character.velocity = Vector2.ZERO
 
-func _return() -> void:
-	if not character.is_on_floor():
-		next_state = pp.air_state
-		playback.travel(pp.jump_loop_animation)
-	else:
-		next_state = character.current_ground_state
-		playback.travel(character.current_ground_animation)
-
 func _on_timer_timeout():
 	_return()

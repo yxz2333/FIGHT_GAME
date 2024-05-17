@@ -1,10 +1,13 @@
 extends GroundState
 
-@export var attack_animation : String
-
-func on_enter(lambda = null) -> void:
-	character.current_ground_state = pp.ground_default_state
-	character.current_ground_animation = pp.move_animation
+class_name GroundDefaultState
 
 func attack() -> void:
-	next_state = pp.attack_state
+	set_next_state(pp.attack_state)
+
+
+func state_input(event : InputEvent) -> void: # 读入状态事件
+	super(event)
+	
+	if event.is_action_pressed(pp.attack_action):
+		attack()

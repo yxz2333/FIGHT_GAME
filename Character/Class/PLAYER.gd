@@ -3,6 +3,7 @@ extends CharacterBody2D
 class_name Player
 
 
+var game_manager : GameManager
 var scene : Scene
 @export var pp : PlayerProperty
 @export var run_start_effect : PackedScene
@@ -29,11 +30,7 @@ var SA_timer : Timer
 
 
 ## 动态更新属性
-@export var current_ground_state : GroundState           # 当前ground状态
-@export var current_ground_animation : String = "移动"   # 当前ground动画
-
-var speed : float                           # 速度
-var has_double_jumped : bool = false        # 二段跳
+var has_double_jumped : bool = false        # 是否二段跳
 var SA : bool = false                       # 是否霸体
 var FZ : bool = false :                     # 是否狂热状态（FZ）
 	get:
@@ -42,12 +39,11 @@ var FZ : bool = false :                     # 是否狂热状态（FZ）
 		FZ = value
 		left_character_menu.emit_signal("toggle_FZ_mode")
 		right_character_menu.emit_signal("toggle_FZ_mode")
-
 var has_Break : bool = true                 # 是否有Break
-var fixed_percentage : bool = false         # 固定百分比
-var fixed_angry : bool = false              # 固定怒气值
+var fixed_percentage : bool = false         # 是否固定百分比
+var fixed_angry : bool = false              # 是否固定怒气值
 
-
+var speed : float                           # 速度
 var percentage : float = 0.0 :              # 百分比
 	get:
 		return percentage

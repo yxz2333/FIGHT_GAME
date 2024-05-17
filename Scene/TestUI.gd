@@ -26,7 +26,7 @@ class_name LevelTestUI
 var who : Array[Player] = []
 var total : int = 0
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	visible = false
 	self.get_viewport().set_embedding_subwindows(false)

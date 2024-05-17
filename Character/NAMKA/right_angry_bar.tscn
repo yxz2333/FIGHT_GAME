@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://Character/Class/CharacterMenu.gd" id="1_r728g"]
 [ext_resource type="Texture2D" uid="uid://c7kubku5u1sd4" path="res://Assets/UI/userlmn_943d9d2dea0b9948dd11e8ab19ea62ff.png" id="2_bg363"]
 [ext_resource type="Texture2D" uid="uid://bf24dhflm4t2n" path="res://Assets/UI/Base-01.png" id="3_q1n4u"]
-[ext_resource type="Script" path="res://Character/Class/BulletBar.gd" id="3_vdb7k"]
 [ext_resource type="Texture2D" uid="uid://b82wp4oo46rp1" path="res://Assets/CHARAs/NAMKA/Namka.png" id="4_4kskh"]
 [ext_resource type="Texture2D" uid="uid://b4lybo4d35u3w" path="res://Assets/FXs/impact1/impact1_1.png" id="5_qvfk4"]
+[ext_resource type="Texture2D" uid="uid://b3pxb2rkhvb1m" path="res://Assets/CHARAs/NAMKA/namka_gun.png" id="6_ccbl5"]
 [ext_resource type="PackedScene" uid="uid://dt0e6btuyt4bd" path="res://Character/Class/percentage.tscn" id="6_qkjof"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qjeg0"]
@@ -38,7 +38,6 @@ region_rect = Rect2(243, 203, 58, 26)
 material = SubResource("ShaderMaterial_qjeg0")
 offset_right = 147.0
 offset_bottom = 40.0
-scale = Vector2(0.75, 0.75)
 script = ExtResource("1_r728g")
 
 [node name="BH" type="HBoxContainer" parent="."]
@@ -47,7 +46,7 @@ layout_mode = 2
 [node name="Bars" type="VBoxContainer" parent="BH"]
 layout_mode = 2
 
-[node name="BulletBar" type="TextureProgressBar" parent="BH/Bars" node_paths=PackedStringArray("bus")]
+[node name="BulletBar" type="TextureProgressBar" parent="BH/Bars"]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 4
@@ -58,8 +57,6 @@ fill_mode = 1
 texture_over = SubResource("AtlasTexture_qnva0")
 texture_progress = SubResource("AtlasTexture_2huai")
 texture_progress_offset = Vector2(2, 2)
-script = ExtResource("3_vdb7k")
-bus = NodePath("../..")
 
 [node name="AngryBar" type="TextureProgressBar" parent="BH/Bars"]
 texture_filter = 1
@@ -99,12 +96,28 @@ texture = ExtResource("4_4kskh")
 expand_mode = 2
 stretch_mode = 6
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="BP" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="BP"]
 layout_mode = 2
 texture = ExtResource("5_qvfk4")
 
-[node name="Percentage" parent="HBoxContainer" instance=ExtResource("6_qkjof")]
+[node name="Timer" type="Timer" parent="BP/TextureRect"]
+wait_time = 24.0
+one_shot = true
+
+[node name="Special" type="PanelContainer" parent="BP"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_b0g0f")
+
+[node name="TextureRect" type="TextureRect" parent="BP/Special"]
+layout_mode = 2
+texture = ExtResource("6_ccbl5")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Percentage" parent="BP" instance=ExtResource("6_qkjof")]
+layout_mode = 2
+
+[connection signal="timeout" from="BP/TextureRect/Timer" to="." method="_on_timer_timeout"]

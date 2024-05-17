@@ -1,11 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://dw77qolih5eca"]
+[gd_scene load_steps=15 format=3 uid="uid://dw77qolih5eca"]
 
 [ext_resource type="Script" path="res://Character/Class/CharacterMenu.gd" id="1_o8hr5"]
 [ext_resource type="Texture2D" uid="uid://bf24dhflm4t2n" path="res://Assets/UI/Base-01.png" id="2_h12c8"]
 [ext_resource type="Texture2D" uid="uid://b82wp4oo46rp1" path="res://Assets/CHARAs/NAMKA/Namka.png" id="3_adcjy"]
 [ext_resource type="Texture2D" uid="uid://c7kubku5u1sd4" path="res://Assets/UI/userlmn_943d9d2dea0b9948dd11e8ab19ea62ff.png" id="4_qbav1"]
-[ext_resource type="Script" path="res://Character/Class/BulletBar.gd" id="5_cc1dh"]
 [ext_resource type="Texture2D" uid="uid://b4lybo4d35u3w" path="res://Assets/FXs/impact1/impact1_1.png" id="6_fy0qc"]
+[ext_resource type="Texture2D" uid="uid://b3pxb2rkhvb1m" path="res://Assets/CHARAs/NAMKA/namka_gun.png" id="6_xiw2v"]
 [ext_resource type="PackedScene" uid="uid://dt0e6btuyt4bd" path="res://Character/Class/percentage.tscn" id="7_4836b"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4mp63"]
@@ -32,10 +32,13 @@ region = Rect2(615, 269, 114, 6)
 atlas = ExtResource("4_qbav1")
 region = Rect2(615, 77, 114, 6)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cw3lm"]
+texture = ExtResource("2_h12c8")
+region_rect = Rect2(243, 203, 58, 26)
+
 [node name="CharacterMenu" type="VBoxContainer"]
 offset_right = 146.0
 offset_bottom = 44.0
-scale = Vector2(0.75, 0.75)
 script = ExtResource("1_o8hr5")
 
 [node name="BH" type="HBoxContainer" parent="."]
@@ -66,7 +69,6 @@ fill_mode = 1
 texture_over = SubResource("AtlasTexture_2m6ya")
 texture_progress = SubResource("AtlasTexture_cblri")
 texture_progress_offset = Vector2(2, 2)
-script = ExtResource("5_cc1dh")
 
 [node name="AngryBar" type="TextureProgressBar" parent="BH/Bars"]
 texture_filter = 1
@@ -106,5 +108,17 @@ texture = ExtResource("6_fy0qc")
 wait_time = 24.0
 one_shot = true
 
+[node name="Special" type="PanelContainer" parent="BP"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_cw3lm")
+
+[node name="TextureRect" type="TextureRect" parent="BP/Special"]
+layout_mode = 2
+texture = ExtResource("6_xiw2v")
+expand_mode = 2
+stretch_mode = 5
+
 [node name="Percentage" parent="BP" instance=ExtResource("7_4836b")]
 layout_mode = 2
+
+[connection signal="timeout" from="BP/TextureRect/Timer" to="." method="_on_timer_timeout"]

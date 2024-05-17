@@ -13,9 +13,6 @@ var bullet : PackedScene
 func init():
 	bullet = pp.bullet
 
-func _return() -> void:
-	next_state = character.current_ground_state
-	playback.travel(character.current_ground_animation)
 
 func on_enter(lambda = null) -> void:
 	if player.sprite.flip_h == false:
@@ -25,5 +22,5 @@ func on_enter(lambda = null) -> void:
 
 func state_input(event : InputEvent) -> void:
 	if character.is_on_floor() and event.is_action_pressed(pp.jump_action):
-		next_state = pp.air_state
-		character.current_ground_state.jump()
+		set_next_state(pp.air_state)
+		character.ground_state().jump()

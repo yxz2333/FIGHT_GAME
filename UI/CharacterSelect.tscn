@@ -737,6 +737,7 @@ outline_color = Color(1, 0.88836, 0.912776, 1)
 script = ExtResource("1_whuh8")
 total_players = 2
 tilemap_limit_bottom = 188.0
+mode = "character_select"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0.968627)

@@ -10,7 +10,8 @@ signal on_hit(node : Node, damage_taken : int, lambda)
 @export var player_property : PlayerProperty
 
 func hit(damage : int, by_who : Player, lambda = null): # 计算百分比、怒气值、闪白
-	by_who.angry += damage * 0.25
+	if by_who != null:
+		by_who.angry += damage * 0.25
 	character.percentage += damage * 0.25
 	character.angry += damage * 0.5
 	emit_signal("on_hit", get_parent(), damage, lambda)

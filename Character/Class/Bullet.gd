@@ -24,5 +24,8 @@ func _process(delta): # 子弹就开高帧率了，看着舒服
 func _on_body_entered(body : Player): # 碰撞逻辑
 	for child in body.get_children():
 		if child is Damageable:
+			
+			if is_instance_valid(player):  # 释放的对象不能传入函数
+				player = null
 			child.hit(damage, player)
 			queue_free()

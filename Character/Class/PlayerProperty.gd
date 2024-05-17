@@ -59,11 +59,11 @@ var attack_cancel : String
 @export var ground_default_state : State
 
 ## 动画
-@export var move_animation : String
-@export var jump_start_animation : String
-@export var jump_loop_animation : String
-@export var double_jump_animation : String
-@export var hit_animation : String
+@export var move_animation : String = "移动"
+@export var jump_start_animation : String = "跳跃_开始"
+@export var jump_loop_animation : String = "跳跃_循环"
+@export var double_jump_animation : String = "跳跃_连跳"
+@export var hit_animation : String = "受伤"
 @export var break_animation : String = "爆发"
 
 
@@ -78,7 +78,7 @@ var actions = {
 	"up_action" = "up_player_",                              # w 上
 	"down_action" = "down_player_",                          # s 下
 	"attack_action" = "attack_1_player_",                    # j 1
-	"shot_action" = "attack_1_player_",                     # j 1
+	"shot_action" = "attack_1_player_",                      # j 1
 	"switch_gun_mode_action" = "switch_to_gun_mode_player_", # u 4
 	"jump_action" = "jump_player_",                          # k 2
 	"break_action" = "break_player_",                        # i 5

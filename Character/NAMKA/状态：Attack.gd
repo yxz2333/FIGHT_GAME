@@ -11,18 +11,16 @@ func state_input(event : InputEvent) -> void:
 	super(event)
 	if event.is_action_pressed(pp.attack_cancel):
 		attack_area.monitoring = false
-		next_state = character.current_ground_state
-		playback.travel(character.current_ground_animation)
-		
+		_return()
 
 
 func _on_animation_tree_animation_finished(anim_name):
 	if anim_name == attack_1_animation_left:
 		playback.travel(attack_2_animation_origin)
 	if anim_name == attack_1_animation_right:
+		能否跑 = false
 		playback.travel(attack_2_animation_origin)
 		
 	if anim_name == attack_2_animation_left or anim_name == attack_2_animation_right:
-		next_state = character.current_ground_state
-		playback.travel(character.current_ground_animation)
+		_return()
 

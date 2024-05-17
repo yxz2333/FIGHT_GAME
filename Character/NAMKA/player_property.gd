@@ -20,7 +20,7 @@ var bullet_bar_player_signal = {
 @export var gun_start_state : State
 
 ## 动画
-@export var shot_animation : String
+@export var shot_animation : String = "射击"
 @export var gun_start_animation : String = "拔枪"
 @export var ground_gun_animation : String = "持枪移动"
 @export var attack_1_animation : String = "攻击_准备"

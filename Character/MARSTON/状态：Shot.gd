@@ -7,7 +7,7 @@ var check_if_can_shot : bool
 func init():
 	super() # 调用父类初始化
 	character.bullets_number = pp.maximum_bullets
-	check_if_can_shot = 0  
+	check_if_can_shot = false
 
 func on_enter(lambda = null) -> void:
 	if character.bullets_number <= 0: # 子弹没了直接返回
@@ -17,7 +17,7 @@ func on_enter(lambda = null) -> void:
 	super() # 调用父类的子弹发射坐标翻转函数
 	timer.start()
 	playback.travel(pp.shot_animation)
-	check_if_can_shot = 0
+	check_if_can_shot = false
 	
 func shot() -> void:
 	var bullet_instantiate = bullet.instantiate()
@@ -34,13 +34,15 @@ func state_input(event : InputEvent) -> void:
 		timer.start()
 		anim_player.seek(0, true)
 		anim_player.play(pp.shot_animation)
-		check_if_can_shot = 0
+		check_if_can_shot = false
 
 	if event.is_action_pressed(pp.left_action) or event.is_action_pressed(pp.right_action):
 		_return()
 
+
+## 函数在anim_player里调用了这个函数
 func _change_to_can_shot() -> void: # 开完枪后check_if_can_shot设为1，即可以连续再开一枪
-	check_if_can_shot = 1
+	check_if_can_shot = true
 	character.bullets_number -= 1
 
 	for key in pp.bullet_bar_player_signal.keys(): # 找和玩家编号匹配的信号进行发送

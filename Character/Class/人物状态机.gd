@@ -61,3 +61,6 @@ func switch_states(new_state : State, lambda = null) -> void:
 	current_state = new_state
 	
 	current_state.on_enter(lambda)
+
+
+
