@@ -4,11 +4,10 @@ class_name GameManager
 
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 
-@export var out : PackedScene
 @export var scene : Scene 
 @export var game_set_animation : String = "game_set"
-
-@export var mode : String
+@export_enum("solo", "party", "character_select") var mode : String
+@export var players : Array[Player]
 
 var is_game_over : bool = false
 
@@ -38,12 +37,17 @@ var is_debugging : bool = false:
 		emit_signal("toggle_debug_ui", is_debugging) # 向TestUI.gd发出信号
 
 
+signal player_out_of_screen(node : Player) # 出屏幕
+signal who_is_winner(name : String) # 胜者
 
 
 func _ready():
 	self.get_viewport().set_embedding_subwindows(false)   # 创建新窗口一定要这句代码
 	
-	SignalBus.connect("player_out_of_screen", _game_over) # 连接player.gd发出的信号
+	if mode == "party":
+		ProjectSettings.set_setting("display/window/stretch/scale", 1.0) # 改变缩放
+	
+	connect("player_out_of_screen", _one_player_is_out) # 连接player.gd发出的信号
 
 
 
@@ -55,38 +59,38 @@ func _input(event : InputEvent):
 		is_debugging = !is_debugging
 
 
-
-func _game_over(node : Player):
-	is_game_over = true
+func _one_player_is_out(node : Player) -> void:
+	if is_game_over:
+		return
 	
-	game_over_out(node) # 生成out
+	scene.create_out(node) # 生成out
 	
-	var node_name : String = node.pp._name
 	node.queue_free()
 	
-	CameraSetting.camera_shake(game_over_camera_shake_offset, game_over_camera_shake_zoom, game_over_camera_shake_duration)
-	game_set_then_game_over(node_name)
-
-
-func game_over_out(node : Player) -> void:                  # 生成out特效
-	var out_instance = out.instantiate()
+	var winner : Player = check_if_gameover() 
 	
+	scene.camera.camera_shake(game_over_camera_shake_offset, game_over_camera_shake_zoom, game_over_camera_shake_duration)
 	
-	## 设置out位置
-	if node.global_position.y < scene.tilemap_limit_bottom:
-		out_instance.rotation_degrees = 0.0
-		if node.global_position.x < 0:
-			out_instance.flip_h = false
-			out_instance.global_position = Vector2(-90, node.global_position.y)
-		elif node.global_position.x > 0:
-			out_instance.flip_h = true
-			out_instance.global_position = Vector2( 90, node.global_position.y)
-	add_sibling(out_instance)
-	await get_tree().create_timer(0.25).timeout # 等待0.25秒
-	out_instance.queue_free()
+	if winner != null:
+		print(winner)
+		game_set_then_game_over(winner)
 
 
-func game_set_then_game_over(node_name : String) -> void:   # gameset和gameover
+func check_if_gameover() -> Player:    # 检查是否只有一位玩家幸存，即检查游戏是否结束
+	var cnt : int = 0
+	var winner : Player = null
+	for player in players:
+		if not player.is_queued_for_deletion():
+			print(player)
+			cnt += 1
+			winner = player
+	if cnt == 1:
+		is_game_over = true
+	
+	return winner
+
+
+func game_set_then_game_over(winner : Player) -> void:   # gameset和gameover
 	animation_player.play(game_set_animation) 
 	
 	await get_tree().create_timer(0.4).timeout # 等待0.4秒
@@ -97,6 +101,4 @@ func game_set_then_game_over(node_name : String) -> void:   # gameset和gameover
 	
 	animation_player.play("RESET") # reset就是黑屏
 	
-	for child in scene.get_children():
-		if child is Player:
-			SignalBus.emit_signal("who_is_winner", child.pp.player_number) # 信号发送给gameover.gd
+	emit_signal("who_is_winner", winner.pp.player_number) # 信号发送给gameover.gd

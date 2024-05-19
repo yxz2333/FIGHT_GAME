@@ -4,7 +4,8 @@ class_name Player
 
 
 var game_manager : GameManager
-var scene : Scene
+@export var scene : Scene
+var camera_setting : CameraSetting
 @export var pp : PlayerProperty
 @export var run_start_effect : PackedScene
 @export var canvas_layer : CanvasLayer
@@ -72,6 +73,7 @@ var angry : int = 0.0 :                     # 怒气值
 
 func init(s : Scene, pn : int, input_c):
 	scene = s
+	camera_setting = scene.camera
 	pp.player_number = pn
 	pp.init_input(input_c)
 
@@ -157,18 +159,9 @@ func _physics_process(delta):
 			velocity.x = move_toward(velocity.x, 0, pp.speed * 0.23 * (100 / (percentage + 10)))
 	
 	
-	check_if_out_of_screen()
 	move_and_slide()
 	update_animation_parameters()
 
-
-func check_if_out_of_screen() -> void:       # 检查是否飞出屏幕
-	if (global_position.x < scene.tilemap_limit_left or 
-		global_position.x > scene.tilemap_limit_right or 
-		global_position.y > scene.tilemap_limit_bottom): # 出屏幕
-		
-		SignalBus.emit_signal("player_out_of_screen", self)
-		queue_free()
 
 
 func update_animation_parameters() -> void:  # 设置移动动画对应参数
@@ -233,11 +226,13 @@ func DI_timer_init() -> void:
 	add_child(DI_timer)
 	DI_timer.one_shot = true
 	DI_timer.wait_time = 0.5
+	
 func SA_timer_init() -> void:
 	SA_timer = Timer.new()
 	add_child(SA_timer)
 	SA_timer.one_shot = true
 	SA_timer.wait_time = 5
+	
 func angry_bar_init() -> void:
 	for i in len(bars):
 		if i + 1 != pp.player_number:

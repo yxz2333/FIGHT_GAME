@@ -280,12 +280,11 @@ Button/styles/pressed = SubResource("StyleBoxEmpty_lak63")
 
 [node name="TitleMenu" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -471.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_left = 321.0
+offset_top = 184.0
+offset_right = 321.0
+offset_bottom = 184.0
 script = ExtResource("1_xl6yo")
 
 [node name="Background" type="Control" parent="."]

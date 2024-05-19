@@ -1,7 +1,7 @@
-[gd_scene load_steps=51 format=3 uid="uid://wbw78b2g2qol"]
+[gd_scene load_steps=52 format=3 uid="uid://wbw78b2g2qol"]
 
 [ext_resource type="Texture2D" uid="uid://cg8oc15tjjsvo" path="res://Assets/ENVIRO/Level Design/trunk2.png" id="1_4snhx"]
-[ext_resource type="Script" path="res://Scene/Scene-1.gd" id="1_ammx6"]
+[ext_resource type="Script" path="res://Scene/Scene.gd" id="1_ammx6"]
 [ext_resource type="Texture2D" uid="uid://cgc0ph28vepci" path="res://Assets/Mob/ButterflyA.png" id="1_xbpe6"]
 [ext_resource type="Texture2D" uid="uid://bgaydpqkpau41" path="res://Assets/ENVIRO/Level Design/trunk3.png" id="2_7jktj"]
 [ext_resource type="Texture2D" uid="uid://dhv7s48apojnv" path="res://Assets/ENVIRO/Level Design/trunk4.png" id="3_n25va"]
@@ -28,7 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://bd8c84jxrcklm" path="res://Assets/ENVIRO/Background/tree_trunk6.png" id="24_rsqlb"]
 [ext_resource type="Texture2D" uid="uid://d1lulkk7ljkoi" path="res://Assets/ENVIRO/Background/tree_leaves5.png" id="25_isoid"]
 [ext_resource type="Texture2D" uid="uid://ro7d4i236ywj" path="res://Assets/ENVIRO/Background/tree_leaves4.png" id="26_npcgn"]
-[ext_resource type="Script" path="res://Scene/Camera.gd" id="30_g4gky"]
+[ext_resource type="Script" path="res://Scene/CameraEFFET.gd" id="30_g4gky"]
 
 [sub_resource type="Animation" id="Animation_nkphi"]
 length = 3.0
@@ -478,11 +478,17 @@ polygon = PackedVector2Array(5, 21, 30, 23, 13, 1, 6, 4)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_w7w7j"]
 polygon = PackedVector2Array(287, 16, 274, 37, 287, 34, 299, 19)
 
-[node name="Scene" type="Node2D" node_paths=PackedStringArray("birth_markers")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ay5xy"]
+size = Vector2(640, 362)
+
+[node name="Scene-1" type="Node2D" node_paths=PackedStringArray("birth_markers", "camera", "limit_area", "limit_coll")]
 script = ExtResource("1_ammx6")
-tilemap_limit_bottom = 9000.0
 mode = "solo"
 birth_markers = [NodePath("P1"), NodePath("P2")]
+camera = NodePath("Camera")
+limit_area = NodePath("LimitArea")
+limit_coll = NodePath("LimitArea/LimitCollision")
+out_pos = Array[Vector2]([Vector2(19, 1), Vector2(-19, 1), Vector2(-11, 0.5), Vector2(11, 0.5)])
 
 [node name="MAP" type="Node2D" parent="."]
 position = Vector2(-320, -180)
@@ -728,3 +734,12 @@ position = Vector2(-192, -115)
 
 [node name="P2" type="Marker2D" parent="."]
 position = Vector2(245, -115)
+
+[node name="LimitArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="LimitCollision" type="CollisionShape2D" parent="LimitArea"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_ay5xy")
+debug_color = Color(0.668797, 0.484984, 0.437889, 0.42)

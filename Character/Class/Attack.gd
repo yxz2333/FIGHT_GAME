@@ -47,8 +47,8 @@ func _on_body_entered(body : Player): # 碰撞逻辑
 func on_opponent_is_hit(knockback_direction, opponent : Player):
 	
 	## 镜头抖动和卡帧
-	CameraSetting.camera_shake(camera_shake_offset, camera_shake_zoom, camera_shake_duration)
-	CameraSetting.frame_freeze(time_scale, frame_freeze_duration)
+	player.camera_setting.camera_shake(camera_shake_offset, camera_shake_zoom, camera_shake_duration)
+	player.camera_setting.frame_freeze(time_scale, frame_freeze_duration)
 	
 	## 击退曲线
 	opponent.velocity += Vector2(knockback_direction * ((damage * opponent.percentage * 0.01 + opponent.percentage * 0.4) * (1000 / (opponent.pp.weight)) * 2.4 + knockback_speed * ((100 - opponent.percentage) if 100 - opponent.percentage > 20 else 20) + extra_knockback_speed) , 

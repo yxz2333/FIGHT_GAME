@@ -11,8 +11,7 @@ signal bullet_bar_change_player_2() # ui（怒气值、百分比）变化
 signal bullet_bar_change_player_3() # ui（怒气值、百分比）变化
 signal bullet_bar_change_player_4() # ui（怒气值、百分比）变化
 
-signal player_out_of_screen(node : Player) # 出屏幕
-signal who_is_winner(name : String) # 胜者
+
 
 var window_mode = DisplayServer.WINDOW_MODE_WINDOWED
 

@@ -1,15 +1,23 @@
-[gd_scene load_steps=12 format=3 uid="uid://dqykt4wqbs1o4"]
+[gd_scene load_steps=12 format=3 uid="uid://bpwhsg3mox381"]
 
-[ext_resource type="Script" path="res://Scene/GameManager.gd" id="1_wad5p"]
-[ext_resource type="PackedScene" uid="uid://v3i33nk2qaro" path="res://Scene/out!.tscn" id="2_bqptn"]
-[ext_resource type="PackedScene" uid="uid://wbw78b2g2qol" path="res://Scene/Scene-1.tscn" id="2_w4p2y"]
-[ext_resource type="PackedScene" uid="uid://n30bfletkfyf" path="res://UI/pause_menu.tscn" id="3_7vw8l"]
-[ext_resource type="FontFile" uid="uid://kbr8115pi1jl" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="4_twdmt"]
-[ext_resource type="PackedScene" uid="uid://dclbkwlx6sywy" path="res://UI/gameover.tscn" id="5_eiuhl"]
-[ext_resource type="PackedScene" uid="uid://6gamrnyppmn4" path="res://Scene/TestUI.tscn" id="7_x74qs"]
+[ext_resource type="Script" path="res://Scene/GameManager.gd" id="1_i2vow"]
+[ext_resource type="PackedScene" uid="uid://bqiyvxvvt6xk" path="res://Scene/Party/Scene-2.tscn" id="2_44nsu"]
+[ext_resource type="PackedScene" uid="uid://n30bfletkfyf" path="res://UI/pause_menu.tscn" id="3_1drrr"]
+[ext_resource type="FontFile" uid="uid://kbr8115pi1jl" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="4_a0k07"]
+[ext_resource type="PackedScene" uid="uid://dclbkwlx6sywy" path="res://Scene/Solo/gameover.tscn" id="5_6jnwk"]
+[ext_resource type="PackedScene" uid="uid://6gamrnyppmn4" path="res://Scene/TestUI.tscn" id="6_m6hs0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_iao6i"]
+font = ExtResource("4_a0k07")
+font_size = 300
+font_color = Color(0.952941, 0.113725, 0.0980392, 0.984314)
+outline_size = 10
+outline_color = Color(0.235294, 0.235294, 0.235294, 1)
+shadow_size = 12
+shadow_color = Color(0, 0, 0, 0.698039)
 
 [sub_resource type="LabelSettings" id="LabelSettings_6legm"]
-font = ExtResource("4_twdmt")
+font = ExtResource("4_a0k07")
 font_size = 300
 font_color = Color(0.952941, 0.113725, 0.0980392, 0.984314)
 outline_size = 10
@@ -151,21 +159,19 @@ _data = {
 "game_set": SubResource("Animation_nbii4")
 }
 
-[node name="Level-1" type="Node" node_paths=PackedStringArray("scene")]
+[node name="Level-2" type="Node" node_paths=PackedStringArray("scene")]
 process_mode = 3
-script = ExtResource("1_wad5p")
-out = ExtResource("2_bqptn")
-scene = NodePath("Scene")
-mode = "solo"
-game_over_camera_shake_zoom = Vector2(0.9, 0.9)
-game_over_camera_shake_duration = 0.4
+script = ExtResource("1_i2vow")
+scene = NodePath("Scene-2")
+mode = "party"
 
-[node name="Scene" parent="." instance=ExtResource("2_w4p2y")]
+[node name="Scene-2" parent="." node_paths=PackedStringArray("game_manager") instance=ExtResource("2_44nsu")]
 process_mode = 1
+game_manager = NodePath("..")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="PauseMenu" parent="CanvasLayer" node_paths=PackedStringArray("game_manager") instance=ExtResource("3_7vw8l")]
+[node name="PauseMenu" parent="CanvasLayer" node_paths=PackedStringArray("game_manager") instance=ExtResource("3_1drrr")]
 game_manager = NodePath("../..")
 
 [node name="Label" type="Label" parent="."]
@@ -176,23 +182,25 @@ offset_right = 347.0
 offset_bottom = 906.0
 text = "Game
   Set!!"
-label_settings = SubResource("LabelSettings_6legm")
+label_settings = SubResource("LabelSettings_iao6i")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 process_mode = 3
+root_node = NodePath("../TestUI")
 libraries = {
 "": SubResource("AnimationLibrary_ovqra")
 }
 
-[node name="GAMEOVER" parent="." instance=ExtResource("5_eiuhl")]
+[node name="GAMEOVER" parent="." node_paths=PackedStringArray("game_manager") instance=ExtResource("5_6jnwk")]
 process_mode = 3
 position = Vector2(-296, -200)
-characters = ["NAMKA", "MARSTON"]
+game_manager = NodePath("..")
 
-[node name="TestUI" parent="." node_paths=PackedStringArray("game_manager", "scene") instance=ExtResource("7_x74qs")]
+[node name="TestUI" parent="." node_paths=PackedStringArray("game_manager", "scene") instance=ExtResource("6_m6hs0")]
+process_mode = 3
 initial_position = 2
 visible = false
 game_manager = NodePath("..")
-scene = NodePath("../Scene")
+scene = NodePath("../Scene-2")

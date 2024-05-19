@@ -5,7 +5,7 @@ class_name PlayerCursor
 @onready var label : Label = $Label
 @onready var texture : AnimatedSprite2D = $AnimatedSprite2D
 var sprite_marker : Node2D
-var out : PackedScene = preload("res://Scene/out!.tscn")
+#var out : PackedScene = preload("res://Scene/out!.tscn")
 
 var num : int
 var input_num
@@ -47,7 +47,7 @@ func _ready():
 	label_init()
 	shader_material_init()
 	
-	SignalBus.connect("player_out_of_screen", _back)
+	menu.connect("player_out_of_screen", _back)
 	
 	if sprite_marker != null:
 		for child in sprite_marker.get_children():
@@ -159,38 +159,15 @@ func input_config(accept_input) -> void: # 配置鼠标指针输入，初始化i
 
 
 func _back(node : Player) -> void:       # 人物出界，重选人物，out特效，sprite关掉
-	if node.pp.player_number != num:  # 匹配编号
+	if node.pp.player_number != num:     # 匹配编号
 		return
 	
 	menu.selected_player -= 1
 	
 	show()
 	selected_UI = null
-	
-	var out_instance = out.instantiate()
-	
-	## 设置out位置
-	if node.position.y < menu.tilemap_limit_bottom:
-		out_instance.rotation_degrees = 0.0
-		if node.position.x < 0:
-			out_instance.flip_h = false
-			out_instance.global_position = Vector2(-120, node.position.y)
-		elif node.position.x > 0:
-			out_instance.flip_h = true
-			out_instance.global_position = Vector2( 120, node.position.y)
-	else:
-		out_instance.rotation_degrees = -90.0
-		out_instance.scale = Vector2(0.5, 0.5)
-		if node.position.x < 0:
-			out_instance.flip_v = false
-			out_instance.global_position = Vector2(node.position.x, menu.tilemap_limit_bottom - 172)
-		else:
-			out_instance.flip_v = true
-			out_instance.global_position = Vector2(node.position.x, menu.tilemap_limit_bottom - 172)
-	add_sibling(out_instance)
-	
-	
-	sprite.queue_free()                         # sprite关掉
-	s_label.queue_free()                        # label关掉
-	await get_tree().create_timer(0.25).timeout # 等待0.25秒
-	out_instance.queue_free()                   # out删掉
+	sprite.queue_free()         # sprite关掉
+	s_label.queue_free()        # label关掉
+
+	menu.create_out(node)
+	node.queue_free()

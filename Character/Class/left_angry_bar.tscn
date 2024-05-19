@@ -40,6 +40,7 @@ region_rect = Rect2(243, 203, 58, 26)
 offset_right = 146.0
 offset_bottom = 44.0
 script = ExtResource("1_o8hr5")
+num = null
 
 [node name="BH" type="HBoxContainer" parent="."]
 layout_mode = 2

@@ -1099,6 +1099,7 @@ offset_top = 8.0
 offset_right = 252.0
 offset_bottom = 32.0
 character = NodePath("../..")
+num = 0
 
 [node name="right" parent="CanvasLayer" node_paths=PackedStringArray("character") instance=ExtResource("32_0yk4d")]
 offset_left = 432.0

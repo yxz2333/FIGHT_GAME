@@ -30,7 +30,7 @@ func _ready():
 
 
 
-func start(node : PlayerCursor) -> void:    # 指帧进入框的动画
+func start(node : PlayerCursor) -> void:    # 指针进入框的动画
 	var color : Color = node.colors[node.num - 1]
 	if shader_colors.size() != 0:
 		shader_colors.append(color)
@@ -45,7 +45,7 @@ func start(node : PlayerCursor) -> void:    # 指帧进入框的动画
 	shader_material.set_shader_parameter("outlineWidth", 0.05)
 	material = shader_material
 
-func exit(node : PlayerCursor) -> void:     # 指帧退出框的动画
+func exit(node : PlayerCursor) -> void:     # 指针退出框的动画
 	var color : Color = node.colors[node.num - 1]
 	if color != shader_colors[0]:  # exit的不是当前的颜色
 		_colors_erase(color)
@@ -69,6 +69,7 @@ func _colors_erase(color : Color) -> void:  # shader_colors删元素用
 func select(cursor : PlayerCursor, player_num : int, input_num) -> void:  # 人物选好了进行实例化
 	menu.selected_player += 1
 	var born_position : Vector2 = marker.global_position
+	
 	var char_name : String = name # 所选人物名字
 	
 	## 人物实例化

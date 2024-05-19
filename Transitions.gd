@@ -3,7 +3,7 @@ extends Node
 class_name Transition
 
 var trans : Array[PackedScene] = [
-	preload("res://Scene/T_1.tscn"),
+	preload("res://Scene/Trans/T_1.tscn"),
 ]
 
 var anim_name : Array[String] = [
@@ -12,8 +12,7 @@ var anim_name : Array[String] = [
 	"musashi",
 ]
 
-
-var loading_scene : PackedScene = preload("res://Scene/loading.tscn")
+var loading_scene : PackedScene = preload("res://Scene/Trans/loading.tscn")
 
 var thread : Thread
 var packed_scene : PackedScene
@@ -144,7 +143,7 @@ func _change_scene(lambda = null) -> void:
 		get_tree().current_scene.queue_free()
 		get_tree().current_scene = scene_instance
 	else:
-		lambda.call()
+		lambda.call()  # 新场景实例化要自己写 
 	
 	packed_scene = null
 	thread = null

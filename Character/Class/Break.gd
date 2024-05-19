@@ -45,8 +45,8 @@ func on_opponent_is_hit(direction : Vector2, opponent : Player):
 		dir.y * 500  / log(k.y + 11) * (exp(-opponent.percentage / 100) if exp(-opponent.percentage / 100) > 1.2 else 1.2)
 	) ## 当作技巧用，有break的情况下可以想办法让敌人近身再交break
 	
-	CameraSetting.camera_shake(camera_shake_offset, camera_shake_zoom, camera_shake_duration)
-	CameraSetting.frame_freeze(time_scale, frame_freeze_duration)
+	player.camera_setting.camera_shake(camera_shake_offset, camera_shake_zoom, camera_shake_duration)
+	player.camera_setting.frame_freeze(time_scale, frame_freeze_duration)
 
 
 func _on_timer_timeout():

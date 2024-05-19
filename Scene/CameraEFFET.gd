@@ -1,5 +1,7 @@
 extends Camera2D
 
+class_name CameraSetting
+
 
 func camera_shake(_offset, _scale, duration):
 	var tween = create_tween() # 处理动画帧

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dv1vxujtbmhdj"]
+[gd_scene load_steps=19 format=3 uid="uid://dv1vxujtbmhdj"]
 
 [ext_resource type="Script" path="res://UI/CharacterSelect.gd" id="1_whuh8"]
 [ext_resource type="Texture2D" uid="uid://duoh60sca02w5" path="res://Assets/ENVIRO/Level Design/Terrain (16x16).png" id="2_o3ody"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://t2kfwgtuusyh" path="res://Assets/CHARAs/NAMKA/Idle.png" id="5_otd85"]
 [ext_resource type="Texture2D" uid="uid://dfnfv3xs8gme4" path="res://Assets/CHARAs/MUSASHI/Idle.png" id="6_fyj3a"]
 [ext_resource type="Theme" uid="uid://c78kdatwg3y66" path="res://UI/enter_ui.tres" id="7_lpbwb"]
+[ext_resource type="Script" path="res://Scene/CameraEFFET.gd" id="8_ljemn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rg2sw"]
 texture = ExtResource("2_o3ody")
@@ -733,11 +734,17 @@ font_color = Color(0, 0, 0, 1)
 outline_size = 10
 outline_color = Color(1, 0.88836, 0.912776, 1)
 
-[node name="CharacterSelect" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ljsi"]
+size = Vector2(640, 360)
+
+[node name="CharacterSelect" type="Node2D" node_paths=PackedStringArray("camera", "limit_area", "limit_coll")]
 script = ExtResource("1_whuh8")
 total_players = 2
-tilemap_limit_bottom = 188.0
 mode = "character_select"
+out_pos = Array[Vector2]([Vector2(19, 1), Vector2(-19, 1), Vector2(-11, 0.5), Vector2(11, 0.5)])
+camera = NodePath("Camera")
+limit_area = NodePath("LimitArea")
+limit_coll = NodePath("LimitArea/CollisionShape2D")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0.968627)
@@ -967,3 +974,15 @@ theme_override_constants/outline_size = 12
 bbcode_enabled = true
 text = "
 		[shake=20][b]                       ![/b][/shake]"
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(-1, 0)
+script = ExtResource("8_ljemn")
+
+[node name="LimitArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LimitArea"]
+shape = SubResource("RectangleShape2D_2ljsi")
+debug_color = Color(0.705882, 0.486275, 0.141176, 0.0862745)

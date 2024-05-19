@@ -18,7 +18,6 @@ config/icon="res://icon.png"
 [autoload]
 
 SignalBus="*res://signal_bus.gd"
-CameraSetting="*res://Scene/Camera.gd"
 Transitions="*res://Transitions.gd"
 
 [display]
@@ -26,8 +25,11 @@ Transitions="*res://Transitions.gd"
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/size/resizable=false
-window/stretch/mode="viewport"
-window/stretch/scale=2.0
+window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
 
 [input]
 

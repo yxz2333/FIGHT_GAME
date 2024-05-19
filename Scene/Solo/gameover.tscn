@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dclbkwlx6sywy"]
 
-[ext_resource type="Script" path="res://Scene/GAMEOVER.gd" id="1_uwiuf"]
+[ext_resource type="Script" path="res://Scene/Solo/GAMEOVER.gd" id="1_uwiuf"]
 [ext_resource type="LabelSettings" uid="uid://rfsqgrbe77ki" path="res://UI/winners_label.tres" id="2_c2ht8"]
 
 [sub_resource type="Animation" id="Animation_m0p72"]

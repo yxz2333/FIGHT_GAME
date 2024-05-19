@@ -1,14 +1,13 @@
 extends Node2D
 
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
-@export var characters = []
 @onready var label : Label = $Label
-
+@export var game_manager : GameManager
 var is_game_over : bool = false
 
 func _ready():
 	hide()
-	SignalBus.connect("who_is_winner", _on_who_is_winner)
+	game_manager.connect("who_is_winner", _on_who_is_winner)
 
 
 func _on_who_is_winner(num : int) -> void:

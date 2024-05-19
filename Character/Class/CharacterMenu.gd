@@ -30,7 +30,7 @@ var head_pics : Dictionary = {  # 人物头像
 var special_pics : Dictionary = { # 人物special图标
 	"Marston" : preload("res://Assets/CHARAs/MARSTON/marston_gun.png"),
 	"Namka" : preload("res://Assets/CHARAs/NAMKA/namka_gun.png"),
-	# "Musashi" : preload("res://Assets/CHARAs/MUSASHI/Musashi.png"),
+	"Musashi" : preload("res://Assets/CHARAs/MUSASHI/Musashi.png"),
 }
 
 var break_pic = preload("res://Assets/FXs/impact1/impact1_1.png")

@@ -39,6 +39,7 @@ material = SubResource("ShaderMaterial_qjeg0")
 offset_right = 147.0
 offset_bottom = 40.0
 script = ExtResource("1_r728g")
+num = null
 
 [node name="BH" type="HBoxContainer" parent="."]
 layout_mode = 2

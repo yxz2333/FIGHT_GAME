@@ -40,7 +40,12 @@ var vis_player = []                      # 存已接入的按键布局
 
 var cursors : Array[PlayerCursor] = []   # 已配置玩家选择指针
 
+signal player_out_of_screen(node : Player) # 出屏幕
+
+
 func _ready():
+	super()
+	
 	smash_layer.hide()
 	
 	for child in back_marker.get_children():
@@ -90,10 +95,10 @@ func _connect_input(event) -> void:                 # 配置指针按键，初�
 func _start_game() -> void:
 	can_input = false
 	
-	Transitions.tran_d_0("res://Scene/Level-1.tscn",
+	Transitions.tran_d_0("res://Scene/Solo/Level-1.tscn",
 	## lambda函数
 	func() -> void:
-		var scene_instance = Transitions.packed_scene.instantiate()
+		var scene_instance = Transitions.packed_scene.instantiate() # GameManager实例化
 		
 		## 每个人物初始化
 		for i in range(cursors.size()):
@@ -108,9 +113,18 @@ func _start_game() -> void:
 			character.P_label.text = cursors[i].label.text
 			character.P_label.label_settings = ls
 			character.P_label.label_settings.font_color = cursors[i].colors[cursors[i].num - 1]
-	
+			
+			## 实例化的人物录入GameManager
+			scene_instance.players.append(character)
 		
+		
+		## 新场景实例化要自己写 
 		get_tree().root.add_child(scene_instance)
 		get_tree().current_scene.queue_free()
 		get_tree().current_scene = scene_instance
 		)  # 默认过渡动画
+
+
+func _on_limit_area_body_exited(body : Player):
+	emit_signal("player_out_of_screen", body)
+

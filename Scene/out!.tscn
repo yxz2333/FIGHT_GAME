@@ -82,9 +82,7 @@ animations = [{
 }]
 
 [node name="OUT!" type="AnimatedSprite2D"]
-rotation = -1.5708
 sprite_frames = SubResource("SpriteFrames_c6kgu")
 animation = &"OUT"
 autoplay = "OUT"
-frame = 17
-frame_progress = 1.0
+frame = 1

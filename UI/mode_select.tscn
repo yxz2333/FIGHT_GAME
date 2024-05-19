@@ -179,29 +179,29 @@ animations = [{
 
 [node name="ModeSelect" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_left = 320.0
+offset_top = 184.0
+offset_right = 320.0
+offset_bottom = 184.0
 theme = ExtResource("1_033nm")
 script = ExtResource("2_5iik7")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
 offset_left = -480.0
-offset_top = -272.0
+offset_top = -280.0
 offset_right = 800.0
-offset_bottom = 448.0
+offset_bottom = 440.0
 scale = Vector2(0.75, 0.75)
 color = Color(1, 0.776471, 0.607843, 0.345098)
 
 [node name="SoloButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = -216.0
-offset_top = -56.0
+offset_top = -64.0
 offset_right = -40.0
-offset_bottom = 120.0
+offset_bottom = 112.0
 
 [node name="PanelContainer" type="PanelContainer" parent="SoloButton"]
 layout_mode = 0
@@ -273,9 +273,9 @@ flip_h = true
 [node name="PartyButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 40.0
-offset_top = -56.0
+offset_top = -64.0
 offset_right = 216.0
-offset_bottom = 120.0
+offset_bottom = 112.0
 
 [node name="PanelContainer" type="PanelContainer" parent="PartyButton"]
 layout_mode = 0
@@ -363,9 +363,9 @@ texture = ExtResource("5_y7wq6")
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
 offset_left = -264.0
-offset_top = -144.0
+offset_top = -152.0
 offset_right = 280.0
-offset_bottom = -88.0
+offset_bottom = -96.0
 theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 text = "[rainbow freq=0.1][wave]Please select a game mode[/wave][/rainbow]"
@@ -374,16 +374,16 @@ text = "[rainbow freq=0.1][wave]Please select a game mode[/wave][/rainbow]"
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = -268.0
-offset_top = -18.0
+offset_top = -26.0
 offset_right = -260.0
-offset_bottom = -10.0
+offset_bottom = -18.0
 
 [node name="ReturnButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 244.0
-offset_top = 125.0
+offset_top = 117.0
 offset_right = 289.0
-offset_bottom = 168.0
+offset_bottom = 160.0
 theme = ExtResource("1_033nm")
 
 [node name="Restart" type="Sprite2D" parent="ReturnButton"]
