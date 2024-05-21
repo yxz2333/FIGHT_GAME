@@ -104,7 +104,13 @@ func _on_solo_button_pressed():
 		return
 		
 	is_solo_button_pressed = true
-	Transitions.tran_d_0_without_loading_and_out("res://UI/CharacterSelect.tscn")
+	Transitions.tran_d_0_without_loading_and_out("res://UI/CharacterSelect.tscn", func() -> void:
+		var scene_instance = Transitions.packed_scene.instantiate() # GameManager实例化
+		scene_instance.next_mode = "solo"
+		get_tree().root.add_child(scene_instance)
+		get_tree().current_scene.queue_free()
+		get_tree().current_scene = scene_instance
+		)
 
 
 var is_party_button_pressed : bool = false
@@ -112,7 +118,13 @@ func _on_party_button_pressed():
 	if is_party_button_pressed:
 		return
 	is_party_button_pressed = true
-	
+	Transitions.tran_d_0_without_loading_and_out("res://UI/CharacterSelect.tscn", func() -> void:
+		var scene_instance = Transitions.packed_scene.instantiate() # GameManager实例化
+		scene_instance.next_mode = "party"
+		get_tree().root.add_child(scene_instance)
+		get_tree().current_scene.queue_free()
+		get_tree().current_scene = scene_instance
+		)
 	
 
 

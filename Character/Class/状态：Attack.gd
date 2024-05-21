@@ -16,16 +16,18 @@ func init():
 
 func state_input(event : InputEvent) -> void:
 	if event.is_action_pressed(pp.jump_action) and jump_input_cnt == false:
-		jump_input_cnt = true
 		jump()
+
 
 func on_enter(lambda = null):
 	if character.is_on_floor(): # 确保在地面上一定能起跳攻击
 		jump_input_cnt = false
 	else:                       # 而空中不能再起跳攻击
 		jump_input_cnt = true
+	
 	playback.travel(attack_1_animation)
 
 
 func jump() -> void: # 连跳
+	jump_input_cnt = true
 	character.velocity.y = pp.jump_velocity

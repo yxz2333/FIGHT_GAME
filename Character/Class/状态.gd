@@ -46,8 +46,14 @@ func set_next_state(new_state : State) -> void:
 	new_state.return_animation = playback.get_current_node() 
 
 ## 先在这里声明，继承在各个类文件里
-func state_process(delta) -> void: 
-	pass
+func state_process(delta) -> void:
+	if character.scene.mode != "character_select":
+		if not character.scene.game_manager.timer.is_stopped():
+			return
+	
+	if character.is_dead:
+		return
+	
 
 func state_input(event : InputEvent) -> void:
 	pass

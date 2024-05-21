@@ -10,7 +10,15 @@ func _ready():
 	game_manager.connect("who_is_winner", _on_who_is_winner)
 
 
-func _on_who_is_winner(num : int) -> void:
+func _on_who_is_winner(winner : Player) -> void:
+	var num = winner.pp.player_number
+	if game_manager.mode == "party":
+		game_manager.scene.phantom_camera.erase_follow_targets(winner)
+	winner.queue_free()
+	
+	if game_manager.mode == "party":
+		get_tree().root.set_content_scale_factor(2)
+	
 	label.hide()
 	show()
 	await get_tree().create_timer(1.5).timeout

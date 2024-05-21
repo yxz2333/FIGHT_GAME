@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dv1vxujtbmhdj"]
+[gd_scene load_steps=20 format=3 uid="uid://dv1vxujtbmhdj"]
 
 [ext_resource type="Script" path="res://UI/CharacterSelect.gd" id="1_whuh8"]
 [ext_resource type="Texture2D" uid="uid://duoh60sca02w5" path="res://Assets/ENVIRO/Level Design/Terrain (16x16).png" id="2_o3ody"]
@@ -376,6 +376,30 @@ tracks/10/keys = {
 "update": 0,
 "values": [Vector2(-82, -34)]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("TileMap:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("StaticBody2D:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_1nnkq"]
 resource_name = "enter_smash"
@@ -717,12 +741,40 @@ tracks/14/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_urpru"]
+resource_name = "party_platform_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TileMap:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -56)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -56)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_07rnn"]
 _data = {
 "PSYC": SubResource("Animation_eu6j2"),
 "RESET": SubResource("Animation_8fuoi"),
 "enter_smash": SubResource("Animation_1nnkq"),
-"exit_smash": SubResource("Animation_hdb6q")
+"exit_smash": SubResource("Animation_hdb6q"),
+"party_platform_up": SubResource("Animation_urpru")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bb0o7"]
@@ -739,12 +791,11 @@ size = Vector2(640, 360)
 
 [node name="CharacterSelect" type="Node2D" node_paths=PackedStringArray("camera", "limit_area", "limit_coll")]
 script = ExtResource("1_whuh8")
-total_players = 2
 mode = "character_select"
-out_pos = Array[Vector2]([Vector2(19, 1), Vector2(-19, 1), Vector2(-11, 0.5), Vector2(11, 0.5)])
 camera = NodePath("Camera")
 limit_area = NodePath("LimitArea")
 limit_coll = NodePath("LimitArea/CollisionShape2D")
+out_pos = Array[Vector2]([Vector2(19, 1), Vector2(-19, 1), Vector2(-11, 0.5), Vector2(11, 0.5)])
 
 [node name="ColorRect" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0.968627)
@@ -763,13 +814,24 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color(1, 0.776471, 0.607843, 0.345098)
 
-[node name="BackMarker" type="Node2D" parent="."]
+[node name="SoloBackMarkers" type="Node2D" parent="."]
 
-[node name="Marker2D" type="Marker2D" parent="BackMarker"]
+[node name="Marker2D" type="Marker2D" parent="SoloBackMarkers"]
 position = Vector2(-200, 0)
 
-[node name="Marker2D2" type="Marker2D" parent="BackMarker"]
+[node name="Marker2D2" type="Marker2D" parent="SoloBackMarkers"]
 position = Vector2(200, 0)
+
+[node name="PartyBackMarkers" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="PartyBackMarkers"]
+position = Vector2(-200, 64)
+
+[node name="Marker2D2" type="Marker2D" parent="PartyBackMarkers"]
+position = Vector2(0, 64)
+
+[node name="Marker2D3" type="Marker2D" parent="PartyBackMarkers"]
+position = Vector2(200, 64)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_kjc5j")
@@ -829,10 +891,10 @@ libraries = {
 autoplay = "PSYC"
 
 [node name="ColorRect2" type="ColorRect" parent="."]
-offset_left = -320.0
-offset_top = -180.0
-offset_right = 320.0
-offset_bottom = 180.0
+offset_left = -496.0
+offset_top = -400.0
+offset_right = 504.0
+offset_bottom = 400.0
 color = Color(0, 0, 0, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
@@ -843,11 +905,6 @@ offset_bottom = 180.0
 bbcode_enabled = true
 text = "[b][shake][s][font_size=250]Please select your character[/font_size][/s][/shake][/b]"
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 2.6
-one_shot = true
-autostart = true
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
@@ -855,25 +912,54 @@ position = Vector2(0, 98.5)
 shape = SubResource("RectangleShape2D_bb0o7")
 one_way_collision = true
 
-[node name="SpriteMarkers" type="Node2D" parent="."]
+[node name="SoloSpriteMarkers" type="Node2D" parent="."]
 
-[node name="in0" type="Marker2D" parent="SpriteMarkers"]
+[node name="in0" type="Marker2D" parent="SoloSpriteMarkers"]
 position = Vector2(-224, -16)
 
-[node name="out1" type="Marker2D" parent="SpriteMarkers"]
+[node name="out1" type="Marker2D" parent="SoloSpriteMarkers"]
 position = Vector2(-408, -16)
 
-[node name="num2" type="Marker2D" parent="SpriteMarkers"]
+[node name="num2" type="Marker2D" parent="SoloSpriteMarkers"]
 position = Vector2(-296, -128)
 
-[node name="in3" type="Marker2D" parent="SpriteMarkers"]
+[node name="in3" type="Marker2D" parent="SoloSpriteMarkers"]
 position = Vector2(224, -16)
 
-[node name="out4" type="Marker2D" parent="SpriteMarkers"]
+[node name="out4" type="Marker2D" parent="SoloSpriteMarkers"]
 position = Vector2(408, -16)
 
-[node name="num5" type="Marker2D" parent="SpriteMarkers"]
+[node name="num5" type="Marker2D" parent="SoloSpriteMarkers"]
 position = Vector2(280, -128)
+
+[node name="PartySpriteMarkers" type="Node2D" parent="."]
+
+[node name="in0" type="Marker2D" parent="PartySpriteMarkers"]
+position = Vector2(-200, 110)
+
+[node name="out1" type="Marker2D" parent="PartySpriteMarkers"]
+position = Vector2(-200, 248)
+
+[node name="num2" type="Marker2D" parent="PartySpriteMarkers"]
+position = Vector2(-248, 64)
+
+[node name="in3" type="Marker2D" parent="PartySpriteMarkers"]
+position = Vector2(0, 110)
+
+[node name="out4" type="Marker2D" parent="PartySpriteMarkers"]
+position = Vector2(0, 248)
+
+[node name="num5" type="Marker2D" parent="PartySpriteMarkers"]
+position = Vector2(-48, 64)
+
+[node name="in6" type="Marker2D" parent="PartySpriteMarkers"]
+position = Vector2(200, 110)
+
+[node name="out7" type="Marker2D" parent="PartySpriteMarkers"]
+position = Vector2(200, 248)
+
+[node name="num8" type="Marker2D" parent="PartySpriteMarkers"]
+position = Vector2(152, 64)
 
 [node name="Smash" type="Node2D" parent="."]
 

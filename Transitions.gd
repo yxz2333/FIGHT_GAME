@@ -70,8 +70,9 @@ func tran_d_0(PATH : String, lambda = null) -> void:   # 第1个默认过渡动�
 	
 	_change_scene(lambda)
 	
-	await get_tree().create_timer(running_loading()).timeout
-	await get_tree().create_timer(tran_out(0)).timeout
+	running_loading()
+	tran_out(0)
+	## 还有 running_loading() + tran_out(0) 的时间播放完剩余动画
 
 
 
@@ -86,8 +87,8 @@ func tran_d_0_without_loading(PATH : String, lambda = null) -> void:  # 第1个�
 	
 	_change_scene(lambda)
 	
-	await get_tree().create_timer(tran_out(0)).timeout
-	
+	tran_out(0)
+	## 还有 tran_out(0) 的时间播放完剩余动画
 
 
 func tran_d_0_without_loading_and_out(PATH : String, lambda = null) -> void:  # 第1个默认过渡动画（无loading,out）
@@ -111,8 +112,9 @@ func tran_d_0_without_in_and_loading(PATH : String, lambda = null) -> void:   # 
 	
 	_change_scene(lambda)
 	
-	await get_tree().create_timer(tran_out(0)).timeout
-	
+	tran_out(0)
+	## 还有 tran_out(0) 的时间播放完剩余动画
+
 
 
 

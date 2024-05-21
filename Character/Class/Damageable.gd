@@ -5,7 +5,6 @@ class_name Damageable
 
 signal on_hit(node : Node, damage_taken : int, lambda)
 
-@export var dead_animation_name : String = "死亡"
 @export var character : Player
 @export var player_property : PlayerProperty
 

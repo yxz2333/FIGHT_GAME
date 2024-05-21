@@ -196,3 +196,6 @@ initial_position = 2
 visible = false
 game_manager = NodePath("..")
 scene = NodePath("../Scene")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

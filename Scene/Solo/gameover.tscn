@@ -301,9 +301,10 @@ offset_bottom = 40.0
 
 [node name="ColorRect" type="ColorRect" parent="UI"]
 layout_mode = 0
-offset_left = -132.0
-offset_right = 508.0
-offset_bottom = 356.0
+offset_left = -172.0
+offset_top = -84.0
+offset_right = 828.0
+offset_bottom = 916.0
 color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="UI"]

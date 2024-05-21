@@ -8,17 +8,17 @@ var inputs = {  # 在character_select中更改
 	"MUSASHI" : 3,
 }
 
-var can_input : bool = true
-
 @export_enum("solo", "party", "character_select") var mode : String
 
 @export var birth_markers : Array[Marker2D] = []
-@export var camera : CameraSetting = null
+@export var camera : Node2D
+@export var phantom_camera : PhantomCamera2D = null
 @export var game_manager : GameManager = null
 @export var limit_area : Area2D
 @export var limit_coll : CollisionShape2D
 @export var out_pos : Array[Vector2] = [Vector2(0, 1),Vector2(0, 1),Vector2(0, 1),Vector2(0, 1)]   # 左右上下
 
+var can_input : bool = true   #  这个在 CharacterSelect 里会用上
 
 var out : PackedScene = preload("res://Scene/out!.tscn")
 
@@ -57,11 +57,10 @@ func create_out(node : Player) -> void:
 		out_instance.flip_h = true
 		out_instance.global_position = Vector2(node.position.x, out_pos[3].x)
 	
-	add_child(out_instance)
+	add_child.call_deferred(out_instance)
 	
 	await get_tree().create_timer(0.25).timeout # 等待0.25秒
 	out_instance.queue_free()                   # out删掉
-
 
 
 func _on_limit_area_body_exited(body : Player):

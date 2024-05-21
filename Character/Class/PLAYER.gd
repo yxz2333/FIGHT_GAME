@@ -5,21 +5,19 @@ class_name Player
 
 var game_manager : GameManager
 @export var scene : Scene
-var camera_setting : CameraSetting
+var camera_setting : Node2D
 @export var pp : PlayerProperty
 @export var run_start_effect : PackedScene
-@export var canvas_layer : CanvasLayer
 @export var sprite : Sprite2D
 @export var P_label : Label
+@export var canvas_layer : CanvasLayer
 @onready var animation_tree : AnimationTree = $AnimationTree
 var playback : AnimationNodeStateMachinePlayback  # 获取当前动画用
 @onready var state_machine : CharacterStateMachine = $CharacterStateMachine
 @onready var run_start_marker : Marker2D = $Markers/RunStart
 @onready var trail_timer : Timer = $TrailTimer
-@onready var left_character_menu : CharacterMenu = $CanvasLayer/left
-@onready var right_character_menu : CharacterMenu = $CanvasLayer/right
 
-@export var bars : Array[Container] = []
+var character_menu : Array[CharacterMenu]
 
 var direction : Vector2 = Vector2.ZERO # 读入键盘手柄输入用
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")  # 获取项目设置里设置的重力大小
@@ -29,7 +27,6 @@ signal facing_direction_changed(facing_right : bool)
 var DI_timer : Timer
 var SA_timer : Timer
 
-
 ## 动态更新属性
 var has_double_jumped : bool = false        # 是否二段跳
 var SA : bool = false                       # 是否霸体
@@ -38,11 +35,13 @@ var FZ : bool = false :                     # 是否狂热状态（FZ）
 		return FZ
 	set(value):
 		FZ = value
-		left_character_menu.emit_signal("toggle_FZ_mode")
-		right_character_menu.emit_signal("toggle_FZ_mode")
+		for menu in character_menu:
+			menu.emit_signal("toggle_FZ_mode")
+			
 var has_Break : bool = true                 # 是否有Break
 var fixed_percentage : bool = false         # 是否固定百分比
 var fixed_angry : bool = false              # 是否固定怒气值
+var is_dead : bool = 0                  # 是否已死
 
 var speed : float                           # 速度
 var percentage : float = 0.0 :              # 百分比
@@ -68,14 +67,14 @@ var angry : int = 0.0 :                     # 怒气值
 					SignalBus.emit_signal(pp.angry_bar_player_signal[key])
 
 
-
-
-
 func init(s : Scene, pn : int, input_c):
 	scene = s
 	camera_setting = scene.camera
 	pp.player_number = pn
 	pp.init_input(input_c)
+	
+	if scene.mode != "character_select":
+		game_manager = scene.game_manager
 
 
 func _ready():
@@ -88,10 +87,7 @@ func _ready():
 	
 	DI_timer_init() 
 	SA_timer_init()
-	angry_bar_init()
-	
-	## trail timer
-	trail_timer.wait_time = 0.1
+	trail_timer_init()
 
 
 func _physics_process(delta):
@@ -100,8 +96,13 @@ func _physics_process(delta):
 		push_warning("人物错误初始化")
 		return
 	
-	if not scene.can_input:
+	if scene.mode != "character_select":
+		if not scene.game_manager.timer.is_stopped():
+			return
+	
+	if is_dead or not scene.can_input:
 		return
+
 	
 	## 读入x轴和y轴方向输入
 	direction = Input.get_vector(pp.left_action, pp.right_action, pp.up_action, pp.down_action)
@@ -121,7 +122,7 @@ func _physics_process(delta):
 			trail_timer.stop()
 			angry = 0
 			speed = pp.speed
-		else:
+		else:   # 怒气值变化
 			angry = SA_timer.time_left / SA_timer.wait_time * 100
 	
 	## 能否DI
@@ -214,6 +215,7 @@ func check_when_decrease_speed() -> bool:    # 检查什么时候是减速前进
 	return false
 
 
+
 func SA_state() -> void:                     # 进入无双状态
 	SA = true
 	trail_timer.start()
@@ -221,19 +223,26 @@ func SA_state() -> void:                     # 进入无双状态
 	speed = pp.SA_speed
 
 
+
 func DI_timer_init() -> void:
 	DI_timer = Timer.new()
 	add_child(DI_timer)
 	DI_timer.one_shot = true
 	DI_timer.wait_time = 0.5
-	
+
 func SA_timer_init() -> void:
 	SA_timer = Timer.new()
 	add_child(SA_timer)
 	SA_timer.one_shot = true
-	SA_timer.wait_time = 5
+	SA_timer.wait_time = pp.SA_wait_time[scene.mode]
+
+func trail_timer_init() -> void:
+	trail_timer.wait_time = 0.05
+
+
+
+func ground_state() -> GroundState:
+	return pp.ground_default_state
 	
-func angry_bar_init() -> void:
-	for i in len(bars):
-		if i + 1 != pp.player_number:
-			bars[i].hide()
+func ground_animation() -> String:
+	return pp.move_animation

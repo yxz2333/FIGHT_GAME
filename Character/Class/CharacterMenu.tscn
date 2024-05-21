@@ -1,46 +1,45 @@
 [gd_scene load_steps=15 format=3 uid="uid://dw77qolih5eca"]
 
-[ext_resource type="Script" path="res://Character/Class/CharacterMenu.gd" id="1_o8hr5"]
-[ext_resource type="Texture2D" uid="uid://bf24dhflm4t2n" path="res://Assets/UI/Base-01.png" id="2_h12c8"]
-[ext_resource type="Texture2D" uid="uid://b82wp4oo46rp1" path="res://Assets/CHARAs/NAMKA/Namka.png" id="3_adcjy"]
-[ext_resource type="Texture2D" uid="uid://c7kubku5u1sd4" path="res://Assets/UI/userlmn_943d9d2dea0b9948dd11e8ab19ea62ff.png" id="4_qbav1"]
-[ext_resource type="Texture2D" uid="uid://b4lybo4d35u3w" path="res://Assets/FXs/impact1/impact1_1.png" id="6_fy0qc"]
-[ext_resource type="Texture2D" uid="uid://b3pxb2rkhvb1m" path="res://Assets/CHARAs/NAMKA/namka_gun.png" id="6_xiw2v"]
-[ext_resource type="PackedScene" uid="uid://dt0e6btuyt4bd" path="res://Character/Class/percentage.tscn" id="7_4836b"]
+[ext_resource type="Script" path="res://Character/Class/CharacterMenu.gd" id="1_p66ls"]
+[ext_resource type="Texture2D" uid="uid://bf24dhflm4t2n" path="res://Assets/UI/Base-01.png" id="2_4smfj"]
+[ext_resource type="Texture2D" uid="uid://b82wp4oo46rp1" path="res://Assets/CHARAs/NAMKA/Namka.png" id="3_h7k4k"]
+[ext_resource type="Texture2D" uid="uid://c7kubku5u1sd4" path="res://Assets/UI/userlmn_943d9d2dea0b9948dd11e8ab19ea62ff.png" id="4_5am0n"]
+[ext_resource type="Texture2D" uid="uid://b4lybo4d35u3w" path="res://Assets/FXs/impact1/impact1_1.png" id="5_raqk2"]
+[ext_resource type="Texture2D" uid="uid://b3pxb2rkhvb1m" path="res://Assets/CHARAs/NAMKA/namka_gun.png" id="6_dims4"]
+[ext_resource type="PackedScene" uid="uid://dt0e6btuyt4bd" path="res://Character/Class/percentage.tscn" id="7_gjgs0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4mp63"]
-texture = ExtResource("2_h12c8")
+texture = ExtResource("2_4smfj")
 region_rect = Rect2(243, 203, 58, 26)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2m6ya"]
-atlas = ExtResource("4_qbav1")
+atlas = ExtResource("4_5am0n")
 region = Rect2(613, 11, 118, 10)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cblri"]
-atlas = ExtResource("4_qbav1")
+atlas = ExtResource("4_5am0n")
 region = Rect2(615, 77, 114, 6)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m8xuh"]
-atlas = ExtResource("4_qbav1")
+atlas = ExtResource("4_5am0n")
 region = Rect2(613, 11, 118, 10)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g4uaa"]
-atlas = ExtResource("4_qbav1")
+atlas = ExtResource("4_5am0n")
 region = Rect2(615, 269, 114, 6)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kommu"]
-atlas = ExtResource("4_qbav1")
+atlas = ExtResource("4_5am0n")
 region = Rect2(615, 77, 114, 6)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cw3lm"]
-texture = ExtResource("2_h12c8")
+texture = ExtResource("2_4smfj")
 region_rect = Rect2(243, 203, 58, 26)
 
 [node name="CharacterMenu" type="VBoxContainer"]
 offset_right = 146.0
 offset_bottom = 44.0
-script = ExtResource("1_o8hr5")
-num = null
+script = ExtResource("1_p66ls")
 
 [node name="BH" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -52,7 +51,7 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_4mp63")
 [node name="TextureRect" type="TextureRect" parent="BH/Head"]
 layout_mode = 2
 size_flags_horizontal = 4
-texture = ExtResource("3_adcjy")
+texture = ExtResource("3_h7k4k")
 expand_mode = 2
 stretch_mode = 6
 
@@ -101,9 +100,14 @@ texture_progress_offset = Vector2(2, 2)
 [node name="BP" type="HBoxContainer" parent="."]
 layout_mode = 2
 
+[node name="Label" type="Label" parent="BP"]
+layout_mode = 2
+text = "P2"
+
 [node name="TextureRect" type="TextureRect" parent="BP"]
 layout_mode = 2
-texture = ExtResource("6_fy0qc")
+texture = ExtResource("5_raqk2")
+expand_mode = 3
 
 [node name="Timer" type="Timer" parent="BP/TextureRect"]
 wait_time = 24.0
@@ -115,11 +119,11 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_cw3lm")
 
 [node name="TextureRect" type="TextureRect" parent="BP/Special"]
 layout_mode = 2
-texture = ExtResource("6_xiw2v")
+texture = ExtResource("6_dims4")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="Percentage" parent="BP" instance=ExtResource("7_4836b")]
+[node name="Percentage" parent="BP" instance=ExtResource("7_gjgs0")]
 layout_mode = 2
 
 [connection signal="timeout" from="BP/TextureRect/Timer" to="." method="_on_timer_timeout"]

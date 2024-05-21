@@ -2,8 +2,6 @@ extends VBoxContainer
 
 class_name CharacterMenu
 
-@export var character : Player
-
 @onready var angry_bar : TextureProgressBar = $BH/Bars/AngryBar
 @onready var eased_angry_bar : TextureProgressBar = $BH/Bars/AngryBar/EasedAngryBar
 @onready var special_bar : TextureProgressBar = $BH/Bars/BulletBar
@@ -13,7 +11,10 @@ class_name CharacterMenu
 @onready var Break_rect : TextureRect = $BP/TextureRect
 @onready var timer : Timer = $BP/TextureRect/Timer # break的timer
 @onready var weapon_rect : TextureRect = $BP/Special/TextureRect
+@onready var label : Label = $BP/Label
 
+@export var p_label : Label
+@export var character : Player
 @export var num : int
 
 var break_time : int = 40
@@ -36,17 +37,57 @@ var special_pics : Dictionary = { # 人物special图标
 var break_pic = preload("res://Assets/FXs/impact1/impact1_1.png")
 
 
+### menu（和 menu_coll）坐标
+const solo_pos : Array[Vector2] = [Vector2(10, 8), Vector2(485, 8)]
+const party_2_pos : Array[Vector2] = [Vector2(288, 616), Vector2(768, 616)]
+const party_3_pos : Array[Vector2] = [Vector2(288, 616), Vector2(529, 616), Vector2(768, 616)]
+
+''' Solo
+(10, 8) : (-237, -150)  P1
+(485, 8) : (239, -150)  P2
+'''
+
+''' Party
+2 Players:
+	(288, 616)  P1
+	(768, 616)  P2
+3 Players:
+	(288, 616)  P1
+	(529, 616)  P2
+	(768, 616)  P3
+'''
+
+
 func _ready():
+	## 根据模式配置位置和进度条方向
 	if character.scene.mode == "solo":
-		angry_bar.fill_mode = TextureProgressBar.FILL_RIGHT_TO_LEFT if num == 1 else TextureProgressBar.FILL_LEFT_TO_RIGHT        # 设置进度条开始位置
-		eased_angry_bar.fill_mode = TextureProgressBar.FILL_RIGHT_TO_LEFT if num == 1 else TextureProgressBar.FILL_LEFT_TO_RIGHT  # 设置进度条开始位置
-		special_bar.fill_mode = TextureProgressBar.FILL_RIGHT_TO_LEFT if num == 1 else TextureProgressBar.FILL_LEFT_TO_RIGHT      # 设置进度条开始位置
-	
+		global_position = solo_pos[num - 1]
+		
+		angry_bar.fill_mode = TextureProgressBar.FILL_RIGHT_TO_LEFT if num == 2 else TextureProgressBar.FILL_LEFT_TO_RIGHT        # 设置进度条开始位置
+		eased_angry_bar.fill_mode = TextureProgressBar.FILL_RIGHT_TO_LEFT if num == 2 else TextureProgressBar.FILL_LEFT_TO_RIGHT  # 设置进度条开始位置
+		special_bar.fill_mode = TextureProgressBar.FILL_RIGHT_TO_LEFT if num == 2 else TextureProgressBar.FILL_LEFT_TO_RIGHT      # 设置进度条开始位置
+		
+	elif character.scene.mode == "party":
+		scale = Vector2(1.5, 1.5)
+		
+		if character.game_manager.number == 2:
+			global_position = party_2_pos[num - 1]
+		elif character.game_manager.number == 3:
+			global_position = party_3_pos[num - 1]
+		
+		angry_bar.fill_mode = TextureProgressBar.FILL_LEFT_TO_RIGHT
+		eased_angry_bar.fill_mode = TextureProgressBar.FILL_LEFT_TO_RIGHT
+		special_bar.fill_mode = TextureProgressBar.FILL_LEFT_TO_RIGHT
 	
 	
 	for key in character.pp.angry_bar_player_signal.keys(): # 找和玩家编号匹配的信号进行连接
 		if key == character.pp.player_number:
 			SignalBus.connect(character.pp.angry_bar_player_signal[key], _update_angry_bar)
+	
+	## P-Label图标
+	label.text = p_label.text
+	label.label_settings = p_label.label_settings
+	
 	
 	## 初始化数值 
 	angry_bar.value = 0
@@ -73,14 +114,6 @@ func _ready():
 		_init_Musashi()
 
 
-func _update_angry_bar() -> void:
-	var percentage : float = character.angry / 100.000
-	angry_bar.value = percentage
-	
-	## 制作红血条动画
-	create_tween().tween_property(eased_angry_bar, "value", percentage, 0.5)
-
-
 func _physics_process(delta):
 	_handle_break()
 	if character.pp._name == "Marston":
@@ -91,8 +124,16 @@ func _physics_process(delta):
 		_handle_Musashi()
 
 
+func _update_angry_bar() -> void:
+	var percentage : float = character.angry / 100.000
+	angry_bar.value = percentage
+	
+	## 制作红血条动画
+	create_tween().tween_property(eased_angry_bar, "value", percentage, 0.5)
 
-func _handle_break():                # _physics_process 中处理Break
+
+
+func _handle_break() -> void:                # _physics_process 中处理Break
 	if not character.has_Break:      # 交Break了
 		if timer.is_stopped():       # 启动timer
 			if character.FZ:

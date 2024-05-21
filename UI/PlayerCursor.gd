@@ -5,7 +5,6 @@ class_name PlayerCursor
 @onready var label : Label = $Label
 @onready var texture : AnimatedSprite2D = $AnimatedSprite2D
 var sprite_marker : Node2D
-#var out : PackedScene = preload("res://Scene/out!.tscn")
 
 var num : int
 var input_num
@@ -41,6 +40,7 @@ func init(n : int, me : CharacterSelectMenu, accept_input, sm : Node2D = null) -
 	menu = me
 	sprite_marker = sm
 	input_config(accept_input)
+
 
 func _ready():
 	selected_UI = null
@@ -101,25 +101,28 @@ func _sprite_effect():                   # 生成人物图标
 	## sprite
 	sprite = current_selection.get_child(3).duplicate()
 	sprite.position = sprite_markers[out_num].position # 一开始在out位
-	sprite.scale = Vector2(8,8)
+	if menu.next_mode == "solo":
+		sprite.scale = Vector2(8, 8)
+	if menu.next_mode == "party":
+		sprite.scale = Vector2(5, 5)
 	sprite.modulate = Color(1, 1, 1, 0.68)
 	
 	
 	## 翻转sprite，并适配一下solo和party的选人方式
-	if menu.total_players == 2:
+	if menu.next_mode == "solo":
 		sprite.flip_h = false if num == 1 else true
-	elif menu.total_players == 3:
-		pass
+	elif menu.next_mode == "party":
+		sprite.flip_h = false
 	add_sibling(sprite)
 	
 	
-	## label
+	## label 生成
 	s_label = label.duplicate()
 	s_label.position = sprite_markers[label_num].position
 	add_sibling(s_label)
 	
 	
-	## tween动画
+	## sprite 从 out 移动到 in 的 tween 动画
 	var tween : Tween = get_tree().create_tween()
 	tween.tween_property(sprite, "position", sprite_markers[in_num].position, 0.3).set_ease(Tween.EASE_OUT)
 

@@ -73,7 +73,7 @@ func select(cursor : PlayerCursor, player_num : int, input_num) -> void:  # 人�
 	var char_name : String = name # 所选人物名字
 	
 	## 人物实例化
-	var character = characters.get(char_name).instantiate() as Player # 找实例化哪个人物
+	var character = characters[char_name].instantiate() as Player # 找实例化哪个人物
 	character.init(menu, player_num, input_num)
 	
 	character.scale = Vector2(1.5, 1.5)

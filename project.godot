@@ -26,6 +26,7 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/size/resizable=false
 window/stretch/mode="canvas_items"
+window/stretch/scale=2.0
 
 [editor_plugins]
 
@@ -255,3 +256,4 @@ debug_mode={
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
+anti_aliasing/quality/msaa_2d=1

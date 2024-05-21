@@ -10,6 +10,13 @@ var angry_bar_player_signal = {
 	4:"angry_bar_change_player_4",
 }
 
+const SA_wait_time = {
+	"character_select" : 7,
+	"solo" : 7,
+	"party" : 10
+}
+
+@export var character : Player
 
 ## 名字和编号
 @export var _name : String
@@ -26,17 +33,25 @@ var SA_speed : float
 @export var jump_velocity : float
 @export var double_jump_velocity : float
 
+
 ## 攻击伤害与击飞
 @export var damage : float
 @export var base_knockback_speed : float
 @export var extra_knockback_speed : float
+## Party模式击飞
+@export var party_kb : Dictionary = {
+	'1v1v1' : Vector2(0, 0),
+	'1v1' : Vector2(0, 0),
+}
 
-## 攻击镜头震动
+
+## 攻击镜头震动 (1 V 1) : solo 全程使用， party 仅在只剩 2 名玩家的时候使用
 @export var camera_shake_offset : Vector2 # 镜头偏移量
 @export var camera_shake_zoom : Vector2 # 镜头缩放
 @export var camera_shake_duration : float # 镜头震动时间
 @export var frame_freeze_duration : float # 卡帧持续时间
 @export var time_scale : float # 卡帧降速
+
 
 ## 上下左右跳跃按键
 @export var left_action : String
@@ -51,12 +66,14 @@ var SA_speed : float
 @export var SA_action : String
 var attack_cancel : String
 
+
 ## 各个状态
 @export var air_state : State
 @export var break_state : State
 @export var hit_state : State
 @export var attack_state : State
 @export var ground_default_state : State
+
 
 ## 动画
 @export var move_animation : String = "移动"
@@ -68,10 +85,14 @@ var attack_cancel : String
 
 
 func _ready():
+	if character.scene.mode == "party" and character.scene.game_manager.number > 2:  # 交换party和默认的击飞速度
+		base_knockback_speed = party_kb["1v1v1"].x
+		extra_knockback_speed = party_kb["1v1v1"].y
+		character.scene.phantom_camera.FF = false
+	
 	SA_speed = speed * 1.5
-	
-	
-	
+
+
 var actions = {
 	"left_action" = "left_player_",                          # a 左
 	"right_action" = "right_player_",                        # d 右

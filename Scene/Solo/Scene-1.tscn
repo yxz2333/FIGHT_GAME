@@ -479,7 +479,7 @@ polygon = PackedVector2Array(5, 21, 30, 23, 13, 1, 6, 4)
 polygon = PackedVector2Array(287, 16, 274, 37, 287, 34, 299, 19)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ay5xy"]
-size = Vector2(640, 362)
+size = Vector2(640, 376)
 
 [node name="Scene-1" type="Node2D" node_paths=PackedStringArray("birth_markers", "camera", "limit_area", "limit_coll")]
 script = ExtResource("1_ammx6")
@@ -730,16 +730,16 @@ scale = Vector2(-5.59586, 15.8759)
 script = ExtResource("30_g4gky")
 
 [node name="P1" type="Marker2D" parent="."]
-position = Vector2(-192, -115)
+position = Vector2(-191, 69)
 
 [node name="P2" type="Marker2D" parent="."]
-position = Vector2(245, -115)
+position = Vector2(210, 69)
 
 [node name="LimitArea" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
 
 [node name="LimitCollision" type="CollisionShape2D" parent="LimitArea"]
-position = Vector2(0, 1)
+position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_ay5xy")
 debug_color = Color(0.668797, 0.484984, 0.437889, 0.42)

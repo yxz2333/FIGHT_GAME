@@ -2,32 +2,56 @@ extends CanvasLayer
 
 class_name CharacterMenuInPlayer
 
-@export var menu : Array[CharacterMenu]
-
 @export var character : Player
 
-var collision : PackedScene = preload("res://Character/Class/character_menu_area_2d.tscn") 
+## 左右MenuUI
+var cleft : PackedScene
+var cright : PackedScene
 
-var menu_pos : Array[Vector2] = []
-var menu_coll_pos : Array[Vector2] = []
+var collision : PackedScene = preload("res://Character/Class/character_menu_area_2d.tscn") 
+const coll_pos : Array[Vector2] = [Vector2(-237, -150), Vector2(239, -150)] # 0 : 左， 1 : 右
+
+
+var menu  # CharacterMenuUI
 
 func _ready():
 	if character.scene.mode == "character_select":
 		return
-		
+	
+	cleft = character.game_manager.character_menu
+	cright = character.game_manager.character_menu_right
+	
 	if character.scene.mode == "solo":
-		menu_pos.append_array([Vector2(10, 8), Vector2(485, 8)])
-		menu_coll_pos.append_array([Vector2(-237, -150), Vector2(239, -150)])
+		_solo()
 		
 	if character.scene.mode == "party":
-		pass
+		_party()
+
+
+func _solo() -> void:
+	## 实例化 Menu
+	if character.pp.player_number == 1:
+		menu = cleft.instantiate()
+	else:
+		menu = cright.instantiate()
+	menu.p_label = character.P_label
+	menu.character = character
+	menu.num = character.pp.player_number
 	
-	for i in len(menu):
-		menu[i].global_position = menu_pos[i]
-		
-		var coll_instance = collision.instantiate()
-		coll_instance.name = str("character_menu_area_2d" + str(i))
-		coll_instance.global_position = menu_coll_pos[i]
-		coll_instance.connect("body_entered", menu[i]._on_area_2d_body_entered)
-		coll_instance.connect("body_exited", menu[i]._on_area_2d_body_exited)
-		character.add_sibling.call_deferred(coll_instance)  # 延迟加节点
+	## 实例化碰撞
+	var coll_instance = collision.instantiate()
+	coll_instance.global_position = coll_pos[menu.num - 1]
+	coll_instance.body_entered.connect(menu._on_area_2d_body_entered)
+	coll_instance.body_exited.connect(menu._on_area_2d_body_exited)
+	add_child(menu)
+	character.add_sibling.call_deferred(coll_instance)  # 延迟加节点
+
+
+
+func _party() -> void:
+	## 实例化 Menu
+	menu = cleft.instantiate()
+	menu.p_label = character.P_label
+	menu.character = character
+	menu.num = character.pp.player_number
+	add_child(menu)

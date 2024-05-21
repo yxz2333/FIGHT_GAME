@@ -25,6 +25,7 @@ func on_enter(lambda = null) -> void:
 
 
 func state_process(delta) -> void: 
+	super(delta)
 	character.velocity = Vector2.ZERO
 
 func _on_timer_timeout():

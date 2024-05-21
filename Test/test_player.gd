@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 const SPEED = 200.0
 
+@onready var cp : CanvasLayer = $"../CanvasLayer"
 
 @export var actions : Dictionary = {
 	0 : "left_player_",
@@ -12,7 +13,8 @@ const SPEED = 200.0
 }
 
 func _physics_process(delta):
-
+	print(cp.get_final_transform().origin)
+	
 	var direction = Input.get_vector(actions[0], actions[1], actions[2], actions[3])
 	if direction:
 		velocity = direction * SPEED

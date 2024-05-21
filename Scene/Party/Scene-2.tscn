@@ -1,13 +1,12 @@
-[gd_scene load_steps=28 format=3 uid="uid://bqiyvxvvt6xk"]
+[gd_scene load_steps=27 format=3 uid="uid://bqiyvxvvt6xk"]
 
 [ext_resource type="Script" path="res://Scene/Scene.gd" id="1_an5dq"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="2_vob1b"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_37kgr"]
-[ext_resource type="Script" path="res://Scene/CameraEFFET.gd" id="6_ibmlg"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="7_byw5i"]
 [ext_resource type="Texture2D" uid="uid://cjrng8ma35y0k" path="res://Assets/ENVIRO/Level Design/Tiles.png" id="8_5iwhc"]
 [ext_resource type="Texture2D" uid="uid://duoh60sca02w5" path="res://Assets/ENVIRO/Level Design/Terrain (16x16).png" id="8_5w828"]
 [ext_resource type="Texture2D" uid="uid://fo6yg7ky5gwn" path="res://Assets/Background/Hills Layer 01.png" id="9_5vk6s"]
+[ext_resource type="Script" path="res://Scene/Party/PhantomCamera2D.gd" id="10_0mwcc"]
 [ext_resource type="Texture2D" uid="uid://tg8dirww1el2" path="res://Assets/Background/Hills Layer 02.png" id="10_nuwqx"]
 [ext_resource type="Texture2D" uid="uid://dbn1runnxmv5t" path="res://Assets/Background/Hills Layer 03.png" id="11_ltlp1"]
 [ext_resource type="Texture2D" uid="uid://b68me7jp1hksu" path="res://Assets/Background/Hills Layer 04.png" id="12_3tc8w"]
@@ -1152,55 +1151,56 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Static2D/CollisionShape2D4:position")
+tracks/0/path = NodePath("Platform1:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-327, 187)]
+"values": [Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Static2D/CollisionShape2D5:position")
+tracks/1/path = NodePath("Platform2:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(329, 187)]
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_77m7v"]
 resource_name = "平台"
-length = 20.0
+length = 16.0
 loop_mode = 2
+step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Static2D/CollisionShape2D4:position")
+tracks/0/path = NodePath("Platform1:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 20),
+"times": PackedFloat32Array(0, 16),
 "transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [Vector2(-327, 187), Vector2(329, -201)]
+"values": [Vector2(0, 0), Vector2(658, -402)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Static2D/CollisionShape2D5:position")
+tracks/1/path = NodePath("Platform2:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 10, 20),
+"times": PackedFloat32Array(0, 8, 16),
 "transitions": PackedFloat32Array(-2, -2, -2),
 "update": 0,
-"values": [Vector2(329, 187), Vector2(-327, -201), Vector2(329, 187)]
+"values": [Vector2(0, 0), Vector2(658, 402), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yujuq"]
@@ -1208,12 +1208,6 @@ _data = {
 "RESET": SubResource("Animation_66lc7"),
 "平台": SubResource("Animation_77m7v")
 }
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6q05m"]
-size = Vector2(480, 5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hchcy"]
-size = Vector2(176, 5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6gx1w"]
 size = Vector2(192, 5)
@@ -1368,22 +1362,30 @@ texture = ExtResource("8_5w828")
 [sub_resource type="TileSet" id="TileSet_os2k2"]
 sources/0 = SubResource("TileSetAtlasSource_h4fgn")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6q05m"]
+size = Vector2(480, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hchcy"]
+size = Vector2(176, 5)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d6lpg"]
 size = Vector2(160, 5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ma713"]
 size = Vector2(1312, 752)
 
-[sub_resource type="Resource" id="Resource_7bcyl"]
+[sub_resource type="Resource" id="Resource_ekdca"]
 script = ExtResource("3_37kgr")
-duration = 0.2
+duration = 0.3
 transition = 4
 ease = 2
 
-[node name="Scene-2" type="Node2D" node_paths=PackedStringArray("camera", "limit_area", "limit_coll")]
+[node name="Scene-2" type="Node2D" node_paths=PackedStringArray("birth_markers", "camera", "phantom_camera", "limit_area", "limit_coll")]
 script = ExtResource("1_an5dq")
 mode = "party"
-camera = NodePath("Cameras/Camera")
+birth_markers = [NodePath("P1"), NodePath("P2"), NodePath("P3")]
+camera = NodePath("Cameras/PhantomCamera2D")
+phantom_camera = NodePath("Cameras/PhantomCamera2D")
 limit_area = NodePath("Cameras/LimitArea")
 limit_coll = NodePath("Cameras/LimitArea/CollisionShape2D")
 out_pos = Array[Vector2]([Vector2(22, 2), Vector2(-22, 2), Vector2(-13, 1), Vector2(61, 1)])
@@ -1467,6 +1469,34 @@ libraries = {
 }
 autoplay = "平台"
 
+[node name="Platform1" type="AnimatableBody2D" parent="MAP"]
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="MAP/Platform1"]
+position = Vector2(-327, 186.75)
+shape = SubResource("RectangleShape2D_6gx1w")
+one_way_collision = true
+one_way_collision_margin = 0.3
+
+[node name="TileMap" type="TileMap" parent="MAP/Platform1/CollisionShape2D4"]
+position = Vector2(0, -2.5)
+tile_set = SubResource("TileSet_os2k2")
+format = 2
+layer_0/tile_data = PackedInt32Array(65530, 1114112, 0, 65531, 1179648, 0, 65532, 1179648, 0, 65533, 1179648, 0, 65534, 1179648, 0, 65535, 1179648, 0, 0, 1179648, 0, 1, 1179648, 0, 2, 1179648, 0, 3, 1179648, 0, 4, 1179648, 0, 5, 1245184, 0)
+
+[node name="Platform2" type="AnimatableBody2D" parent="MAP"]
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="MAP/Platform2"]
+position = Vector2(-327, -201)
+shape = SubResource("RectangleShape2D_6gx1w")
+one_way_collision = true
+one_way_collision_margin = 0.3
+
+[node name="TileMap" type="TileMap" parent="MAP/Platform2/CollisionShape2D5"]
+position = Vector2(0, -2.5)
+tile_set = SubResource("TileSet_os2k2")
+format = 2
+layer_0/tile_data = PackedInt32Array(65530, 1114112, 2, 65531, 1179648, 2, 65532, 1179648, 2, 65533, 1179648, 2, 65534, 1179648, 2, 65535, 1179648, 2, 0, 1179648, 2, 1, 1179648, 2, 2, 1179648, 2, 3, 1179648, 2, 4, 1179648, 2, 5, 1245184, 2)
+
 [node name="Static2D" type="StaticBody2D" parent="MAP"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MAP/Static2D"]
@@ -1484,43 +1514,19 @@ position = Vector2(329, 3.5)
 shape = SubResource("RectangleShape2D_hchcy")
 one_way_collision = true
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="MAP/Static2D"]
-position = Vector2(-327, 187)
-shape = SubResource("RectangleShape2D_6gx1w")
-
-[node name="TileMap" type="TileMap" parent="MAP/Static2D/CollisionShape2D4"]
-position = Vector2(0, -2.5)
-tile_set = SubResource("TileSet_os2k2")
-format = 2
-layer_0/tile_data = PackedInt32Array(65530, 1114112, 0, 65531, 1179648, 0, 65532, 1179648, 0, 65533, 1179648, 0, 65534, 1179648, 0, 65535, 1179648, 0, 0, 1179648, 0, 1, 1179648, 0, 2, 1179648, 0, 3, 1179648, 0, 4, 1179648, 0, 5, 1245184, 0)
-
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="MAP/Static2D"]
-position = Vector2(329, 187)
-shape = SubResource("RectangleShape2D_6gx1w")
-
-[node name="TileMap" type="TileMap" parent="MAP/Static2D/CollisionShape2D5"]
-position = Vector2(0, -2.5)
-tile_set = SubResource("TileSet_os2k2")
-format = 2
-layer_0/tile_data = PackedInt32Array(65530, 1114112, 2, 65531, 1179648, 2, 65532, 1179648, 2, 65533, 1179648, 2, 65534, 1179648, 2, 65535, 1179648, 2, 0, 1179648, 2, 1, 1179648, 2, 2, 1179648, 2, 3, 1179648, 2, 4, 1179648, 2, 5, 1245184, 2)
-
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="MAP/Static2D"]
 position = Vector2(-431, 243.5)
 shape = SubResource("RectangleShape2D_d6lpg")
+one_way_collision = true
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="MAP/Static2D"]
 position = Vector2(433, 243.5)
 shape = SubResource("RectangleShape2D_d6lpg")
+one_way_collision = true
 
 [node name="Cameras" type="Node2D" parent="."]
 
 [node name="Camera" type="Camera2D" parent="Cameras"]
-zoom = Vector2(1.88556, 1.88556)
-limit_left = -656
-limit_top = -352
-limit_right = 656
-limit_bottom = 400
-script = ExtResource("6_ibmlg")
 
 [node name="PhantomCameraHost" type="Node" parent="Cameras/Camera"]
 script = ExtResource("7_byw5i")
@@ -1534,13 +1540,13 @@ position = Vector2(0, 24)
 shape = SubResource("RectangleShape2D_ma713")
 debug_color = Color(0.654902, 0.501961, 0.34902, 0.278431)
 
-[node name="PhantomCamera2D" type="Node2D" parent="Cameras" node_paths=PackedStringArray("follow_targets")]
-script = ExtResource("2_vob1b")
+[node name="PhantomCamera2D" type="Node2D" parent="Cameras"]
+script = ExtResource("10_0mwcc")
 priority = 10
 follow_mode = 3
-follow_targets = [null, null, null]
-zoom = Vector2(1.88556, 1.88556)
-tween_resource = SubResource("Resource_7bcyl")
+tween_resource = SubResource("Resource_ekdca")
+follow_damping = true
+follow_damping_value = Vector2(1, 1)
 auto_zoom = true
 auto_zoom_margin = Vector4(150, 50, 150, 50)
 draw_limits = true
@@ -1553,4 +1559,4 @@ position = Vector2(-327, -22)
 position = Vector2(329, -22)
 
 [node name="P3" type="Marker2D" parent="."]
-position = Vector2(0, 124)
+position = Vector2(0, 122)

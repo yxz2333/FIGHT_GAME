@@ -7,6 +7,7 @@ class_name GroundState
 
 
 func state_process(delta) -> void:
+	super(delta)
 	if not character.is_on_floor() and buffer_timer.is_stopped(): # buffer判断玩家是否在floor上
 		set_next_state(pp.air_state)
 		playback.travel(pp.jump_loop_animation)

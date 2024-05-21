@@ -3,6 +3,7 @@ extends State
 class_name AirState
 
 func state_process(delta) -> void:
+	super(delta)
 	if character.is_on_floor(): # 在地面上时，进入着陆状态
 		set_next_state(character.ground_state())
 

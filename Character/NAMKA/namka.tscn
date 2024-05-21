@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=3 uid="uid://cifthl2ohvi0t"]
+[gd_scene load_steps=96 format=3 uid="uid://cifthl2ohvi0t"]
 
 [ext_resource type="Script" path="res://Character/NAMKA/namka.gd" id="1_eukoy"]
 [ext_resource type="PackedScene" uid="uid://dwl8fnh2aj3g3" path="res://Character/Class/run_start_effect.tscn" id="2_hk4kw"]
@@ -30,8 +30,6 @@
 [ext_resource type="Script" path="res://Character/Class/状态：Break.gd" id="24_omolx"]
 [ext_resource type="PackedScene" uid="uid://ci4n53033qsda" path="res://Character/Class/break.tscn" id="25_pum0l"]
 [ext_resource type="Script" path="res://Character/Class/CharacterMenuInPlayer.gd" id="30_a7qlg"]
-[ext_resource type="PackedScene" uid="uid://dw77qolih5eca" path="res://Character/Class/left_angry_bar.tscn" id="30_pgf7x"]
-[ext_resource type="PackedScene" uid="uid://ri2jc5b3kpbk" path="res://Character/NAMKA/right_angry_bar.tscn" id="32_0yk4d"]
 [ext_resource type="Script" path="res://Character/Class/TrailTimer.gd" id="32_2oeus"]
 [ext_resource type="LabelSettings" uid="uid://dram2l5m640n0" path="res://Character/Class/P_label.tres" id="33_3nsw0"]
 
@@ -908,16 +906,15 @@ font_size = 10
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6eb18"]
 size = Vector2(32, 32)
 
-[node name="NAMKA" type="CharacterBody2D" node_paths=PackedStringArray("shot_freeze_timer", "pp", "canvas_layer", "sprite", "P_label", "bars")]
+[node name="NAMKA" type="CharacterBody2D" node_paths=PackedStringArray("shot_freeze_timer", "pp", "sprite", "P_label", "canvas_layer")]
 collision_layer = 6
 script = ExtResource("1_eukoy")
 shot_freeze_timer = NodePath("PlayerProperty/ShotFreezeTimer")
 pp = NodePath("PlayerProperty")
 run_start_effect = ExtResource("2_hk4kw")
-canvas_layer = NodePath("CanvasLayer")
 sprite = NodePath("Sprite2D")
 P_label = NodePath("P_Label")
-bars = [NodePath("CanvasLayer/left"), NodePath("CanvasLayer/right")]
+canvas_layer = NodePath("CanvasLayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
@@ -946,7 +943,7 @@ script = ExtResource("9_tm5uj")
 character = NodePath("..")
 player_property = NodePath("../PlayerProperty")
 
-[node name="PlayerProperty" type="Node" parent="." node_paths=PackedStringArray("shot_state", "ground_gun_state", "gun_start_state", "air_state", "break_state", "hit_state", "attack_state", "ground_default_state")]
+[node name="PlayerProperty" type="Node" parent="." node_paths=PackedStringArray("shot_state", "ground_gun_state", "gun_start_state", "character", "air_state", "break_state", "hit_state", "attack_state", "ground_default_state")]
 script = ExtResource("14_sgykt")
 bullet_speed = 300.0
 bullet_damage = 10.0
@@ -955,18 +952,23 @@ bullet = ExtResource("15_1cy2q")
 shot_state = NodePath("../CharacterStateMachine/Shot")
 ground_gun_state = NodePath("../CharacterStateMachine/GroundGun")
 gun_start_state = NodePath("../CharacterStateMachine/GunStart")
+character = NodePath("..")
 _name = "Namka"
 speed = 280.0
 weight = 45.0
 jump_velocity = -290.0
 double_jump_velocity = -270.0
-damage = 30.0
+damage = 40.0
 base_knockback_speed = 50.0
-extra_knockback_speed = 300.0
+extra_knockback_speed = 350.0
+party_kb = {
+"1v1": Vector2(100, 800),
+"1v1v1": Vector2(20, 0)
+}
 camera_shake_offset = Vector2(7, -7)
 camera_shake_zoom = Vector2(0.95, 0.95)
-camera_shake_duration = 0.3
-frame_freeze_duration = 0.3
+camera_shake_duration = 0.5
+frame_freeze_duration = 0.5
 time_scale = 0.05
 left_action = "left_player_2"
 right_action = "right_player_2"
@@ -985,7 +987,7 @@ attack_state = NodePath("../CharacterStateMachine/Attack")
 ground_default_state = NodePath("../CharacterStateMachine/GroundDefault")
 
 [node name="ShotFreezeTimer" type="Timer" parent="PlayerProperty"]
-wait_time = 2.0
+wait_time = 2.5
 one_shot = true
 
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "animation_tree", "attack_area")]
@@ -1088,26 +1090,9 @@ script = ExtResource("19_5ceud")
 facing_left_position = Vector2(-29, -5)
 facing_right_position = Vector2(29, -5)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("menu", "character")]
+[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("character")]
 script = ExtResource("30_a7qlg")
-menu = [NodePath("left"), NodePath("right")]
 character = NodePath("..")
-
-[node name="left" parent="CanvasLayer" node_paths=PackedStringArray("character") instance=ExtResource("30_pgf7x")]
-offset_left = 16.0
-offset_top = 8.0
-offset_right = 252.0
-offset_bottom = 32.0
-character = NodePath("../..")
-num = 0
-
-[node name="right" parent="CanvasLayer" node_paths=PackedStringArray("character") instance=ExtResource("32_0yk4d")]
-offset_left = 432.0
-offset_top = 8.0
-offset_right = 616.0
-offset_bottom = 26.0
-character = NodePath("../..")
-num = 1
 
 [node name="Markers" type="Node2D" parent="."]
 
