@@ -35,7 +35,7 @@ func _on_damageable_hit(node : Player, damage_taken : int, lambda):
 
 var jump_input_cnt : bool = false  # 只容许跳一次
 func state_input(event : InputEvent) -> void:
-	if event.is_action_pressed(pp.jump_action) and jump_input_cnt == false:
+	if event.is_action_pressed(pp.jump_action) and jump_input_cnt == false and 能否跳:
 		jump()
 
 

@@ -1502,7 +1502,6 @@ layer_0/tile_data = PackedInt32Array(65530, 1114112, 2, 65531, 1179648, 2, 65532
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MAP/Static2D"]
 position = Vector2(1, 147.5)
 shape = SubResource("RectangleShape2D_6q05m")
-one_way_collision = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="MAP/Static2D"]
 position = Vector2(-327, 3.5)

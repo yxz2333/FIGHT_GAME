@@ -1,26 +1,23 @@
 extends AttackState
 
-@export var attack_1_animation_left : String
-@export var attack_1_animation_right : String
-@export var attack_2_animation_origin : String
-@export var attack_2_animation_left : String
-@export var attack_2_animation_right : String
-
+var repid : PackedScene = preload("res://Character/Class/Repid.tscn") # 到时候找时间封装一下这里
 
 func state_input(event : InputEvent) -> void:
 	super(event)
-	if event.is_action_pressed(pp.attack_cancel):
+	if event.is_action_pressed(pp.special_2_action) and character.angry >= 15:
 		attack_area.monitoring = false
+		var repid_instance = repid.instantiate()
+		character.angry -= 15
+		repid_instance.global_position = character.global_position
+		add_child(repid_instance)
 		_return()
 
 
 func _on_animation_tree_animation_finished(anim_name):
-	if anim_name == attack_1_animation_left:
-		playback.travel(attack_2_animation_origin)
-	if anim_name == attack_1_animation_right:
+	if anim_name == character.pp.attack_1_animation_left or anim_name == character.pp.attack_1_animation_right:
 		能否跑 = false
-		playback.travel(attack_2_animation_origin)
-		
-	if anim_name == attack_2_animation_left or anim_name == attack_2_animation_right:
+		能否跳 = false
+		playback.travel(character.pp.attack_2_animation_origin)
+	if anim_name == character.pp.attack_2_animation_left or anim_name == character.pp.attack_2_animation_right:
 		_return()
 

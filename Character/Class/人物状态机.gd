@@ -51,9 +51,18 @@ func check_if_cannot_hurt() -> bool:
 func check_if_SA() -> bool:
 	return current_state.是否霸体
 
+func check_if_can_jump() -> bool:
+	return current_state.能否跳
+
+func check_if_decrease_speed() -> bool:
+	return current_state.是否减速
+
+
+
 func switch_states(new_state : State, lambda = null) -> void:
 	attack_area.monitoring = false                 # 只有attack状态才激活hitbox
-
+	attack_area.set_deferred("monitorable", false)
+	
 	if current_state != null:
 		current_state.on_exit()
 		current_state.next_state = null

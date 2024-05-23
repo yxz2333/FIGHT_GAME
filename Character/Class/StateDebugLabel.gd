@@ -1,5 +1,7 @@
 extends Label
 
+class_name StateDebugLabel
+
 @export var state_machine : CharacterStateMachine
 
 func _physics_process(delta):

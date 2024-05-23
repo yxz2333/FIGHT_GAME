@@ -5,6 +5,9 @@ class_name State
 @export var 能否跑 : bool = true
 @export var 能否转向 : bool = true
 @export var 是否无敌 : bool = false
+@export var 能否跳 : bool = true
+@export var 是否减速 : bool = false
+@export var 能否输入 : bool = true
 
 var character : Player
 var next_state : State
@@ -51,9 +54,9 @@ func state_process(delta) -> void:
 		if not character.scene.game_manager.timer.is_stopped():
 			return
 	
-	if character.is_dead:
+	if character.is_dead and not 能否输入:
 		return
-	
+
 
 func state_input(event : InputEvent) -> void:
 	pass

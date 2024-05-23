@@ -7,7 +7,7 @@ var cursor_scene : PackedScene = preload("res://UI/PlayerCursor.tscn")
 var characters = {
 	"Marston" : preload("res://Character/MARSTON/marston.tscn"),
 	"Namka" : preload("res://Character/NAMKA/namka.tscn"),
-	"Musashi" : "",
+	"Musashi" : preload("res://Character/MUSASHI/musashi.tscn"),
 }
 var label_tres : LabelSettings = preload("res://Character/Class/P_label.tres")
 
@@ -72,7 +72,8 @@ func _ready():
 func _input(event):
 	if not can_input:
 		return
-	
+	if event is InputEventJoypadButton:
+		print(event.device)
 	if event.is_action_pressed("accept") and current_player <= total_players:
 		_connect_input(event)
 	
@@ -94,10 +95,11 @@ func _connect_input(event) -> void:                 # 配置指针按键，初�
 	if event is InputEventJoypadButton:
 		if vis_player.find(event.button_index) != -1:
 			return
-		
+			
+		print(event.button_index)
 		physical_input = event.button_index
 		vis_player.append(event.button_index) # 存按键，防止重复
-		# print("%s手柄接入" % current_player)
+		print("%s手柄接入" % current_player)
 	
 	
 	## 玩家指针初始化

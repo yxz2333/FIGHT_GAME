@@ -14,7 +14,7 @@ var label_tres : LabelSettings = preload("res://Character/Class/P_label.tres")
 var characters = {
 	"Marston" : preload("res://Character/MARSTON/marston.tscn"),
 	"Namka" : preload("res://Character/NAMKA/namka.tscn"),
-	"Musashi" : "",
+	"Musashi" : preload("res://Character/MUSASHI/musashi.tscn"),
 }
 
 var shader_material : ShaderMaterial

@@ -1,7 +1,6 @@
-[gd_scene load_steps=96 format=3 uid="uid://cifthl2ohvi0t"]
+[gd_scene load_steps=94 format=3 uid="uid://cifthl2ohvi0t"]
 
 [ext_resource type="Script" path="res://Character/NAMKA/namka.gd" id="1_eukoy"]
-[ext_resource type="PackedScene" uid="uid://dwl8fnh2aj3g3" path="res://Character/Class/run_start_effect.tscn" id="2_hk4kw"]
 [ext_resource type="Texture2D" uid="uid://db3tdx5cd0161" path="res://Assets/CHARAs/NAMKA/attack_prepare/attack_prepare.png" id="2_ok8b4"]
 [ext_resource type="Texture2D" uid="uid://d12f5xty6v7ac" path="res://Assets/CHARAs/NAMKA/running_gun/running_gun.png" id="2_u2p2a"]
 [ext_resource type="Texture2D" uid="uid://mt7f2nnph5un" path="res://Assets/CHARAs/NAMKA/jump/jump.png" id="2_wwhbp"]
@@ -14,21 +13,20 @@
 [ext_resource type="Script" path="res://Character/Class/人物状态机.gd" id="10_o6gpn"]
 [ext_resource type="Texture2D" uid="uid://b14d0xn65wbsw" path="res://Assets/CHARAs/NAMKA/gun_prepare/gun_prepare.png" id="10_rn4kg"]
 [ext_resource type="Texture2D" uid="uid://eet7lc12rheb" path="res://Assets/CHARAs/NAMKA/gun_shot/gun_shot.png" id="11_8qf1i"]
-[ext_resource type="Script" path="res://Character/Class/状态：Air.gd" id="12_1ign2"]
 [ext_resource type="Script" path="res://Character/NAMKA/状态：Attack.gd" id="12_3txlx"]
 [ext_resource type="FontFile" uid="uid://kbr8115pi1jl" path="res://Assets/Fonts/SmileySans-Oblique.ttf" id="13_yalan"]
 [ext_resource type="Script" path="res://Character/Class/状态：Hit.gd" id="14_jso46"]
 [ext_resource type="Script" path="res://Character/NAMKA/player_property.gd" id="14_sgykt"]
 [ext_resource type="PackedScene" uid="uid://b3to3t2afckwg" path="res://Character/NAMKA/bullet.tscn" id="15_1cy2q"]
-[ext_resource type="Script" path="res://Character/Class/状态：GroundDefault.gd" id="16_4hkv6"]
 [ext_resource type="Script" path="res://Character/Class/状态：GunStart.gd" id="16_geqr8"]
+[ext_resource type="Script" path="res://Character/NAMKA/状态：GroundDefault.gd" id="17_laloa"]
 [ext_resource type="Script" path="res://Character/Class/StateDebugLabel.gd" id="17_svtce"]
-[ext_resource type="Script" path="res://Character/Class/状态：GroundGun.gd" id="17_w3ajw"]
 [ext_resource type="Script" path="res://Character/Class/Attack.gd" id="18_k60vo"]
 [ext_resource type="Script" path="res://Character/Class/FacingCollisionShape2D.gd" id="19_5ceud"]
+[ext_resource type="Script" path="res://Character/NAMKA/状态：GroundGun.gd" id="19_8vrkq"]
+[ext_resource type="Script" path="res://Character/NAMKA/状态：Air.gd" id="20_jvcts"]
 [ext_resource type="Script" path="res://Character/NAMKA/状态：Shot.gd" id="23_dsi5h"]
 [ext_resource type="Script" path="res://Character/Class/状态：Break.gd" id="24_omolx"]
-[ext_resource type="PackedScene" uid="uid://ci4n53033qsda" path="res://Character/Class/break.tscn" id="25_pum0l"]
 [ext_resource type="Script" path="res://Character/Class/CharacterMenuInPlayer.gd" id="30_a7qlg"]
 [ext_resource type="Script" path="res://Character/Class/TrailTimer.gd" id="32_2oeus"]
 [ext_resource type="LabelSettings" uid="uid://dram2l5m640n0" path="res://Character/Class/P_label.tres" id="33_3nsw0"]
@@ -73,6 +71,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Attack:monitorable")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_n0cvw"]
@@ -402,6 +412,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Attack:monitorable")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_5q7cp"]
 length = 0.9
@@ -465,6 +487,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Attack:monitorable")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_yr87o"]
@@ -911,7 +945,6 @@ collision_layer = 6
 script = ExtResource("1_eukoy")
 shot_freeze_timer = NodePath("PlayerProperty/ShotFreezeTimer")
 pp = NodePath("PlayerProperty")
-run_start_effect = ExtResource("2_hk4kw")
 sprite = NodePath("Sprite2D")
 P_label = NodePath("P_Label")
 canvas_layer = NodePath("CanvasLayer")
@@ -970,21 +1003,12 @@ camera_shake_zoom = Vector2(0.95, 0.95)
 camera_shake_duration = 0.5
 frame_freeze_duration = 0.5
 time_scale = 0.05
-left_action = "left_player_2"
-right_action = "right_player_2"
-up_action = "up_player_2"
-down_action = "down_player_2"
-attack_action = "attack_1_player_2"
-shot_action = "attack_1_player_2"
-switch_gun_mode_action = "switch_to_gun_mode_player_2"
-jump_action = "jump_player_2"
-break_action = "break_player_2"
-SA_action = "SA_player_2"
 air_state = NodePath("../CharacterStateMachine/Air")
 break_state = NodePath("../CharacterStateMachine/Break")
 hit_state = NodePath("../CharacterStateMachine/Hit")
 attack_state = NodePath("../CharacterStateMachine/Attack")
 ground_default_state = NodePath("../CharacterStateMachine/GroundDefault")
+attack_1_animation = "攻击_准备"
 
 [node name="ShotFreezeTimer" type="Timer" parent="PlayerProperty"]
 wait_time = 2.5
@@ -998,7 +1022,7 @@ animation_tree = NodePath("../AnimationTree")
 attack_area = NodePath("../Attack")
 
 [node name="GroundDefault" type="Node" parent="CharacterStateMachine"]
-script = ExtResource("16_4hkv6")
+script = ExtResource("17_laloa")
 
 [node name="BufferTimer" type="Timer" parent="CharacterStateMachine/GroundDefault"]
 wait_time = 0.05
@@ -1008,9 +1032,10 @@ autostart = true
 [node name="GunStart" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("16_geqr8")
 "能否转向" = false
+"是否减速" = true
 
 [node name="GroundGun" type="Node" parent="CharacterStateMachine"]
-script = ExtResource("17_w3ajw")
+script = ExtResource("19_8vrkq")
 
 [node name="BufferTimer" type="Timer" parent="CharacterStateMachine/GroundGun"]
 wait_time = 0.05
@@ -1018,18 +1043,13 @@ one_shot = true
 autostart = true
 
 [node name="Air" type="Node" parent="CharacterStateMachine"]
-script = ExtResource("12_1ign2")
+script = ExtResource("20_jvcts")
 
 [node name="Attack" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("attack_area")]
 script = ExtResource("12_3txlx")
-attack_1_animation_left = "攻击_准备_左"
-attack_1_animation_right = "攻击_准备_右"
-attack_2_animation_origin = "攻击"
-attack_2_animation_left = "攻击_左"
-attack_2_animation_right = "攻击_右"
-attack_1_animation = "攻击_准备"
 attack_area = NodePath("../../Attack")
 "能否转向" = false
+"是否减速" = true
 
 [node name="Timer" type="Timer" parent="CharacterStateMachine/Attack"]
 wait_time = 0.3
@@ -1053,10 +1073,10 @@ bullet_start_marker = NodePath("../../Markers/Bullet")
 anim_player = NodePath("../../AnimationPlayer")
 character_state_machine = NodePath("..")
 "能否转向" = false
+"是否减速" = true
 
 [node name="Break" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("24_omolx")
-break_scene = ExtResource("25_pum0l")
 "能否跑" = false
 "能否转向" = false
 "是否无敌" = true
@@ -1079,6 +1099,8 @@ state_machine = NodePath("../CharacterStateMachine")
 [node name="Attack" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_collision_shape_2d")]
 collision_layer = 4
 collision_mask = 2
+monitoring = false
+monitorable = false
 script = ExtResource("18_k60vo")
 player = NodePath("..")
 facing_collision_shape_2d = NodePath("CollisionShape2D")

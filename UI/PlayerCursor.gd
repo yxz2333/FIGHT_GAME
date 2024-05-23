@@ -14,7 +14,7 @@ var menu : CharacterSelectMenu
 var accept_inputs = {
 	74 : 1,             # KEY_J 的code
 	4194439 : 2,        # KEY_1 的code
-	0 : 3,              # JOY_BUTTON_A 的code 
+	0 : 3,              # JOY_BUTTON_A 的code 00
 }
 
 ## 一些要拷贝实例化的

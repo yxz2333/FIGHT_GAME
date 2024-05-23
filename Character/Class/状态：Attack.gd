@@ -2,8 +2,6 @@ extends State
 
 class_name AttackState
 
-@export var attack_1_animation : String
-
 @export var attack_area : Area2D
 
 @onready var timer : Timer = $Timer
@@ -15,7 +13,7 @@ func init():
 	timer.one_shot = true
 
 func state_input(event : InputEvent) -> void:
-	if event.is_action_pressed(pp.jump_action) and jump_input_cnt == false:
+	if event.is_action_pressed(pp.jump_action) and jump_input_cnt == false and 能否跳:
 		jump()
 
 
@@ -25,7 +23,7 @@ func on_enter(lambda = null):
 	else:                       # 而空中不能再起跳攻击
 		jump_input_cnt = true
 	
-	playback.travel(attack_1_animation)
+	playback.travel(character.pp.attack_1_animation)
 
 
 func jump() -> void: # 连跳

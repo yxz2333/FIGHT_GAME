@@ -31,7 +31,7 @@ var head_pics : Dictionary = {  # 人物头像
 var special_pics : Dictionary = { # 人物special图标
 	"Marston" : preload("res://Assets/CHARAs/MARSTON/marston_gun.png"),
 	"Namka" : preload("res://Assets/CHARAs/NAMKA/namka_gun.png"),
-	"Musashi" : preload("res://Assets/CHARAs/MUSASHI/Musashi.png"),
+	"Musashi" : preload("res://Assets/CHARAs/MUSASHI/musashi_defence.png"),
 }
 
 var break_pic = preload("res://Assets/FXs/impact1/impact1_1.png")
@@ -133,7 +133,7 @@ func _update_angry_bar() -> void:
 
 
 
-func _handle_break() -> void:                # _physics_process 中处理Break
+func _handle_break() -> void:        # _physics_process 中处理Break
 	if not character.has_Break:      # 交Break了
 		if timer.is_stopped():       # 启动timer
 			if character.FZ:
@@ -185,7 +185,11 @@ func _init_Namka():
 
 
 func _init_Musashi():
-	pass
+	## special图标
+	weapon_rect.modulate = Color(1, 1, 1, 0.2)
+	
+	## 蓄力 bar
+	special_bar.value = 0
 
 
 
@@ -209,7 +213,18 @@ func _handle_Namka():
 
 
 func _handle_Musashi():
-	pass
+	## 蓄力 bar
+	if character.state_machine.current_state is ChargeState:
+		special_bar.value = (character.pp.charge_time[character.scene.mode] - character.state_machine.current_state.timer.time_left) / character.state_machine.current_state.timer.wait_time
+	else:
+		special_bar.value = 0
+	
+	## special图标
+	if character.state_machine.current_state is DefenseState:
+		weapon_rect.modulate = Color(1, 1, 1, 1)
+	else:
+		weapon_rect.modulate = Color(1, 1, 1, 0.2)
+
 
 
 func _on_area_2d_body_entered(body : Player):

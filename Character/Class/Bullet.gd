@@ -28,9 +28,18 @@ func check_if_myself(body : Player) -> bool: # 自己的子弹不会打到自己
 	else:
 		return false
 
+func handle_bullet_flip(body : Player) -> bool:
+	if body.state_machine.current_state is DefenseState:
+		body.state_machine.current_state.bulled_flip(self)
+		return true
+	return false
+
 
 func _on_body_entered(body : Player): # 碰撞逻辑
-	if check_if_myself(body):
+	if handle_bullet_flip(body): # 被当身
+		return
+		
+	if check_if_myself(body) or body.state_machine.check_if_cannot_hurt():
 		return
 		
 	for child in body.get_children():

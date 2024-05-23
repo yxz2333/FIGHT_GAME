@@ -8,26 +8,10 @@ func state_process(delta) -> void:
 		set_next_state(character.ground_state())
 
 func state_input(event : InputEvent) -> void:  # 读取输入
-	
 	## 连跳
-	if event.is_action_pressed(pp.jump_action) and not character.has_double_jumped: 
+	if event.is_action_pressed(pp.jump_action) and not character.has_double_jumped and 能否跳: 
 		double_jump()
-	
-	## 空中切枪
-	if event.is_action_pressed(pp.switch_gun_mode_action):
-		if character.ground_state() != pp.ground_gun_state:
-			character.is_gun = true
-			set_next_state(pp.gun_start_state)
-		else:
-			character.is_gun = false
-	
-	## 空中射击
-	if character.ground_state() == pp.ground_gun_state and event.is_action_pressed(pp.shot_action):
-		set_next_state(pp.shot_state)
-	
-	## 空中普攻
-	if character.ground_state() == pp.ground_default_state and event.is_action_pressed(pp.attack_action):
-		set_next_state(pp.attack_state)
+
 
 
 func on_exit() -> void:

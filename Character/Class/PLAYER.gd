@@ -6,11 +6,12 @@ class_name Player
 var game_manager : GameManager
 @export var scene : Scene
 var camera_setting : Node2D
+var run_start_effect : PackedScene = preload("res://Character/Class/run_start_effect.tscn")
 @export var pp : PlayerProperty
-@export var run_start_effect : PackedScene
 @export var sprite : Sprite2D
 @export var P_label : Label
 @export var canvas_layer : CanvasLayer
+@export var anim_player : AnimationPlayer
 @onready var animation_tree : AnimationTree = $AnimationTree
 var playback : AnimationNodeStateMachinePlayback  # 获取当前动画用
 @onready var state_machine : CharacterStateMachine = $CharacterStateMachine
@@ -103,7 +104,6 @@ func _physics_process(delta):
 	if is_dead or not scene.can_input:
 		return
 
-	
 	## 读入x轴和y轴方向输入
 	direction = Input.get_vector(pp.left_action, pp.right_action, pp.up_action, pp.down_action)
 	
@@ -140,10 +140,9 @@ func _physics_process(delta):
 	update_facing_directon()
 	
 	## 可以移动或者可缓慢移动
-	if direction.x and (state_machine.check_if_can_move() or check_when_decrease_speed()):  # 可以移动或者可缓慢移动的情况下才行
-		if check_when_decrease_speed():                         # 可缓慢移动
+	if direction.x and (state_machine.check_if_can_move() or state_machine.check_if_decrease_speed()):  # 可以移动或者可缓慢移动的情况下才行
+		if state_machine.check_if_decrease_speed():             # 可缓慢移动
 			velocity.x = direction.x * speed * 0.23
-			
 		else:                                                   # 可移动
 			if is_on_floor() and (velocity.x == 0 or now_flip_h != sprite.flip_h):
 				on_start_run(sprite.flip_h)  # 起跑时的灰尘效果
@@ -159,14 +158,13 @@ func _physics_process(delta):
 		else:
 			velocity.x = move_toward(velocity.x, 0, pp.speed * 0.23 * (100 / (percentage + 10)))
 	
-	
 	move_and_slide()
 	update_animation_parameters()
 
 
 
 func update_animation_parameters() -> void:  # 设置移动动画对应参数
-	pass
+	animation_tree.set("parameters/移动/blend_position", direction.x)
 
 
 func update_facing_directon() -> void:       # 更新面朝方向
@@ -185,7 +183,6 @@ func update_facing_directon() -> void:       # 更新面朝方向
 
 
 func on_start_run(sprite_flip : bool):       # 起跑时的灰尘效果
-	
 	var run_start_effect_instantiate = run_start_effect.instantiate()
 
 	run_start_effect_instantiate.global_position = run_start_marker.global_position
@@ -207,13 +204,6 @@ func check_if_can_DI() -> bool:              # 检查是否能DI
 func break_skill() -> void:                  # 进入break状态
 	has_Break = false
 	state_machine.current_state.emit_signal("interrupt_state", pp.break_state)
-
-
-func check_when_decrease_speed() -> bool:    # 检查什么时候是减速前进
-	if state_machine.current_state is GunStartState or state_machine.current_state is ShotState or state_machine.current_state is AttackState:
-		return true
-	return false
-
 
 
 func SA_state() -> void:                     # 进入无双状态

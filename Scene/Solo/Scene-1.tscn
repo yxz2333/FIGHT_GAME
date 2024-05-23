@@ -730,10 +730,10 @@ scale = Vector2(-5.59586, 15.8759)
 script = ExtResource("30_g4gky")
 
 [node name="P1" type="Marker2D" parent="."]
-position = Vector2(-191, 69)
+position = Vector2(-191, 72)
 
 [node name="P2" type="Marker2D" parent="."]
-position = Vector2(210, 69)
+position = Vector2(210, 72)
 
 [node name="LimitArea" type="Area2D" parent="."]
 collision_layer = 0

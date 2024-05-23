@@ -2,7 +2,7 @@ extends State
 
 class_name BreakState
 
-@export var break_scene : PackedScene
+var break_scene : PackedScene = preload("res://Character/Class/break.tscn")
 
 @onready var timer : Timer = $Timer
 

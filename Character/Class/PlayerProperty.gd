@@ -54,17 +54,17 @@ var SA_speed : float
 
 
 ## 上下左右跳跃按键
-@export var left_action : String
-@export var right_action : String
-@export var up_action : String
-@export var down_action : String
-@export var attack_action : String
-@export var shot_action : String
-@export var switch_gun_mode_action : String
-@export var jump_action : String
-@export var break_action : String
-@export var SA_action : String
-var attack_cancel : String
+var left_action : String
+var right_action : String
+var up_action : String
+var down_action : String
+var attack_action : String
+var shot_action : String
+var special_1_action : String
+var jump_action : String
+var break_action : String
+var SA_action : String
+var special_2_action : String
 
 
 ## 各个状态
@@ -82,7 +82,7 @@ var attack_cancel : String
 @export var double_jump_animation : String = "跳跃_连跳"
 @export var hit_animation : String = "受伤"
 @export var break_animation : String = "爆发"
-
+@export var attack_1_animation : String
 
 func _ready():
 	if character.scene.mode == "party" and character.scene.game_manager.number > 2:  # 交换party和默认的击飞速度
@@ -100,11 +100,11 @@ var actions = {
 	"down_action" = "down_player_",                          # s 下
 	"attack_action" = "attack_1_player_",                    # j 1
 	"shot_action" = "attack_1_player_",                      # j 1
-	"switch_gun_mode_action" = "switch_to_gun_mode_player_", # u 4
+	"special_1_action" = "special_1_player_",                # u 4
 	"jump_action" = "jump_player_",                          # k 2
 	"break_action" = "break_player_",                        # i 5
 	"SA_action" = "SA_player_",                              # o 6
-	"attack_cancel" = "3_cancel_player_",                    # l 3
+	"special_2_action" = "special_2_player_",                # l 3
 }
 
 func init_input(input_c):
@@ -114,8 +114,8 @@ func init_input(input_c):
 	down_action    = actions.get("down_action") + str(input_c)
 	attack_action  = actions.get("attack_action") + str(input_c)
 	shot_action    = actions.get("shot_action") + str(input_c)
-	switch_gun_mode_action = actions.get("switch_gun_mode_action") + str(input_c)
+	special_1_action = actions.get("special_1_action") + str(input_c)
 	jump_action    = actions.get("jump_action") + str(input_c)
 	break_action   = actions.get("break_action") + str(input_c)
 	SA_action      = actions.get("SA_action") + str(input_c)
-	attack_cancel  = actions.get("attack_cancel") + str(input_c)
+	special_2_action = actions.get("special_2_action") + str(input_c)
