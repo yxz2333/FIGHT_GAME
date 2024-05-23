@@ -1339,6 +1339,7 @@ script = ExtResource("3_nga4i")
 character = NodePath("..")
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
+visible = false
 offset_left = -27.0
 offset_top = -31.0
 offset_right = 23.0

@@ -14,10 +14,9 @@ func state_input(event : InputEvent) -> void:
 
 
 func _on_animation_tree_animation_finished(anim_name):
-	if anim_name == character.pp.attack_1_animation_left or anim_name == character.pp.attack_1_animation_right:
+	if anim_name == pp.attack_1_animation_left or anim_name == pp.attack_1_animation_right:
 		能否跑 = false
 		能否跳 = false
-		playback.travel(character.pp.attack_2_animation_origin)
-	if anim_name == character.pp.attack_2_animation_left or anim_name == character.pp.attack_2_animation_right:
+		playback.travel(pp.attack_2_animation_origin)
+	if anim_name == pp.attack_2_animation_left or anim_name == pp.attack_2_animation_right:
 		_return()
-

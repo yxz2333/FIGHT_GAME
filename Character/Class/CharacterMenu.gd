@@ -66,7 +66,7 @@ func _ready():
 		angry_bar.fill_mode = TextureProgressBar.FILL_RIGHT_TO_LEFT if num == 2 else TextureProgressBar.FILL_LEFT_TO_RIGHT        # 设置进度条开始位置
 		eased_angry_bar.fill_mode = TextureProgressBar.FILL_RIGHT_TO_LEFT if num == 2 else TextureProgressBar.FILL_LEFT_TO_RIGHT  # 设置进度条开始位置
 		special_bar.fill_mode = TextureProgressBar.FILL_RIGHT_TO_LEFT if num == 2 else TextureProgressBar.FILL_LEFT_TO_RIGHT      # 设置进度条开始位置
-		
+	
 	elif character.scene.mode == "party":
 		scale = Vector2(1.5, 1.5)
 		

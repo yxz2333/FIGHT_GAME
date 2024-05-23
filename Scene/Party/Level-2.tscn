@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bpwhsg3mox381"]
+[gd_scene load_steps=13 format=3 uid="uid://bpwhsg3mox381"]
 
 [ext_resource type="Script" path="res://Scene/GameManager.gd" id="1_vgdpd"]
 [ext_resource type="PackedScene" uid="uid://bqiyvxvvt6xk" path="res://Scene/Party/Scene-2.tscn" id="2_ffdnk"]
@@ -57,11 +57,238 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(318, 720), Vector2(318, 0)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../CanvasLayer2/Label:label_settings:font_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.952941, 0.113725, 0.0980392, 0.984314)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../CanvasLayer2/Label:label_settings:outline_color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.235294, 0.235294, 0.235294, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../CanvasLayer2/Label:label_settings:shadow_color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.698039)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../CanvasLayer2/Label:text")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["GAME
+SAT!"]
+}
+
+[sub_resource type="Animation" id="Animation_bm607"]
+resource_name = "GO"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CanvasLayer2/Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["GO!"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CanvasLayer2/Label:label_settings")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("LabelSettings_iao6i")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../CanvasLayer2/Label:label_settings:font_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [400, 100]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../CanvasLayer2/Label:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(318, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../CanvasLayer2/Label:label_settings:font_color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.952941, 0.113725, 0.0980392, 0.984314), Color(0.952941, 0.113725, 0.0980392, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../CanvasLayer2/Label:label_settings:outline_color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.235294, 0.235294, 0.235294, 1), Color(0.235294, 0.235294, 0.235294, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../CanvasLayer2/Label:label_settings:shadow_color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.698039), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kq3k7"]
+resource_name = "game_start"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../CanvasLayer2/Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(318, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../CanvasLayer2/Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": ["3", "2
+", "1"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../CanvasLayer2/Label:label_settings")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("LabelSettings_iao6i")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../CanvasLayer2/Label:label_settings:font_size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [200]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../CanvasLayer2/Label:label_settings:font_color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.8, 1, 1.8, 2, 2.8),
+"transitions": PackedFloat32Array(2, 2, 2, 2, 2, 2),
+"update": 0,
+"values": [Color(0.952941, 0.113725, 0.0980392, 0.984314), Color(0.952941, 0.113725, 0.0980392, 0), Color(0.952941, 0.113725, 0.0980392, 0.984314), Color(0.952941, 0.113725, 0.0980392, 0), Color(0.952941, 0.113725, 0.0980392, 0.984314), Color(0.952941, 0.113725, 0.0980392, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../CanvasLayer2/Label:label_settings:outline_color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.8, 1, 1.8, 2, 2.8),
+"transitions": PackedFloat32Array(2, 2, 2, 2, 2, 2),
+"update": 0,
+"values": [Color(0.235294, 0.235294, 0.235294, 1), Color(0.235294, 0.235294, 0.235294, 0), Color(0.235294, 0.235294, 0.235294, 1), Color(0.235294, 0.235294, 0.235294, 0), Color(0.235294, 0.235294, 0.235294, 1), Color(0.235294, 0.235294, 0.235294, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../CanvasLayer2/Label:label_settings:shadow_color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.8, 1, 1.8, 2, 2.8),
+"transitions": PackedFloat32Array(2, 2, 2, 2, 2, 2),
+"update": 0,
+"values": [Color(0, 0, 0, 0.698039), Color(0, 0, 0, 0), Color(0, 0, 0, 0.698039), Color(0, 0, 0, 0), Color(0, 0, 0, 0.698039), Color(0, 0, 0, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ovqra"]
 _data = {
+"GO": SubResource("Animation_bm607"),
 "RESET": SubResource("Animation_fwdqv"),
-"game_set": SubResource("Animation_nbii4")
+"game_set": SubResource("Animation_nbii4"),
+"game_start": SubResource("Animation_kq3k7")
 }
 
 [node name="Level-2" type="Node" node_paths=PackedStringArray("scene")]
@@ -104,8 +331,8 @@ offset_left = 318.0
 offset_top = 720.0
 offset_right = 986.0
 offset_bottom = 1443.0
-text = "Game
-  Set!!"
+text = "GAME
+SAT!"
 label_settings = SubResource("LabelSettings_iao6i")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -115,4 +342,5 @@ process_mode = 3
 position = Vector2(25, -22)
 game_manager = NodePath("../..")
 
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

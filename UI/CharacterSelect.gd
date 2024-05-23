@@ -56,6 +56,7 @@ func init(m : String) -> void:
 func _ready():
 	super()
 	
+	can_input = false
 	smash_layer.hide()
 	
 	if next_mode == "solo":
@@ -72,8 +73,7 @@ func _ready():
 func _input(event):
 	if not can_input:
 		return
-	if event is InputEventJoypadButton:
-		print(event.device)
+	
 	if event.is_action_pressed("accept") and current_player <= total_players:
 		_connect_input(event)
 	
@@ -81,8 +81,12 @@ func _input(event):
 		_start_game()
 
 
-func _connect_input(event) -> void:                 # 配置指针按键，初始化选角指针
+func _connect_input(event) -> void:           # 配置指针按键，初始化选角指针
 	var physical_input
+	var device : int = -1  # 配置多个手柄
+	
+	if not can_input:
+		return
 	
 	if event is InputEventKey:
 		if vis_player.find(event.keycode) != -1:
@@ -93,13 +97,13 @@ func _connect_input(event) -> void:                 # 配置指针按键，初�
 		# print("%s键盘接入" % current_player)
 
 	if event is InputEventJoypadButton:
-		if vis_player.find(event.button_index) != -1:
+		if vis_player.find(event.device) != -1:
 			return
-			
-		print(event.button_index)
+		
+		device = event.device
 		physical_input = event.button_index
-		vis_player.append(event.button_index) # 存按键，防止重复
-		print("%s手柄接入" % current_player)
+		vis_player.append(event.device) # 存按键，防止重复
+		# print("%s手柄接入" % current_player)
 	
 	
 	## 玩家指针初始化
@@ -109,9 +113,9 @@ func _connect_input(event) -> void:                 # 配置指针按键，初�
 	
 	var player_cursor = cursor_scene.instantiate()
 	if next_mode == "solo":
-		player_cursor.init(current_player, self, physical_input, solo_sprite_marker)
+		player_cursor.init(current_player, self, physical_input, solo_sprite_marker, device)
 	if next_mode == "party":
-		player_cursor.init(current_player, self, physical_input, party_sprite_marker)
+		player_cursor.init(current_player, self, physical_input, party_sprite_marker, device)
 	cursors.append(player_cursor)
 	
 	add_child(player_cursor)
@@ -170,3 +174,8 @@ func _start_game() -> void:
 
 func _on_limit_area_body_exited(body : Player):
 	emit_signal("player_out_of_screen", body)
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "PSYC":
+		can_input = true

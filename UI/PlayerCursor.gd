@@ -14,7 +14,7 @@ var menu : CharacterSelectMenu
 var accept_inputs = {
 	74 : 1,             # KEY_J 的code
 	4194439 : 2,        # KEY_1 的code
-	0 : 3,              # JOY_BUTTON_A 的code 00
+	0 : [3, 4, 5]         # JOY_BUTTON_A 的code 00
 }
 
 ## 一些要拷贝实例化的
@@ -35,11 +35,11 @@ var sprite : Sprite2D = null
 var s_label : Label = null
 
 
-func init(n : int, me : CharacterSelectMenu, accept_input, sm : Node2D = null) -> void:
+func init(n : int, me : CharacterSelectMenu, accept_input, sm : Node2D = null, device : int = -1) -> void:
 	num = n
 	menu = me
 	sprite_marker = sm
-	input_config(accept_input)
+	input_config(accept_input, device)
 
 
 func _ready():
@@ -76,12 +76,12 @@ func _input(event):
 	if event.is_action_pressed("accept") and current_selection != null and selected_UI == null: # over到可选择角色时，按accept选择
 		## 检测当前accept是否是对应键位
 		if event is InputEventKey:
-			if input_num != accept_inputs.get(event.keycode):
+			if input_num != accept_inputs[event.keycode]:
 				return
 		if event is InputEventJoypadButton:
-			if input_num != accept_inputs.get(event.button_index):
+			if input_num != accept_inputs[event.button_index][event.device]:
 				return
-		
+			
 		
 		current_selection.select(self, num, input_num) # 选择完实例化可操纵角色
 		_sprite_effect()                         # 生成人物图标
@@ -155,8 +155,13 @@ func _on_area_2d_area_exited(area):
 
 
 
-func input_config(accept_input) -> void: # 配置鼠标指针输入，初始化input_num
-	input_num = accept_inputs.get(accept_input)
+func input_config(accept_input, device : int) -> void: # 配置鼠标指针输入，初始化input_num
+	if device == -1:
+		input_num = accept_inputs[accept_input]
+	else:
+		print(device)
+		input_num = accept_inputs[accept_input][device]
+		print(input_num)
 	for i in range(actions.size()):
 		actions[i] += str(input_num) # 分配按键
 

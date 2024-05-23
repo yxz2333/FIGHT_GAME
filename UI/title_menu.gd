@@ -12,7 +12,7 @@ func _ready():
 		button.mouse_entered.connect(button.grab_focus)  # 设置鼠标焦点
 
 func _input(event):
-	if event is InputEventKey and not is_pressed:
+	if (event is InputEventKey or event is InputEventJoypadButton) and not is_pressed:
 		animation_player.play("按下任意键之后的title")
 		is_pressed = true
 

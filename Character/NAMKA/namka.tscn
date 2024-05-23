@@ -940,7 +940,7 @@ font_size = 10
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6eb18"]
 size = Vector2(32, 32)
 
-[node name="NAMKA" type="CharacterBody2D" node_paths=PackedStringArray("shot_freeze_timer", "pp", "sprite", "P_label", "canvas_layer")]
+[node name="NAMKA" type="CharacterBody2D" node_paths=PackedStringArray("shot_freeze_timer", "pp", "sprite", "P_label", "canvas_layer", "anim_player")]
 collision_layer = 6
 script = ExtResource("1_eukoy")
 shot_freeze_timer = NodePath("PlayerProperty/ShotFreezeTimer")
@@ -948,6 +948,7 @@ pp = NodePath("PlayerProperty")
 sprite = NodePath("Sprite2D")
 P_label = NodePath("P_Label")
 canvas_layer = NodePath("CanvasLayer")
+anim_player = NodePath("AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
@@ -1011,7 +1012,7 @@ ground_default_state = NodePath("../CharacterStateMachine/GroundDefault")
 attack_1_animation = "攻击_准备"
 
 [node name="ShotFreezeTimer" type="Timer" parent="PlayerProperty"]
-wait_time = 2.5
+wait_time = 3.0
 one_shot = true
 
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "animation_tree", "attack_area")]

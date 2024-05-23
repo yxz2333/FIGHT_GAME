@@ -839,9 +839,9 @@ format = 2
 layer_0/tile_data = PackedInt32Array(458746, 1179648, 2, 458747, 1179648, 2, 458748, 1179648, 2, 458749, 1179648, 2, 458750, 1179648, 2, 458751, 1179648, 2, 393216, 1179648, 2, 393217, 1179648, 2, 393218, 1179648, 2, 393219, 1179648, 2, 393220, 1179648, 2, 393221, 1179648, 2, 393222, 1179648, 2, 458745, 1179648, 2, 458744, 1179648, 2, 393223, 1179648, 2, 393224, 1245184, 2, 458743, 1114112, 2)
 
 [node name="Marston" parent="." node_paths=PackedStringArray("menu") instance=ExtResource("3_to6fj")]
-offset_left = -110.0
+offset_left = -130.0
 offset_top = -100.0
-offset_right = -70.0
+offset_right = -90.0
 offset_bottom = -60.0
 menu = NodePath("..")
 
@@ -854,9 +854,9 @@ texture = ExtResource("4_p21a6")
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 50.0
+offset_left = 70.0
 offset_top = -100.0
-offset_right = 90.0
+offset_right = 110.0
 offset_bottom = -60.0
 grow_horizontal = 1
 grow_vertical = 1
@@ -1072,3 +1072,5 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LimitArea"]
 shape = SubResource("RectangleShape2D_2ljsi")
 debug_color = Color(0.705882, 0.486275, 0.141176, 0.0862745)
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

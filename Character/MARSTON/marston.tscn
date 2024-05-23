@@ -921,13 +921,14 @@ font_size = 10
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6eb18"]
 size = Vector2(24, 21)
 
-[node name="MARSTON" type="CharacterBody2D" node_paths=PackedStringArray("pp", "sprite", "P_label", "canvas_layer")]
+[node name="MARSTON" type="CharacterBody2D" node_paths=PackedStringArray("pp", "sprite", "P_label", "canvas_layer", "anim_player")]
 collision_layer = 6
 script = ExtResource("1_846sn")
 pp = NodePath("PlayerProperty")
 sprite = NodePath("Sprite2D")
 P_label = NodePath("P_Label")
 canvas_layer = NodePath("CanvasLayer")
+anim_player = NodePath("AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
@@ -1061,7 +1062,6 @@ wait_time = 2.0
 one_shot = true
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
-visible = false
 offset_left = -29.0
 offset_top = -23.0
 offset_right = 37.0

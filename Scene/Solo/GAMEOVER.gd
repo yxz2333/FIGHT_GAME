@@ -33,7 +33,7 @@ func _on_who_is_winner(winner : Player) -> void:
 
 var cnt : int = 1
 func _input(event):
-	if event is InputEventKey and is_game_over and cnt:
+	if (event is InputEventKey or event is InputEventJoypadButton) and is_game_over and cnt:
 		cnt -= 1
 		get_tree().paused = false
 		Transitions.tran_d_0_without_loading("res://UI/mode_select.tscn")

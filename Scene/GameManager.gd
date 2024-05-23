@@ -48,7 +48,7 @@ signal who_is_winner(node : Player) # 胜者
 
 
 func _ready():
-	timer.wait_time = 2.9
+	timer.wait_time = 2.5
 	timer.start()
 	
 	self.get_viewport().set_embedding_subwindows(false)   # 创建新窗口一定要这句代码
@@ -126,8 +126,22 @@ func game_set_then_game_over(winner : Player) -> void:   # gameset和gameover
 	
 	emit_signal("who_is_winner", winner) # 信号发送给gameover.gd
 
-
+var once : bool = false # 确保timeout只执行一次
 func _on_timer_timeout(): # 等待转场动画播放完在执行
+	if once:
+		return
+	once = true
+	
 	## 设置缩放
 	if mode == "party":
 		get_tree().root.set_content_scale_factor(1)
+	
+	await get_tree().create_timer(0.5).timeout
+	
+	animation_player.play("game_start")
+	timer.start(3)
+
+
+func _on_animation_player_animation_finished(anim_name : String):
+	if anim_name == "game_start":
+		animation_player.play("GO")

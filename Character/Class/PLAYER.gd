@@ -42,8 +42,8 @@ var FZ : bool = false :                     # 是否狂热状态（FZ）
 var has_Break : bool = true                 # 是否有Break
 var fixed_percentage : bool = false         # 是否固定百分比
 var fixed_angry : bool = false              # 是否固定怒气值
-var is_dead : bool = 0                  # 是否已死
-
+var is_dead : bool = 0                      # 是否已死
+var life : int = 1
 var speed : float                           # 速度
 var percentage : float = 0.0 :              # 百分比
 	get:
@@ -76,6 +76,7 @@ func init(s : Scene, pn : int, input_c):
 	
 	if scene.mode != "character_select":
 		game_manager = scene.game_manager
+		life = 3
 
 
 func _ready():
@@ -97,8 +98,15 @@ func _physics_process(delta):
 		push_warning("人物错误初始化")
 		return
 	
+	## 只允许下落的转场禁输入
 	if scene.mode != "character_select":
 		if not scene.game_manager.timer.is_stopped():
+			## 只允许下落
+			if not is_on_floor(): 
+				velocity.y += gravity * delta 
+			else:
+				has_double_jumped = false
+			move_and_slide()
 			return
 	
 	if is_dead or not scene.can_input:

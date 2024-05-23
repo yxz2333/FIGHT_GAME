@@ -23,7 +23,7 @@ func on_enter(lambda = null):
 	else:                       # 而空中不能再起跳攻击
 		jump_input_cnt = true
 	
-	playback.travel(character.pp.attack_1_animation)
+	playback.travel(pp.attack_1_animation)
 
 
 func jump() -> void: # 连跳
