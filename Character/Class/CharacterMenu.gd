@@ -167,11 +167,11 @@ func _init_Marston():
 	## bullet_bar
 	special_bar.max_value = character.bullets_number
 	special_bar.value = special_bar.max_value
-	
-	for key in character.pp.bullet_bar_player_signal.keys(): # 找和玩家编号匹配的信号进行连接
-		if key == character.pp.player_number:
-			SignalBus.connect(character.pp.bullet_bar_player_signal[key], func(): special_bar.value = character.bullets_number) # 更新子弹数的函数
-	
+	#
+	#for key in character.pp.bullet_bar_player_signal.keys(): # 找和玩家编号匹配的信号进行连接
+		#if key == character.pp.player_number:
+			#SignalBus.connect(character.pp.bullet_bar_player_signal[key], func(): special_bar.value = character.bullets_number) # 更新子弹数的函数
+	#
 	## special图标
 	weapon_rect.modulate = Color(1, 1, 1, 0.2)
 
@@ -199,7 +199,9 @@ func _handle_Marston():
 		weapon_rect.modulate = Color(1, 1, 1, 1)
 	else:
 		weapon_rect.modulate = Color(1, 1, 1, 0.2)
-
+	
+	## 子弹 bar
+	special_bar.value = character.bullets_number
 
 func _handle_Namka():
 	## bullet_bar

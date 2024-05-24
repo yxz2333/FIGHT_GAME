@@ -18,10 +18,10 @@ func on_enter(lambda = null) -> void:
 	
 func shot() -> void:
 	var bullet_instantiate = bullet.instantiate()
-	bullet_instantiate.player = player
+	bullet_instantiate.player = character
 	bullet_instantiate.player_property = pp
 	bullet_instantiate.global_position = bullet_start_marker.global_position
-	player.add_sibling(bullet_instantiate)
+	character.add_sibling(bullet_instantiate)
 
 
 func _on_animation_tree_animation_finished(anim_name):

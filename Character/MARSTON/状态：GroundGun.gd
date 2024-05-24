@@ -18,4 +18,8 @@ func state_input(event : InputEvent) -> void: # 读入状态事件
 		else:
 			set_next_state(character.ground_state())
 			playback.travel(character.ground_animation())
-
+	
+	## 补子弹
+	if event.is_action_pressed(pp.special_2_action) and character.angry >= 50:
+		character.bullets_number = 50 - character.bullets_number
+		character.angry -= 50

@@ -748,7 +748,7 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id="Animation_37vr7"]
 resource_name = "闪避_结束"
-length = 0.3
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -816,7 +816,7 @@ tracks/5/path = NodePath("CharacterStateMachine/FlashEndState")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.3),
+"times": PackedFloat32Array(0.5),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -1196,9 +1196,9 @@ shape = SubResource("RectangleShape2D_d8ki2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 0.5)
-texture = ExtResource("2_g4u24")
-hframes = 2
-frame = 1
+texture = ExtResource("9_qx7a4")
+hframes = 3
+frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

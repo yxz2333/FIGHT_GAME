@@ -6,6 +6,8 @@
 [sub_resource type="LabelSettings" id="LabelSettings_lv3yb"]
 line_spacing = 10.0
 font = ExtResource("2_xx5uv")
+shadow_size = 8
+shadow_color = Color(0, 0, 0, 1)
 
 [node name="Percentage" type="Control"]
 layout_mode = 3

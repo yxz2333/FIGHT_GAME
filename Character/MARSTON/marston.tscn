@@ -945,6 +945,8 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+deterministic = false
+reset_on_save = false
 tree_root = SubResource("AnimationNodeStateMachine_egojv")
 anim_player = NodePath("../AnimationPlayer")
 "parameters/持枪移动/blend_position" = -0.997
@@ -1039,9 +1041,8 @@ damageable = NodePath("../../Damageable")
 wait_time = 0.256
 one_shot = true
 
-[node name="Shot" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("player", "bullet_start_marker", "anim_player", "character_state_machine")]
+[node name="Shot" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("bullet_start_marker", "anim_player", "character_state_machine")]
 script = ExtResource("24_5ti0w")
-player = NodePath("../..")
 bullet_start_marker = NodePath("../../Markers/Bullet")
 anim_player = NodePath("../../AnimationPlayer")
 character_state_machine = NodePath("..")
@@ -1062,6 +1063,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
+visible = false
 offset_left = -29.0
 offset_top = -23.0
 offset_right = 37.0

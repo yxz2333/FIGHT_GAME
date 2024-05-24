@@ -76,7 +76,6 @@ func cal() -> void:
 	early_exit = true
 	var cha : float = (character.pp.charge_time[character.scene.mode] - timer.time_left) / timer.wait_time
 	pp.damage = cha * pp.base["damage"]
-	print(pp.damage)
 	
 	## 配置不同模式下的击退
 	if character.scene.mode == "party":
@@ -92,4 +91,3 @@ func cal() -> void:
 		
 	pp.camera_shake_duration = cha * pp.base["camera_shake_duration"]
 	pp.frame_freeze_duration = cha * pp.base["frame_freeze_duration"]
-	print(pp.base_knockback_speed)

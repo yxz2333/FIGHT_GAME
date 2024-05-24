@@ -159,9 +159,7 @@ func input_config(accept_input, device : int) -> void: # 配置鼠标指针输�
 	if device == -1:
 		input_num = accept_inputs[accept_input]
 	else:
-		print(device)
 		input_num = accept_inputs[accept_input][device]
-		print(input_num)
 	for i in range(actions.size()):
 		actions[i] += str(input_num) # 分配按键
 

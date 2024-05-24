@@ -2,7 +2,6 @@ extends State
 
 class_name ShotState
 
-@export var player : Player
 @export var bullet_start_marker : Marker2D
 @export var anim_player : AnimationPlayer
 @export var character_state_machine : CharacterStateMachine
@@ -15,7 +14,7 @@ func init():
 
 
 func on_enter(lambda = null) -> void:
-	if player.sprite.flip_h == false:
+	if character.sprite.flip_h == false:
 		bullet_start_marker.position.x = abs(bullet_start_marker.position.x)
 	else:
 		bullet_start_marker.position.x = -abs(bullet_start_marker.position.x)
