@@ -11,8 +11,10 @@ func state_input(event : InputEvent) -> void:  # 读取输入
 	if event.is_action_pressed(pp.special_1_action):
 		if character.ground_state() != pp.ground_gun_state:
 			character.is_gun = true
+			pp.feet_label.set_short_text("GUN")
 			set_next_state(pp.gun_start_state)
 		else:
+			pp.feet_label.set_short_text("SWORD")
 			character.is_gun = false
 	
 	## 空中射击

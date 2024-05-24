@@ -6,6 +6,7 @@ var is_bullet_angry_recovered : bool = false
 
 func on_enter(lambda = null):
 	playback.travel("防御")
+	pp.feet_label.set_short_text("DEFENSE")
 	is_bullet_angry_recovered = false
 
 

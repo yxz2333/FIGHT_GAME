@@ -7,6 +7,7 @@ var damage_able : Damageable
 
 func on_enter(lambda = null):
 	playback.travel(pp.counter_attack_1_animation)
+	pp.feet_label.set_short_text("COUNTER")
 	by_who = lambda.call()
 	for child in by_who.get_children():
 		if child is Damageable:

@@ -6,6 +6,7 @@ func state_input(event : InputEvent) -> void:
 	super(event)
 	if event.is_action_pressed(pp.special_2_action) and character.angry >= 15:
 		attack_area.monitoring = false
+		pp.feet_label.set_short_text("REPID")
 		var repid_instance = repid.instantiate()
 		character.angry -= 15
 		repid_instance.global_position = character.global_position

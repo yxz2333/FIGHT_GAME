@@ -84,6 +84,9 @@ var special_2_action : String
 @export var break_animation : String = "爆发"
 @export var attack_1_animation : String
 
+## 脚下提示文字
+@export var feet_label : FeetLabel
+
 func _ready():
 	if character.scene.mode == "party" and character.scene.game_manager.number > 2:  # 交换party和默认的击飞速度
 		base_knockback_speed = party_kb["1v1v1"].x

@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://cifthl2ohvi0t"]
+[gd_scene load_steps=101 format=3 uid="uid://cifthl2ohvi0t"]
 
 [ext_resource type="Script" path="res://Character/NAMKA/namka.gd" id="1_eukoy"]
 [ext_resource type="Texture2D" uid="uid://db3tdx5cd0161" path="res://Assets/CHARAs/NAMKA/attack_prepare/attack_prepare.png" id="2_ok8b4"]
@@ -28,7 +28,9 @@
 [ext_resource type="Script" path="res://Character/NAMKA/状态：Shot.gd" id="23_dsi5h"]
 [ext_resource type="Script" path="res://Character/Class/状态：Break.gd" id="24_omolx"]
 [ext_resource type="Script" path="res://Character/Class/CharacterMenuInPlayer.gd" id="30_a7qlg"]
+[ext_resource type="Script" path="res://Character/Class/FeetLabel.gd" id="31_b224m"]
 [ext_resource type="Script" path="res://Character/Class/TrailTimer.gd" id="32_2oeus"]
+[ext_resource type="FontFile" uid="uid://bcrp7rtxjgmlp" path="res://Assets/Fonts/Elegant-blackbody-2.otf" id="32_4nn2d"]
 [ext_resource type="LabelSettings" uid="uid://dram2l5m640n0" path="res://Character/Class/P_label.tres" id="33_3nsw0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_klvjb"]
@@ -940,6 +942,174 @@ font_size = 10
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6eb18"]
 size = Vector2(32, 32)
 
+[sub_resource type="LabelSettings" id="LabelSettings_24n3e"]
+font = ExtResource("32_4nn2d")
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_x7wnx"]
+resource_name = "short"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["FIll"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:label_settings")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("LabelSettings_24n3e")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:label_settings:font_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:label_settings:font_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label:label_settings:shadow_size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Label:label_settings:shadow_color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_o5j4f"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_7sqk3"]
+resource_name = "long"
+length = 2.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["FIll"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:label_settings")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("LabelSettings_24n3e")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:label_settings:font_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:label_settings:font_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label:label_settings:shadow_size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Label:label_settings:shadow_color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_74ey2"]
+_data = {
+"RESET": SubResource("Animation_o5j4f"),
+"long": SubResource("Animation_7sqk3"),
+"short": SubResource("Animation_x7wnx")
+}
+
 [node name="NAMKA" type="CharacterBody2D" node_paths=PackedStringArray("shot_freeze_timer", "pp", "sprite", "P_label", "canvas_layer", "anim_player")]
 collision_layer = 6
 script = ExtResource("1_eukoy")
@@ -977,7 +1147,7 @@ script = ExtResource("9_tm5uj")
 character = NodePath("..")
 player_property = NodePath("../PlayerProperty")
 
-[node name="PlayerProperty" type="Node" parent="." node_paths=PackedStringArray("shot_state", "ground_gun_state", "gun_start_state", "character", "air_state", "break_state", "hit_state", "attack_state", "ground_default_state")]
+[node name="PlayerProperty" type="Node" parent="." node_paths=PackedStringArray("shot_state", "ground_gun_state", "gun_start_state", "character", "air_state", "break_state", "hit_state", "attack_state", "ground_default_state", "feet_label")]
 script = ExtResource("14_sgykt")
 bullet_speed = 300.0
 bullet_damage = 10.0
@@ -1010,6 +1180,7 @@ hit_state = NodePath("../CharacterStateMachine/Hit")
 attack_state = NodePath("../CharacterStateMachine/Attack")
 ground_default_state = NodePath("../CharacterStateMachine/GroundDefault")
 attack_1_animation = "攻击_准备"
+feet_label = NodePath("../FeetLabel")
 
 [node name="ShotFreezeTimer" type="Timer" parent="PlayerProperty"]
 wait_time = 3.0
@@ -1066,10 +1237,9 @@ damageable = NodePath("../../Damageable")
 wait_time = 0.256
 one_shot = true
 
-[node name="Shot" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("shot_freeze_timer", "player", "bullet_start_marker", "anim_player", "character_state_machine")]
+[node name="Shot" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("shot_freeze_timer", "bullet_start_marker", "anim_player", "character_state_machine")]
 script = ExtResource("23_dsi5h")
 shot_freeze_timer = NodePath("../../PlayerProperty/ShotFreezeTimer")
-player = NodePath("../..")
 bullet_start_marker = NodePath("../../Markers/Bullet")
 anim_player = NodePath("../../AnimationPlayer")
 character_state_machine = NodePath("..")
@@ -1137,6 +1307,28 @@ offset_right = 33.0
 offset_bottom = -8.0
 text = "P2"
 label_settings = ExtResource("33_3nsw0")
+
+[node name="FeetLabel" type="Node2D" parent="."]
+position = Vector2(9, 25)
+script = ExtResource("31_b224m")
+
+[node name="Label" type="Label" parent="FeetLabel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 34.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+label_settings = SubResource("LabelSettings_24n3e")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FeetLabel"]
+libraries = {
+"": SubResource("AnimationLibrary_74ey2")
+}
 
 [connection signal="current_animation_changed" from="AnimationPlayer" to="AnimationPlayer" method="_on_current_animation_changed"]
 [connection signal="animation_finished" from="AnimationTree" to="." method="_on_animation_tree_animation_finished"]

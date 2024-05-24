@@ -64,6 +64,7 @@ func _on_timer_timeout(): # 蓄完力自动攻击
 	if not auto_timer.is_stopped() or early_exit:
 		return
 	cal()
+	pp.feet_label.set_short_text("FILL")
 	set_next_state(character.pp.attack_state)
 
 

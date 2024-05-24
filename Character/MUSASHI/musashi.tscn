@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=3 uid="uid://c0mx07myhbk75"]
+[gd_scene load_steps=102 format=3 uid="uid://c0mx07myhbk75"]
 
 [ext_resource type="Script" path="res://Character/MUSASHI/musashi.gd" id="1_sih0q"]
 [ext_resource type="Texture2D" uid="uid://duvjgo116hy3y" path="res://Assets/CHARAs/MUSASHI/fall/jump.png" id="2_07nuw"]
@@ -6,9 +6,11 @@
 [ext_resource type="Script" path="res://Character/Class/人物状态机.gd" id="2_igc03"]
 [ext_resource type="Texture2D" uid="uid://coittmn1ixyad" path="res://Assets/CHARAs/MUSASHI/dash_attack/result (3).png" id="2_j0o0c"]
 [ext_resource type="Texture2D" uid="uid://dfiy3vf4kot8h" path="res://Assets/CHARAs/MUSASHI/dash.png" id="2_uprl0"]
+[ext_resource type="Script" path="res://Character/Class/FeetLabel.gd" id="3_1nqeh"]
 [ext_resource type="Texture2D" uid="uid://dkcw3agyilm5r" path="res://Assets/CHARAs/MUSASHI/running/running.png" id="3_irsjn"]
 [ext_resource type="Script" path="res://Character/Class/CharacterMenuInPlayer.gd" id="3_nga4i"]
 [ext_resource type="Script" path="res://Character/MUSASHI/player_property.gd" id="4_2m654"]
+[ext_resource type="FontFile" uid="uid://bcrp7rtxjgmlp" path="res://Assets/Fonts/Elegant-blackbody-2.otf" id="4_5w4r2"]
 [ext_resource type="Texture2D" uid="uid://dfnfv3xs8gme4" path="res://Assets/CHARAs/MUSASHI/Idle.png" id="4_dccr2"]
 [ext_resource type="Texture2D" uid="uid://dy2ei1rhnfupi" path="res://Assets/CHARAs/MUSASHI/damage/hit.png" id="5_adj51"]
 [ext_resource type="Script" path="res://Character/Class/StateDebugLabel.gd" id="5_wpwly"]
@@ -37,6 +39,174 @@
 [ext_resource type="Script" path="res://Character/Class/FacingCollisionShape2D.gd" id="33_4fg8g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d8ki2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_24n3e"]
+font = ExtResource("4_5w4r2")
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_x7wnx"]
+resource_name = "short"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["FIll"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:label_settings")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("LabelSettings_24n3e")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:label_settings:font_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:label_settings:font_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label:label_settings:shadow_size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Label:label_settings:shadow_color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_o5j4f"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_7sqk3"]
+resource_name = "long"
+length = 2.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["FIll"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:label_settings")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("LabelSettings_24n3e")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:label_settings:font_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:label_settings:font_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label:label_settings:shadow_size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Label:label_settings:shadow_color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_74ey2"]
+_data = {
+"RESET": SubResource("Animation_o5j4f"),
+"long": SubResource("Animation_7sqk3"),
+"short": SubResource("Animation_x7wnx")
+}
 
 [sub_resource type="Animation" id="Animation_hlsyn"]
 resource_name = "受伤"
@@ -1195,10 +1365,32 @@ position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_d8ki2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, 0.5)
-texture = ExtResource("9_qx7a4")
-hframes = 3
-frame = 2
+position = Vector2(0, -1)
+texture = ExtResource("4_dccr2")
+
+[node name="FeetLabel" type="Node2D" parent="."]
+position = Vector2(11, 21)
+script = ExtResource("3_1nqeh")
+
+[node name="Label" type="Label" parent="FeetLabel"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+label_settings = SubResource("LabelSettings_24n3e")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FeetLabel"]
+libraries = {
+"": SubResource("AnimationLibrary_74ey2")
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1217,7 +1409,7 @@ script = ExtResource("8_45ecj")
 character = NodePath("..")
 player_property = NodePath("../PlayerProperty")
 
-[node name="PlayerProperty" type="Node" parent="." node_paths=PackedStringArray("defense_state", "counter_attack_state", "flash_state", "flash_end_state", "charge_state", "character", "air_state", "break_state", "hit_state", "attack_state", "ground_default_state")]
+[node name="PlayerProperty" type="Node" parent="." node_paths=PackedStringArray("defense_state", "counter_attack_state", "flash_state", "flash_end_state", "charge_state", "character", "air_state", "break_state", "hit_state", "attack_state", "ground_default_state", "feet_label")]
 script = ExtResource("4_2m654")
 defense_state = NodePath("../CharacterStateMachine/DefenseState")
 counter_attack_state = NodePath("../CharacterStateMachine/CounterAttackState")
@@ -1252,6 +1444,7 @@ hit_state = NodePath("../CharacterStateMachine/HitState")
 attack_state = NodePath("../CharacterStateMachine/AttackState")
 ground_default_state = NodePath("../CharacterStateMachine/GroundDefaultState")
 attack_1_animation = "斩"
+feet_label = NodePath("../FeetLabel")
 
 [node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "animation_tree", "attack_area")]
 script = ExtResource("2_igc03")
@@ -1369,6 +1562,9 @@ facing_right_position = Vector2(-5.5, -4)
 
 [node name="RunStart" type="Marker2D" parent="Markers"]
 position = Vector2(-16, 8)
+
+[node name="FeetLabel" type="Marker2D" parent="Markers"]
+position = Vector2(0, 16)
 
 [node name="TrailTimer" type="Timer" parent="." node_paths=PackedStringArray("character")]
 wait_time = 0.2
